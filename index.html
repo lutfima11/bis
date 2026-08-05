@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Tes Diagnostik Kalkulasi · Bimbel Insan Sejahtera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- MathJax -->
+<script>
+MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --navy:#0f2a4e; --navy-2:#16385f; --navy-ink:#0b1d36;
+  --teal:#0d7a6e; --teal-soft:#e5f3f1; --teal-border:#bfe3de;
+  --gold:#b08420; --gold-soft:#fcf6e5; --gold-border:#ecd9a3;
+  --paper:#faf9f6; --surface:#ffffff;
+  --ink:#1c2430; --ink-2:#5c6472; --ink-3:#8b9099;
+  --line:#e3e0d6; --line-2:#cfccc0;
+  --wrong:#a8431f; --wrong-soft:#fbeee6; --wrong-border:#eeceb9;
+  --ok:#1f7a4c; --ok-soft:#e9f6ee; --ok-border:#bfe3cc;
+}
+
+html,body{height:100%;}
+body{
+  font-family:'Inter',sans-serif; background:var(--paper); color:var(--ink);
+  min-height:100vh; line-height:1.5; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{ font-family:'Newsreader',serif; }
+.mono{ font-family:'JetBrains Mono',monospace; }
+
+mjx-container{ display:inline !important; margin:0 2px; }
+mjx-container[display="true"]{ display:block !important; margin:10px 0; }
+
+button{ font-family:inherit; }
+:focus-visible{ outline:2.5px solid var(--gold); outline-offset:2px; }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+}
+
+/* ══════════════════════════ SCREENS (shared) ══════════════════════════ */
+.screen{ min-height:100vh; display:none; align-items:center; justify-content:center; padding:28px 20px; position:relative; }
+.screen.active{ display:flex; }
+
+@keyframes riseIn{ from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
+
+/* ══════════════════════════ IDENTITY SCREEN ══════════════════════════ */
+#identityScreen::before{
+  content:''; position:absolute; top:-140px; right:-140px; width:420px; height:420px;
+  background:radial-gradient(circle, rgba(13,122,110,0.10) 0%, transparent 70%); pointer-events:none;
+}
+#identityScreen::after{
+  content:''; position:absolute; bottom:-100px; left:-100px; width:340px; height:340px;
+  background:radial-gradient(circle, rgba(176,132,32,0.10) 0%, transparent 70%); pointer-events:none;
+}
+
+.card{
+  background:var(--surface); border:1px solid var(--line); border-radius:18px;
+  width:100%; max-width:560px; box-shadow:0 12px 44px rgba(15,42,78,0.10);
+  position:relative; z-index:1; animation:riseIn .45s cubic-bezier(.4,0,.2,1);
+  overflow:hidden;
+}
+.card-top-rule{ height:5px; background:linear-gradient(90deg, var(--navy), var(--teal) 55%, var(--gold)); }
+.card-body{ padding:38px 34px 34px; }
+
+.brand-row{ display:flex; align-items:center; gap:13px; margin-bottom:26px; padding-bottom:22px; border-bottom:1px solid var(--line); }
+.brand-mark{ width:46px; height:46px; border-radius:11px; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Newsreader',serif; font-weight:700; font-size:19px; flex-shrink:0; }
+.brand-text h1{ font-size:15px; font-weight:700; color:var(--navy); }
+.brand-text p{ font-size:11.5px; color:var(--ink-2); margin-top:1px; letter-spacing:.2px; }
+
+.form-title{ font-size:27px; font-weight:600; color:var(--navy); line-height:1.22; margin-bottom:8px; }
+.form-subtitle{ font-size:13.5px; color:var(--ink-2); margin-bottom:22px; line-height:1.6; }
+
+.info-box{ background:var(--teal-soft); border:1px solid var(--teal-border); border-radius:11px; padding:13px 15px; margin-bottom:11px; display:flex; gap:10px; }
+.info-box .ic{ font-size:16px; flex-shrink:0; line-height:1.4; }
+.info-box p{ font-size:12.5px; color:var(--navy-2); line-height:1.65; }
+.info-box strong{ font-weight:700; }
+
+.warn-box{ background:var(--gold-soft); border:1px solid var(--gold-border); border-radius:11px; padding:13px 15px; margin-bottom:24px; display:flex; gap:10px; }
+.warn-box p{ font-size:12.5px; color:#7a5c17; line-height:1.65; }
+
+.field{ margin-bottom:16px; }
+.field label{ display:block; font-size:11.5px; font-weight:700; color:var(--ink-2); letter-spacing:.4px; text-transform:uppercase; margin-bottom:6px; }
+.field input, .field select{
+  width:100%; padding:11px 14px; border:1.5px solid var(--line-2); border-radius:9px;
+  font-family:'Inter',sans-serif; font-size:14px; color:var(--ink); background:var(--paper);
+  outline:none; transition:border-color .15s, box-shadow .15s;
+}
+.field input:focus, .field select:focus{ border-color:var(--teal); background:#fff; box-shadow:0 0 0 3px rgba(13,122,110,0.12); }
+.field .err{ display:none; font-size:11.5px; color:var(--wrong); margin-top:5px; }
+
+.btn-start{
+  width:100%; padding:14px; margin-top:6px; background:var(--navy); color:#fff; border:none;
+  border-radius:10px; font-size:15px; font-weight:700; cursor:pointer; letter-spacing:.2px;
+  transition:all .15s;
+}
+.btn-start:hover{ background:var(--navy-2); box-shadow:0 8px 22px rgba(15,42,78,0.28); transform:translateY(-1px); }
+.btn-start:active{ transform:translateY(0); }
+
+/* ══════════════════════════ INVALID SCREEN ══════════════════════════ */
+.invalid-card{ text-align:center; padding:52px 36px; }
+.invalid-icon{ font-size:44px; margin-bottom:14px; }
+.invalid-title{ font-size:21px; font-weight:700; color:var(--wrong); margin-bottom:10px; }
+.invalid-msg{ font-size:13px; color:var(--ink-2); line-height:1.7; }
+
+/* ══════════════════════════ MODAL ══════════════════════════ */
+.modal-overlay{ position:fixed; inset:0; background:rgba(11,29,54,0.58); backdrop-filter:blur(3px); z-index:600; display:none; align-items:center; justify-content:center; padding:20px; }
+.modal-overlay.show{ display:flex; }
+.modal-box{ background:#fff; border-radius:16px; padding:38px 32px; max-width:400px; width:100%; text-align:center; box-shadow:0 26px 60px rgba(0,0,0,0.24); animation:riseIn .3s ease; }
+.modal-icon{ font-size:42px; margin-bottom:12px; }
+.modal-title{ font-size:20px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+.modal-msg{ font-size:13px; color:var(--ink-2); line-height:1.65; margin-bottom:22px; }
+.modal-msg strong{ color:var(--ink); }
+.btn-modal{ padding:12px 26px; border-radius:9px; font-size:13.5px; font-weight:700; cursor:pointer; border:none; background:var(--navy); color:#fff; transition:all .15s; }
+.btn-modal:hover{ background:var(--navy-2); }
+
+/* ══════════════════════════ EXAM SCREEN ══════════════════════════ */
+#examScreen{ display:none; min-height:100vh; flex-direction:column; align-items:stretch; padding:0; }
+#examScreen.active{ display:flex; }
+
+.exam-header{ background:var(--navy); color:#fff; padding:14px 22px; }
+.exam-header-inner{ max-width:640px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; }
+.eh-brand{ font-size:13px; font-weight:700; letter-spacing:.2px; }
+.eh-brand span{ display:block; font-size:10.5px; font-weight:400; color:#b9c6d8; margin-top:1px; }
+.eh-right{ display:flex; align-items:center; gap:12px; }
+.eh-nocalc{ font-size:11px; color:#b9c6d8; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); border-radius:999px; padding:4px 11px; }
+.eh-timer{ display:flex; align-items:center; gap:6px; background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.18); border-radius:999px; padding:5px 13px; font-size:14.5px; font-weight:600; }
+.eh-timer.warn{ background:rgba(176,132,32,0.35); border-color:rgba(176,132,32,0.6); }
+.eh-timer.danger{ background:rgba(168,67,31,0.4); border-color:rgba(168,67,31,0.65); animation:blink 1s infinite; }
+@keyframes blink{ 0%,100%{opacity:1;} 50%{opacity:.55;} }
+
+/* -- ladder (signature element) -- */
+.ladder-wrap{ background:#fff; border-bottom:1px solid var(--line); padding:14px 22px 12px; }
+.ladder-inner{ max-width:640px; margin:0 auto; }
+.ladder-meta{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:9px; }
+.ladder-meta .cur{ font-size:13px; font-weight:700; color:var(--navy); }
+.ladder-meta .cnt{ font-size:11.5px; color:var(--ink-3); }
+.ladder{ display:flex; align-items:flex-end; gap:2.5px; height:58px; }
+.rung{ flex:1; border-radius:3px 3px 1px 1px; background:var(--line); border:1px solid var(--line-2); transition:background .25s, border-color .25s, transform .2s; position:relative; min-width:3px; }
+.rung.passed{ background:var(--navy); border-color:var(--navy); }
+.rung.current{ background:var(--gold); border-color:var(--gold); transform:scaleY(1.03); box-shadow:0 0 0 2px rgba(176,132,32,0.22); }
+
+/* -- main question area -- */
+.exam-main{ flex:1; display:flex; align-items:flex-start; justify-content:center; padding:34px 20px 60px; }
+.q-wrap{ width:100%; max-width:560px; animation:riseIn .35s ease; }
+
+.q-level-badge{ display:inline-flex; align-items:center; gap:7px; background:var(--teal-soft); border:1px solid var(--teal-border); color:var(--teal); font-size:11.5px; font-weight:700; letter-spacing:.3px; padding:5px 12px; border-radius:999px; margin-bottom:14px; text-transform:uppercase; }
+
+.q-card{ background:#fff; border:1px solid var(--line); border-radius:16px; padding:30px 28px; box-shadow:0 4px 18px rgba(15,42,78,0.05); }
+.q-text{ font-size:19px; color:var(--ink); line-height:1.55; margin-bottom:22px; }
+.q-text .hint{ display:block; font-size:12.5px; color:var(--ink-3); font-weight:400; margin-top:6px; font-family:'Inter',sans-serif; }
+
+.q-inputs{ display:flex; flex-wrap:wrap; gap:16px 22px; margin-bottom:26px; }
+.q-input-group{ flex:1; min-width:130px; }
+.q-input-group .lbl{ display:block; font-size:12px; font-weight:600; color:var(--ink-2); margin-bottom:6px; }
+.q-input-group input{
+  width:100%; padding:13px 14px; border:1.5px solid var(--line-2); border-radius:10px;
+  font-family:'JetBrains Mono',monospace; font-size:18px; color:var(--navy); background:var(--paper);
+  outline:none; transition:border-color .15s, box-shadow .15s;
+}
+.q-input-group input:focus{ border-color:var(--teal); background:#fff; box-shadow:0 0 0 3px rgba(13,122,110,0.12); }
+
+.q-actions{ display:flex; justify-content:flex-end; }
+.btn-next{
+  padding:13px 26px; background:var(--navy); color:#fff; border:none; border-radius:10px;
+  font-size:14.5px; font-weight:700; cursor:pointer; transition:all .15s;
+}
+.btn-next:hover{ background:var(--navy-2); box-shadow:0 6px 18px rgba(15,42,78,0.25); }
+
+.q-footer-note{ text-align:center; font-size:12px; color:var(--ink-3); margin-top:18px; }
+
+/* ══════════════════════════ RESULT SCREEN ══════════════════════════ */
+#resultScreen{ display:none; min-height:100vh; background:var(--paper); padding:40px 20px 60px; }
+#resultScreen.active{ display:flex; justify-content:center; }
+.result-wrap{ width:100%; max-width:600px; animation:riseIn .5s ease; }
+
+.result-hero{ background:var(--navy); border-radius:18px; padding:36px 30px; text-align:center; color:#fff; margin-bottom:20px; position:relative; overflow:hidden; }
+.result-hero::before{ content:''; position:absolute; top:-80px; right:-80px; width:220px; height:220px; background:radial-gradient(circle, rgba(176,132,32,0.28), transparent 70%); }
+.result-eyebrow{ font-size:11.5px; letter-spacing:1.2px; text-transform:uppercase; color:#9fb3ca; margin-bottom:10px; position:relative; }
+.result-label{ font-family:'Newsreader',serif; font-size:16px; color:#dce6f0; margin-bottom:6px; position:relative; }
+.result-placement{ font-family:'Newsreader',serif; font-size:52px; font-weight:700; letter-spacing:.5px; margin-bottom:10px; position:relative; }
+.result-note{ font-size:12.5px; color:#b9c6d8; max-width:420px; margin:0 auto; line-height:1.6; position:relative; }
+
+.result-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:20px; }
+.r-stat{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 10px; text-align:center; }
+.r-stat-val{ font-family:'Newsreader',serif; font-size:26px; font-weight:700; color:var(--navy); }
+.r-stat-lbl{ font-size:11px; color:var(--ink-2); margin-top:3px; }
+
+.result-section{ background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px 22px; margin-bottom:16px; }
+.result-section h3{ font-size:14px; font-weight:700; color:var(--navy); margin-bottom:12px; }
+
+.level-table{ width:100%; border-collapse:collapse; font-size:12.5px; }
+.level-table th{ text-align:left; font-size:10.5px; letter-spacing:.3px; text-transform:uppercase; color:var(--ink-3); padding:5px 6px; border-bottom:1px solid var(--line); }
+.level-table td{ padding:6px 6px; border-bottom:1px solid #f0efe9; }
+.status-pill{ display:inline-block; padding:2px 9px; border-radius:999px; font-size:11px; font-weight:700; }
+.status-tuntas{ background:var(--ok-soft); color:var(--ok); }
+.status-sebagian{ background:var(--gold-soft); color:#7a5c17; }
+.status-belum{ background:#f1f0eb; color:var(--ink-3); }
+
+.result-actions{ display:flex; flex-direction:column; align-items:stretch; gap:10px; margin-top:6px; }
+.wa-btn{ display:flex; align-items:center; justify-content:center; gap:10px; padding:14px; background:#25d366; color:#fff; border:none; border-radius:11px; font-size:14.5px; font-weight:700; cursor:pointer; text-decoration:none; transition:all .15s; }
+.wa-btn:hover{ background:#1ebe5c; box-shadow:0 8px 22px rgba(37,211,102,0.32); }
+.wa-icon{ width:20px; height:20px; flex-shrink:0; }
+.sent-badge{ text-align:center; font-size:12px; color:var(--ok); font-weight:600; display:none; }
+.btn-restart{ padding:12px; background:#fff; border:1.5px solid var(--line-2); border-radius:11px; font-size:13.5px; font-weight:600; cursor:pointer; color:var(--ink-2); transition:all .15s; }
+.btn-restart:hover{ background:var(--paper); }
+
+.foot-note{ text-align:center; font-size:11.5px; color:var(--ink-3); margin-top:22px; line-height:1.7; }
+
+@media (max-width:480px){
+  .card-body{ padding:28px 22px 26px; }
+  .form-title{ font-size:23px; }
+  .q-card{ padding:24px 20px; }
+  .q-text{ font-size:17px; }
+  .result-placement{ font-size:42px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════ IDENTITY SCREEN ══════════════════════════════════════ -->
+<div id="identityScreen" class="screen active">
+  <div class="card">
+    <div class="card-top-rule"></div>
+    <div class="card-body">
+      <div class="brand-row">
+        <div class="brand-mark">IS</div>
+        <div class="brand-text">
+          <h1>Bimbel Insan Sejahtera</h1>
+          <p>Tes Penempatan Jalur Belajar &middot; Tahap 1</p>
+        </div>
+      </div>
+
+      <h2 class="form-title">Tes Diagnostik<br>Kalkulasi</h2>
+      <p class="form-subtitle">Tes ini mengukur seberapa lancar kamu berhitung, supaya kami tahu titik latihan yang paling tepat untukmu. Isi datamu dulu, ya.</p>
+
+      <div class="info-box">
+        <span class="ic">&#128203;</span>
+        <p><strong>40 soal berhitung</strong>, berurutan dari mudah ke sulit (Level K-1&ndash;K-20) &middot; Waktu <strong>15 menit</strong> &middot; Tanpa kalkulator.</p>
+      </div>
+      <div class="info-box">
+        <span class="ic">&#9993;</span>
+        <p>Tes akan <strong>berhenti otomatis</strong> begitu kamu keliru dua soal berturut-turut &mdash; itu tandanya kita sudah menemukan batas latihanmu saat ini, bukan tanda kegagalan.</p>
+      </div>
+      <div class="warn-box">
+        <span class="ic">&#9888;</span>
+        <p>Jangan me-<strong>refresh</strong> atau menutup halaman setelah tes dimulai &mdash; tes akan dinyatakan <strong>tidak valid</strong> dan harus diulang dari awal.</p>
+      </div>
+
+      <div class="field">
+        <label for="inNama">Nama Lengkap</label>
+        <input type="text" id="inNama" placeholder="Contoh: Ahmad Fauzan" autocomplete="off">
+        <div class="err" id="errNama">Nama tidak boleh kosong.</div>
+      </div>
+      <div class="field">
+        <label for="inUsia">Usia (tahun)</label>
+        <input type="number" id="inUsia" placeholder="Contoh: 11" min="4" max="20" inputmode="numeric">
+        <div class="err" id="errUsia">Usia harus diisi dengan angka wajar.</div>
+      </div>
+      <div class="field">
+        <label for="inSekolah">Sekolah Asal &amp; Kelas Saat Ini</label>
+        <input type="text" id="inSekolah" placeholder="Contoh: SDIT Al-Furqan, Kelas 5" autocomplete="off">
+        <div class="err" id="errSekolah">Mohon isi sekolah dan kelas.</div>
+      </div>
+
+      <button class="btn-start" onclick="startExam()">Mulai Tes &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ INVALID SCREEN ══════════════════════════════════════ -->
+<div id="invalidScreen" class="screen">
+  <div class="card invalid-card">
+    <div class="invalid-icon">&#128683;</div>
+    <div class="invalid-title">Tes Tidak Valid</div>
+    <p class="invalid-msg">Halaman di-refresh atau dibuka ulang setelah tes dimulai.<br><br>Tes ini <strong style="color:var(--wrong)">dinyatakan tidak valid</strong> dan tidak dapat dilanjutkan.<br><br>Hubungi penguji/gurumu untuk memulai sesi baru.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ MODAL: WAKTU HABIS ══════════════════════════════════════ -->
+<div class="modal-overlay" id="timeModal">
+  <div class="modal-box">
+    <div class="modal-icon">&#9200;</div>
+    <div class="modal-title">Waktu Habis</div>
+    <p class="modal-msg">Waktu 15 menit sudah selesai. Hasil tesmu akan dihitung otomatis dari jawaban yang sudah masuk.</p>
+    <button class="btn-modal" onclick="closeTimeModalAndFinish()">Lihat Hasil &rarr;</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ EXAM SCREEN ══════════════════════════════════════ -->
+<div id="examScreen" class="screen">
+  <div class="exam-header">
+    <div class="exam-header-inner">
+      <div class="eh-brand">Bimbel Insan Sejahtera<span>Tes Diagnostik Kalkulasi</span></div>
+      <div class="eh-right">
+        <span class="eh-nocalc">&#128683; tanpa kalkulator</span>
+        <div class="eh-timer mono" id="ehTimer">15:00</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ladder-wrap">
+    <div class="ladder-inner">
+      <div class="ladder-meta">
+        <span class="cur" id="ladderCur">Level K-1</span>
+        <span class="cnt" id="ladderCnt">Soal 1 dari 40</span>
+      </div>
+      <div class="ladder" id="ladder"></div>
+    </div>
+  </div>
+
+  <div class="exam-main">
+    <div class="q-wrap" id="qWrap"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ RESULT SCREEN ══════════════════════════════════════ -->
+<div id="resultScreen" class="screen">
+  <div class="result-wrap">
+
+    <div class="result-hero">
+      <div class="result-eyebrow">TITIK MULAI ANANDA</div>
+      <div class="result-label">Jalur Kalkulasi</div>
+      <div class="result-placement" id="resPlacement">K&ndash;1</div>
+      <div class="result-note" id="resNote"></div>
+    </div>
+
+    <div class="result-stats">
+      <div class="r-stat"><div class="r-stat-val" id="resAnswered">0</div><div class="r-stat-lbl">Soal Dikerjakan</div></div>
+      <div class="r-stat"><div class="r-stat-val" id="resCorrect">0</div><div class="r-stat-lbl">Jawaban Benar</div></div>
+      <div class="r-stat"><div class="r-stat-val" id="resDuration">0&prime;</div><div class="r-stat-lbl">Durasi</div></div>
+    </div>
+
+    <div class="result-section">
+      <h3>Rekap per Level</h3>
+      <table class="level-table">
+        <thead><tr><th>Level</th><th>Skor</th><th>Status</th></tr></thead>
+        <tbody id="levelTableBody"></tbody>
+      </table>
+    </div>
+
+    <div class="result-actions">
+      <a id="waBtn" href="#" class="wa-btn" target="_blank" onclick="markSent()">
+        <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.108.549 4.084 1.504 5.806L.058 23.5a.5.5 0 0 0 .615.611l5.796-1.517A11.955 11.955 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.52-5.158-1.422l-.369-.222-3.838 1.005 1.023-3.74-.242-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Kirim Hasil ke Guru via WhatsApp
+      </a>
+      <div class="sent-badge" id="sentBadge">&#9989; Hasil sudah dikirim ke guru!</div>
+      <button class="btn-restart" onclick="location.reload()">Ulangi Tes dari Awal</button>
+    </div>
+
+    <p class="foot-note" id="confirmNote"></p>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════
+// KONFIGURASI
+// ══════════════════════════════════════════════════════════════
+const GURU_WA  = '6281770618414'; // Nomor WhatsApp guru/admin penerima hasil
+const DURATION = 15 * 60;        // 15 menit, sesuai Dokumen Induk Kurikulum
+
+// ══════════════════════════════════════════════════════════════
+// LEVEL K-1 s.d. K-20 — label keterampilan (ditampilkan ke siswa)
+// ══════════════════════════════════════════════════════════════
+const LEVEL_LABEL = {
+  1:'Membilang dan mengenal lambang bilangan',
+  2:'Penjumlahan +1 s.d. +5',
+  3:'Penjumlahan +6 s.d. +10; pengurangan dalam 20',
+  4:'Penjumlahan dan pengurangan dua angka',
+  5:'Penjumlahan/pengurangan bersusun, simpan–pinjam',
+  6:'Fakta perkalian 2, 3, 4, 5, 10',
+  7:'Fakta perkalian 6, 7, 8, 9; pembagian terkait',
+  8:'Perkalian bersusun, 2–3 angka × 1 angka',
+  9:'Pembagian bersusun panjang',
+  10:'Perkalian dua angka; operasi campuran',
+  11:'Penjumlahan dan pengurangan pecahan',
+  12:'Perkalian dan pembagian pecahan',
+  13:'Operasi desimal lengkap',
+  14:'Campuran pecahan–desimal; persen',
+  15:'Operasi bilangan bulat negatif',
+  16:'Operasi bentuk aljabar; substitusi',
+  17:'Penyelesaian PLSV dan PtLSV',
+  18:'Eliminasi dan substitusi SPLDV',
+  19:'Pemfaktoran dan persamaan kuadrat',
+  20:'Pangkat, akar, manipulasi aljabar terpadu'
+};
+
+// ══════════════════════════════════════════════════════════════
+// BANK SOAL — 40 butir, 2 per level, K-1 s.d. K-20
+// type: 'numeric' (satu jawaban angka/pecahan/desimal)
+//       'twonum'  (dua jawaban angka, urutan tertentu)
+//       'set2'    (dua jawaban angka, tidak berurutan / himpunan)
+//       'text'    (jawaban berupa teks/bentuk aljabar, dicocokkan ke varian yang diterima)
+// ══════════════════════════════════════════════════════════════
+const ITEMS = [
+  { n:1, level:1, text:'Tulis lambang bilangan untuk &ldquo;enam belas&rdquo;:', type:'numeric', answer:16,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'16' },
+  { n:2, level:1, text:'Lanjutkan urutannya: 14, 15, 16, &hellip; , &hellip;', type:'twonum', a:17, b:18,
+    inputs:[{id:'a', label:'Bilangan ke-4', mode:'numeric'}, {id:'b', label:'Bilangan ke-5', mode:'numeric'}], display:'17, 18' },
+
+  { n:3, level:2, text:'\\(4 + 3 = \\)', type:'numeric', answer:7,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'7' },
+  { n:4, level:2, text:'\\(7 + 5 = \\)', type:'numeric', answer:12,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'12' },
+
+  { n:5, level:3, text:'\\(8 + 9 = \\)', type:'numeric', answer:17,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'17' },
+  { n:6, level:3, text:'\\(17 - 8 = \\)', type:'numeric', answer:9,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'9' },
+
+  { n:7, level:4, text:'\\(34 + 25 = \\)', type:'numeric', answer:59,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'59' },
+  { n:8, level:4, text:'\\(62 - 27 = \\)', type:'numeric', answer:35,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'35' },
+
+  { n:9, level:5, text:'\\(256 + 187 = \\)', type:'numeric', answer:443,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'443' },
+  { n:10, level:5, text:'\\(403 - 156 = \\)', type:'numeric', answer:247,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'247' },
+
+  { n:11, level:6, text:'\\(4 \\times 7 = \\)', type:'numeric', answer:28,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'28' },
+  { n:12, level:6, text:'\\(9 \\times 5 = \\)', type:'numeric', answer:45,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'45' },
+
+  { n:13, level:7, text:'\\(8 \\times 7 = \\)', type:'numeric', answer:56,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'56' },
+  { n:14, level:7, text:'\\(56 \\div 8 = \\)', type:'numeric', answer:7,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'7' },
+
+  { n:15, level:8, text:'\\(234 \\times 6 = \\)', type:'numeric', answer:1404,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'1.404' },
+  { n:16, level:8, text:'\\(458 \\times 7 = \\)', type:'numeric', answer:3206,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'3.206' },
+
+  { n:17, level:9, text:'\\(468 \\div 4 = \\)', type:'numeric', answer:117,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'117' },
+  { n:18, level:9, text:'\\(855 \\div 5 = \\)', type:'numeric', answer:171,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'171' },
+
+  { n:19, level:10, text:'\\(34 \\times 26 = \\)', type:'numeric', answer:884,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'884' },
+  { n:20, level:10, text:'\\(15 + 6 \\times 8 = \\)', type:'numeric', answer:63,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'63' },
+
+  { n:21, level:11, text:'\\(\\dfrac{3}{4} + \\dfrac{1}{8} = \\)', type:'numeric', answer:0.875,
+    inputs:[{id:'a', label:'Jawaban (pecahan/desimal)', mode:'text'}], display:'7/8' },
+  { n:22, level:11, text:'\\(\\dfrac{5}{6} - \\dfrac{1}{3} = \\)', type:'numeric', answer:0.5,
+    inputs:[{id:'a', label:'Jawaban (pecahan/desimal)', mode:'text'}], display:'1/2' },
+
+  { n:23, level:12, text:'\\(\\dfrac{2}{3} \\times \\dfrac{3}{5} = \\)', type:'numeric', answer:0.4,
+    inputs:[{id:'a', label:'Jawaban (pecahan/desimal)', mode:'text'}], display:'2/5' },
+  { n:24, level:12, text:'\\(\\dfrac{3}{4} \\div \\dfrac{1}{2} = \\)', type:'numeric', answer:1.5,
+    inputs:[{id:'a', label:'Jawaban (pecahan/desimal)', mode:'text'}], display:'3/2' },
+
+  { n:25, level:13, text:'\\(4{,}25 + 3{,}7 = \\)', type:'numeric', answer:7.95,
+    inputs:[{id:'a', label:'Jawaban', mode:'text'}], display:'7,95' },
+  { n:26, level:13, text:'\\(6{,}4 \\times 0{,}5 = \\)', type:'numeric', answer:3.2,
+    inputs:[{id:'a', label:'Jawaban', mode:'text'}], display:'3,2' },
+
+  { n:27, level:14, text:'\\(0{,}5 + \\dfrac{1}{4} = \\)', type:'numeric', answer:0.75,
+    inputs:[{id:'a', label:'Jawaban', mode:'text'}], display:'0,75' },
+  { n:28, level:14, text:'\\(40\\%\\) dari \\(250 = \\)', type:'numeric', answer:100,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'100' },
+
+  { n:29, level:15, text:'\\(-8 + 15 = \\)', type:'numeric', answer:7,
+    inputs:[{id:'a', label:'Jawaban', mode:'text'}], display:'7' },
+  { n:30, level:15, text:'\\(-6 \\times (-4) = \\)', type:'numeric', answer:24,
+    inputs:[{id:'a', label:'Jawaban', mode:'text'}], display:'24' },
+
+  { n:31, level:16, text:'Sederhanakan: \\(4a + 3a - 2a = \\)', type:'text', accepted:['5a'],
+    inputs:[{id:'a', label:'Jawaban', mode:'text'}], display:'5a' },
+  { n:32, level:16, text:'Jika \\(x = 3\\), nilai \\(5x + 2 = \\)', type:'numeric', answer:17,
+    inputs:[{id:'a', label:'Jawaban', mode:'numeric'}], display:'17' },
+
+  { n:33, level:17, text:'Selesaikan: \\(3x - 4 = 11\\)', type:'numeric', answer:5,
+    inputs:[{id:'a', label:'x =', mode:'text'}], display:'x = 5' },
+  { n:34, level:17, text:'Selesaikan: \\(2x + 3 < 11\\)', type:'numeric', answer:4,
+    inputs:[{id:'a', label:'x <', mode:'text'}], display:'x < 4' },
+
+  { n:35, level:18, text:'\\(x+y=7\\) dan \\(x-y=1\\)', type:'twonum', a:4, b:3,
+    inputs:[{id:'a', label:'x =', mode:'text'}, {id:'b', label:'y =', mode:'text'}], display:'x = 4, y = 3' },
+  { n:36, level:18, text:'\\(2x+y=8\\) dan \\(x-y=1\\)', type:'twonum', a:3, b:2,
+    inputs:[{id:'a', label:'x =', mode:'text'}, {id:'b', label:'y =', mode:'text'}], display:'x = 3, y = 2' },
+
+  { n:37, level:19, text:'Faktorkan: \\(x^{2} + 7x + 12 = \\)', type:'text', accepted:['(x+3)(x+4)','(x+4)(x+3)'],
+    inputs:[{id:'a', label:'Jawaban, misal: (x+1)(x+2)', mode:'text'}], display:'(x+3)(x+4)' },
+  { n:38, level:19, text:'Selesaikan: \\(x^{2} - 9 = 0\\)', type:'set2', set:[3,-3],
+    inputs:[{id:'a', label:'x₁ =', mode:'text'}, {id:'b', label:'x₂ =', mode:'text'}], display:'x = 3 atau x = −3' },
+
+  { n:39, level:20, text:'Sederhanakan: \\(\\sqrt{32} = \\)', type:'text', accepted:['4√2'],
+    inputs:[{id:'a', label:'Jawaban, misal: 4√2 atau 4 akar 2', mode:'text'}], display:'4√2' },
+  { n:40, level:20, text:'Sederhanakan: \\((2a^{3})^{2} = \\)', type:'text', accepted:['4a^6','4a⁶'],
+    inputs:[{id:'a', label:'Jawaban, gunakan ^ untuk pangkat (misal: 4a^6)', mode:'text'}], display:'4a⁶' }
+];
+
+// ══════════════════════════════════════════════════════════════
+// HELPER — parsing & pencocokan jawaban
+// ══════════════════════════════════════════════════════════════
+function parseNumeric(str){
+  if (str == null) return null;
+  let s = String(str).trim().replace(/\s+/g,'');
+  if (s === '') return null;
+  // pecahan a/b
+  let m = s.match(/^(-?\d+)\/(-?\d+)$/);
+  if (m){
+    const den = parseFloat(m[2]);
+    if (den === 0) return null;
+    return parseFloat(m[1]) / den;
+  }
+  // desimal koma -> titik
+  s = s.replace(',', '.');
+  if (/^-?\d+(\.\d+)?$/.test(s)) return parseFloat(s);
+  return null;
+}
+function numEq(a,b,eps){
+  eps = eps === undefined ? 0.005 : eps;
+  return a !== null && b !== null && Math.abs(a-b) < eps;
+}
+function normText(str){
+  let t = String(str||'').trim().toLowerCase().replace(/\s+/g,'');
+  t = t.replace(/sqrt/g,'√').replace(/akar/g,'√').replace(/rad/g,'√');
+  t = t.replace(/⁶/g,'^6');
+  return t;
+}
+
+function checkItem(item, vals){
+  if (item.type === 'numeric'){
+    const v = parseNumeric(vals.a);
+    if (v !== null) return numEq(v, item.answer);
+    return normText(vals.a) === normText(item.display); // fallback untuk jawaban teks murni
+  }
+  if (item.type === 'twonum'){
+    const va = parseNumeric(vals.a), vb = parseNumeric(vals.b);
+    return numEq(va, item.a) && numEq(vb, item.b);
+  }
+  if (item.type === 'set2'){
+    const va = parseNumeric(vals.a), vb = parseNumeric(vals.b);
+    if (va === null || vb === null) return false;
+    const s = item.set.slice().sort((x,y)=>x-y);
+    const u = [va,vb].sort((x,y)=>x-y);
+    return numEq(u[0],s[0]) && numEq(u[1],s[1]);
+  }
+  if (item.type === 'text'){
+    const t = normText(vals.a);
+    return item.accepted.some(acc => normText(acc) === t);
+  }
+  return false;
+}
+
+// ══════════════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════════════
+let studentName='', studentUsia='', studentSekolah='';
+let startTime=null, timerInterval=null, secondsLeft=DURATION;
+let currentIndex = 1;         // 1..40
+let consecutiveWrong = 0;
+let levelCorrectCount = new Array(21).fill(0);   // index 1..20
+let levelAttempted    = new Array(21).fill(0);
+let answered = 0, correctCount = 0;
+let answerLog = [];           // {n, level, given, correct}
+let testDone = false, endReason = '';
+
+const SS_STARTED = 'kalkOnline_started';
+const SS_DONE    = 'kalkOnline_done';
+
+window.addEventListener('load', () => {
+  if (sessionStorage.getItem(SS_STARTED)==='1' && sessionStorage.getItem(SS_DONE)!=='1'){
+    document.getElementById('identityScreen').classList.remove('active');
+    document.getElementById('invalidScreen').classList.add('active');
+  }
+});
+window.addEventListener('beforeunload', e => {
+  if (startTime && !testDone){ e.preventDefault(); e.returnValue=''; }
+});
+
+// ══════════════════════════════════════════════════════════════
+// START
+// ══════════════════════════════════════════════════════════════
+function startExam(){
+  const nama = document.getElementById('inNama').value.trim();
+  const usia = document.getElementById('inUsia').value.trim();
+  const sekolah = document.getElementById('inSekolah').value.trim();
+  let valid = true;
+
+  document.getElementById('errNama').style.display = nama ? 'none':'block';
+  if (!nama) valid = false;
+  document.getElementById('errUsia').style.display = (usia && +usia>0 && +usia<25) ? 'none':'block';
+  if (!(usia && +usia>0 && +usia<25)) valid = false;
+  document.getElementById('errSekolah').style.display = sekolah ? 'none':'block';
+  if (!sekolah) valid = false;
+  if (!valid) return;
+
+  studentName = nama; studentUsia = usia; studentSekolah = sekolah;
+  startTime = new Date();
+  sessionStorage.setItem(SS_STARTED,'1');
+  sessionStorage.removeItem(SS_DONE);
+
+  document.getElementById('identityScreen').classList.remove('active');
+  document.getElementById('examScreen').classList.add('active');
+
+  buildLadder();
+  renderQuestion();
+  startTimer();
+}
+
+// ══════════════════════════════════════════════════════════════
+// LADDER (elemen signature — tangga 20 level)
+// ══════════════════════════════════════════════════════════════
+function buildLadder(){
+  const ladder = document.getElementById('ladder');
+  ladder.innerHTML = '';
+  for (let i=1; i<=20; i++){
+    const r = document.createElement('div');
+    r.className = 'rung';
+    r.id = 'rung'+i;
+    r.style.height = (14 + (i-1)*3) + 'px';
+    r.title = 'K-'+i;
+    ladder.appendChild(r);
+  }
+  updateLadder(1);
+}
+function updateLadder(level){
+  for (let i=1; i<=20; i++){
+    const r = document.getElementById('rung'+i);
+    r.classList.remove('passed','current');
+    if (i < level) r.classList.add('passed');
+    else if (i === level) r.classList.add('current');
+  }
+  document.getElementById('ladderCur').textContent = 'Level K-' + level;
+}
+
+// ══════════════════════════════════════════════════════════════
+// RENDER SOAL (satu per satu)
+// ══════════════════════════════════════════════════════════════
+function renderQuestion(){
+  const item = ITEMS[currentIndex-1];
+  updateLadder(item.level);
+  document.getElementById('ladderCnt').textContent = 'Soal ' + currentIndex + ' dari 40';
+
+  const inputsHtml = item.inputs.map(inp => `
+    <div class="q-input-group">
+      <span class="lbl">${inp.label}</span>
+      <input type="text" id="inp_${inp.id}" ${inp.mode==='numeric' ? 'inputmode="decimal"':'inputmode="text"'} autocomplete="off" autocapitalize="off" spellcheck="false">
+    </div>
+  `).join('');
+
+  const wrap = document.getElementById('qWrap');
+  wrap.innerHTML = `
+    <div class="q-level-badge">Level K-${item.level} &middot; ${LEVEL_LABEL[item.level]}</div>
+    <div class="q-card">
+      <div class="q-text">${item.text}</div>
+      <div class="q-inputs">${inputsHtml}</div>
+      <div class="q-actions">
+        <button class="btn-next" onclick="submitAnswer()">Jawab &amp; Lanjut &rarr;</button>
+      </div>
+    </div>
+    <p class="q-footer-note">Soal ${currentIndex} dari 40 &middot; Level K-${item.level}</p>
+  `;
+
+  if (window.MathJax && MathJax.typesetPromise){
+    MathJax.typesetPromise([wrap]).catch(err => console.warn('MathJax error:', err));
+  }
+
+  const firstInput = document.getElementById('inp_' + item.inputs[0].id);
+  if (firstInput) firstInput.focus();
+
+  // Enter untuk lanjut
+  item.inputs.forEach(inp => {
+    const el = document.getElementById('inp_' + inp.id);
+    el.addEventListener('keydown', e => { if (e.key === 'Enter') submitAnswer(); });
+  });
+}
+
+// ══════════════════════════════════════════════════════════════
+// SUBMIT JAWABAN
+// ══════════════════════════════════════════════════════════════
+function submitAnswer(){
+  const item = ITEMS[currentIndex-1];
+  const vals = {};
+  item.inputs.forEach(inp => { vals[inp.id] = document.getElementById('inp_'+inp.id).value; });
+
+  const isCorrect = checkItem(item, vals);
+  answered++;
+  levelAttempted[item.level]++;
+  if (isCorrect){ correctCount++; levelCorrectCount[item.level]++; consecutiveWrong = 0; }
+  else { consecutiveWrong++; }
+
+  answerLog.push({ n:item.n, level:item.level, given: item.inputs.map(inp=>vals[inp.id]||'—').join(' / '), correct:isCorrect });
+
+  if (consecutiveWrong >= 2){ endTest('stopped'); return; }
+  if (currentIndex >= 40){ endTest('completed'); return; }
+
+  currentIndex++;
+  renderQuestion();
+}
+
+// ══════════════════════════════════════════════════════════════
+// TIMER
+// ══════════════════════════════════════════════════════════════
+function startTimer(){
+  timerInterval = setInterval(() => {
+    secondsLeft--;
+    const m = String(Math.floor(secondsLeft/60)).padStart(2,'0');
+    const s = String(secondsLeft%60).padStart(2,'0');
+    const el = document.getElementById('ehTimer');
+    el.textContent = m+':'+s;
+    el.className = 'eh-timer mono' + (secondsLeft<=60 ? ' danger' : secondsLeft<=180 ? ' warn' : '');
+    if (secondsLeft <= 0){
+      clearInterval(timerInterval);
+      if (!testDone) document.getElementById('timeModal').classList.add('show');
+    }
+  }, 1000);
+}
+function closeTimeModalAndFinish(){
+  document.getElementById('timeModal').classList.remove('show');
+  endTest('timeup');
+}
+
+// ══════════════════════════════════════════════════════════════
+// ALGORITMA PENEMPATAN (basal–ceiling, sama dengan versi cetak)
+// ══════════════════════════════════════════════════════════════
+function computePlacement(){
+  const status = {};
+  for (let i=1;i<=20;i++){
+    const c = levelCorrectCount[i];
+    status[i] = c===2 ? 'tuntas' : c===1 ? 'sebagian' : 'belum';
+  }
+  let LTT = 0;
+  for (let i=1;i<=20;i++){ if (status[i]==='tuntas') LTT=i; else break; }
+
+  let placementLevel, note;
+  if (LTT === 20){
+    placementLevel = 20;
+    note = 'Seluruh Level K-1 s.d. K-20 tuntas. Sarankan konfirmasi lanjutan bersama guru, karena instrumen ini tidak menguji di atas K-20.';
+  } else {
+    const next = LTT+1;
+    if (status[next] === 'sebagian'){ placementLevel = next; note = ''; }
+    else {
+      placementLevel = LTT===0 ? 1 : LTT;
+      note = LTT===0 ? 'Level K-1 belum tuntas sepenuhnya; titik mulai tetap di K-1.' : '';
+    }
+  }
+  return { status, LTT, placementLevel, note };
+}
+
+// ══════════════════════════════════════════════════════════════
+// AKHIRI TES & TAMPILKAN HASIL
+// ══════════════════════════════════════════════════════════════
+function endTest(reason){
+  if (testDone) return;
+  testDone = true; endReason = reason;
+  clearInterval(timerInterval);
+  sessionStorage.setItem(SS_DONE,'1');
+
+  const endTime = new Date();
+  const durationMin = Math.max(1, Math.round((endTime-startTime)/60000));
+
+  const placement = computePlacement();
+
+  document.getElementById('examScreen').classList.remove('active');
+  document.getElementById('resultScreen').classList.add('active');
+
+  document.getElementById('resPlacement').textContent = 'K–' + placement.placementLevel;
+  document.getElementById('resAnswered').textContent = answered;
+  document.getElementById('resCorrect').textContent = correctCount;
+  document.getElementById('resDuration').textContent = durationMin + '′';
+
+  let noteHtml = placement.note ? placement.note + ' ' : '';
+  noteHtml += 'Hasil ini berdasarkan akurasi. Standar kecepatan dikonfirmasi guru pada 1–2 pertemuan pertama.';
+  document.getElementById('resNote').innerHTML = noteHtml;
+
+  const reasonText = reason==='stopped' ? 'Tes berhenti otomatis setelah dua jawaban keliru berturut-turut.'
+    : reason==='timeup' ? 'Tes berakhir karena waktu 15 menit habis.'
+    : 'Seluruh 40 soal telah dikerjakan.';
+  document.getElementById('confirmNote').textContent = reasonText;
+
+  // tabel rekap per level
+  const tbody = document.getElementById('levelTableBody');
+  tbody.innerHTML = '';
+  for (let i=1;i<=20;i++){
+    const st = placement.status[i];
+    const label = st==='tuntas' ? 'Tuntas' : st==='sebagian' ? 'Sebagian' : 'Belum';
+    const cls = 'status-' + st;
+    tbody.innerHTML += `<tr><td>K-${i}</td><td>${levelCorrectCount[i]}/2</td><td><span class="status-pill ${cls}">${label}</span></td></tr>`;
+  }
+
+  buildWaMessage(placement, durationMin, endTime);
+}
+
+// ══════════════════════════════════════════════════════════════
+// PESAN WHATSAPP KE GURU
+// ══════════════════════════════════════════════════════════════
+function buildWaMessage(placement, durationMin, endTime){
+  const tanggal = endTime.toLocaleDateString('id-ID', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  const jam = endTime.toLocaleTimeString('id-ID', { hour:'2-digit', minute:'2-digit' });
+
+  let msg = `📊 *HASIL TES DIAGNOSTIK KALKULASI*\n`;
+  msg += `🏫 Bimbel Insan Sejahtera — Tahap 1 TPJB\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `👤 *Nama:* ${studentName}\n`;
+  msg += `🎂 *Usia:* ${studentUsia} tahun\n`;
+  msg += `🏫 *Sekolah/Kelas:* ${studentSekolah}\n`;
+  msg += `📅 *Tanggal:* ${tanggal}, ${jam}\n`;
+  msg += `⏱ *Durasi:* ${durationMin} menit\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `🎯 *Jalur Kalkulasi hasil sistem:* K–${placement.placementLevel}\n`;
+  msg += `✅ *Benar:* ${correctCount} dari ${answered} soal dikerjakan\n`;
+  if (placement.note) msg += `📝 *Catatan:* ${placement.note}\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `*Rekap per Level:*\n`;
+  for (let i=1;i<=20;i++){
+    if (levelAttempted[i] > 0 || i <= placement.LTT+1){
+      const st = placement.status[i];
+      const tag = st==='tuntas'?'✅':st==='sebagian'?'➖':'—';
+      msg += `${tag} K-${i}: ${levelCorrectCount[i]}/2 (${st})\n`;
+    }
+  }
+  msg += `━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `*Detail jawaban (untuk peninjauan guru):*\n`;
+  answerLog.forEach(a => {
+    msg += `${a.correct ? '✓' : '✗'} No.${a.n} (K-${a.level}): jawab "${a.given}"\n`;
+  });
+  msg += `━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `⚠️ Ingat: konfirmasi Kaidah Dua Standar (akurasi + waktu) pada Lembar Harian sebelum menetapkan level final.\n`;
+  msg += `_Dikirim otomatis dari Tes Diagnostik Kalkulasi Online_`;
+
+  document.getElementById('waBtn').href = 'https://wa.me/' + GURU_WA + '?text=' + encodeURIComponent(msg);
+}
+
+function markSent(){
+  setTimeout(() => { document.getElementById('sentBadge').style.display = 'block'; }, 900);
+}
+</script>
+</body>
+</html>
