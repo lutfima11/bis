@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lembar Kalkulasi K-6 — Bimbel Insan Sejahtera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+
+  :root{
+    --navy:#0F2A4E; --teal:#007A7A; --soft-teal:#E0F2F1; --soft-navy:#E8EEF7;
+    --gold:#B08420; --soft-gold:#FCF6E5; --greyline:#C8CED6; --ink:#26313F;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  body{
+    font-family:"Plus Jakarta Sans",sans-serif;
+    font-size:9.5pt; line-height:1.55; color:var(--ink);
+    background:#EAEDF1; margin:0; padding:0;
+  }
+  h1,h2,.brand-name{font-family:"Fraunces",serif;}
+
+  /* ============ PAGE (A4) ============ */
+  .page{
+    background:#fff; width:21cm; min-height:29.7cm; height:auto;
+    padding:1.6cm 2.2cm 1.3cm 2.2cm; margin:1cm auto;
+    box-shadow:0 0 10px rgba(0,0,0,.18); position:relative;
+    display:flex; flex-direction:column;
+  }
+  .page-header{margin:-1.6cm -2.2cm 0 -2.2cm; width:21cm;}
+  .brand-bar{height:4px;background:linear-gradient(90deg,var(--teal),var(--navy));
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .header-inner{padding:11px 2.2cm 9px 2.2cm;background:var(--soft-navy);
+    display:flex;justify-content:space-between;align-items:center;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .brand-name{font-size:17pt;font-weight:700;color:var(--navy);}
+  .brand-left{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-logo{height:42px;width:auto;display:block;object-fit:contain;}
+  .brand-tagline{font-size:7.6pt;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:.6px;margin-top:2px;}
+
+  .level-strip{padding:10px 2.2cm;background:#fff;border-bottom:1px solid var(--greyline);}
+  .level-top{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+
+  .chips-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+  .k-badge{font-family:"JetBrains Mono",monospace;font-size:12pt;font-weight:800;color:#fff;
+    padding:3px 10px;border-radius:6px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .skill-label{font-size:8.4pt;font-weight:700;color:var(--navy);}
+  .sheet-no{font-size:7.3pt;color:#8A91A0;font-weight:600;}
+
+  .standar-row{display:flex;gap:8px;margin-top:9px;}
+  .standar-chip{display:flex;align-items:center;gap:5px;font-size:7.6pt;font-weight:700;
+    border:1.3px solid var(--gold);color:#8A6416;background:var(--soft-gold);border-radius:20px;padding:3px 10px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .standar-chip svg{flex-shrink:0;}
+
+  .student-bar{padding:7px 2.2cm;margin:0 -2.2cm 12px -2.2cm;background:#F7F8FA;
+    border-bottom:1px solid var(--greyline);font-size:8.2pt;font-weight:600;color:#3A4252;
+    display:flex;gap:24px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .student-bar span{border-bottom:1px solid #99A1B3;padding-bottom:1px;min-width:100px;display:inline-block;}
+
+  .content{flex-grow:1;display:flex;flex-direction:column;}
+  .eyebrow{font-size:7.7pt;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--teal);margin:11px 0 5px;}
+
+  .contoh-box{background:var(--soft-navy);border:1px solid var(--soft-navy);border-left:3.5px solid var(--navy);
+    border-radius:5px;padding:8px 16px;margin-bottom:11px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .contoh-box .tag{font-size:7.3pt;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:5px;}
+  .contoh-box .rumus{font-family:"JetBrains Mono",monospace;font-size:9.5pt;color:var(--navy);font-weight:600;}
+  .contoh-box .ket{font-size:8pt;color:#4A5468;margin-top:5px;}
+
+  /* ---- Tahap 1: Konsep Perkalian = Penjumlahan Berulang ---- */
+  .konsep-grid{display:flex;flex-direction:column;}
+  .konsep-row{display:flex;align-items:baseline;gap:14px;padding:7px 2px;border-bottom:1px dotted var(--greyline);}
+  .konsep-row:last-child{border-bottom:none;}
+  .konsep-row .no{font-family:"Plus Jakarta Sans",sans-serif;font-size:7.6pt;color:#9099A8;font-weight:700;min-width:18px;flex-shrink:0;}
+  .konsep-eq{font-family:"JetBrains Mono",monospace;font-size:9.8pt;font-weight:600;color:var(--navy);white-space:nowrap;}
+  .konsep-blank{display:inline-block;width:26px;border-bottom:1.4px solid #7A8296;height:14px;margin-left:2px;}
+
+  /* ---- Tahap 2/3/4/5: Fakta Perkalian Mendatar ---- */
+  .hitung-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px 10px;font-family:"JetBrains Mono",monospace;}
+  .hitung-cell{font-size:9.3pt;padding:5px 4px;border-bottom:1px dotted var(--greyline);white-space:nowrap;}
+  .hitung-cell .no{color:#9099A8;font-size:7.5pt;margin-right:2px;font-family:"Plus Jakarta Sans",sans-serif;}
+  .isian-pendek{display:inline-block;width:22px;border-bottom:1.2px solid #7A8296;}
+  .isian-pendek-lg{display:inline-block;width:28px;border-bottom:1.2px solid #7A8296;}
+
+  /* ---- Review sheet: mini section labels within one page ---- */
+  .mini-label{font-size:7.6pt;font-weight:800;color:var(--gold);text-transform:uppercase;
+    letter-spacing:.5px;margin:7px 0 4px;}
+  .mini-label:first-child{margin-top:0;}
+
+  /* ---- Self-tracking strip: Kaidah Dua Standar (waktu + akurasi) ---- */
+  .tracking-strip{margin-top:22px;padding-top:12px;border-top:1px dashed var(--greyline);}
+  .tracking-row{display:flex;gap:22px;flex-wrap:wrap;font-size:8.2pt;font-weight:600;color:#3A4252;margin-bottom:8px;}
+  .tracking-row .f{display:flex;align-items:baseline;gap:5px;}
+  .tracking-row .f .ln{border-bottom:1px solid #99A1B3;min-width:70px;height:13px;display:inline-block;}
+  .amanah-row{display:flex;align-items:center;gap:8px;font-size:7.8pt;color:#4A5468;margin-bottom:10px;}
+  .amanah-row .box{width:11px;height:11px;border:1.3px solid var(--navy);border-radius:2px;flex-shrink:0;}
+
+  .page-footer{padding-top:9px;border-top:1px solid var(--greyline);
+    display:flex;justify-content:space-between;font-size:6.6pt;color:#8A91A0;}
+
+  /* ============ PRINT ============ */
+  @media print{
+    @page{size:A4;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;page-break-after:always;}
+    .page:last-child{page-break-after:auto;}
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  }
+
+</style>
+</head>
+<body>
+<div class="page-container">
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 01 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">3 + 3 + 3 + 3 = 3 &times; 4 = 12</span>
+      <div class="ket">Bilangan <b>3</b> dijumlahkan berulang sebanyak <b>4</b> kali. Ini sama artinya dengan <b>3 &times; 4</b>. Bilangan yang diulang disebut <b>yang dikalikan</b>, banyak pengulangan disebut <b>pengali</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="konsep-grid">
+<div class="konsep-row"><span class="no">1.</span> <span class="konsep-eq">2 + 2 + 2 + 2 = 2 &times; 4 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">2.</span> <span class="konsep-eq">8 + 8 + 8 + 8 = 8 &times; 4 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">3.</span> <span class="konsep-eq">4 + 4 + 4 + 4 + 4 = 4 &times; 5 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">4.</span> <span class="konsep-eq">9 + 9 + 9 + 9 + 9 = 9 &times; 5 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">5.</span> <span class="konsep-eq">4 + 4 + 4 = 4 &times; 3 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">6.</span> <span class="konsep-eq">6 + 6 = 6 &times; 2 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">7.</span> <span class="konsep-eq">7 + 7 + 7 + 7 + 7 = 7 &times; 5 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">8.</span> <span class="konsep-eq">7 + 7 = 7 &times; 2 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">9.</span> <span class="konsep-eq">8 + 8 = 8 &times; 2 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">10.</span> <span class="konsep-eq">8 + 8 + 8 + 8 + 8 + 8 = 8 &times; 6 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">11.</span> <span class="konsep-eq">3 + 3 + 3 + 3 + 3 = 3 &times; 5 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">12.</span> <span class="konsep-eq">5 + 5 + 5 + 5 + 5 + 5 = 5 &times; 6 = <span class="konsep-blank"></span></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 12</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 02 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">3 + 3 + 3 + 3 = 3 &times; 4 = 12</span>
+      <div class="ket">Bilangan <b>3</b> dijumlahkan berulang sebanyak <b>4</b> kali. Ini sama artinya dengan <b>3 &times; 4</b>. Bilangan yang diulang disebut <b>yang dikalikan</b>, banyak pengulangan disebut <b>pengali</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="konsep-grid">
+<div class="konsep-row"><span class="no">1.</span> <span class="konsep-eq">2 + 2 + 2 + 2 + 2 + 2 = 2 &times; 6 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">2.</span> <span class="konsep-eq">5 + 5 + 5 = 5 &times; 3 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">3.</span> <span class="konsep-eq">8 + 8 + 8 + 8 + 8 = 8 &times; 5 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">4.</span> <span class="konsep-eq">7 + 7 + 7 = 7 &times; 3 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">5.</span> <span class="konsep-eq">2 + 2 = 2 &times; 2 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">6.</span> <span class="konsep-eq">4 + 4 + 4 + 4 + 4 + 4 = 4 &times; 6 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">7.</span> <span class="konsep-eq">7 + 7 + 7 + 7 = 7 &times; 4 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">8.</span> <span class="konsep-eq">3 + 3 + 3 + 3 = 3 &times; 4 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">9.</span> <span class="konsep-eq">3 + 3 = 3 &times; 2 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">10.</span> <span class="konsep-eq">5 + 5 + 5 + 5 = 5 &times; 4 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">11.</span> <span class="konsep-eq">9 + 9 + 9 = 9 &times; 3 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">12.</span> <span class="konsep-eq">9 + 9 + 9 + 9 + 9 + 9 = 9 &times; 6 = <span class="konsep-blank"></span></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 12</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 03 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">2 &times; 6 = 12</span>
+      <div class="ket">Ingat fakta perkalian ini di luar kepala &mdash; jangan menghitung dengan jari atau penjumlahan berulang. Semakin sering diulang, semakin cepat hafal.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 5 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 2 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 2 &times; 10 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 5 &times; 6 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 9 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 3 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 5 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 5 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 5 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 9 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 5 &times; 10 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 6 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">13.</span> 5 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">14.</span> 10 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">15.</span> 1 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">16.</span> 10 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">17.</span> 7 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">18.</span> 4 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">19.</span> 5 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">20.</span> 5 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">21.</span> 6 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">22.</span> 8 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">23.</span> 2 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">24.</span> 2 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">25.</span> 2 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">26.</span> 2 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">27.</span> 2 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">28.</span> 3 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">29.</span> 4 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">30.</span> 5 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">31.</span> 1 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">32.</span> 2 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">33.</span> 8 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">34.</span> 2 &times; 6 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">35.</span> 7 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">36.</span> 2 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">37.</span> 10 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">38.</span> 6 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">39.</span> 2 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">40.</span> 8 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">41.</span> 3 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">42.</span> 2 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">43.</span> 5 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">44.</span> 2 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">45.</span> 5 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">46.</span> 2 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">47.</span> 5 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">48.</span> 5 &times; 4 = <span class="isian-pendek"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 48</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 04 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">2 &times; 6 = 12</span>
+      <div class="ket">Ingat fakta perkalian ini di luar kepala &mdash; jangan menghitung dengan jari atau penjumlahan berulang. Semakin sering diulang, semakin cepat hafal.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 2 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 4 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 2 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 5 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 2 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 5 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 5 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 4 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 5 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 8 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 5 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 5 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">13.</span> 6 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">14.</span> 4 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">15.</span> 6 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">16.</span> 2 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">17.</span> 2 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">18.</span> 9 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">19.</span> 2 &times; 10 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">20.</span> 10 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">21.</span> 5 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">22.</span> 10 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">23.</span> 2 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">24.</span> 5 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">25.</span> 2 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">26.</span> 2 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">27.</span> 1 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">28.</span> 9 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">29.</span> 3 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">30.</span> 4 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">31.</span> 2 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">32.</span> 2 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">33.</span> 2 &times; 6 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">34.</span> 4 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">35.</span> 5 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">36.</span> 9 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">37.</span> 9 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">38.</span> 3 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">39.</span> 5 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">40.</span> 2 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">41.</span> 5 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">42.</span> 5 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">43.</span> 5 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">44.</span> 2 &times; 6 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">45.</span> 5 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">46.</span> 9 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">47.</span> 6 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">48.</span> 1 &times; 5 = <span class="isian-pendek"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 48</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 05 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">2 &times; 6 = 12</span>
+      <div class="ket">Ingat fakta perkalian ini di luar kepala &mdash; jangan menghitung dengan jari atau penjumlahan berulang. Semakin sering diulang, semakin cepat hafal.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 7 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 5 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 1 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 5 &times; 6 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 2 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 2 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 5 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 2 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 6 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 2 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 5 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 5 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">13.</span> 5 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">14.</span> 4 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">15.</span> 6 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">16.</span> 2 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">17.</span> 1 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">18.</span> 6 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">19.</span> 5 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">20.</span> 4 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">21.</span> 6 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">22.</span> 5 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">23.</span> 5 &times; 6 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">24.</span> 2 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">25.</span> 10 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">26.</span> 5 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">27.</span> 9 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">28.</span> 2 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">29.</span> 2 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">30.</span> 1 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">31.</span> 5 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">32.</span> 5 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">33.</span> 5 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">34.</span> 5 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">35.</span> 2 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">36.</span> 6 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">37.</span> 5 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">38.</span> 1 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">39.</span> 3 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">40.</span> 5 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">41.</span> 2 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">42.</span> 7 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">43.</span> 5 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">44.</span> 2 &times; 6 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">45.</span> 5 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">46.</span> 8 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">47.</span> 2 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">48.</span> 1 &times; 5 = <span class="isian-pendek"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 48</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 06 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">2 &times; 6 = 12</span>
+      <div class="ket">Ingat fakta perkalian ini di luar kepala &mdash; jangan menghitung dengan jari atau penjumlahan berulang. Semakin sering diulang, semakin cepat hafal.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 3 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 10 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 2 &times; 6 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 5 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 7 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 2 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 2 &times; 10 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 8 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 2 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 6 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 3 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 2 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">13.</span> 2 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">14.</span> 4 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">15.</span> 10 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">16.</span> 6 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">17.</span> 2 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">18.</span> 2 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">19.</span> 5 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">20.</span> 2 &times; 10 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">21.</span> 5 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">22.</span> 10 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">23.</span> 2 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">24.</span> 10 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">25.</span> 1 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">26.</span> 5 &times; 10 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">27.</span> 10 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">28.</span> 5 &times; 10 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">29.</span> 2 &times; 10 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">30.</span> 2 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">31.</span> 5 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">32.</span> 10 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">33.</span> 8 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">34.</span> 2 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">35.</span> 4 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">36.</span> 5 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">37.</span> 9 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">38.</span> 2 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">39.</span> 2 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">40.</span> 2 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">41.</span> 5 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">42.</span> 5 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">43.</span> 2 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">44.</span> 7 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">45.</span> 6 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">46.</span> 9 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">47.</span> 3 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">48.</span> 5 &times; 7 = <span class="isian-pendek"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 48</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 07 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">4 &times; 7 = 28</span>
+      <div class="ket">Ingat fakta perkalian ini di luar kepala &mdash; jangan menghitung dengan jari atau penjumlahan berulang. Semakin sering diulang, semakin cepat hafal.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 10 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 3 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 4 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 2 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 4 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 4 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 8 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 7 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 7 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 9 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 3 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 5 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">13.</span> 3 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">14.</span> 4 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">15.</span> 4 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">16.</span> 3 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">17.</span> 3 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">18.</span> 1 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">19.</span> 8 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">20.</span> 6 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">21.</span> 3 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">22.</span> 4 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">23.</span> 4 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">24.</span> 4 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">25.</span> 2 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">26.</span> 1 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">27.</span> 4 &times; 10 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">28.</span> 6 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">29.</span> 3 &times; 6 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">30.</span> 3 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">31.</span> 9 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">32.</span> 4 &times; 6 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">33.</span> 10 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">34.</span> 5 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">35.</span> 3 &times; 10 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">36.</span> 3 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">37.</span> 4 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">38.</span> 3 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">39.</span> 4 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">40.</span> 1 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">41.</span> 4 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">42.</span> 5 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">43.</span> 9 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">44.</span> 1 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">45.</span> 3 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">46.</span> 5 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">47.</span> 3 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">48.</span> 3 &times; 7 = <span class="isian-pendek"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 48</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 08 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">4 &times; 7 = 28</span>
+      <div class="ket">Ingat fakta perkalian ini di luar kepala &mdash; jangan menghitung dengan jari atau penjumlahan berulang. Semakin sering diulang, semakin cepat hafal.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 3 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 4 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 9 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 4 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 10 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 1 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 4 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 3 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 2 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 3 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 3 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 8 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">13.</span> 1 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">14.</span> 4 &times; 6 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">15.</span> 3 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">16.</span> 7 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">17.</span> 10 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">18.</span> 1 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">19.</span> 3 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">20.</span> 4 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">21.</span> 1 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">22.</span> 9 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">23.</span> 3 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">24.</span> 9 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">25.</span> 9 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">26.</span> 4 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">27.</span> 3 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">28.</span> 4 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">29.</span> 3 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">30.</span> 3 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">31.</span> 4 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">32.</span> 3 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">33.</span> 9 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">34.</span> 4 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">35.</span> 1 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">36.</span> 3 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">37.</span> 4 &times; 10 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">38.</span> 1 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">39.</span> 8 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">40.</span> 9 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">41.</span> 10 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">42.</span> 7 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">43.</span> 6 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">44.</span> 6 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">45.</span> 3 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">46.</span> 4 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">47.</span> 4 &times; 6 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">48.</span> 1 &times; 4 = <span class="isian-pendek"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 48</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 09 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">4 &times; 7 = 28</span>
+      <div class="ket">Ingat fakta perkalian ini di luar kepala &mdash; jangan menghitung dengan jari atau penjumlahan berulang. Semakin sering diulang, semakin cepat hafal.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 3 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 7 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 4 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 3 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 1 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 3 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 3 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 4 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 3 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 9 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 4 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 7 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">13.</span> 4 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">14.</span> 9 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">15.</span> 1 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">16.</span> 4 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">17.</span> 6 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">18.</span> 2 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">19.</span> 3 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">20.</span> 4 &times; 1 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">21.</span> 3 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">22.</span> 3 &times; 6 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">23.</span> 3 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">24.</span> 4 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">25.</span> 3 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">26.</span> 10 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">27.</span> 3 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">28.</span> 4 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">29.</span> 3 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">30.</span> 7 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">31.</span> 4 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">32.</span> 2 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">33.</span> 3 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">34.</span> 4 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">35.</span> 3 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">36.</span> 1 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">37.</span> 3 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">38.</span> 2 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">39.</span> 4 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">40.</span> 5 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">41.</span> 4 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">42.</span> 4 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">43.</span> 7 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">44.</span> 3 &times; 6 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">45.</span> 6 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">46.</span> 3 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">47.</span> 1 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">48.</span> 4 &times; 6 = <span class="isian-pendek"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 48</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 10 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">4 &times; 7 = 28</span>
+      <div class="ket">Ingat fakta perkalian ini di luar kepala &mdash; jangan menghitung dengan jari atau penjumlahan berulang. Semakin sering diulang, semakin cepat hafal.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 3 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 5 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 4 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 4 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 7 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 8 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 4 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 3 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 4 &times; 10 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 4 &times; 10 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 3 &times; 6 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 4 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">13.</span> 4 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">14.</span> 4 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">15.</span> 4 &times; 8 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">16.</span> 10 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">17.</span> 3 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">18.</span> 6 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">19.</span> 6 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">20.</span> 4 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">21.</span> 3 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">22.</span> 4 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">23.</span> 10 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">24.</span> 2 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">25.</span> 6 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">26.</span> 6 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">27.</span> 7 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">28.</span> 4 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">29.</span> 3 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">30.</span> 6 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">31.</span> 4 &times; 10 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">32.</span> 5 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">33.</span> 3 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">34.</span> 1 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">35.</span> 6 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">36.</span> 3 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">37.</span> 2 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">38.</span> 6 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">39.</span> 10 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">40.</span> 3 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">41.</span> 9 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">42.</span> 6 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">43.</span> 4 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">44.</span> 3 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">45.</span> 1 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">46.</span> 3 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">47.</span> 4 &times; 10 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">48.</span> 10 &times; 3 = <span class="isian-pendek"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 48</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 11 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">10 &times; 6 = 60</span>
+      <div class="ket">Ingat fakta perkalian ini di luar kepala &mdash; jangan menghitung dengan jari atau penjumlahan berulang. Semakin sering diulang, semakin cepat hafal.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 10 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 8 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 4 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 10 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 10 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 10 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 10 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 6 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 7 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 10 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 10 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 2 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">13.</span> 3 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">14.</span> 9 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">15.</span> 5 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">16.</span> 10 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">17.</span> 10 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">18.</span> 1 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">19.</span> 10 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">20.</span> 9 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">21.</span> 10 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">22.</span> 10 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">23.</span> 10 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">24.</span> 8 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">25.</span> 6 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">26.</span> 10 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">27.</span> 9 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">28.</span> 10 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">29.</span> 4 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">30.</span> 7 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">31.</span> 10 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">32.</span> 10 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">33.</span> 2 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">34.</span> 10 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">35.</span> 7 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">36.</span> 2 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">37.</span> 10 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">38.</span> 9 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">39.</span> 10 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">40.</span> 10 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">41.</span> 10 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">42.</span> 3 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">43.</span> 3 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">44.</span> 10 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">45.</span> 10 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">46.</span> 10 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">47.</span> 10 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">48.</span> 10 &times; 10 = <span class="isian-pendek-lg"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 48</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 12 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">10 &times; 6 = 60</span>
+      <div class="ket">Ingat fakta perkalian ini di luar kepala &mdash; jangan menghitung dengan jari atau penjumlahan berulang. Semakin sering diulang, semakin cepat hafal.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 5 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 10 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 10 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 1 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 6 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 7 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 5 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 10 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 10 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 3 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 5 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 3 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">13.</span> 2 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">14.</span> 10 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">15.</span> 7 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">16.</span> 1 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">17.</span> 10 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">18.</span> 5 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">19.</span> 8 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">20.</span> 10 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">21.</span> 3 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">22.</span> 10 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">23.</span> 5 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">24.</span> 10 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">25.</span> 7 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">26.</span> 9 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">27.</span> 4 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">28.</span> 10 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">29.</span> 10 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">30.</span> 9 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">31.</span> 6 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">32.</span> 10 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">33.</span> 10 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">34.</span> 10 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">35.</span> 9 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">36.</span> 3 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">37.</span> 10 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">38.</span> 8 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">39.</span> 8 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">40.</span> 8 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">41.</span> 2 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">42.</span> 10 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">43.</span> 10 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">44.</span> 3 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">45.</span> 10 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">46.</span> 10 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">47.</span> 2 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">48.</span> 10 &times; 5 = <span class="isian-pendek-lg"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 48</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 13 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">5 &times; 9 = 45</span>
+      <div class="ket">Ingat fakta perkalian ini di luar kepala &mdash; jangan menghitung dengan jari atau penjumlahan berulang. Semakin sering diulang, semakin cepat hafal.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 7 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 2 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 3 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 2 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 5 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 2 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 4 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 3 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 6 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 1 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 10 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 2 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">13.</span> 4 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">14.</span> 4 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">15.</span> 1 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">16.</span> 2 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">17.</span> 3 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">18.</span> 4 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">19.</span> 8 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">20.</span> 5 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">21.</span> 10 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">22.</span> 4 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">23.</span> 10 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">24.</span> 2 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">25.</span> 5 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">26.</span> 10 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">27.</span> 4 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">28.</span> 5 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">29.</span> 3 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">30.</span> 8 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">31.</span> 9 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">32.</span> 5 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">33.</span> 10 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">34.</span> 7 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">35.</span> 4 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">36.</span> 10 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">37.</span> 5 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">38.</span> 1 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">39.</span> 6 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">40.</span> 2 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">41.</span> 2 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">42.</span> 8 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">43.</span> 3 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">44.</span> 2 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">45.</span> 5 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">46.</span> 5 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">47.</span> 10 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">48.</span> 1 &times; 4 = <span class="isian-pendek-lg"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 48</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 14 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">5 &times; 9 = 45</span>
+      <div class="ket">Ingat fakta perkalian ini di luar kepala &mdash; jangan menghitung dengan jari atau penjumlahan berulang. Semakin sering diulang, semakin cepat hafal.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 10 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 8 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 10 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 9 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 5 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 10 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 3 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 4 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 7 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 4 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 3 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 5 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">13.</span> 3 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">14.</span> 4 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">15.</span> 9 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">16.</span> 7 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">17.</span> 3 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">18.</span> 9 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">19.</span> 9 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">20.</span> 6 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">21.</span> 6 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">22.</span> 1 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">23.</span> 7 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">24.</span> 8 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">25.</span> 2 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">26.</span> 3 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">27.</span> 6 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">28.</span> 3 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">29.</span> 4 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">30.</span> 5 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">31.</span> 4 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">32.</span> 3 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">33.</span> 10 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">34.</span> 5 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">35.</span> 4 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">36.</span> 2 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">37.</span> 10 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">38.</span> 4 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">39.</span> 5 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">40.</span> 5 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">41.</span> 2 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">42.</span> 4 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">43.</span> 4 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">44.</span> 5 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">45.</span> 10 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">46.</span> 4 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">47.</span> 5 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">48.</span> 10 &times; 5 = <span class="isian-pendek-lg"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 48</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 15 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">5 &times; 9 = 45</span>
+      <div class="ket">Ingat fakta perkalian ini di luar kepala &mdash; jangan menghitung dengan jari atau penjumlahan berulang. Semakin sering diulang, semakin cepat hafal.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 4 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 10 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 4 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 5 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 3 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 3 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 2 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 4 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 10 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 10 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 4 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 5 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">13.</span> 2 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">14.</span> 10 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">15.</span> 2 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">16.</span> 3 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">17.</span> 3 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">18.</span> 3 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">19.</span> 3 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">20.</span> 4 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">21.</span> 3 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">22.</span> 3 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">23.</span> 5 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">24.</span> 10 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">25.</span> 10 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">26.</span> 3 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">27.</span> 4 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">28.</span> 2 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">29.</span> 5 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">30.</span> 2 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">31.</span> 5 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">32.</span> 2 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">33.</span> 2 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">34.</span> 2 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">35.</span> 10 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">36.</span> 2 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">37.</span> 3 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">38.</span> 10 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">39.</span> 5 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">40.</span> 10 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">41.</span> 5 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">42.</span> 10 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">43.</span> 3 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">44.</span> 2 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">45.</span> 5 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">46.</span> 3 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">47.</span> 2 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">48.</span> 4 &times; 9 = <span class="isian-pendek-lg"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 48</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 16 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">5 &times; 9 = 45</span>
+      <div class="ket">Ingat fakta perkalian ini di luar kepala &mdash; jangan menghitung dengan jari atau penjumlahan berulang. Semakin sering diulang, semakin cepat hafal.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 2 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 5 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 4 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 3 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 10 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 10 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 2 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 10 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 10 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 10 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 4 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 2 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">13.</span> 10 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">14.</span> 5 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">15.</span> 2 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">16.</span> 2 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">17.</span> 5 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">18.</span> 2 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">19.</span> 4 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">20.</span> 2 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">21.</span> 5 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">22.</span> 4 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">23.</span> 4 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">24.</span> 2 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">25.</span> 4 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">26.</span> 5 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">27.</span> 5 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">28.</span> 5 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">29.</span> 5 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">30.</span> 10 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">31.</span> 3 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">32.</span> 2 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">33.</span> 3 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">34.</span> 4 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">35.</span> 4 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">36.</span> 4 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">37.</span> 5 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">38.</span> 5 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">39.</span> 5 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">40.</span> 5 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">41.</span> 4 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">42.</span> 2 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">43.</span> 5 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">44.</span> 10 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">45.</span> 4 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">46.</span> 5 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">47.</span> 4 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">48.</span> 4 &times; 10 = <span class="isian-pendek-lg"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 48</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 17 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">5 &times; 9 = 45</span>
+      <div class="ket">Ingat fakta perkalian ini di luar kepala &mdash; jangan menghitung dengan jari atau penjumlahan berulang. Semakin sering diulang, semakin cepat hafal.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 3 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 10 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 3 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 10 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 2 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 10 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 3 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 4 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 3 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 2 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 4 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 5 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">13.</span> 5 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">14.</span> 2 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">15.</span> 4 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">16.</span> 2 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">17.</span> 10 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">18.</span> 4 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">19.</span> 3 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">20.</span> 4 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">21.</span> 5 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">22.</span> 4 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">23.</span> 4 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">24.</span> 5 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">25.</span> 4 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">26.</span> 3 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">27.</span> 3 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">28.</span> 3 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">29.</span> 10 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">30.</span> 3 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">31.</span> 10 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">32.</span> 4 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">33.</span> 2 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">34.</span> 4 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">35.</span> 10 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">36.</span> 4 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">37.</span> 10 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">38.</span> 2 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">39.</span> 2 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">40.</span> 3 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">41.</span> 2 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">42.</span> 3 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">43.</span> 4 &times; 7 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">44.</span> 3 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">45.</span> 4 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">46.</span> 3 &times; 8 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">47.</span> 2 &times; 9 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">48.</span> 2 &times; 3 = <span class="isian-pendek-lg"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 48</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 18 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">Latihan ini menggabungkan semua fakta perkalian yang sudah dipelajari di K-6.</span>
+      <div class="ket">Kerjakan setiap bagian dengan cara yang sama seperti pada lembar-lembar sebelumnya.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="mini-label">Bagian 1 &middot; Penjumlahan Berulang</div>
+<div class="konsep-grid">
+<div class="konsep-row"><span class="no">1.</span> <span class="konsep-eq">5 + 5 + 5 + 5 + 5 = 5 &times; 5 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">2.</span> <span class="konsep-eq">6 + 6 + 6 + 6 + 6 = 6 &times; 5 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">3.</span> <span class="konsep-eq">5 + 5 = 5 &times; 2 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">4.</span> <span class="konsep-eq">2 + 2 + 2 = 2 &times; 3 = <span class="konsep-blank"></span></span></div>
+</div>
+<div class="mini-label">Bagian 2 &middot; Tabel 2, 3, 4, 5</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 2 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 6 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 9 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 3 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 2 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 2 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 4 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 5 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 3 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 5 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 3 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 2 &times; 5 = <span class="isian-pendek"></span></div>
+</div>
+<div class="mini-label">Bagian 3 &middot; Tabel 10 &amp; Campuran</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 5 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 5 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 9 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 3 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 4 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 6 &times; 5 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 3 &times; 1 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 1 &times; 2 = <span class="isian-pendek-lg"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 24</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-6</span>
+          <span class="skill-label">Fakta Perkalian 2, 3, 4, 5, 10</span>
+        </div>
+        <span class="sheet-no">Lembar 19 dari 19</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">Latihan ini menggabungkan semua fakta perkalian yang sudah dipelajari di K-6.</span>
+      <div class="ket">Kerjakan setiap bagian dengan cara yang sama seperti pada lembar-lembar sebelumnya.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+<div class="mini-label">Bagian 1 &middot; Penjumlahan Berulang</div>
+<div class="konsep-grid">
+<div class="konsep-row"><span class="no">1.</span> <span class="konsep-eq">9 + 9 + 9 + 9 = 9 &times; 4 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">2.</span> <span class="konsep-eq">6 + 6 + 6 = 6 &times; 3 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">3.</span> <span class="konsep-eq">6 + 6 + 6 + 6 = 6 &times; 4 = <span class="konsep-blank"></span></span></div>
+<div class="konsep-row"><span class="no">4.</span> <span class="konsep-eq">8 + 8 + 8 = 8 &times; 3 = <span class="konsep-blank"></span></span></div>
+</div>
+<div class="mini-label">Bagian 2 &middot; Tabel 2, 3, 4, 5</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 1 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 1 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 2 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 2 &times; 7 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 4 &times; 3 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 9 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 3 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 5 &times; 2 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">9.</span> 3 &times; 9 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">10.</span> 1 &times; 5 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">11.</span> 7 &times; 4 = <span class="isian-pendek"></span></div>
+<div class="hitung-cell"><span class="no">12.</span> 3 &times; 3 = <span class="isian-pendek"></span></div>
+</div>
+<div class="mini-label">Bagian 3 &middot; Tabel 10 &amp; Campuran</div>
+<div class="hitung-grid">
+<div class="hitung-cell"><span class="no">1.</span> 5 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">2.</span> 10 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">3.</span> 1 &times; 4 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">4.</span> 2 &times; 6 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">5.</span> 6 &times; 10 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">6.</span> 5 &times; 3 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">7.</span> 4 &times; 2 = <span class="isian-pendek-lg"></span></div>
+<div class="hitung-cell"><span class="no">8.</span> 3 &times; 2 = <span class="isian-pendek-lg"></span></div>
+</div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 24</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-6</span>
+  </div>
+</section>
+</div>
+</body>
+</html>

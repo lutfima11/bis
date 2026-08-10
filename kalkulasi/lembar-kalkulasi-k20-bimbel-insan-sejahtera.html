@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lembar Kalkulasi K-20 &mdash; Bimbel Insan Sejahtera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+
+<style>
+
+:root{
+  --navy:#0F2A4E; --teal:#007A7A; --soft-teal:#E0F2F1; --soft-navy:#E8EEF7;
+  --gold:#B08420; --soft-gold:#FCF6E5; --greyline:#C8CED6; --ink:#26313F;
+}
+*,*::before,*::after{box-sizing:border-box;}
+body{
+  font-family:"Plus Jakarta Sans",sans-serif;
+  font-size:9.5pt; line-height:1.55; color:var(--ink);
+  background:#EAEDF1; margin:0; padding:0;
+}
+h1,h2,.brand-name{font-family:"Fraunces",serif;}
+
+.page{
+  background:#fff; width:21cm; min-height:29.7cm; height:auto;
+  padding:1.6cm 2.2cm 1.3cm 2.2cm; margin:1cm auto;
+  box-shadow:0 0 10px rgba(0,0,0,.18); position:relative;
+  display:flex; flex-direction:column;
+}
+.page-header{margin:-1.6cm -2.2cm 0 -2.2cm; width:21cm;}
+.brand-bar{height:4px;background:linear-gradient(90deg,var(--teal),var(--navy));
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.header-inner{padding:11px 2.2cm 9px 2.2cm;background:var(--soft-navy);
+  display:flex;justify-content:space-between;align-items:center;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.brand-name{font-size:17pt;font-weight:700;color:var(--navy);}
+.brand-left{display:flex;flex-direction:column;line-height:1.15;}
+.brand-logo{height:42px;width:auto;display:block;object-fit:contain;}
+.brand-tagline{font-size:7.6pt;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:.6px;margin-top:2px;}
+
+.level-strip{padding:10px 2.2cm;background:#fff;border-bottom:1px solid var(--greyline);}
+.level-top{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.chips-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+.k-badge{font-family:"JetBrains Mono",monospace;font-size:12pt;font-weight:800;color:#fff;
+  padding:3px 10px;border-radius:6px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.skill-label{font-size:8.4pt;font-weight:700;color:var(--navy);}
+.sheet-no{font-size:7.3pt;color:#8A91A0;font-weight:600;}
+.standar-row{display:flex;gap:8px;margin-top:9px;}
+.standar-chip{display:flex;align-items:center;gap:5px;font-size:7.6pt;font-weight:700;
+  border:1.3px solid var(--gold);color:#8A6416;background:var(--soft-gold);border-radius:20px;padding:3px 10px;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.standar-chip svg{flex-shrink:0;}
+
+.student-bar{padding:7px 2.2cm;margin:0 -2.2cm 12px -2.2cm;background:#F7F8FA;
+  border-bottom:1px solid var(--greyline);font-size:8.2pt;font-weight:600;color:#3A4252;
+  display:flex;gap:24px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.student-bar span{border-bottom:1px solid #99A1B3;padding-bottom:1px;min-width:100px;display:inline-block;}
+
+.content{flex-grow:1;display:flex;flex-direction:column;}
+.eyebrow{font-size:7.7pt;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--teal);margin:11px 0 5px;}
+
+.contoh-box{background:var(--soft-navy);border:1px solid var(--soft-navy);border-left:3.5px solid var(--navy);
+  border-radius:5px;padding:8px 16px;margin-bottom:11px;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.contoh-box .tag{font-size:7.3pt;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:5px;}
+.contoh-box .rumus{font-family:"JetBrains Mono",monospace;font-size:9.5pt;color:var(--navy);font-weight:600;}
+.contoh-box .ket{font-size:8pt;color:#4A5468;margin-top:5px;}
+
+.tracking-strip{margin-top:22px;padding-top:12px;border-top:1px dashed var(--greyline);}
+.tracking-row{display:flex;gap:22px;flex-wrap:wrap;font-size:8.2pt;font-weight:600;color:#3A4252;margin-bottom:8px;}
+.tracking-row .f{display:flex;align-items:baseline;gap:5px;}
+.tracking-row .f .ln{border-bottom:1px solid #99A1B3;min-width:70px;height:13px;display:inline-block;}
+.amanah-row{display:flex;align-items:center;gap:8px;font-size:7.8pt;color:#4A5468;margin-bottom:10px;}
+.amanah-row .box{width:11px;height:11px;border:1.3px solid var(--navy);border-radius:2px;flex-shrink:0;}
+
+.page-footer{padding-top:9px;border-top:1px solid var(--greyline);
+  display:flex;justify-content:space-between;font-size:6.6pt;color:#8A91A0;}
+
+.mini-label{font-size:7.6pt;font-weight:800;color:var(--gold);text-transform:uppercase;
+  letter-spacing:.5px;margin:7px 0 4px;}
+.mini-label:first-child{margin-top:0;}
+
+@media print{
+  @page{size:A4;margin:0;}
+  body{background:#fff;}
+  .page{margin:0;box-shadow:none;page-break-after:always;}
+  .page:last-child{page-break-after:auto;}
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+}
+
+/* ============ K-20 ALJABAR: shared answer/blank primitives ============ */
+.isian-pendek{display:inline-block;min-width:18px;border-bottom:1px solid #7A8296;}
+.isian-panjang{display:inline-block;min-width:118px;border-bottom:1.3px dashed var(--teal);height:13px;vertical-align:-2px;}
+
+/* ---- Generic kerja-grid (reused pattern from K-11): head line + workspace box ---- */
+.kerja-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;}
+.kerja-cell{border:1px solid var(--greyline);border-radius:6px;padding:8px 12px;}
+.kerja-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px;
+  font-family:"JetBrains Mono",monospace;font-size:9.6pt;font-weight:600;color:var(--navy);}
+.kerja-head .no{font-family:"Plus Jakarta Sans",sans-serif;font-size:7.5pt;color:#9099A8;font-weight:700;}
+.kerja-work{border-top:1px dashed var(--greyline);margin-top:7px;}
+
+/* ---- Single-column kerja variant (Sintesis / campuran narrower cells) ---- */
+.kerja-grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px 14px;}
+
+/* ---- Quick recognition grid (no workspace, factual recall) ---- */
+.cepat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 18px;}
+.cepat-cell{display:flex;align-items:baseline;gap:7px;font-family:"JetBrains Mono",monospace;
+  font-size:9.6pt;font-weight:600;color:var(--navy);border-bottom:1px dotted var(--greyline);padding:6px 3px 8px;}
+.cepat-cell .no{font-family:"Plus Jakarta Sans",sans-serif;font-size:7.5pt;color:#9099A8;font-weight:700;flex-shrink:0;}
+
+.nowrap{white-space:nowrap;}
+
+.metode-line{font-family:"Plus Jakarta Sans",sans-serif;font-size:7.3pt;color:#8A91A0;font-weight:600;
+  margin-top:6px;padding-top:5px;border-top:1px dotted var(--greyline);}
+
+
+</style>
+</head>
+<body>
+<div class="page-container">
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 01 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 4 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x² − 9 = (x − 3)(x + 3)</span>
+      <div class="ket">Bentuk a&sup2; &minus; b&sup2; selalu bisa difaktorkan menjadi (a &minus; b)(a + b). Cari akar dari tiap suku (&radic;9 = 3), lalu susun ke dalam bentuk kurang-tambah.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">x² − 225 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">9x² − 4 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² − 81 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">9x² − 100 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">x² − 25 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">4x² − 49 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">7.</span> <span class="nowrap">x² − 64 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">8.</span> <span class="nowrap">x² − 49 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">9.</span> <span class="nowrap">x² − 16 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">10.</span> <span class="nowrap">4x² − 36 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 10</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 02 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 4 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x² − 9 = (x − 3)(x + 3)</span>
+      <div class="ket">Bentuk a&sup2; &minus; b&sup2; selalu bisa difaktorkan menjadi (a &minus; b)(a + b). Cari akar dari tiap suku (&radic;9 = 3), lalu susun ke dalam bentuk kurang-tambah.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">9x² − 25 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">x² − 196 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² − 25 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">4x² − 25 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">9x² − 100 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">4x² − 225 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">7.</span> <span class="nowrap">x² − 100 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">8.</span> <span class="nowrap">x² − 9 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">9.</span> <span class="nowrap">x² − 225 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">10.</span> <span class="nowrap">x² − 4 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 10</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 03 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 4 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x² − 9 = (x − 3)(x + 3)</span>
+      <div class="ket">Bentuk a&sup2; &minus; b&sup2; selalu bisa difaktorkan menjadi (a &minus; b)(a + b). Cari akar dari tiap suku (&radic;9 = 3), lalu susun ke dalam bentuk kurang-tambah.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">x² − 196 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">x² − 81 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² − 16 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">x² − 100 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">4x² − 9 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">9x² − 144 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">7.</span> <span class="nowrap">x² − 144 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">8.</span> <span class="nowrap">x² − 9 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">9.</span> <span class="nowrap">x² − 64 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">10.</span> <span class="nowrap">4x² − 25 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:40px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 10</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 04 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 5 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x² + 5x + 6 = (x + 2)(x + 3)</span>
+      <div class="ket">Cari dua bilangan yang hasil kalinya = 6 (suku terakhir) dan hasil jumlahnya = 5 (koefisien x). Bilangan itu adalah 2 dan 3.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">x² − 11x + 28 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">x² − 6x − 7 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² − 16 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">x² − 12x + 32 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">x² + 2x − 15 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">x² + 16x + 63 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">7.</span> <span class="nowrap">x² + 3x − 28 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">8.</span> <span class="nowrap">x² − x − 12 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 8</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 05 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 5 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x² + 5x + 6 = (x + 2)(x + 3)</span>
+      <div class="ket">Cari dua bilangan yang hasil kalinya = 6 (suku terakhir) dan hasil jumlahnya = 5 (koefisien x). Bilangan itu adalah 2 dan 3.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">x² + 9x + 20 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">x² − 1 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² − x − 20 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">x² − 3x − 28 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">x² + 4x − 12 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">x² + 4x − 5 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">7.</span> <span class="nowrap">x² + 2x − 8 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">8.</span> <span class="nowrap">x² + 10x + 16 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 8</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 06 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 5 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x² + 5x + 6 = (x + 2)(x + 3)</span>
+      <div class="ket">Cari dua bilangan yang hasil kalinya = 6 (suku terakhir) dan hasil jumlahnya = 5 (koefisien x). Bilangan itu adalah 2 dan 3.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">x² + 10x + 24 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">x² − 11x + 30 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² + 3x − 40 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">x² + 5x + 6 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">x² + 4x − 21 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">x² − 2x − 48 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">7.</span> <span class="nowrap">x² − 8x + 12 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">8.</span> <span class="nowrap">x² + 8x + 15 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 8</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 07 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 5 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x² + 5x + 6 = (x + 2)(x + 3)</span>
+      <div class="ket">Cari dua bilangan yang hasil kalinya = 6 (suku terakhir) dan hasil jumlahnya = 5 (koefisien x). Bilangan itu adalah 2 dan 3.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">x² − 5x + 4 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">x² + 2x − 15 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² + x − 72 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">x² + 4x − 45 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">x² + 8x + 7 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">x² + 16x + 64 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">7.</span> <span class="nowrap">x² + 6x − 27 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">8.</span> <span class="nowrap">x² + 10x + 16 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:90px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 8</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 08 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 7 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">2x² + 7x + 3 = (2x + 1)(x + 3)</span>
+      <div class="ket">Cari dua suku yang hasil kalinya = 2&times;3 = 6 dan hasil jumlahnya = 7 (yaitu 1 dan 6), lalu pecah suku tengah dan faktorkan berkelompok.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">2x² − 17x + 30 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">9x² − 18x + 8 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">8x² + 22x + 5 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">6x² − 7x − 5 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">3x² + 4x − 15 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">2x² − 7x + 5 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 09 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 7 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">2x² + 7x + 3 = (2x + 1)(x + 3)</span>
+      <div class="ket">Cari dua suku yang hasil kalinya = 2&times;3 = 6 dan hasil jumlahnya = 7 (yaitu 1 dan 6), lalu pecah suku tengah dan faktorkan berkelompok.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">4x² + 8x + 3 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">6x² − 11x + 3 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">6x² + 5x − 4 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">8x² + 14x + 5 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">8x² − 18x − 5 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">6x² + x − 1 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 10 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 7 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">2x² + 7x + 3 = (2x + 1)(x + 3)</span>
+      <div class="ket">Cari dua suku yang hasil kalinya = 2&times;3 = 6 dan hasil jumlahnya = 7 (yaitu 1 dan 6), lalu pecah suku tengah dan faktorkan berkelompok.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">12x² + 23x + 5 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">12x² − 5x − 3 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">6x² + 11x + 4 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">6x² + 13x + 6 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">4x² − 17x + 4 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">9x² + 27x + 20 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 11 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 7 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">2x² + 7x + 3 = (2x + 1)(x + 3)</span>
+      <div class="ket">Cari dua suku yang hasil kalinya = 2&times;3 = 6 dan hasil jumlahnya = 7 (yaitu 1 dan 6), lalu pecah suku tengah dan faktorkan berkelompok.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">3x² − 13x + 4 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">3x² + 17x + 20 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">12x² + 5x − 3 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">2x² − 5x − 25 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">4x² − 15x + 9 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">6x² − 5x − 4 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:130px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 12 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 7 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x² = 49 &rarr; x = ±7</span>
+      <div class="ket">Jika x&sup2; = k (k adalah bilangan kuadrat sempurna), maka x sama dengan akar kuadrat dari k, bisa positif maupun negatif.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="cepat-grid"><div class="cepat-cell"><span class="no">1.</span> <span class="nowrap">x² = 529</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">2.</span> <span class="nowrap">x² = 1024</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">3.</span> <span class="nowrap">x² = 676</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">4.</span> <span class="nowrap">x² = 196</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">5.</span> <span class="nowrap">x² = 1225</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">6.</span> <span class="nowrap">x² = 4</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">7.</span> <span class="nowrap">x² = 9</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">8.</span> <span class="nowrap">x² = 16</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">9.</span> <span class="nowrap">x² = 1156</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">10.</span> <span class="nowrap">x² = 256</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">11.</span> <span class="nowrap">x² = 144</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">12.</span> <span class="nowrap">x² = 625</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">13.</span> <span class="nowrap">x² = 1369</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">14.</span> <span class="nowrap">x² = 81</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">15.</span> <span class="nowrap">x² = 400</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">16.</span> <span class="nowrap">x² = 49</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">17.</span> <span class="nowrap">x² = 324</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">18.</span> <span class="nowrap">x² = 441</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">19.</span> <span class="nowrap">x² = 1296</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">20.</span> <span class="nowrap">x² = 1089</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">21.</span> <span class="nowrap">x² = 1600</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">22.</span> <span class="nowrap">x² = 841</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">23.</span> <span class="nowrap">x² = 900</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">24.</span> <span class="nowrap">x² = 36</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 24</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 13 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 7 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x² = 49 &rarr; x = ±7</span>
+      <div class="ket">Jika x&sup2; = k (k adalah bilangan kuadrat sempurna), maka x sama dengan akar kuadrat dari k, bisa positif maupun negatif.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="cepat-grid"><div class="cepat-cell"><span class="no">1.</span> <span class="nowrap">x² = 529</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">2.</span> <span class="nowrap">x² = 625</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">3.</span> <span class="nowrap">x² = 1024</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">4.</span> <span class="nowrap">x² = 196</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">5.</span> <span class="nowrap">x² = 1156</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">6.</span> <span class="nowrap">x² = 4</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">7.</span> <span class="nowrap">x² = 400</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">8.</span> <span class="nowrap">x² = 324</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">9.</span> <span class="nowrap">x² = 144</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">10.</span> <span class="nowrap">x² = 1225</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">11.</span> <span class="nowrap">x² = 676</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">12.</span> <span class="nowrap">x² = 169</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">13.</span> <span class="nowrap">x² = 1296</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">14.</span> <span class="nowrap">x² = 9</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">15.</span> <span class="nowrap">x² = 81</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">16.</span> <span class="nowrap">x² = 64</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">17.</span> <span class="nowrap">x² = 1600</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">18.</span> <span class="nowrap">x² = 256</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">19.</span> <span class="nowrap">x² = 121</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">20.</span> <span class="nowrap">x² = 729</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">21.</span> <span class="nowrap">x² = 841</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">22.</span> <span class="nowrap">x² = 1089</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">23.</span> <span class="nowrap">x² = 961</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">24.</span> <span class="nowrap">x² = 16</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 24</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 14 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 7 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x² = 49 &rarr; x = ±7</span>
+      <div class="ket">Jika x&sup2; = k (k adalah bilangan kuadrat sempurna), maka x sama dengan akar kuadrat dari k, bisa positif maupun negatif.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="cepat-grid"><div class="cepat-cell"><span class="no">1.</span> <span class="nowrap">x² = 64</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">2.</span> <span class="nowrap">x² = 36</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">3.</span> <span class="nowrap">x² = 169</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">4.</span> <span class="nowrap">x² = 16</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">5.</span> <span class="nowrap">x² = 900</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">6.</span> <span class="nowrap">x² = 576</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">7.</span> <span class="nowrap">x² = 784</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">8.</span> <span class="nowrap">x² = 400</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">9.</span> <span class="nowrap">x² = 4</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">10.</span> <span class="nowrap">x² = 625</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">11.</span> <span class="nowrap">x² = 196</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">12.</span> <span class="nowrap">x² = 841</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">13.</span> <span class="nowrap">x² = 100</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">14.</span> <span class="nowrap">x² = 484</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">15.</span> <span class="nowrap">x² = 1024</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">16.</span> <span class="nowrap">x² = 1156</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">17.</span> <span class="nowrap">x² = 1521</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">18.</span> <span class="nowrap">x² = 676</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">19.</span> <span class="nowrap">x² = 529</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">20.</span> <span class="nowrap">x² = 81</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">21.</span> <span class="nowrap">x² = 121</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">22.</span> <span class="nowrap">x² = 441</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">23.</span> <span class="nowrap">x² = 9</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">24.</span> <span class="nowrap">x² = 289</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 24</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 15 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 10 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x² + 6x + 5 = 0 &rarr; x = −1 atau x = −5</span>
+      <div class="ket">Pindahkan konstanta ke ruas kanan, tambahkan (b&divide;2)&sup2; di kedua ruas untuk membentuk kuadrat sempurna, lalu selesaikan dengan akar kuadrat.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">x² + 2x − 48 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">x² − 18x + 81 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² − 13x + 42 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">x² − 5x − 6 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">x² + 12x + 32 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">x² + 5x + 6 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 16 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 10 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x² + 6x + 5 = 0 &rarr; x = −1 atau x = −5</span>
+      <div class="ket">Pindahkan konstanta ke ruas kanan, tambahkan (b&divide;2)&sup2; di kedua ruas untuk membentuk kuadrat sempurna, lalu selesaikan dengan akar kuadrat.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">x² − x − 42 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">x² − 5x = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² − 8x + 7 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">x² + 5x + 4 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">x² + 11x + 28 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">x² − x = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 17 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 10 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x² + 6x + 5 = 0 &rarr; x = −1 atau x = −5</span>
+      <div class="ket">Pindahkan konstanta ke ruas kanan, tambahkan (b&divide;2)&sup2; di kedua ruas untuk membentuk kuadrat sempurna, lalu selesaikan dengan akar kuadrat.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">x² − 7x − 18 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">x² − 9x + 20 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² − 6x + 8 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">x² + 6x − 27 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">x² − 6x − 16 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">x² + 4x − 32 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 18 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 10 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x² + 6x + 5 = 0 &rarr; x = −1 atau x = −5</span>
+      <div class="ket">Pindahkan konstanta ke ruas kanan, tambahkan (b&divide;2)&sup2; di kedua ruas untuk membentuk kuadrat sempurna, lalu selesaikan dengan akar kuadrat.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">x² + 5x − 6 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">x² − 6x − 7 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² − 9x + 20 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">x² + 15x + 56 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">x² − 4x = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">x² + 8x − 9 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 19 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 11 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x = (−b ± √(b² − 4ac)) &divide; 2a</span>
+      <div class="ket">Untuk ax&sup2; + bx + c = 0, tentukan dulu nilai a, b, dan c, lalu hitung diskriminan (b&sup2; &minus; 4ac) sebelum memasukkannya ke rumus.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">4x² − 16x − 48 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">2x² + 8x + 6 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">2x² − 10x + 8 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">3x² + 15x + 18 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">4x² − 24x + 20 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">2x² + 10x − 12 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 20 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 11 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x = (−b ± √(b² − 4ac)) &divide; 2a</span>
+      <div class="ket">Untuk ax&sup2; + bx + c = 0, tentukan dulu nilai a, b, dan c, lalu hitung diskriminan (b&sup2; &minus; 4ac) sebelum memasukkannya ke rumus.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">4x² − 8x − 60 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">4x² + 12x − 72 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">4x² + 20x + 24 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">2x² + 6x + 4 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">3x² − 18x + 15 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">2x² − 4x + 2 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 21 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 11 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x = (−b ± √(b² − 4ac)) &divide; 2a</span>
+      <div class="ket">Untuk ax&sup2; + bx + c = 0, tentukan dulu nilai a, b, dan c, lalu hitung diskriminan (b&sup2; &minus; 4ac) sebelum memasukkannya ke rumus.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">4x² + 4x − 8 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">2x² − 8x + 8 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">2x² − 14x + 12 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">4x² − 20x − 24 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">2x² + 10x − 12 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">3x² + 33x + 90 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 22 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 11 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x = (−b ± √(b² − 4ac)) &divide; 2a</span>
+      <div class="ket">Untuk ax&sup2; + bx + c = 0, tentukan dulu nilai a, b, dan c, lalu hitung diskriminan (b&sup2; &minus; 4ac) sebelum memasukkannya ke rumus.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">2x² + 6x − 8 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">4x² + 20x + 16 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">4x² − 36x + 72 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">2x² − 2x − 12 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">2x² − 2x − 60 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">4x² − 8x − 32 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 23 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 11 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x = (−b ± √(b² − 4ac)) &divide; 2a</span>
+      <div class="ket">Untuk ax&sup2; + bx + c = 0, tentukan dulu nilai a, b, dan c, lalu hitung diskriminan (b&sup2; &minus; 4ac) sebelum memasukkannya ke rumus.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">4x² + 12x − 40 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">2x² + 8x − 24 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">3x² − 24x + 45 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">3x² + 24x + 36 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">3x² + 24x + 45 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">2x² + 4x − 48 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 24 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 5 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">Pilih metode tercepat: selisih dua kuadrat &middot; pemfaktoran &middot; akar kuadrat &middot; melengkapkan kuadrat &middot; rumus ABC</span>
+      <div class="ket">Amati dulu bentuk soalnya sebelum mulai mengerjakan &mdash; metode yang tepat jauh lebih cepat daripada metode yang dipaksakan.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">x² + 6x − 16 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">x² = 324</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² − 8x = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">4x² − 169 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">4x² − 49 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">x² + 15x + 56 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 25 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 7 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">Pilih metode tercepat: selisih dua kuadrat &middot; pemfaktoran &middot; akar kuadrat &middot; melengkapkan kuadrat &middot; rumus ABC</span>
+      <div class="ket">Amati dulu bentuk soalnya sebelum mulai mengerjakan &mdash; metode yang tepat jauh lebih cepat daripada metode yang dipaksakan.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">2x² + 8x + 6 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">x² − 36 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² = 400</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">2x² − 6x − 20 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">x² + 5x + 4 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">x² + 9x + 14 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:100px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 26 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 6 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">Pilih metode tercepat: selisih dua kuadrat &middot; pemfaktoran &middot; akar kuadrat &middot; melengkapkan kuadrat &middot; rumus ABC</span>
+      <div class="ket">Amati dulu bentuk soalnya sebelum mulai mengerjakan &mdash; metode yang tepat jauh lebih cepat daripada metode yang dipaksakan.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">2x² + 14x + 12 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">4x² − 20x + 16 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">4x² − 81 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">x² − 169 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">x² − 81 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">x² + 16x + 64 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 27 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 6 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">Pilih metode tercepat: selisih dua kuadrat &middot; pemfaktoran &middot; akar kuadrat &middot; melengkapkan kuadrat &middot; rumus ABC</span>
+      <div class="ket">Amati dulu bentuk soalnya sebelum mulai mengerjakan &mdash; metode yang tepat jauh lebih cepat daripada metode yang dipaksakan.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">9x² − 16 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">2x² + x − 6 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² − 8x + 12 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">3x² − x − 4 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">9x² − 49 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:100px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">2x² − 10x + 12 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:100px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 28 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 11 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">Latihan ini menggabungkan semua metode pemfaktoran dan penyelesaian persamaan kuadrat yang sudah dipelajari.</span>
+      <div class="ket">Kerjakan setiap bagian dengan cara yang sama seperti pada lembar-lembar sebelumnya.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="mini-label">Bagian 1 &middot; Pemfaktoran</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">4x² − 64 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:15px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">9x² − 49 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:15px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² + 2x − 35 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:15px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">3x² + 13x + 4 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:15px;"></div></div></div>
+    <div class="mini-label">Bagian 2 &middot; Metode Akar Kuadrat &amp; Melengkapkan Kuadrat</div>
+    <div class="cepat-grid"><div class="cepat-cell"><span class="no">1.</span> <span class="nowrap">x² = 529</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">2.</span> <span class="nowrap">x² = 9</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">3.</span> <span class="nowrap">x² = 576</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">4.</span> <span class="nowrap">x² = 100</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div></div><div class="kerja-grid" style="margin-top:7px;"><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">x² − 16 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">x² − 7x − 18 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:40px;"></div></div></div>
+    <div class="mini-label">Bagian 3 &middot; Rumus ABC</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">4x² − 12x − 16 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:46px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">4x² − 8x − 96 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:46px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 12</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 29 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 11 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">Latihan ini menggabungkan semua metode pemfaktoran dan penyelesaian persamaan kuadrat yang sudah dipelajari.</span>
+      <div class="ket">Kerjakan setiap bagian dengan cara yang sama seperti pada lembar-lembar sebelumnya.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="mini-label">Bagian 1 &middot; Pemfaktoran</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">4x² − 64 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:15px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">x² − 49 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:15px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² + 2x − 35 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:15px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">2x² + 9x + 10 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:15px;"></div></div></div>
+    <div class="mini-label">Bagian 2 &middot; Metode Akar Kuadrat &amp; Melengkapkan Kuadrat</div>
+    <div class="cepat-grid"><div class="cepat-cell"><span class="no">1.</span> <span class="nowrap">x² = 25</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">2.</span> <span class="nowrap">x² = 576</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">3.</span> <span class="nowrap">x² = 100</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">4.</span> <span class="nowrap">x² = 9</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div></div><div class="kerja-grid" style="margin-top:7px;"><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">x² + x = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">x² − 3x − 40 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:40px;"></div></div></div>
+    <div class="mini-label">Bagian 3 &middot; Rumus ABC</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">3x² + 15x + 18 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:46px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">3x² + 27x + 54 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:46px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 12</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-20</span>
+          <span class="skill-label">Pemfaktoran dan Persamaan Kuadrat</span>
+        </div>
+        <span class="sheet-no">Lembar 30 dari 30</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 11 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">Latihan ini menggabungkan semua metode pemfaktoran dan penyelesaian persamaan kuadrat yang sudah dipelajari.</span>
+      <div class="ket">Kerjakan setiap bagian dengan cara yang sama seperti pada lembar-lembar sebelumnya.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="mini-label">Bagian 1 &middot; Pemfaktoran</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">x² − 121 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:15px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">x² − 25 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:15px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">3.</span> <span class="nowrap">x² − 2x − 63 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:15px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">4.</span> <span class="nowrap">2x² − 9x − 5 =</span> <span class="isian-panjang"></span></div><div class="kerja-work" style="height:15px;"></div></div></div>
+    <div class="mini-label">Bagian 2 &middot; Metode Akar Kuadrat &amp; Melengkapkan Kuadrat</div>
+    <div class="cepat-grid"><div class="cepat-cell"><span class="no">1.</span> <span class="nowrap">x² = 25</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">2.</span> <span class="nowrap">x² = 49</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">3.</span> <span class="nowrap">x² = 576</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div><div class="cepat-cell"><span class="no">4.</span> <span class="nowrap">x² = 169</span> &rarr; <span class="nowrap">x = ±<span class="isian-pendek"></span></span></div></div><div class="kerja-grid" style="margin-top:7px;"><div class="kerja-cell"><div class="kerja-head"><span class="no">5.</span> <span class="nowrap">x² + 7x − 8 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:40px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">6.</span> <span class="nowrap">x² + x − 6 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:40px;"></div></div></div>
+    <div class="mini-label">Bagian 3 &middot; Rumus ABC</div>
+    <div class="kerja-grid"><div class="kerja-cell"><div class="kerja-head"><span class="no">1.</span> <span class="nowrap">4x² + 4x − 48 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:46px;"></div></div><div class="kerja-cell"><div class="kerja-head"><span class="no">2.</span> <span class="nowrap">4x² + 32x + 60 = 0</span> &rarr; <span class="nowrap">x = <span class="isian-pendek"></span></span> <span class="nowrap">atau x = <span class="isian-pendek"></span></span></div><div class="kerja-work" style="height:46px;"></div></div></div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 12</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-20</span>
+  </div>
+
+</section>
+
+</div>
+</body>
+</html>

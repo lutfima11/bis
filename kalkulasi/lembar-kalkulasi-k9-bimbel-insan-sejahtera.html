@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lembar Kalkulasi K-9 — Bimbel Insan Sejahtera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+
+
+  :root{
+    --navy:#0F2A4E; --teal:#007A7A; --soft-teal:#E0F2F1; --soft-navy:#E8EEF7;
+    --gold:#B08420; --soft-gold:#FCF6E5; --greyline:#C8CED6; --ink:#26313F;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  body{
+    font-family:"Plus Jakarta Sans",sans-serif;
+    font-size:9.5pt; line-height:1.55; color:var(--ink);
+    background:#EAEDF1; margin:0; padding:0;
+  }
+  h1,h2,.brand-name{font-family:"Fraunces",serif;}
+
+  /* ============ PAGE (A4) ============ */
+  .page{
+    background:#fff; width:21cm; min-height:29.7cm; height:auto;
+    padding:1.6cm 2.2cm 1.3cm 2.2cm; margin:1cm auto;
+    box-shadow:0 0 10px rgba(0,0,0,.18); position:relative;
+    display:flex; flex-direction:column;
+  }
+  .page-header{margin:-1.6cm -2.2cm 0 -2.2cm; width:21cm;}
+  .brand-bar{height:4px;background:linear-gradient(90deg,var(--teal),var(--navy));
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .header-inner{padding:11px 2.2cm 9px 2.2cm;background:var(--soft-navy);
+    display:flex;justify-content:space-between;align-items:center;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .brand-name{font-size:17pt;font-weight:700;color:var(--navy);}
+  .brand-left{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-logo{height:42px;width:auto;display:block;object-fit:contain;}
+  .brand-tagline{font-size:7.6pt;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:.6px;margin-top:2px;}
+
+  .level-strip{padding:10px 2.2cm;background:#fff;border-bottom:1px solid var(--greyline);}
+  .level-top{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+
+  .chips-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+  .k-badge{font-family:"JetBrains Mono",monospace;font-size:12pt;font-weight:800;color:#fff;
+    padding:3px 10px;border-radius:6px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .skill-label{font-size:8.4pt;font-weight:700;color:var(--navy);}
+  .sheet-no{font-size:7.3pt;color:#8A91A0;font-weight:600;}
+
+  .standar-row{display:flex;gap:8px;margin-top:9px;}
+  .standar-chip{display:flex;align-items:center;gap:5px;font-size:7.6pt;font-weight:700;
+    border:1.3px solid var(--gold);color:#8A6416;background:var(--soft-gold);border-radius:20px;padding:3px 10px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .standar-chip svg{flex-shrink:0;}
+
+  .student-bar{padding:7px 2.2cm;margin:0 -2.2cm 12px -2.2cm;background:#F7F8FA;
+    border-bottom:1px solid var(--greyline);font-size:8.2pt;font-weight:600;color:#3A4252;
+    display:flex;gap:24px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .student-bar span{border-bottom:1px solid #99A1B3;padding-bottom:1px;min-width:100px;display:inline-block;}
+
+  .content{flex-grow:1;display:flex;flex-direction:column;}
+  .eyebrow{font-size:7.7pt;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--teal);margin:11px 0 5px;}
+
+  .contoh-box{background:var(--soft-navy);border:1px solid var(--soft-navy);border-left:3.5px solid var(--navy);
+    border-radius:5px;padding:8px 16px;margin-bottom:11px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .contoh-box .tag{font-size:7.3pt;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:5px;}
+  .contoh-box .rumus{font-family:"JetBrains Mono",monospace;font-size:9.5pt;color:var(--navy);font-weight:600;}
+  .contoh-box .ket{font-size:7.7pt;color:#4A5468;margin-top:5px;}
+
+  /* ---- Self-tracking strip: Kaidah Dua Standar (waktu + akurasi) ---- */
+  .tracking-strip{margin-top:16px;padding-top:12px;border-top:1px dashed var(--greyline);}
+  .tracking-row{display:flex;gap:22px;flex-wrap:wrap;font-size:8.2pt;font-weight:600;color:#3A4252;margin-bottom:8px;}
+  .tracking-row .f{display:flex;align-items:baseline;gap:5px;}
+  .tracking-row .f .ln{border-bottom:1px solid #99A1B3;min-width:70px;height:13px;display:inline-block;}
+  .amanah-row{display:flex;align-items:center;gap:8px;font-size:7.8pt;color:#4A5468;margin-bottom:10px;}
+  .amanah-row .box{width:11px;height:11px;border:1.3px solid var(--navy);border-radius:2px;flex-shrink:0;}
+
+  .page-footer{padding-top:9px;border-top:1px solid var(--greyline);
+    display:flex;justify-content:space-between;font-size:6.6pt;color:#8A91A0;}
+
+  /* ---- Review sheet: mini section labels within one page ---- */
+  .mini-label{font-size:7.6pt;font-weight:800;color:var(--gold);text-transform:uppercase;
+    letter-spacing:.5px;margin:7px 0 4px;}
+  .mini-label:first-child{margin-top:0;}
+
+  /* ============ PRINT ============ */
+  @media print{
+    @page{size:A4;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;page-break-after:always;}
+    .page:last-child{page-break-after:auto;}
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  }
+
+  /* ---- K-9 grid: pembagian bersusun panjang (long division) ---- */
+  .bagi-grid{display:grid;gap:13px 16px;}
+  .bagi-grid.c3{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .bagi-grid.c2{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .bagi-cell{border-bottom:1px dotted var(--greyline);padding:3px 6px 9px;min-width:0;}
+  .bagi-cell .no{font-size:7.5pt;color:#9099A8;font-weight:700;display:block;margin-bottom:3px;}
+  .bagi-unit{display:flex;flex-direction:column;width:fit-content;}
+  .bagi-row{display:flex;align-items:stretch;}
+  .bagi-spacer{flex-shrink:0;}
+  .bagi-qslot{flex:1;min-width:34px;height:16px;border-bottom:1.6px dashed #AEB4C0;}
+  .bagi-divisor{flex-shrink:0;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:11.5pt;
+    color:var(--navy);border-right:1.7px solid var(--navy);padding:0 5px 2px 1px;text-align:right;
+    white-space:nowrap;}
+  .bagi-dividend{flex:1;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:11.5pt;
+    color:var(--navy);border-top:1.7px solid var(--navy);padding:2px 6px 0 7px;white-space:nowrap;}
+  .bagi-work{margin-top:4px;border-top:1px dashed var(--greyline);}
+  .bagi-work.h1{height:50px;}
+  .bagi-work.h2{height:70px;}
+  .bagi-work.h3{height:88px;}
+  .bagi-sisa{font-family:"JetBrains Mono",monospace;font-size:7.6pt;color:#5C6478;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .isian-x{display:inline-block;color:#5C6478;}
+
+</style>
+</head>
+<body>
+<div class="page-container">
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 01 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">38</span></div></div></span><span>38 &divide; 2 = <b>19</b></span></span><div class="ket">3 ÷ 2 = 1 sisa 1 &rarr; turunkan 8, jadi 18 ÷ 2 = 9 sisa 0 &rarr; <b>Hasil: 19 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">87</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">84</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">33</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">88</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">24</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">90</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">66</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">96</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">75</span></div></div><div class="bagi-work h1"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 02 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">87</span></div></div></span><span>87 &divide; 3 = <b>29</b></span></span><div class="ket">8 ÷ 3 = 2 sisa 2 &rarr; turunkan 7, jadi 27 ÷ 3 = 9 sisa 0 &rarr; <b>Hasil: 29 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">81</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">92</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">52</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">80</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">48</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">54</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">92</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">84</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">12</span></div></div><div class="bagi-work h1"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 03 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">65</span></div></div></span><span>65 &divide; 5 = <b>13</b></span></span><div class="ket">6 ÷ 5 = 1 sisa 1 &rarr; turunkan 5, jadi 15 ÷ 5 = 3 sisa 0 &rarr; <b>Hasil: 13 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">48</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">48</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">90</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">51</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">75</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">60</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">66</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">28</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">78</span></div></div><div class="bagi-work h1"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 04 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">84</span></div></div></span><span>84 &divide; 7 = <b>12</b></span></span><div class="ket">8 ÷ 7 = 1 sisa 1 &rarr; turunkan 4, jadi 14 ÷ 7 = 2 sisa 0 &rarr; <b>Hasil: 12 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">75</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">24</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">96</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">25</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">91</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">72</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">78</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">42</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">56</span></div></div><div class="bagi-work h1"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 05 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">84</span></div></div></span><span>84 &divide; 7 = <b>12</b></span></span><div class="ket">8 ÷ 7 = 1 sisa 1 &rarr; turunkan 4, jadi 14 ÷ 7 = 2 sisa 0 &rarr; <b>Hasil: 12 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">9</span><span class="bagi-dividend">90</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">9</span><span class="bagi-dividend">63</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">42</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">9</span><span class="bagi-dividend">81</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">9</span><span class="bagi-dividend">72</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">90</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">8</span><span class="bagi-dividend">56</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">9</span><span class="bagi-dividend">27</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">8</span><span class="bagi-dividend">72</span></div></div><div class="bagi-work h1"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 06 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">534</span></div></div></span><span>534 &divide; 2 = <b>267</b></span></span><div class="ket">5 ÷ 2 = 2 sisa 1 &rarr; turunkan 3, jadi 13 ÷ 2 = 6 sisa 1 &rarr; turunkan 4, jadi 14 ÷ 2 = 7 sisa 0 &rarr; <b>Hasil: 267 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">198</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">867</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">249</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">864</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">324</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">123</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">100</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">993</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">724</span></div></div><div class="bagi-work h1"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 07 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">352</span></div></div></span><span>352 &divide; 2 = <b>176</b></span></span><div class="ket">3 ÷ 2 = 1 sisa 1 &rarr; turunkan 5, jadi 15 ÷ 2 = 7 sisa 1 &rarr; turunkan 2, jadi 12 ÷ 2 = 6 sisa 0 &rarr; <b>Hasil: 176 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">734</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">868</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">372</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">872</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">464</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">104</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">996</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">884</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">309</span></div></div><div class="bagi-work h1"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 08 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">444</span></div></div></span><span>444 &divide; 6 = <b>74</b></span></span><div class="ket">44 ÷ 6 = 7 sisa 2 &rarr; turunkan 4, jadi 24 ÷ 6 = 4 sisa 0 &rarr; <b>Hasil: 74 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">850</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">712</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">876</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">205</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">955</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">236</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">570</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">732</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">290</span></div></div><div class="bagi-work h1"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 09 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">8</span><span class="bagi-dividend">928</span></div></div></span><span>928 &divide; 8 = <b>116</b></span></span><div class="ket">9 ÷ 8 = 1 sisa 1 &rarr; turunkan 2, jadi 12 ÷ 8 = 1 sisa 4 &rarr; turunkan 8, jadi 48 ÷ 8 = 6 sisa 0 &rarr; <b>Hasil: 116 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">678</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">264</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">231</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">630</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">8</span><span class="bagi-dividend">464</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">138</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">8</span><span class="bagi-dividend">584</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">644</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">686</span></div></div><div class="bagi-work h1"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 10 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">994</span></div></div></span><span>994 &divide; 7 = <b>142</b></span></span><div class="ket">9 ÷ 7 = 1 sisa 2 &rarr; turunkan 9, jadi 29 ÷ 7 = 4 sisa 1 &rarr; turunkan 4, jadi 14 ÷ 7 = 2 sisa 0 &rarr; <b>Hasil: 142 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">8</span><span class="bagi-dividend">688</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">9</span><span class="bagi-dividend">297</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">469</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">8</span><span class="bagi-dividend">736</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">8</span><span class="bagi-dividend">568</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">9</span><span class="bagi-dividend">369</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">9</span><span class="bagi-dividend">918</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">819</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">455</span></div></div><div class="bagi-work h1"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 11 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">27</span><span class="bagi-dividend">81</span></div></div></span><span>81 &divide; 27 = <b>3</b></span></span><div class="ket">81 ÷ 27 = 3 sisa 0 &rarr; <b>Hasil: 3 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">19</span><span class="bagi-dividend">38</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">14</span><span class="bagi-dividend">42</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">16</span><span class="bagi-dividend">32</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">12</span><span class="bagi-dividend">36</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">44</span><span class="bagi-dividend">88</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">10</span><span class="bagi-dividend">30</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">14</span><span class="bagi-dividend">28</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">31</span><span class="bagi-dividend">62</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">29</span><span class="bagi-dividend">58</span></div></div><div class="bagi-work h1"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 12 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">38</span><span class="bagi-dividend">76</span></div></div></span><span>76 &divide; 38 = <b>2</b></span></span><div class="ket">76 ÷ 38 = 2 sisa 0 &rarr; <b>Hasil: 2 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">21</span><span class="bagi-dividend">84</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">28</span><span class="bagi-dividend">56</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">21</span><span class="bagi-dividend">63</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">20</span><span class="bagi-dividend">80</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">16</span><span class="bagi-dividend">48</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">36</span><span class="bagi-dividend">72</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">14</span><span class="bagi-dividend">42</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">30</span><span class="bagi-dividend">90</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">12</span><span class="bagi-dividend">48</span></div></div><div class="bagi-work h1"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 13 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">16</span><span class="bagi-dividend">80</span></div></div></span><span>80 &divide; 16 = <b>5</b></span></span><div class="ket">80 ÷ 16 = 5 sisa 0 &rarr; <b>Hasil: 5 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">19</span><span class="bagi-dividend">95</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">19</span><span class="bagi-dividend">76</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">13</span><span class="bagi-dividend">52</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">25</span><span class="bagi-dividend">75</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">22</span><span class="bagi-dividend">88</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">23</span><span class="bagi-dividend">92</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">10</span><span class="bagi-dividend">40</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">16</span><span class="bagi-dividend">48</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">15</span><span class="bagi-dividend">75</span></div></div><div class="bagi-work h1"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 14 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">10</span><span class="bagi-dividend">60</span></div></div></span><span>60 &divide; 10 = <b>6</b></span></span><div class="ket">60 ÷ 10 = 6 sisa 0 &rarr; <b>Hasil: 6 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">14</span><span class="bagi-dividend">84</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">17</span><span class="bagi-dividend">68</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">13</span><span class="bagi-dividend">91</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">15</span><span class="bagi-dividend">90</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">12</span><span class="bagi-dividend">72</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">14</span><span class="bagi-dividend">98</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">10</span><span class="bagi-dividend">40</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">23</span><span class="bagi-dividend">92</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">19</span><span class="bagi-dividend">95</span></div></div><div class="bagi-work h1"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 15 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">10</span><span class="bagi-dividend">90</span></div></div></span><span>90 &divide; 10 = <b>9</b></span></span><div class="ket">90 ÷ 10 = 9 sisa 0 &rarr; <b>Hasil: 9 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">13</span><span class="bagi-dividend">65</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">11</span><span class="bagi-dividend">77</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">13</span><span class="bagi-dividend">91</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">11</span><span class="bagi-dividend">99</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">10</span><span class="bagi-dividend">50</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">10</span><span class="bagi-dividend">70</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">16</span><span class="bagi-dividend">96</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">11</span><span class="bagi-dividend">88</span></div></div><div class="bagi-work h1"></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">11</span><span class="bagi-dividend">55</span></div></div><div class="bagi-work h1"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 16 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">13</span><span class="bagi-dividend">169</span></div></div></span><span>169 &divide; 13 = <b>13</b></span></span><div class="ket">16 ÷ 13 = 1 sisa 3 &rarr; turunkan 9, jadi 39 ÷ 13 = 3 sisa 0 &rarr; <b>Hasil: 13 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c2">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">14</span><span class="bagi-dividend">462</span></div></div><div class="bagi-work h2"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">14</span><span class="bagi-dividend">168</span></div></div><div class="bagi-work h2"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">29</span><span class="bagi-dividend">986</span></div></div><div class="bagi-work h2"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">16</span><span class="bagi-dividend">160</span></div></div><div class="bagi-work h2"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">23</span><span class="bagi-dividend">644</span></div></div><div class="bagi-work h2"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">18</span><span class="bagi-dividend">666</span></div></div><div class="bagi-work h2"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 17 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">28</span><span class="bagi-dividend">532</span></div></div></span><span>532 &divide; 28 = <b>19</b></span></span><div class="ket">53 ÷ 28 = 1 sisa 25 &rarr; turunkan 2, jadi 252 ÷ 28 = 9 sisa 0 &rarr; <b>Hasil: 19 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c2">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">51</span><span class="bagi-dividend">765</span></div></div><div class="bagi-work h2"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">30</span><span class="bagi-dividend">960</span></div></div><div class="bagi-work h2"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">54</span><span class="bagi-dividend">918</span></div></div><div class="bagi-work h2"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">31</span><span class="bagi-dividend">155</span></div></div><div class="bagi-work h2"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">37</span><span class="bagi-dividend">518</span></div></div><div class="bagi-work h2"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">35</span><span class="bagi-dividend">315</span></div></div><div class="bagi-work h2"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 18 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">36</span><span class="bagi-dividend">396</span></div></div></span><span>396 &divide; 36 = <b>11</b></span></span><div class="ket">39 ÷ 36 = 1 sisa 3 &rarr; turunkan 6, jadi 36 ÷ 36 = 1 sisa 0 &rarr; <b>Hasil: 11 (tanpa sisa)</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c2">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">79</span><span class="bagi-dividend">474</span></div></div><div class="bagi-work h2"></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">85</span><span class="bagi-dividend">425</span></div></div><div class="bagi-work h2"></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">42</span><span class="bagi-dividend">714</span></div></div><div class="bagi-work h2"></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">55</span><span class="bagi-dividend">110</span></div></div><div class="bagi-work h2"></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">32</span><span class="bagi-dividend">192</span></div></div><div class="bagi-work h2"></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">87</span><span class="bagi-dividend">348</span></div></div><div class="bagi-work h2"></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 19 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">55</span></div></div></span><span>55 &divide; 4 = <b>13</b> <span style="color:#8A6416;">sisa 3</span></span></span><div class="ket">5 ÷ 4 = 1 sisa 1 &rarr; turunkan 5, jadi 15 ÷ 4 = 3 sisa 3 &rarr; <b>Hasil: 13 sisa 3</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">34</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">49</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">33</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">16</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">86</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">50</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">26</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">27</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">69</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 20 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">9</span><span class="bagi-dividend">281</span></div></div></span><span>281 &divide; 9 = <b>31</b> <span style="color:#8A6416;">sisa 2</span></span></span><div class="ket">28 ÷ 9 = 3 sisa 1 &rarr; turunkan 1, jadi 11 ÷ 9 = 1 sisa 2 &rarr; <b>Hasil: 31 sisa 2</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">909</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">916</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">8</span><span class="bagi-dividend">229</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">449</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">751</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">259</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">734</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">667</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">7</span><span class="bagi-dividend">575</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 21 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">18</span><span class="bagi-dividend">67</span></div></div></span><span>67 &divide; 18 = <b>3</b> <span style="color:#8A6416;">sisa 13</span></span></span><div class="ket">67 ÷ 18 = 3 sisa 13 &rarr; <b>Hasil: 3 sisa 13</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">30</span><span class="bagi-dividend">98</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">10</span><span class="bagi-dividend">46</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">11</span><span class="bagi-dividend">18</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">10</span><span class="bagi-dividend">22</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">46</span><span class="bagi-dividend">99</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">13</span><span class="bagi-dividend">42</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">7.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">19</span><span class="bagi-dividend">50</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">8.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">19</span><span class="bagi-dividend">35</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">9.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">13</span><span class="bagi-dividend">76</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 9</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 22 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">34</span><span class="bagi-dividend">526</span></div></div></span><span>526 &divide; 34 = <b>15</b> <span style="color:#8A6416;">sisa 16</span></span></span><div class="ket">52 ÷ 34 = 1 sisa 18 &rarr; turunkan 6, jadi 186 ÷ 34 = 5 sisa 16 &rarr; <b>Hasil: 15 sisa 16</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c2">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">86</span><span class="bagi-dividend">856</span></div></div><div class="bagi-work h3"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">65</span><span class="bagi-dividend">885</span></div></div><div class="bagi-work h3"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">84</span><span class="bagi-dividend">229</span></div></div><div class="bagi-work h3"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">66</span><span class="bagi-dividend">868</span></div></div><div class="bagi-work h3"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">46</span><span class="bagi-dividend">563</span></div></div><div class="bagi-work h3"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">17</span><span class="bagi-dividend">644</span></div></div><div class="bagi-work h3"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 23 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">7</span></div></div></span><span>7 &divide; 2 = <b>3,5</b></span></span><div class="ket">7 ÷ 2 = 3 sisa 1 &rarr; sisa 1 dilanjutkan: 10 &divide; 2 = 5 &rarr; <b>Hasil desimal: 3,5</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c2">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">22</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">16</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">26</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">34</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">19</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">24</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 24 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">8</span><span class="bagi-dividend">92</span></div></div></span><span>92 &divide; 8 = <b>11,5</b></span></span><div class="ket">9 ÷ 8 = 1 sisa 1 &rarr; turunkan 2, jadi 12 ÷ 8 = 1 sisa 4 &rarr; sisa 4 dilanjutkan: 40 &divide; 8 = 5 &rarr; <b>Hasil desimal: 11,5</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c2">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">42</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">8</span><span class="bagi-dividend">116</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">37</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">8</span><span class="bagi-dividend">100</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">64</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">30</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 25 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">20</span><span class="bagi-dividend">252</span></div></div></span><span>252 &divide; 20 = <b>12,6</b></span></span><div class="ket">25 ÷ 20 = 1 sisa 5 &rarr; turunkan 2, jadi 52 ÷ 20 = 2 sisa 12 &rarr; sisa 12 dilanjutkan: 120 &divide; 20 = 6 &rarr; <b>Hasil desimal: 12,6</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="bagi-grid c2">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">25</span><span class="bagi-dividend">155</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">46</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">20</span><span class="bagi-dividend">236</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">4.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">25</span><span class="bagi-dividend">455</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">5.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">10</span><span class="bagi-dividend">136</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">6.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">10</span><span class="bagi-dividend">82</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 26 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">551</span></div></div></span><span>551 &divide; 2 = <b>275</b> <span style="color:#8A6416;">sisa 1</span></span></span><div class="ket">5 ÷ 2 = 2 sisa 1 &rarr; turunkan 5, jadi 15 ÷ 2 = 7 sisa 1 &rarr; turunkan 1, jadi 11 ÷ 2 = 5 sisa 1 &rarr; <b>Hasil: 275 sisa 1</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="mini-label">Bagian 1 &middot; Pembagi Satuan (Puluhan &amp; Ratusan)</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">40</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">267</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">3</span><span class="bagi-dividend">681</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+</div>
+    <div class="mini-label">Bagian 2 &middot; Pembagi Puluhan (Puluhan &amp; Ratusan)</div>
+    <div class="bagi-grid c2">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">10</span><span class="bagi-dividend">58</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">45</span><span class="bagi-dividend">495</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+</div>
+    <div class="mini-label">Bagian 3 &middot; Sisa &rarr; Desimal</div>
+    <div class="bagi-grid c2">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">23</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">8</span><span class="bagi-dividend">100</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 7</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 27 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">85</span></div></div></span><span>85 &divide; 6 = <b>14</b> <span style="color:#8A6416;">sisa 1</span></span></span><div class="ket">8 ÷ 6 = 1 sisa 2 &rarr; turunkan 5, jadi 25 ÷ 6 = 4 sisa 1 &rarr; <b>Hasil: 14 sisa 1</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="mini-label">Bagian 1 &middot; Pembagi Satuan (Puluhan &amp; Ratusan)</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">6</span><span class="bagi-dividend">96</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">817</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">9</span><span class="bagi-dividend">990</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+</div>
+    <div class="mini-label">Bagian 2 &middot; Pembagi Puluhan (Puluhan &amp; Ratusan)</div>
+    <div class="bagi-grid c2">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">17</span><span class="bagi-dividend">99</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">39</span><span class="bagi-dividend">468</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+</div>
+    <div class="mini-label">Bagian 3 &middot; Sisa &rarr; Desimal</div>
+    <div class="bagi-grid c2">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">7</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">15</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 7</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#127D75">K-9</span>
+          <span class="skill-label">Pembagian Bersusun Panjang</span>
+        </div>
+        <span class="sheet-no">Lembar 28 dari 28</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 12 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box"><span class="tag">Contoh</span><span class="rumus" style="display:flex;align-items:center;gap:14px;"><span style="transform:scale(.86);transform-origin:left top;"><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">9</span><span class="bagi-dividend">777</span></div></div></span><span>777 &divide; 9 = <b>86</b> <span style="color:#8A6416;">sisa 3</span></span></span><div class="ket">77 ÷ 9 = 8 sisa 5 &rarr; turunkan 7, jadi 57 ÷ 9 = 6 sisa 3 &rarr; <b>Hasil: 86 sisa 3</b>.</div></div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="mini-label">Bagian 1 &middot; Pembagi Satuan (Puluhan &amp; Ratusan)</div>
+    <div class="bagi-grid c3">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">9</span><span class="bagi-dividend">99</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">2</span><span class="bagi-dividend">151</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">3.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">4</span><span class="bagi-dividend">428</span></div></div><div class="bagi-work h1"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+</div>
+    <div class="mini-label">Bagian 2 &middot; Pembagi Puluhan (Puluhan &amp; Ratusan)</div>
+    <div class="bagi-grid c2">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">15</span><span class="bagi-dividend">83</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:34px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:34px;">12</span><span class="bagi-dividend">876</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">______</span>&nbsp;&nbsp;Sisa: <span class="isian-x">______</span></div></div>
+</div>
+    <div class="mini-label">Bagian 3 &middot; Sisa &rarr; Desimal</div>
+    <div class="bagi-grid c2">
+<div class="bagi-cell"><span class="no">1.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">62</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+<div class="bagi-cell"><span class="no">2.</span><div class="bagi-unit"><div class="bagi-row"><span class="bagi-spacer" style="width:22px;"></span><span class="bagi-qslot"></span></div><div class="bagi-row"><span class="bagi-divisor" style="width:22px;">5</span><span class="bagi-dividend">78</span></div></div><div class="bagi-work h2"></div><div class="bagi-sisa">Hasil: <span class="isian-x">___</span> sisa <span class="isian-x">___</span> &rarr; Desimal: <span class="isian-x">___,___</span></div></div>
+</div>
+
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 7</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-9</span>
+  </div>
+</section>
+</div>
+</body>
+</html>

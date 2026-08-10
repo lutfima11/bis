@@ -1,0 +1,2471 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lembar Kalkulasi K-18 &mdash; Bimbel Insan Sejahtera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+
+  :root{
+    --navy:#0F2A4E; --teal:#007A7A; --soft-teal:#E0F2F1; --soft-navy:#E8EEF7;
+    --gold:#B08420; --soft-gold:#FCF6E5; --greyline:#C8CED6; --ink:#26313F;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  body{
+    font-family:"Plus Jakarta Sans",sans-serif;
+    font-size:9.5pt; line-height:1.55; color:var(--ink);
+    background:#EAEDF1; margin:0; padding:0;
+  }
+  h1,h2,.brand-name{font-family:"Fraunces",serif;}
+
+  /* ============ PAGE (A4) ============ */
+  .page{
+    background:#fff; width:21cm; min-height:29.7cm; height:auto;
+    padding:1.6cm 2.2cm 1.3cm 2.2cm; margin:1cm auto;
+    box-shadow:0 0 10px rgba(0,0,0,.18); position:relative;
+    display:flex; flex-direction:column;
+  }
+  .page-header{margin:-1.6cm -2.2cm 0 -2.2cm; width:21cm;}
+  .brand-bar{height:4px;background:linear-gradient(90deg,var(--teal),var(--navy));
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .header-inner{padding:11px 2.2cm 9px 2.2cm;background:var(--soft-navy);
+    display:flex;justify-content:space-between;align-items:center;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .brand-name{font-size:17pt;font-weight:700;color:var(--navy);}
+  .brand-left{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-logo{height:42px;width:auto;display:block;object-fit:contain;}
+  .brand-tagline{font-size:7.6pt;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:.6px;margin-top:2px;}
+
+  .level-strip{padding:10px 2.2cm;background:#fff;border-bottom:1px solid var(--greyline);}
+  .level-top{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+
+  .chips-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+  .k-badge{font-family:"JetBrains Mono",monospace;font-size:12pt;font-weight:800;color:#fff;
+    padding:3px 10px;border-radius:6px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .skill-label{font-size:8.4pt;font-weight:700;color:var(--navy);}
+  .sheet-no{font-size:7.3pt;color:#8A91A0;font-weight:600;}
+
+  .standar-row{display:flex;gap:8px;margin-top:9px;}
+  .standar-chip{display:flex;align-items:center;gap:5px;font-size:7.6pt;font-weight:700;
+    border:1.3px solid var(--gold);color:#8A6416;background:var(--soft-gold);border-radius:20px;padding:3px 10px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .standar-chip svg{flex-shrink:0;}
+
+  .student-bar{padding:7px 2.2cm;margin:0 -2.2cm 12px -2.2cm;background:#F7F8FA;
+    border-bottom:1px solid var(--greyline);font-size:8.2pt;font-weight:600;color:#3A4252;
+    display:flex;gap:24px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .student-bar span{border-bottom:1px solid #99A1B3;padding-bottom:1px;min-width:100px;display:inline-block;}
+
+  .content{flex-grow:1;display:flex;flex-direction:column;}
+  .eyebrow{font-size:7.7pt;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--teal);margin:11px 0 5px;}
+
+  .contoh-box{background:var(--soft-navy);border:1px solid var(--soft-navy);border-left:3.5px solid var(--navy);
+    border-radius:5px;padding:8px 16px;margin-bottom:11px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .contoh-box .tag{font-size:7.3pt;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:5px;}
+  .contoh-box .rumus{font-family:"JetBrains Mono",monospace;font-size:9.5pt;color:var(--navy);font-weight:600;}
+  .contoh-box .ket{font-size:8pt;color:#4A5468;margin-top:5px;}
+
+  /* ---- Self-tracking strip ---- */
+  .tracking-strip{margin-top:22px;padding-top:12px;border-top:1px dashed var(--greyline);}
+  .tracking-row{display:flex;gap:22px;flex-wrap:wrap;font-size:8.2pt;font-weight:600;color:#3A4252;margin-bottom:8px;}
+  .tracking-row .f{display:flex;align-items:baseline;gap:5px;}
+  .tracking-row .f .ln{border-bottom:1px solid #99A1B3;min-width:70px;height:13px;display:inline-block;}
+  .amanah-row{display:flex;align-items:center;gap:8px;font-size:7.8pt;color:#4A5468;margin-bottom:10px;}
+  .amanah-row .box{width:11px;height:11px;border:1.3px solid var(--navy);border-radius:2px;flex-shrink:0;}
+
+  .page-footer{padding-top:9px;border-top:1px solid var(--greyline);
+    display:flex;justify-content:space-between;font-size:6.6pt;color:#8A91A0;}
+
+  /* ============ PRINT ============ */
+  @media print{
+    @page{size:A4;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;page-break-after:always;}
+    .page:last-child{page-break-after:auto;}
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  }
+
+  .mini-label{font-size:7.6pt;font-weight:800;color:var(--gold);text-transform:uppercase;
+    letter-spacing:.5px;margin:7px 0 4px;}
+  .mini-label:first-child{margin-top:0;}
+
+  .isian-pendek{display:inline-block;min-width:24px;border-bottom:1.3px solid #7A8296;height:13px;}
+
+  /* ============ K-18: SPLDV (Sistem Persamaan Linear Dua Variabel) ============ */
+
+  /* ---- Tahap 1/2/3/5: kerja penuh (equations + workspace + answer) ---- */
+  .spldv-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;}
+  .spldv-cell{border:1px solid var(--greyline);border-radius:6px;padding:8px 12px;}
+  .spldv-eqs{display:flex;align-items:flex-start;gap:6px;font-family:"JetBrains Mono",monospace;
+    font-size:9.8pt;font-weight:700;color:var(--navy);line-height:1.5;margin:2px 0 6px;}
+  .spldv-eqs .no{font-family:"Plus Jakarta Sans",sans-serif;font-size:7.5pt;color:#9099A8;font-weight:700;
+    flex-shrink:0;margin-top:2px;}
+  .spldv-eqs .eq-stack{display:flex;flex-direction:column;}
+  .spldv-eqs .eq{display:block;white-space:nowrap;}
+  .spldv-ans{font-family:"JetBrains Mono",monospace;font-size:8.6pt;font-weight:600;color:var(--navy);
+    display:flex;gap:16px;align-items:baseline;}
+  .spldv-work{height:90px;border-top:1px dashed var(--greyline);margin-top:7px;}
+
+  /* ---- Tahap 4: Solusi Khusus (klasifikasi + ruang kerja) ---- */
+  .klas-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;}
+  .klas-cell{border:1px solid var(--greyline);border-radius:6px;padding:8px 12px;}
+  .klas-eqs{display:flex;align-items:flex-start;gap:6px;font-family:"JetBrains Mono",monospace;
+    font-size:9.8pt;font-weight:700;color:var(--navy);line-height:1.5;margin:2px 0 6px;}
+  .klas-eqs .no{font-family:"Plus Jakarta Sans",sans-serif;font-size:7.5pt;color:#9099A8;font-weight:700;
+    flex-shrink:0;margin-top:2px;}
+  .klas-eqs .eq-stack{display:flex;flex-direction:column;}
+  .klas-eqs .eq{display:block;white-space:nowrap;}
+  .klas-work{height:56px;border-top:1px dashed var(--greyline);margin-top:6px;}
+  .klas-opts{display:flex;flex-direction:column;gap:4px;border-top:1px dashed var(--greyline);padding-top:6px;margin-top:6px;}
+  .klas-opt{display:flex;align-items:baseline;gap:6px;font-size:8pt;color:#3A4252;font-weight:600;}
+  .klas-opt .chk{width:9px;height:9px;border:1.2px solid var(--navy);border-radius:2px;flex-shrink:0;
+    display:inline-block;transform:translateY(1px);}
+
+  /* ---- Tahap 6: Sintesis (kombinasi ringkas, tanpa ruang kerja/kotak) ---- */
+  .ring-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 20px;}
+  .ring-cell{display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    border-bottom:1px dotted var(--greyline);padding:6px 3px 8px;}
+  .ring-cell .no{font-family:"Plus Jakarta Sans",sans-serif;font-size:7.5pt;color:#9099A8;font-weight:700;flex-shrink:0;}
+  .ring-eqs{font-family:"JetBrains Mono",monospace;font-size:9.3pt;font-weight:700;color:var(--navy);line-height:1.45;}
+  .ring-eqs .eq{display:block;white-space:nowrap;}
+  .ring-ans{font-family:"JetBrains Mono",monospace;font-size:8.4pt;font-weight:600;color:var(--navy);
+    display:flex;gap:10px;align-items:baseline;margin-left:auto;}
+
+  .ring-klas{display:flex;flex-direction:column;gap:2px;margin-left:auto;}
+  .ring-klas .opt{display:flex;align-items:baseline;gap:5px;font-size:7.4pt;color:#3A4252;font-weight:600;white-space:nowrap;}
+  .ring-klas .chk{width:8px;height:8px;border:1.1px solid var(--navy);border-radius:2px;flex-shrink:0;display:inline-block;}
+
+</style>
+</head>
+<body>
+<div class="page-container">
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 01 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">y = 2x + 1 &nbsp;&nbsp; dan &nbsp;&nbsp; 3x + y = 11</span>
+      <div class="ket">Substitusikan y = 2x + 1 ke persamaan kedua: 3x + (2x + 1) = 11 &rarr; 5x + 1 = 11 &rarr; 5x = 10 &rarr; <b>x = 2</b>. Lalu y = 2(2) + 1 = <b>5</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">y = x &minus; 2</span><span class="eq">4x + 6y = 78</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">y = x &minus; 5</span><span class="eq">3x + 3y = 39</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">y = 3x &minus; 7</span><span class="eq">5x + 3y = 21</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">x = 2y &minus; 17</span><span class="eq">4x + 5y = 49</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">5.</span><span class="eq-stack"><span class="eq">x = &minus;y + 4</span><span class="eq">5x + 6y = 23</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">6.</span><span class="eq-stack"><span class="eq">y = 2x &minus; 12</span><span class="eq">3x + 6y = 33</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 02 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">y = 2x + 1 &nbsp;&nbsp; dan &nbsp;&nbsp; 3x + y = 11</span>
+      <div class="ket">Substitusikan y = 2x + 1 ke persamaan kedua: 3x + (2x + 1) = 11 &rarr; 5x + 1 = 11 &rarr; 5x = 10 &rarr; <b>x = 2</b>. Lalu y = 2(2) + 1 = <b>5</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">x = y + 5</span><span class="eq">2x + 5y = 17</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">y = x + 7</span><span class="eq">4x + 3y = 28</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">x = &minus;2y + 11</span><span class="eq">6x + 3y = 48</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">y = 3x &minus; 9</span><span class="eq">6x + 6y = 66</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">5.</span><span class="eq-stack"><span class="eq">x = 3y &minus; 21</span><span class="eq">2x + 2y = 22</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">6.</span><span class="eq-stack"><span class="eq">y = &minus;3x + 25</span><span class="eq">3x + 2y = 32</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 03 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">y = 2x + 1 &nbsp;&nbsp; dan &nbsp;&nbsp; 3x + y = 11</span>
+      <div class="ket">Substitusikan y = 2x + 1 ke persamaan kedua: 3x + (2x + 1) = 11 &rarr; 5x + 1 = 11 &rarr; 5x = 10 &rarr; <b>x = 2</b>. Lalu y = 2(2) + 1 = <b>5</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">y = 2x &minus; 3</span><span class="eq">3x + 5y = 11</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">y = 3x &minus; 3</span><span class="eq">5x + 3y = 33</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">y = &minus;x + 8</span><span class="eq">4x + 5y = 33</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">x = 2y &minus; 3</span><span class="eq">4x + 3y = 21</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">5.</span><span class="eq-stack"><span class="eq">x = 2y &minus; 7</span><span class="eq">2x + 6y = 46</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">6.</span><span class="eq-stack"><span class="eq">y = 3x &minus; 7</span><span class="eq">3x + 5y = 55</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 04 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">y = 2x + 1 &nbsp;&nbsp; dan &nbsp;&nbsp; 3x + y = 11</span>
+      <div class="ket">Substitusikan y = 2x + 1 ke persamaan kedua: 3x + (2x + 1) = 11 &rarr; 5x + 1 = 11 &rarr; 5x = 10 &rarr; <b>x = 2</b>. Lalu y = 2(2) + 1 = <b>5</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">x = &minus;3y + 31</span><span class="eq">6x + 4y = 74</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">y = &minus;2x + 13</span><span class="eq">3x + 2y = 23</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">x = 3y &minus; 2</span><span class="eq">6x + 3y = 51</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">x = 3y &minus; 11</span><span class="eq">5x + 6y = 50</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">5.</span><span class="eq-stack"><span class="eq">x = 3y &minus; 24</span><span class="eq">4x + 4y = 48</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">6.</span><span class="eq-stack"><span class="eq">y = 2x &minus; 2</span><span class="eq">3x + 6y = 63</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 05 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">y = 2x + 1 &nbsp;&nbsp; dan &nbsp;&nbsp; 3x + y = 11</span>
+      <div class="ket">Substitusikan y = 2x + 1 ke persamaan kedua: 3x + (2x + 1) = 11 &rarr; 5x + 1 = 11 &rarr; 5x = 10 &rarr; <b>x = 2</b>. Lalu y = 2(2) + 1 = <b>5</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">x = y + 1</span><span class="eq">4x + 3y = 53</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">y = x &minus; 1</span><span class="eq">3x + 5y = 59</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">y = x + 5</span><span class="eq">3x + 4y = 48</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">x = y &minus; 1</span><span class="eq">6x + 5y = 60</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">5.</span><span class="eq-stack"><span class="eq">x = 2y &minus; 3</span><span class="eq">6x + 3y = 27</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">6.</span><span class="eq-stack"><span class="eq">y = &minus;2x + 14</span><span class="eq">5x + 6y = 56</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 06 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 7 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">2x + 3y = 12 &nbsp;&nbsp; dan &nbsp;&nbsp; 2x &minus; y = 4</span>
+      <div class="ket">Koefisien x sama (2), maka kurangkan kedua persamaan untuk menghilangkan x: 4y = 8 &rarr; <b>y = 2</b>. Substitusi ke salah satu persamaan: 2x + 3(2) = 12 &rarr; <b>x = 3</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">2x + 6y = 32</span><span class="eq">&minus;2x + 2y = 8</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">2x + 2y = 16</span><span class="eq">2x + 5y = 34</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">2x + 2y = 26</span><span class="eq">6x &minus; 2y = 6</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">3x + 3y = 15</span><span class="eq">3x + 6y = 24</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">5.</span><span class="eq-stack"><span class="eq">5x + 7y = 103</span><span class="eq">&minus;5x + 5y = 5</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">6.</span><span class="eq-stack"><span class="eq">6x + 4y = 56</span><span class="eq">2x &minus; 4y = &minus;24</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 07 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 7 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">2x + 3y = 12 &nbsp;&nbsp; dan &nbsp;&nbsp; 2x &minus; y = 4</span>
+      <div class="ket">Koefisien x sama (2), maka kurangkan kedua persamaan untuk menghilangkan x: 4y = 8 &rarr; <b>y = 2</b>. Substitusi ke salah satu persamaan: 2x + 3(2) = 12 &rarr; <b>x = 3</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">6x + 5y = 93</span><span class="eq">3x &minus; 5y = &minus;21</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">4x + 3y = 11</span><span class="eq">3x + 3y = 9</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">3x + 7y = 39</span><span class="eq">3x + 5y = 33</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">6x + 4y = 90</span><span class="eq">5x &minus; 4y = 9</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">5.</span><span class="eq-stack"><span class="eq">2x + 5y = 47</span><span class="eq">2x + 4y = 38</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">6.</span><span class="eq-stack"><span class="eq">4x + 6y = 54</span><span class="eq">4x + 5y = 47</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 08 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 7 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">2x + 3y = 12 &nbsp;&nbsp; dan &nbsp;&nbsp; 2x &minus; y = 4</span>
+      <div class="ket">Koefisien x sama (2), maka kurangkan kedua persamaan untuk menghilangkan x: 4y = 8 &rarr; <b>y = 2</b>. Substitusi ke salah satu persamaan: 2x + 3(2) = 12 &rarr; <b>x = 3</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">6x + 6y = 30</span><span class="eq">2x &minus; 6y = &minus;6</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">6x + 3y = 75</span><span class="eq">3x + 3y = 48</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">6x + 7y = 27</span><span class="eq">6x + 6y = 24</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">3x + 2y = 12</span><span class="eq">7x + 2y = 20</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">5.</span><span class="eq-stack"><span class="eq">6x + 7y = 69</span><span class="eq">6x + 5y = 51</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">6.</span><span class="eq-stack"><span class="eq">6x + 5y = 26</span><span class="eq">&minus;6x + 6y = 18</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 09 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 7 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">2x + 3y = 12 &nbsp;&nbsp; dan &nbsp;&nbsp; 2x &minus; y = 4</span>
+      <div class="ket">Koefisien x sama (2), maka kurangkan kedua persamaan untuk menghilangkan x: 4y = 8 &rarr; <b>y = 2</b>. Substitusi ke salah satu persamaan: 2x + 3(2) = 12 &rarr; <b>x = 3</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">6x + 3y = 51</span><span class="eq">&minus;6x + 2y = &minus;26</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">4x + 7y = 57</span><span class="eq">&minus;4x + 2y = &minus;30</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">2x + 7y = 26</span><span class="eq">2x + 2y = 16</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">7x + 5y = 66</span><span class="eq">3x &minus; 5y = &minus;36</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">5.</span><span class="eq-stack"><span class="eq">6x + 5y = 64</span><span class="eq">7x + 5y = 73</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">6.</span><span class="eq-stack"><span class="eq">7x + 2y = 36</span><span class="eq">4x + 2y = 24</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 10 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 7 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">2x + 3y = 12 &nbsp;&nbsp; dan &nbsp;&nbsp; 2x &minus; y = 4</span>
+      <div class="ket">Koefisien x sama (2), maka kurangkan kedua persamaan untuk menghilangkan x: 4y = 8 &rarr; <b>y = 2</b>. Substitusi ke salah satu persamaan: 2x + 3(2) = 12 &rarr; <b>x = 3</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">3x + 4y = 29</span><span class="eq">&minus;3x + 6y = &minus;9</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">5x + 7y = 83</span><span class="eq">5x + 3y = 47</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">5x + 6y = 81</span><span class="eq">5x + 7y = 87</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">4x + 3y = 32</span><span class="eq">2x &minus; 3y = &minus;2</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">5.</span><span class="eq-stack"><span class="eq">3x + 5y = 22</span><span class="eq">&minus;3x + 6y = 0</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">6.</span><span class="eq-stack"><span class="eq">4x + 4y = 20</span><span class="eq">4x + 6y = 22</span></span></div>
+          <div class="spldv-work" style="height:90px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 6</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 11 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 9 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">3x + 2y = 13 &nbsp;&nbsp; dan &nbsp;&nbsp; 2x + 5y = 16</span>
+      <div class="ket">Tidak ada koefisien yang sama &mdash; kalikan silang: pers.(1)&times;2 dan pers.(2)&times;3 &rarr; 6x+4y=26 dan 6x+15y=48. Kurangkan: 11y = 22 &rarr; <b>y = 2</b>, lalu <b>x = 3</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">5x + 3y = 36</span><span class="eq">3x + 4y = 37</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">6x + 2y = 22</span><span class="eq">5x + 5y = 25</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">4x + 2y = 10</span><span class="eq">6x + 5y = 21</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">2x + 2y = 18</span><span class="eq">5x + 3y = 39</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 4</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 12 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 9 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">3x + 2y = 13 &nbsp;&nbsp; dan &nbsp;&nbsp; 2x + 5y = 16</span>
+      <div class="ket">Tidak ada koefisien yang sama &mdash; kalikan silang: pers.(1)&times;2 dan pers.(2)&times;3 &rarr; 6x+4y=26 dan 6x+15y=48. Kurangkan: 11y = 22 &rarr; <b>y = 2</b>, lalu <b>x = 3</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">6x + 2y = 20</span><span class="eq">5x + 5y = 20</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">3x + 5y = 30</span><span class="eq">2x + 4y = 22</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">3x + 2y = 11</span><span class="eq">2x + 5y = 22</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">5x + 3y = 29</span><span class="eq">4x + 5y = 31</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 4</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 13 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 9 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">3x + 2y = 13 &nbsp;&nbsp; dan &nbsp;&nbsp; 2x + 5y = 16</span>
+      <div class="ket">Tidak ada koefisien yang sama &mdash; kalikan silang: pers.(1)&times;2 dan pers.(2)&times;3 &rarr; 6x+4y=26 dan 6x+15y=48. Kurangkan: 11y = 22 &rarr; <b>y = 2</b>, lalu <b>x = 3</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">6x + 6y = 36</span><span class="eq">5x + 2y = 27</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">2x + 2y = 16</span><span class="eq">6x + 5y = 42</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">2x + 4y = 26</span><span class="eq">6x + 2y = 18</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">5x + 2y = 35</span><span class="eq">2x + 6y = 40</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 4</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 14 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 9 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">3x + 2y = 13 &nbsp;&nbsp; dan &nbsp;&nbsp; 2x + 5y = 16</span>
+      <div class="ket">Tidak ada koefisien yang sama &mdash; kalikan silang: pers.(1)&times;2 dan pers.(2)&times;3 &rarr; 6x+4y=26 dan 6x+15y=48. Kurangkan: 11y = 22 &rarr; <b>y = 2</b>, lalu <b>x = 3</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">4x + 6y = 30</span><span class="eq">3x + 3y = 21</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">3x + 6y = 33</span><span class="eq">6x + 2y = 36</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">6x + 6y = 54</span><span class="eq">2x + 3y = 25</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">3x + 5y = 14</span><span class="eq">6x + 2y = 20</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 4</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 15 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 9 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">3x + 2y = 13 &nbsp;&nbsp; dan &nbsp;&nbsp; 2x + 5y = 16</span>
+      <div class="ket">Tidak ada koefisien yang sama &mdash; kalikan silang: pers.(1)&times;2 dan pers.(2)&times;3 &rarr; 6x+4y=26 dan 6x+15y=48. Kurangkan: 11y = 22 &rarr; <b>y = 2</b>, lalu <b>x = 3</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">6x + 2y = 32</span><span class="eq">2x + 6y = 48</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">6x + 2y = 52</span><span class="eq">3x + 3y = 36</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">5x + 2y = 12</span><span class="eq">3x + 4y = 10</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">4x + 2y = 28</span><span class="eq">5x + 3y = 38</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 4</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 16 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 7 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x + 2y = 6 &nbsp;&nbsp; dan &nbsp;&nbsp; 2x + 4y = 12</span>
+      <div class="ket">Persamaan kedua = 2 &times; persamaan pertama &mdash; keduanya mewakili garis yang sama, jadi <b>Tak Hingga Solusi</b>. Jika hasil kali silang memberi pernyataan salah (mis. 0 = 5), itu <b>Tidak Ada Solusi</b>. Jika memberi nilai x, y yang pasti, itu <b>Solusi Tunggal</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="klas-grid">
+<div class="klas-cell">
+          <div class="klas-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">5x + 2y = 31</span><span class="eq">10x + 4y = 60</span></span></div>
+          <div class="klas-work" style="height:120px;"></div>
+          <div class="klas-opts">
+            <div class="klas-opt"><span class="chk"></span> Solusi Tunggal: x = <span class="isian-pendek" style="min-width:18px;"></span> y = <span class="isian-pendek" style="min-width:18px;"></span></div>
+            <div class="klas-opt"><span class="chk"></span> Tak Hingga Solusi</div>
+            <div class="klas-opt"><span class="chk"></span> Tidak Ada Solusi</div>
+          </div>
+        </div>
+<div class="klas-cell">
+          <div class="klas-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">3x + 5y = 43</span><span class="eq">&minus;3x &minus; 5y = &minus;43</span></span></div>
+          <div class="klas-work" style="height:120px;"></div>
+          <div class="klas-opts">
+            <div class="klas-opt"><span class="chk"></span> Solusi Tunggal: x = <span class="isian-pendek" style="min-width:18px;"></span> y = <span class="isian-pendek" style="min-width:18px;"></span></div>
+            <div class="klas-opt"><span class="chk"></span> Tak Hingga Solusi</div>
+            <div class="klas-opt"><span class="chk"></span> Tidak Ada Solusi</div>
+          </div>
+        </div>
+<div class="klas-cell">
+          <div class="klas-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">6x + 3y = 48</span><span class="eq">&minus;6x &minus; 3y = &minus;48</span></span></div>
+          <div class="klas-work" style="height:120px;"></div>
+          <div class="klas-opts">
+            <div class="klas-opt"><span class="chk"></span> Solusi Tunggal: x = <span class="isian-pendek" style="min-width:18px;"></span> y = <span class="isian-pendek" style="min-width:18px;"></span></div>
+            <div class="klas-opt"><span class="chk"></span> Tak Hingga Solusi</div>
+            <div class="klas-opt"><span class="chk"></span> Tidak Ada Solusi</div>
+          </div>
+        </div>
+<div class="klas-cell">
+          <div class="klas-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">3x + 4y = 33</span><span class="eq">5x + 5y = 45</span></span></div>
+          <div class="klas-work" style="height:120px;"></div>
+          <div class="klas-opts">
+            <div class="klas-opt"><span class="chk"></span> Solusi Tunggal: x = <span class="isian-pendek" style="min-width:18px;"></span> y = <span class="isian-pendek" style="min-width:18px;"></span></div>
+            <div class="klas-opt"><span class="chk"></span> Tak Hingga Solusi</div>
+            <div class="klas-opt"><span class="chk"></span> Tidak Ada Solusi</div>
+          </div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 4</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 17 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 7 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x + 2y = 6 &nbsp;&nbsp; dan &nbsp;&nbsp; 2x + 4y = 12</span>
+      <div class="ket">Persamaan kedua = 2 &times; persamaan pertama &mdash; keduanya mewakili garis yang sama, jadi <b>Tak Hingga Solusi</b>. Jika hasil kali silang memberi pernyataan salah (mis. 0 = 5), itu <b>Tidak Ada Solusi</b>. Jika memberi nilai x, y yang pasti, itu <b>Solusi Tunggal</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="klas-grid">
+<div class="klas-cell">
+          <div class="klas-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">4x + 2y = 18</span><span class="eq">8x + 4y = 33</span></span></div>
+          <div class="klas-work" style="height:120px;"></div>
+          <div class="klas-opts">
+            <div class="klas-opt"><span class="chk"></span> Solusi Tunggal: x = <span class="isian-pendek" style="min-width:18px;"></span> y = <span class="isian-pendek" style="min-width:18px;"></span></div>
+            <div class="klas-opt"><span class="chk"></span> Tak Hingga Solusi</div>
+            <div class="klas-opt"><span class="chk"></span> Tidak Ada Solusi</div>
+          </div>
+        </div>
+<div class="klas-cell">
+          <div class="klas-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">5x + 2y = 22</span><span class="eq">4x + 4y = 32</span></span></div>
+          <div class="klas-work" style="height:120px;"></div>
+          <div class="klas-opts">
+            <div class="klas-opt"><span class="chk"></span> Solusi Tunggal: x = <span class="isian-pendek" style="min-width:18px;"></span> y = <span class="isian-pendek" style="min-width:18px;"></span></div>
+            <div class="klas-opt"><span class="chk"></span> Tak Hingga Solusi</div>
+            <div class="klas-opt"><span class="chk"></span> Tidak Ada Solusi</div>
+          </div>
+        </div>
+<div class="klas-cell">
+          <div class="klas-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">4x + 4y = 56</span><span class="eq">12x + 12y = 169</span></span></div>
+          <div class="klas-work" style="height:120px;"></div>
+          <div class="klas-opts">
+            <div class="klas-opt"><span class="chk"></span> Solusi Tunggal: x = <span class="isian-pendek" style="min-width:18px;"></span> y = <span class="isian-pendek" style="min-width:18px;"></span></div>
+            <div class="klas-opt"><span class="chk"></span> Tak Hingga Solusi</div>
+            <div class="klas-opt"><span class="chk"></span> Tidak Ada Solusi</div>
+          </div>
+        </div>
+<div class="klas-cell">
+          <div class="klas-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">2x + 5y = 31</span><span class="eq">6x + 6y = 48</span></span></div>
+          <div class="klas-work" style="height:120px;"></div>
+          <div class="klas-opts">
+            <div class="klas-opt"><span class="chk"></span> Solusi Tunggal: x = <span class="isian-pendek" style="min-width:18px;"></span> y = <span class="isian-pendek" style="min-width:18px;"></span></div>
+            <div class="klas-opt"><span class="chk"></span> Tak Hingga Solusi</div>
+            <div class="klas-opt"><span class="chk"></span> Tidak Ada Solusi</div>
+          </div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 4</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 18 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 7 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x + 2y = 6 &nbsp;&nbsp; dan &nbsp;&nbsp; 2x + 4y = 12</span>
+      <div class="ket">Persamaan kedua = 2 &times; persamaan pertama &mdash; keduanya mewakili garis yang sama, jadi <b>Tak Hingga Solusi</b>. Jika hasil kali silang memberi pernyataan salah (mis. 0 = 5), itu <b>Tidak Ada Solusi</b>. Jika memberi nilai x, y yang pasti, itu <b>Solusi Tunggal</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="klas-grid">
+<div class="klas-cell">
+          <div class="klas-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">6x + 4y = 26</span><span class="eq">&minus;6x &minus; 4y = &minus;26</span></span></div>
+          <div class="klas-work" style="height:120px;"></div>
+          <div class="klas-opts">
+            <div class="klas-opt"><span class="chk"></span> Solusi Tunggal: x = <span class="isian-pendek" style="min-width:18px;"></span> y = <span class="isian-pendek" style="min-width:18px;"></span></div>
+            <div class="klas-opt"><span class="chk"></span> Tak Hingga Solusi</div>
+            <div class="klas-opt"><span class="chk"></span> Tidak Ada Solusi</div>
+          </div>
+        </div>
+<div class="klas-cell">
+          <div class="klas-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">2x + 2y = 24</span><span class="eq">6x + 3y = 60</span></span></div>
+          <div class="klas-work" style="height:120px;"></div>
+          <div class="klas-opts">
+            <div class="klas-opt"><span class="chk"></span> Solusi Tunggal: x = <span class="isian-pendek" style="min-width:18px;"></span> y = <span class="isian-pendek" style="min-width:18px;"></span></div>
+            <div class="klas-opt"><span class="chk"></span> Tak Hingga Solusi</div>
+            <div class="klas-opt"><span class="chk"></span> Tidak Ada Solusi</div>
+          </div>
+        </div>
+<div class="klas-cell">
+          <div class="klas-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">3x + 4y = 48</span><span class="eq">5x + 4y = 64</span></span></div>
+          <div class="klas-work" style="height:120px;"></div>
+          <div class="klas-opts">
+            <div class="klas-opt"><span class="chk"></span> Solusi Tunggal: x = <span class="isian-pendek" style="min-width:18px;"></span> y = <span class="isian-pendek" style="min-width:18px;"></span></div>
+            <div class="klas-opt"><span class="chk"></span> Tak Hingga Solusi</div>
+            <div class="klas-opt"><span class="chk"></span> Tidak Ada Solusi</div>
+          </div>
+        </div>
+<div class="klas-cell">
+          <div class="klas-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">3x + 5y = 22</span><span class="eq">9x + 15y = 69</span></span></div>
+          <div class="klas-work" style="height:120px;"></div>
+          <div class="klas-opts">
+            <div class="klas-opt"><span class="chk"></span> Solusi Tunggal: x = <span class="isian-pendek" style="min-width:18px;"></span> y = <span class="isian-pendek" style="min-width:18px;"></span></div>
+            <div class="klas-opt"><span class="chk"></span> Tak Hingga Solusi</div>
+            <div class="klas-opt"><span class="chk"></span> Tidak Ada Solusi</div>
+          </div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 4</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 19 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x + 3y = 11 &nbsp;&nbsp; dan &nbsp;&nbsp; 4x + 3y = 26</span>
+      <div class="ket">Perhatikan bentuknya dulu sebelum menghitung. Di sini koefisien y sama (3) &mdash; eliminasi langsung adalah cara <b>tercepat</b>: kurangkan &rarr; 3x = 15 &rarr; <b>x = 5</b>, lalu <b>y = 2</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">3x + 4y = &minus;17</span><span class="eq">6x + 5y = &minus;37</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">x + 4y = 6</span><span class="eq">6x + 4y = &minus;24</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">5x + 6y = 9</span><span class="eq">6x + 6y = 12</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">5x + y = 13</span><span class="eq">3x + 6y = &minus;30</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 4</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 20 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x + 3y = 11 &nbsp;&nbsp; dan &nbsp;&nbsp; 4x + 3y = 26</span>
+      <div class="ket">Perhatikan bentuknya dulu sebelum menghitung. Di sini koefisien y sama (3) &mdash; eliminasi langsung adalah cara <b>tercepat</b>: kurangkan &rarr; 3x = 15 &rarr; <b>x = 5</b>, lalu <b>y = 2</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">5x + 3y = &minus;13</span><span class="eq">4x + 3y = &minus;11</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">x + 4y = 6</span><span class="eq">4x + 2y = &minus;18</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">5x + 5y = 60</span><span class="eq">5x + 7y = 76</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">4x + y = &minus;21</span><span class="eq">3x + 2y = &minus;7</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 4</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 21 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x + 3y = 11 &nbsp;&nbsp; dan &nbsp;&nbsp; 4x + 3y = 26</span>
+      <div class="ket">Perhatikan bentuknya dulu sebelum menghitung. Di sini koefisien y sama (3) &mdash; eliminasi langsung adalah cara <b>tercepat</b>: kurangkan &rarr; 3x = 15 &rarr; <b>x = 5</b>, lalu <b>y = 2</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">4x + 2y = 36</span><span class="eq">4x + 3y = 38</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">2x + y = 2</span><span class="eq">3x + 3y = 12</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">6x + 5y = &minus;62</span><span class="eq">3x + 3y = &minus;33</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">5x + y = &minus;21</span><span class="eq">5x + 3y = &minus;13</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 4</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 22 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x + 3y = 11 &nbsp;&nbsp; dan &nbsp;&nbsp; 4x + 3y = 26</span>
+      <div class="ket">Perhatikan bentuknya dulu sebelum menghitung. Di sini koefisien y sama (3) &mdash; eliminasi langsung adalah cara <b>tercepat</b>: kurangkan &rarr; 3x = 15 &rarr; <b>x = 5</b>, lalu <b>y = 2</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">3x + y = &minus;7</span><span class="eq">5x + 2y = &minus;9</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">6x + 5y = 3</span><span class="eq">4x + 3y = 1</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">4x + y = &minus;32</span><span class="eq">4x + 2y = &minus;36</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">3x + 4y = &minus;33</span><span class="eq">2x + 4y = &minus;26</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 4</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 23 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 8 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">x + 3y = 11 &nbsp;&nbsp; dan &nbsp;&nbsp; 4x + 3y = 26</span>
+      <div class="ket">Perhatikan bentuknya dulu sebelum menghitung. Di sini koefisien y sama (3) &mdash; eliminasi langsung adalah cara <b>tercepat</b>: kurangkan &rarr; 3x = 15 &rarr; <b>x = 5</b>, lalu <b>y = 2</b>.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="spldv-grid">
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">1.</span><span class="eq-stack"><span class="eq">x + 2y = 9</span><span class="eq">7x + 3y = 52</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">2.</span><span class="eq-stack"><span class="eq">4x + 6y = &minus;18</span><span class="eq">6x + 6y = &minus;12</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">3.</span><span class="eq-stack"><span class="eq">2x + 2y = 10</span><span class="eq">2x + 4y = 24</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+<div class="spldv-cell">
+          <div class="spldv-eqs"><span class="no">4.</span><span class="eq-stack"><span class="eq">x + 4y = &minus;16</span><span class="eq">5x + 2y = &minus;26</span></span></div>
+          <div class="spldv-work" style="height:180px;"></div>
+          <div class="spldv-ans">x = <span class="isian-pendek"></span> &nbsp; y = <span class="isian-pendek"></span></div>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 4</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 24 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 13 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">Lembar ini menggabungkan substitusi, eliminasi, dan solusi khusus SPLDV.</span>
+      <div class="ket">Kerjakan setiap bagian dengan cara yang paling efisien, seperti pada lembar-lembar sebelumnya.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="mini-label">Bagian 1 &middot; Substitusi</div>
+    <div class="ring-grid">
+<div class="ring-cell">
+          <span class="no">1.</span>
+          <span class="ring-eqs"><span class="eq">x = 2y &minus; 7</span><span class="eq">6x + 4y = 38</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">2.</span>
+          <span class="ring-eqs"><span class="eq">y = 3x &minus; 12</span><span class="eq">3x + 3y = 48</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">3.</span>
+          <span class="ring-eqs"><span class="eq">y = &minus;x + 16</span><span class="eq">4x + 5y = 72</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">4.</span>
+          <span class="ring-eqs"><span class="eq">y = &minus;3x + 8</span><span class="eq">5x + 4y = 18</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+    </div>
+    <div class="mini-label">Bagian 2 &middot; Eliminasi</div>
+    <div class="ring-grid">
+<div class="ring-cell">
+          <span class="no">1.</span>
+          <span class="ring-eqs"><span class="eq">4x + 3y = 34</span><span class="eq">4x + 2y = 28</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">2.</span>
+          <span class="ring-eqs"><span class="eq">3x + 6y = 63</span><span class="eq">7x + 6y = 91</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">3.</span>
+          <span class="ring-eqs"><span class="eq">6x + 5y = 57</span><span class="eq">5x + 2y = 41</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">4.</span>
+          <span class="ring-eqs"><span class="eq">2x + 5y = 42</span><span class="eq">6x + 6y = 54</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+    </div>
+    <div class="mini-label">Bagian 3 &middot; Solusi Khusus</div>
+    <div class="ring-grid">
+<div class="ring-cell">
+          <span class="no">1.</span>
+          <span class="ring-eqs"><span class="eq">6x + 5y = 49</span><span class="eq">5x + 6y = 50</span></span>
+          <span class="ring-klas">
+            <span class="opt"><span class="chk"></span> Tunggal x=<span class="isian-pendek" style="min-width:14px;"></span> y=<span class="isian-pendek" style="min-width:14px;"></span></span>
+            <span class="opt"><span class="chk"></span> Tak Hingga</span>
+            <span class="opt"><span class="chk"></span> Tidak Ada</span>
+          </span>
+        </div>
+<div class="ring-cell">
+          <span class="no">2.</span>
+          <span class="ring-eqs"><span class="eq">6x + 3y = 30</span><span class="eq">12x + 6y = 61</span></span>
+          <span class="ring-klas">
+            <span class="opt"><span class="chk"></span> Tunggal x=<span class="isian-pendek" style="min-width:14px;"></span> y=<span class="isian-pendek" style="min-width:14px;"></span></span>
+            <span class="opt"><span class="chk"></span> Tak Hingga</span>
+            <span class="opt"><span class="chk"></span> Tidak Ada</span>
+          </span>
+        </div>
+<div class="ring-cell">
+          <span class="no">3.</span>
+          <span class="ring-eqs"><span class="eq">3x + 4y = 49</span><span class="eq">9x + 12y = 147</span></span>
+          <span class="ring-klas">
+            <span class="opt"><span class="chk"></span> Tunggal x=<span class="isian-pendek" style="min-width:14px;"></span> y=<span class="isian-pendek" style="min-width:14px;"></span></span>
+            <span class="opt"><span class="chk"></span> Tak Hingga</span>
+            <span class="opt"><span class="chk"></span> Tidak Ada</span>
+          </span>
+        </div>
+<div class="ring-cell">
+          <span class="no">4.</span>
+          <span class="ring-eqs"><span class="eq">3x + 6y = 18</span><span class="eq">6x + 12y = 36</span></span>
+          <span class="ring-klas">
+            <span class="opt"><span class="chk"></span> Tunggal x=<span class="isian-pendek" style="min-width:14px;"></span> y=<span class="isian-pendek" style="min-width:14px;"></span></span>
+            <span class="opt"><span class="chk"></span> Tak Hingga</span>
+            <span class="opt"><span class="chk"></span> Tidak Ada</span>
+          </span>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 12</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 25 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 14 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">Lembar ini menggabungkan substitusi, eliminasi, dan solusi khusus SPLDV.</span>
+      <div class="ket">Kerjakan setiap bagian dengan cara yang paling efisien, seperti pada lembar-lembar sebelumnya.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="mini-label">Bagian 1 &middot; Substitusi</div>
+    <div class="ring-grid">
+<div class="ring-cell">
+          <span class="no">1.</span>
+          <span class="ring-eqs"><span class="eq">y = &minus;3x + 17</span><span class="eq">5x + 5y = 55</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">2.</span>
+          <span class="ring-eqs"><span class="eq">y = x &minus; 6</span><span class="eq">3x + 4y = 32</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">3.</span>
+          <span class="ring-eqs"><span class="eq">x = 3y &minus; 6</span><span class="eq">3x + 2y = 26</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">4.</span>
+          <span class="ring-eqs"><span class="eq">y = &minus;x + 11</span><span class="eq">3x + 5y = 39</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+    </div>
+    <div class="mini-label">Bagian 2 &middot; Eliminasi</div>
+    <div class="ring-grid">
+<div class="ring-cell">
+          <span class="no">1.</span>
+          <span class="ring-eqs"><span class="eq">3x + 7y = 76</span><span class="eq">3x + 6y = 69</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">2.</span>
+          <span class="ring-eqs"><span class="eq">5x + 6y = 23</span><span class="eq">5x + 5y = 20</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">3.</span>
+          <span class="ring-eqs"><span class="eq">4x + 4y = 32</span><span class="eq">2x + 3y = 20</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">4.</span>
+          <span class="ring-eqs"><span class="eq">3x + 6y = 51</span><span class="eq">6x + 2y = 32</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+    </div>
+    <div class="mini-label">Bagian 3 &middot; Campuran, Pilih Metode Tercepat</div>
+    <div class="ring-grid">
+<div class="ring-cell">
+          <span class="no">1.</span>
+          <span class="ring-eqs"><span class="eq">6x + 2y = 50</span><span class="eq">4x + 6y = 52</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">2.</span>
+          <span class="ring-eqs"><span class="eq">x + 2y = 19</span><span class="eq">6x + 2y = 54</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">3.</span>
+          <span class="ring-eqs"><span class="eq">6x + 5y = 23</span><span class="eq">6x + 3y = 9</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">4.</span>
+          <span class="ring-eqs"><span class="eq">4x + 6y = 26</span><span class="eq">6x + 3y = 9</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 12</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Lembar Kalkulasi</div>
+        <div class="brand-tagline">Mandiri &amp; Berbatas Waktu</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="level-top">
+        <div class="chips-row">
+          <span class="k-badge" style="background:#0F2A4E">K-18</span>
+          <span class="skill-label">Eliminasi dan Substitusi SPLDV</span>
+        </div>
+        <span class="sheet-no">Lembar 26 dari 26</span>
+      </div>
+      <div class="standar-row">
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.3" fill="none" stroke="#8A6416" stroke-width="1.2"/><path d="M5 2.6 V5 L6.8 6" stroke="#8A6416" stroke-width="1.1" fill="none"/></svg> Waktu Standar: 14 menit</span>
+        <span class="standar-chip"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.2 L4 7.6 L8.5 2.4" stroke="#8A6416" stroke-width="1.3" fill="none"/></svg> Target Akurasi: 95%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>&nbsp;</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Contoh Cara Mengerjakan</div>
+    <div class="contoh-box">
+      <span class="tag">Contoh</span>
+      <span class="rumus">Lembar ini menggabungkan substitusi, eliminasi, dan solusi khusus SPLDV.</span>
+      <div class="ket">Kerjakan setiap bagian dengan cara yang paling efisien, seperti pada lembar-lembar sebelumnya.</div>
+    </div>
+    <div class="eyebrow">Kerjakan Sendiri &middot; Berbatas Waktu</div>
+    <div class="mini-label">Bagian 1 &middot; Eliminasi</div>
+    <div class="ring-grid">
+<div class="ring-cell">
+          <span class="no">1.</span>
+          <span class="ring-eqs"><span class="eq">3x + 6y = 39</span><span class="eq">3x + 5y = 33</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">2.</span>
+          <span class="ring-eqs"><span class="eq">7x + 4y = 64</span><span class="eq">3x &minus; 4y = 16</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">3.</span>
+          <span class="ring-eqs"><span class="eq">4x + 5y = 42</span><span class="eq">5x + 3y = 46</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">4.</span>
+          <span class="ring-eqs"><span class="eq">3x + 6y = 24</span><span class="eq">6x + 4y = 40</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+    </div>
+    <div class="mini-label">Bagian 2 &middot; Solusi Khusus</div>
+    <div class="ring-grid">
+<div class="ring-cell">
+          <span class="no">1.</span>
+          <span class="ring-eqs"><span class="eq">5x + 6y = 46</span><span class="eq">3x + 6y = 30</span></span>
+          <span class="ring-klas">
+            <span class="opt"><span class="chk"></span> Tunggal x=<span class="isian-pendek" style="min-width:14px;"></span> y=<span class="isian-pendek" style="min-width:14px;"></span></span>
+            <span class="opt"><span class="chk"></span> Tak Hingga</span>
+            <span class="opt"><span class="chk"></span> Tidak Ada</span>
+          </span>
+        </div>
+<div class="ring-cell">
+          <span class="no">2.</span>
+          <span class="ring-eqs"><span class="eq">4x + 3y = 27</span><span class="eq">8x + 6y = 55</span></span>
+          <span class="ring-klas">
+            <span class="opt"><span class="chk"></span> Tunggal x=<span class="isian-pendek" style="min-width:14px;"></span> y=<span class="isian-pendek" style="min-width:14px;"></span></span>
+            <span class="opt"><span class="chk"></span> Tak Hingga</span>
+            <span class="opt"><span class="chk"></span> Tidak Ada</span>
+          </span>
+        </div>
+<div class="ring-cell">
+          <span class="no">3.</span>
+          <span class="ring-eqs"><span class="eq">4x + 4y = 20</span><span class="eq">4x + 2y = 14</span></span>
+          <span class="ring-klas">
+            <span class="opt"><span class="chk"></span> Tunggal x=<span class="isian-pendek" style="min-width:14px;"></span> y=<span class="isian-pendek" style="min-width:14px;"></span></span>
+            <span class="opt"><span class="chk"></span> Tak Hingga</span>
+            <span class="opt"><span class="chk"></span> Tidak Ada</span>
+          </span>
+        </div>
+<div class="ring-cell">
+          <span class="no">4.</span>
+          <span class="ring-eqs"><span class="eq">6x + 4y = 18</span><span class="eq">&minus;6x &minus; 4y = &minus;18</span></span>
+          <span class="ring-klas">
+            <span class="opt"><span class="chk"></span> Tunggal x=<span class="isian-pendek" style="min-width:14px;"></span> y=<span class="isian-pendek" style="min-width:14px;"></span></span>
+            <span class="opt"><span class="chk"></span> Tak Hingga</span>
+            <span class="opt"><span class="chk"></span> Tidak Ada</span>
+          </span>
+        </div>
+    </div>
+    <div class="mini-label">Bagian 3 &middot; Campuran, Pilih Metode Tercepat</div>
+    <div class="ring-grid">
+<div class="ring-cell">
+          <span class="no">1.</span>
+          <span class="ring-eqs"><span class="eq">6x + y = 54</span><span class="eq">5x + 2y = 52</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">2.</span>
+          <span class="ring-eqs"><span class="eq">3x + 4y = &minus;29</span><span class="eq">3x + 3y = &minus;24</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">3.</span>
+          <span class="ring-eqs"><span class="eq">3x + 5y = 23</span><span class="eq">5x + 6y = 29</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+<div class="ring-cell">
+          <span class="no">4.</span>
+          <span class="ring-eqs"><span class="eq">x + 5y = 37</span><span class="eq">4x + 5y = 43</span></span>
+          <span class="ring-ans">x=<span class="isian-pendek" style="min-width:16px;"></span> y=<span class="isian-pendek" style="min-width:16px;"></span></span>
+        </div>
+    </div>
+    <div class="tracking-strip">
+      <div class="tracking-row">
+        <span class="f">Waktu mulai <span class="ln"></span></span>
+        <span class="f">Waktu selesai <span class="ln"></span></span>
+        <span class="f">Total waktu <span class="ln" style="min-width:40px;"></span> menit</span>
+        <span class="f">Jumlah benar <span class="ln" style="min-width:40px;"></span> / 12</span>
+      </div>
+      <div class="amanah-row"><span class="box"></span> Saya sudah mengoreksi jawaban saya sendiri sebelum diserahkan (Amanah).
+        <span style="margin-left:auto;">Paraf Guru: <span class="ln" style="min-width:60px;border-bottom:1px solid #99A1B3;display:inline-block;height:13px;"></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Level Kalkulasi K-18</span>
+  </div>
+</section>
+</div>
+</body>
+</html>

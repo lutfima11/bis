@@ -1,1 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lembar Kalkulasi K-1 s.d. K-20 — Bimbel Insan Sejahtera</title>
+<meta name="description" content="Seri Lembar Kalkulasi K-1 sampai K-20, Bimbel Insan Sejahtera — latihan hitung mandiri berjenjang dari mengenal bilangan hingga persamaan kuadrat." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#0F2A4E; --teal:#007A7A; --soft-teal:#E0F2F1; --soft-navy:#E8EEF7;
+    --gold:#B08420; --soft-gold:#FCF6E5; --greyline:#C8CED6; --ink:#26313F;
+    --t1:#2F9C93; --t2:#127D75; --t3:#0E6F68; --t4:#0F2A4E;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Plus Jakarta Sans",sans-serif;
+    font-size:10.5pt; line-height:1.6; color:var(--ink);
+    background:#EAEDF1; margin:0; padding:0;
+  }
+  h1,h2,h3,.brand-name{font-family:"Fraunces",serif;}
+  a{color:inherit;}
 
+  .top-bar{height:4px;background:linear-gradient(90deg,var(--teal),var(--navy));}
+
+  header.masthead{
+    background:var(--soft-navy); padding:22px clamp(20px,6vw,64px) 26px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+    flex-wrap:wrap; border-bottom:1px solid var(--greyline);
+  }
+  .brand-left{display:flex; align-items:center; gap:14px;}
+  .brand-logo{height:48px; width:auto; display:block; object-fit:contain;}
+  .brand-text .brand-name{font-size:19pt; font-weight:700; color:var(--navy); line-height:1.1;}
+  .brand-text .brand-tagline{font-size:8.4pt; font-weight:600; color:var(--teal); text-transform:uppercase; letter-spacing:.6px; margin-top:3px;}
+  .masthead-meta{font-family:"JetBrains Mono",monospace; font-size:8pt; color:#5C6577; text-align:right;}
+  .masthead-meta strong{color:var(--navy); font-size:9.5pt;}
+
+  .hero{
+    padding:56px clamp(20px,6vw,64px) 40px; max-width:1080px; margin:0 auto;
+  }
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:7px; font-family:"JetBrains Mono",monospace;
+    font-size:7.8pt; font-weight:700; letter-spacing:.8px; text-transform:uppercase;
+    color:#8A6416; background:var(--soft-gold); border:1.3px solid var(--gold);
+    border-radius:20px; padding:4px 12px 4px 10px; margin-bottom:18px;
+  }
+  .hero h1{font-size:clamp(26px,4vw,38px); font-weight:900; color:var(--navy); line-height:1.15; margin:0 0 14px;}
+  .hero p{font-size:11pt; color:#4A5468; max-width:62ch; margin:0;}
+
+  .depth-key{
+    display:flex; gap:0; margin-top:32px; border:1px solid var(--greyline); border-radius:10px; overflow:hidden;
+  }
+  .depth-key a{
+    flex:1; display:flex; flex-direction:column; gap:2px; padding:12px 14px; text-decoration:none;
+    border-right:1px solid rgba(255,255,255,.35); transition:filter .15s ease;
+  }
+  .depth-key a:last-child{border-right:none;}
+  .depth-key a:hover{filter:brightness(1.08);}
+  .depth-key .dk-range{font-family:"JetBrains Mono",monospace; font-weight:700; font-size:9pt; color:#fff;}
+  .depth-key .dk-label{font-size:7.6pt; color:rgba(255,255,255,.88); font-weight:600;}
+  .dk-1{background:var(--t1);} .dk-2{background:var(--t2);} .dk-3{background:var(--t3);} .dk-4{background:var(--t4);}
+
+  main{max-width:1080px; margin:0 auto; padding:0 clamp(20px,6vw,64px) 70px;}
+
+  .blok{margin-top:52px;}
+  .blok-head{display:flex; align-items:baseline; gap:14px; margin-bottom:6px; flex-wrap:wrap;}
+  .blok-tier{
+    font-family:"JetBrains Mono",monospace; font-size:9pt; font-weight:700; color:#fff;
+    padding:3px 11px; border-radius:6px; letter-spacing:.3px;
+  }
+  .blok-head h2{font-size:16.5pt; font-weight:700; color:var(--navy); margin:0;}
+  .blok-sub{font-size:8.8pt; color:#6B7488; margin:0 0 20px; padding-left:1px;}
+
+  .level-grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px;
+  }
+  .level-card{
+    display:block; background:#fff; border:1px solid var(--greyline); border-left:4px solid var(--card-accent,var(--teal));
+    border-radius:8px; padding:13px 15px; text-decoration:none; color:var(--ink);
+    box-shadow:0 1px 2px rgba(15,42,78,.04); transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+  }
+  .level-card:hover{transform:translateY(-2px); box-shadow:0 6px 16px rgba(15,42,78,.12);}
+  .level-card .lc-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:7px;}
+  .level-card .lc-badge{
+    font-family:"JetBrains Mono",monospace; font-size:10.5pt; font-weight:800; color:#fff;
+    background:var(--card-accent,var(--teal)); padding:2px 9px; border-radius:5px;
+  }
+  .level-card .lc-sheets{font-size:7.3pt; color:#8A91A0; font-weight:600;}
+  .level-card .lc-skill{font-size:8.9pt; font-weight:600; color:var(--navy); line-height:1.35;}
+  .level-card .lc-open{font-size:7.6pt; color:var(--teal); font-weight:700; margin-top:9px; display:flex; align-items:center; gap:4px;}
+  .level-card .lc-open svg{transition:transform .12s ease;}
+  .level-card:hover .lc-open svg{transform:translateX(3px);}
+
+  footer{
+    border-top:1px solid var(--greyline); padding:26px clamp(20px,6vw,64px) 34px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+  }
+  footer .f-brand{font-family:"Fraunces",serif; font-weight:700; color:var(--navy); font-size:10.5pt;}
+  footer .f-note{font-size:7.8pt; color:#8A91A0;}
+
+  .print-note{
+    max-width:1080px; margin:0 auto; padding:0 clamp(20px,6vw,64px) 0;
+  }
+  .print-note .pn-box{
+    display:flex; gap:16px; align-items:flex-start; background:var(--soft-gold);
+    border:1.3px solid var(--gold); border-radius:10px; padding:16px 20px;
+  }
+  .print-note svg{flex-shrink:0; margin-top:2px;}
+  .print-note h3{font-size:10.5pt; font-weight:700; color:#8A6416; margin:0 0 6px;}
+  .print-note ol{margin:0; padding-left:18px; font-size:9pt; color:#5C4A16; line-height:1.7;}
+  .print-note li strong{color:#4A3A10;}
+  .print-note code{font-family:"JetBrains Mono",monospace; font-size:8.3pt; background:rgba(176,132,32,.12); padding:1px 5px; border-radius:4px;}
+
+  @media (max-width:640px){
+    .masthead-meta{display:none;}
+    .depth-key{flex-wrap:wrap;}
+    .depth-key a{flex:1 1 45%;}
+  }
+</style>
+</head>
+<body>
+<div class="top-bar"></div>
+
+<header class="masthead">
+  <div class="brand-left">
+    <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    <div class="brand-text">
+      <div class="brand-name">Bimbel Insan Sejahtera</div>
+      <div class="brand-tagline">Blok Kalkulasi &middot; Lembar Kerja Mandiri</div>
+    </div>
+  </div>
+  <div class="masthead-meta">
+    <strong>20 Level</strong> &middot; 543 Lembar<br />
+    Mengenal Bilangan &rarr; Persamaan Kuadrat
+  </div>
+</header>
+
+<div class="hero">
+  <span class="hero-eyebrow">&#9679; Lembar Kalkulasi</span>
+  <h1>Latihan hitung mandiri, berjenjang dari dasar hingga aljabar.</h1>
+  <p>Dua puluh level Lembar Kalkulasi &mdash; total 543 lembar &mdash; disusun bertahap: setiap level punya waktu standar, target akurasi, dan lembar cetak siap pakai. Pilih level di bawah untuk membuka lembar kerjanya.</p>
+
+  <nav class="depth-key" aria-label="Lompat ke blok">
+    <a href="#blok-1" class="dk-1"><span class="dk-range">K-1 &ndash; K-5</span><span class="dk-label">Fondasi Bilangan</span></a>
+    <a href="#blok-2" class="dk-2"><span class="dk-range">K-6 &ndash; K-10</span><span class="dk-label">Perkalian &amp; Pembagian</span></a>
+    <a href="#blok-3" class="dk-3"><span class="dk-range">K-11 &ndash; K-15</span><span class="dk-label">Pecahan, Desimal &amp; Bil. Bulat</span></a>
+    <a href="#blok-4" class="dk-4"><span class="dk-range">K-16 &ndash; K-20</span><span class="dk-label">Aljabar</span></a>
+  </nav>
+</div>
+
+<div class="print-note">
+  <div class="pn-box">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="7" width="12" height="6" rx="1" stroke="#8A6416" stroke-width="1.4"/><path d="M5.5 7V3.5h9V7M5.5 13v3.5h9V13" stroke="#8A6416" stroke-width="1.4"/><circle cx="14" cy="9" r=".8" fill="#8A6416"/></svg>
+    <div>
+      <h3>Cara mencetak lembar kerja</h3>
+      <ol>
+        <li>Buka level yang diinginkan, lalu tekan <strong><code>Ctrl+P</code></strong> (Windows) atau <strong><code>Cmd+P</code></strong> (Mac).</li>
+        <li>Pilih ukuran kertas <strong>A4</strong> dan margin <strong>None / Tanpa Batas</strong>.</li>
+        <li>Aktifkan opsi <strong>"Background graphics" / "Grafik latar belakang"</strong> agar warna badge dan chip ikut tercetak &mdash; tanpa opsi ini, header dan aksen warna akan tampil putih polos.</li>
+        <li>Setiap lembar otomatis terpisah per halaman, jadi cukup cetak semua atau pilih rentang halaman tertentu sesuai kebutuhan.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <section class="blok" id="blok-1" style="--tier:var(--t1)">
+    <div class="blok-head">
+      <span class="blok-tier" style="background:var(--t1);">K-1&ndash;K-5</span>
+      <h2>Fondasi Bilangan</h2>
+    </div>
+    <p class="blok-sub">Mengenal lambang bilangan sampai penjumlahan &amp; pengurangan bersusun dengan simpan/pinjam. &middot; <strong>117 lembar</strong></p>
+    <div class="level-grid">
+      <a class="level-card" style="--card-accent:#2F9C93" href="lembar-kalkulasi-k1-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-1</span><span class="lc-sheets">25 lembar</span></div>
+        <div class="lc-skill">Membilang &amp; Mengenal Lambang Bilangan 1&ndash;20</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+      <a class="level-card" style="--card-accent:#2F9C93" href="lembar-kalkulasi-k2-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-2</span><span class="lc-sheets">21 lembar</span></div>
+        <div class="lc-skill">Penjumlahan +1 s.d. +5 (Mendatar)</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+      <a class="level-card" style="--card-accent:#2F9C93" href="lembar-kalkulasi-k3-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-3</span><span class="lc-sheets">21 lembar</span></div>
+        <div class="lc-skill">Penjumlahan +6 s.d. +10; Pengurangan dalam 20</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+      <a class="level-card" style="--card-accent:#2F9C93" href="lembar-kalkulasi-k4-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-4</span><span class="lc-sheets">20 lembar</span></div>
+        <div class="lc-skill">Penjumlahan &amp; Pengurangan Dua Angka (Tanpa Simpan/Pinjam)</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+      <a class="level-card" style="--card-accent:#2F9C93" href="lembar-kalkulasi-k5-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-5</span><span class="lc-sheets">30 lembar</span></div>
+        <div class="lc-skill">Penjumlahan &amp; Pengurangan Bersusun (Simpan/Pinjam)</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="blok" id="blok-2">
+    <div class="blok-head">
+      <span class="blok-tier" style="background:var(--t2);">K-6&ndash;K-10</span>
+      <h2>Perkalian &amp; Pembagian</h2>
+    </div>
+    <p class="blok-sub">Fakta perkalian, perkalian &amp; pembagian bersusun, sampai operasi campuran. &middot; <strong>116 lembar</strong></p>
+    <div class="level-grid">
+      <a class="level-card" style="--card-accent:#127D75" href="lembar-kalkulasi-k6-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-6</span><span class="lc-sheets">19 lembar</span></div>
+        <div class="lc-skill">Fakta Perkalian 2, 3, 4, 5, 10</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+      <a class="level-card" style="--card-accent:#127D75" href="lembar-kalkulasi-k7-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-7</span><span class="lc-sheets">23 lembar</span></div>
+        <div class="lc-skill">Fakta Perkalian 6, 7, 8, 9; Pembagian Terkait</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+      <a class="level-card" style="--card-accent:#127D75" href="lembar-kalkulasi-k8-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-8</span><span class="lc-sheets">23 lembar</span></div>
+        <div class="lc-skill">Perkalian Bersusun (2&ndash;3 Angka &times; 1 Angka)</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+      <a class="level-card" style="--card-accent:#127D75" href="lembar-kalkulasi-k9-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-9</span><span class="lc-sheets">28 lembar</span></div>
+        <div class="lc-skill">Pembagian Bersusun Panjang</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+      <a class="level-card" style="--card-accent:#127D75" href="lembar-kalkulasi-k10-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-10</span><span class="lc-sheets">23 lembar</span></div>
+        <div class="lc-skill">Perkalian 2 Angka &times; 2 Angka; Operasi Campuran</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="blok" id="blok-3">
+    <div class="blok-head">
+      <span class="blok-tier" style="background:var(--t3);">K-11&ndash;K-15</span>
+      <h2>Pecahan, Desimal &amp; Bilangan Bulat</h2>
+    </div>
+    <p class="blok-sub">FPB/KPK, operasi pecahan dan desimal, sampai bilangan bulat negatif. &middot; <strong>166 lembar</strong></p>
+    <div class="level-grid">
+      <a class="level-card" style="--card-accent:#0E6F68" href="lembar-kalkulasi-k11-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-11</span><span class="lc-sheets">50 lembar</span></div>
+        <div class="lc-skill">FPB dan KPK</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+      <a class="level-card" style="--card-accent:#0E6F68" href="lembar-kalkulasi-k12-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-12</span><span class="lc-sheets">22 lembar</span></div>
+        <div class="lc-skill">Perkalian dan Pembagian Pecahan</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+      <a class="level-card" style="--card-accent:#0E6F68" href="lembar-kalkulasi-k13-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-13</span><span class="lc-sheets">35 lembar</span></div>
+        <div class="lc-skill">Operasi Desimal Lengkap</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+      <a class="level-card" style="--card-accent:#0E6F68" href="lembar-kalkulasi-k14-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-14</span><span class="lc-sheets">29 lembar</span></div>
+        <div class="lc-skill">Operasi Campuran Pecahan &amp; Desimal; Persen</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+      <a class="level-card" style="--card-accent:#0E6F68" href="lembar-kalkulasi-k15-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-15</span><span class="lc-sheets">30 lembar</span></div>
+        <div class="lc-skill">Operasi Bilangan Bulat Negatif</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="blok" id="blok-4">
+    <div class="blok-head">
+      <span class="blok-tier" style="background:var(--t4);">K-16&ndash;K-20</span>
+      <h2>Aljabar</h2>
+    </div>
+    <p class="blok-sub">Bentuk aljabar, persamaan &amp; pertidaksamaan linear, sampai persamaan kuadrat. &middot; <strong>144 lembar</strong></p>
+    <div class="level-grid">
+      <a class="level-card" style="--card-accent:#0F2A4E" href="lembar-kalkulasi-k16-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-16</span><span class="lc-sheets">30 lembar</span></div>
+        <div class="lc-skill">Operasi Bentuk Aljabar dan Substitusi</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+      <a class="level-card" style="--card-accent:#0F2A4E" href="lembar-kalkulasi-k17-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-17</span><span class="lc-sheets">30 lembar</span></div>
+        <div class="lc-skill">Penyelesaian PLSV dan PtLSV</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+      <a class="level-card" style="--card-accent:#0F2A4E" href="lembar-kalkulasi-k18-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-18</span><span class="lc-sheets">26 lembar</span></div>
+        <div class="lc-skill">Eliminasi dan Substitusi SPLDV</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+      <a class="level-card" style="--card-accent:#0F2A4E" href="lembar-kalkulasi-k19-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-19</span><span class="lc-sheets">28 lembar</span></div>
+        <div class="lc-skill">Pangkat &amp; Akar (Sifat Eksponen)</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+      <a class="level-card" style="--card-accent:#0F2A4E" href="lembar-kalkulasi-k20-bimbel-insan-sejahtera.html">
+        <div class="lc-top"><span class="lc-badge">K-20</span><span class="lc-sheets">30 lembar</span></div>
+        <div class="lc-skill">Pemfaktoran dan Persamaan Kuadrat</div>
+        <div class="lc-open">Buka lembar <svg width="9" height="9" viewBox="0 0 9 9"><path d="M1 4.5H8M5 1.5L8 4.5L5 7.5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg></div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="f-brand">Bimbel Insan Sejahtera</span>
+  <span class="f-note">Lembar Kalkulasi &middot; 20 Level &middot; 543 Lembar &middot; Cetak A4</span>
+</footer>
+
+</body>
+</html>
