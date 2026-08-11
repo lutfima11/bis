@@ -1,1 +1,743 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Modul Konsep B-1 s.d. I-4 — Bimbel Insan Sejahtera</title>
+<meta name="description" content="Seri Modul Konsep 20 Marhalah (Bidayah, Tamhid, Taqwiyah, Tahlil, Itqan), tiga register usia A/B/C per marhalah — Bimbel Insan Sejahtera." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#0F2A4E; --teal:#007A7A; --soft-teal:#E0F2F1; --soft-navy:#E8EEF7;
+    --gold:#B08420; --soft-gold:#FCF6E5; --greyline:#C8CED6; --ink:#26313F;
 
+    --bidayah:#E4572E;  --bidayah-soft:#FCE9E3;
+    --tamhid:#F2994A;   --tamhid-soft:#FDEEE0;
+    --taqwiyah:#2E9E63; --taqwiyah-soft:#E5F4EC;
+    --tahlil:#2F6FED;   --tahlil-soft:#E7EDFC;
+    --itqan:#B08420;    --itqan-soft:#FCF6E5;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Plus Jakarta Sans",sans-serif;
+    font-size:10.5pt; line-height:1.6; color:var(--ink);
+    background:#EAEDF1; margin:0; padding:0;
+  }
+  h1,h2,h3,.brand-name{font-family:"Fraunces",serif;}
+  a{color:inherit;}
+
+  .top-bar{height:4px;background:linear-gradient(90deg,var(--bidayah),var(--tamhid),var(--taqwiyah),var(--tahlil),var(--itqan));}
+
+  header.masthead{
+    background:var(--soft-navy); padding:22px clamp(20px,6vw,64px) 26px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+    flex-wrap:wrap; border-bottom:1px solid var(--greyline);
+  }
+  .brand-left{display:flex; align-items:center; gap:14px;}
+  .brand-logo{height:48px; width:auto; display:block; object-fit:contain;}
+  .brand-text .brand-name{font-size:19pt; font-weight:700; color:var(--navy); line-height:1.1;}
+  .brand-text .brand-tagline{font-size:8.4pt; font-weight:600; color:var(--teal); text-transform:uppercase; letter-spacing:.6px; margin-top:3px;}
+  .masthead-meta{font-family:"JetBrains Mono",monospace; font-size:8pt; color:#5C6577; text-align:right;}
+  .masthead-meta strong{color:var(--navy); font-size:9.5pt;}
+
+  .hero{padding:56px clamp(20px,6vw,64px) 40px; max-width:1180px; margin:0 auto;}
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:7px; font-family:"JetBrains Mono",monospace;
+    font-size:7.8pt; font-weight:700; letter-spacing:.8px; text-transform:uppercase;
+    color:#8A6416; background:var(--soft-gold); border:1.3px solid var(--gold);
+    border-radius:20px; padding:4px 12px 4px 10px; margin-bottom:18px;
+  }
+  .hero h1{font-size:clamp(24px,3.6vw,36px); font-weight:900; color:var(--navy); line-height:1.15; margin:0 0 14px;}
+  .hero p{font-size:11pt; color:#4A5468; max-width:68ch; margin:0;}
+
+  .progress-line{display:flex; align-items:center; gap:10px; margin-top:22px;}
+  .progress-track{flex-grow:1; max-width:340px; height:8px; border-radius:5px; background:#DDE3EC; overflow:hidden;}
+  .progress-fill{height:100%; background:linear-gradient(90deg,var(--bidayah),var(--tamhid)); width:6%;}
+  .progress-text{font-family:"JetBrains Mono",monospace; font-size:8.6pt; font-weight:700; color:var(--navy); white-space:nowrap;}
+
+  .register-legend{display:flex; gap:18px; margin-top:20px; flex-wrap:wrap;}
+  .register-legend .rl-item{display:flex; align-items:center; gap:7px; font-size:8.6pt; color:#5C6577;}
+  .register-legend .rl-dot{width:9px; height:9px; border-radius:50%; border:1.6px solid var(--teal); flex-shrink:0;}
+  .register-legend .rl-item b{color:var(--navy); font-weight:700;}
+
+  .depth-key{display:flex; gap:0; margin-top:26px; border:1px solid var(--greyline); border-radius:10px; overflow:hidden; flex-wrap:wrap;}
+  .depth-key a{
+    flex:1 1 18%; display:flex; flex-direction:column; gap:2px; padding:12px 14px; text-decoration:none;
+    border-right:1px solid rgba(255,255,255,.35); transition:filter .15s ease; min-width:110px;
+  }
+  .depth-key a:last-child{border-right:none;}
+  .depth-key a:hover{filter:brightness(1.08);}
+  .depth-key .dk-range{font-family:"JetBrains Mono",monospace; font-weight:700; font-size:9pt; color:#fff;}
+  .depth-key .dk-label{font-size:7.6pt; color:rgba(255,255,255,.92); font-weight:600;}
+
+  main{max-width:1180px; margin:0 auto; padding:0 clamp(20px,6vw,64px) 70px;}
+
+  .blok{margin-top:52px;}
+  .blok-head{display:flex; align-items:baseline; gap:12px; margin-bottom:6px; flex-wrap:wrap;}
+  .blok-tier{
+    font-family:"JetBrains Mono",monospace; font-size:9pt; font-weight:700; color:#fff;
+    padding:3px 11px; border-radius:6px; letter-spacing:.3px;
+  }
+  .blok-head h2{font-size:16.5pt; font-weight:700; color:var(--navy); margin:0;}
+  .blok-gloss{font-size:9pt; color:#8A91A0; font-style:italic;}
+  .blok-sub{font-size:8.8pt; color:#6B7488; margin:0 0 20px; padding-left:1px;}
+
+  .marhalah-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px;}
+
+  .marhalah-card{
+    background:#fff; border:1px solid var(--greyline); border-top:4px solid var(--accent);
+    border-radius:9px; padding:14px 16px 15px; box-shadow:0 1px 2px rgba(15,42,78,.04);
+  }
+  .mc-head{display:flex; align-items:baseline; gap:9px; margin-bottom:11px;}
+  .mc-badge{
+    font-family:"JetBrains Mono",monospace; font-size:11pt; font-weight:800; color:#fff;
+    background:var(--accent); padding:2px 10px; border-radius:5px; flex-shrink:0;
+  }
+  .mc-materi{font-size:8.9pt; font-weight:600; color:var(--navy); line-height:1.35;}
+
+  .mc-regs{display:flex; flex-direction:column; gap:6px;}
+  .reg-pill{
+    display:flex; align-items:center; gap:8px; padding:6px 10px; border-radius:6px;
+    text-decoration:none; font-size:8pt;
+  }
+  .reg-done{
+    background:var(--accent-soft); border:1.3px solid var(--accent); color:var(--ink);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .reg-done:hover{transform:translateX(2px); box-shadow:0 3px 8px rgba(15,42,78,.1);}
+  .reg-done .rp-code{font-family:"JetBrains Mono",monospace; font-weight:800; color:var(--accent); width:14px;}
+  .reg-done .rp-age{color:#5C6577; flex-grow:1;}
+  .reg-done .rp-pages{font-weight:700; color:var(--navy); font-size:7.4pt;}
+
+  .reg-pending{
+    background:#F5F6F8; border:1.3px dashed var(--greyline); color:#9099A8; cursor:default;
+  }
+  .reg-pending .rp-code{font-family:"JetBrains Mono",monospace; font-weight:800; width:14px; color:#9099A8;}
+  .reg-pending .rp-age{flex-grow:1;}
+  .reg-pending .rp-pages{font-weight:700; font-size:7.2pt; letter-spacing:.3px; text-transform:uppercase; color:#AEB4C0;}
+
+  .print-note{max-width:1180px; margin:0 auto; padding:0 clamp(20px,6vw,64px) 0;}
+  .print-note .pn-box{
+    display:flex; gap:16px; align-items:flex-start; background:var(--soft-gold);
+    border:1.3px solid var(--gold); border-radius:10px; padding:16px 20px;
+  }
+  .print-note svg{flex-shrink:0; margin-top:2px;}
+  .print-note h3{font-size:10.5pt; font-weight:700; color:#8A6416; margin:0 0 6px;}
+  .print-note ol{margin:0; padding-left:18px; font-size:9pt; color:#5C4A16; line-height:1.7;}
+  .print-note li strong{color:#4A3A10;}
+  .print-note code{font-family:"JetBrains Mono",monospace; font-size:8.3pt; background:rgba(176,132,32,.12); padding:1px 5px; border-radius:4px;}
+
+  footer{
+    border-top:1px solid var(--greyline); padding:26px clamp(20px,6vw,64px) 34px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+  }
+  footer .f-brand{font-family:"Fraunces",serif; font-weight:700; color:var(--navy); font-size:10.5pt;}
+  footer .f-note{font-size:7.8pt; color:#8A91A0;}
+
+  @media (max-width:640px){
+    .masthead-meta{display:none;}
+    .depth-key a{flex:1 1 45%;}
+  }
+</style>
+</head>
+<body>
+<div class="top-bar"></div>
+
+<header class="masthead">
+  <div class="brand-left">
+    <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    <div class="brand-text">
+      <div class="brand-name">Bimbel Insan Sejahtera</div>
+      <div class="brand-tagline">Modul Konsep &middot; Sistem Belajar Berbasis Penguasaan</div>
+    </div>
+  </div>
+  <div class="masthead-meta">
+    <strong>20 Marhalah</strong> &middot; 60 Modul<br />
+    Bidayah &rarr; Itqan &middot; Register A/B/C
+  </div>
+</header>
+
+<div class="hero">
+  <span class="hero-eyebrow">&#9679; Modul Konsep</span>
+  <h1>Satu tujuan belajar, tiga register usia &mdash; dari Bidayah sampai Itqan.</h1>
+  <p>Dua puluh marhalah dikelompokkan dalam lima thabaqah. Setiap marhalah memiliki tiga register konteks (A, B, C) untuk tujuan pembelajaran yang matematisnya identik, hanya konteks soalnya yang berjenjang usia. Modul yang belum tersedia ditandai <strong>On Going</strong>.</p>
+
+  <div class="progress-line">
+    <div class="progress-track"><div class="progress-fill"></div></div>
+    <span class="progress-text">4 dari 60 modul tersedia</span>
+  </div>
+
+  <div class="register-legend">
+    <span class="rl-item"><span class="rl-dot"></span><b>Register A</b> &middot; 6&ndash;9 th &middot; konteks mainan &amp; dongeng</span>
+    <span class="rl-item"><span class="rl-dot"></span><b>Register B</b> &middot; 10&ndash;12 th &middot; konteks hobi &amp; sekolah</span>
+    <span class="rl-item"><span class="rl-dot"></span><b>Register C</b> &middot; 13&ndash;15 th &middot; konteks keuangan &amp; wirausaha</span>
+  </div>
+
+  <nav class="depth-key" aria-label="Lompat ke thabaqah">
+    <a href="#thab-bidayah" style="background:#E4572E"><span class="dk-range">B-1&ndash;B-4</span><span class="dk-label">Bidayah</span></a>
+    <a href="#thab-tamhid" style="background:#F2994A"><span class="dk-range">T-1&ndash;T-4</span><span class="dk-label">Tamhid</span></a>
+    <a href="#thab-taqwiyah" style="background:#2E9E63"><span class="dk-range">Q-1&ndash;Q-4</span><span class="dk-label">Taqwiyah</span></a>
+    <a href="#thab-tahlil" style="background:#2F6FED"><span class="dk-range">H-1&ndash;H-4</span><span class="dk-label">Tahlil</span></a>
+    <a href="#thab-itqan" style="background:#B08420"><span class="dk-range">I-1&ndash;I-4</span><span class="dk-label">Itqan</span></a>
+  </nav>
+</div>
+
+<div class="print-note">
+  <div class="pn-box">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="7" width="12" height="6" rx="1" stroke="#8A6416" stroke-width="1.4"/><path d="M5.5 7V3.5h9V7M5.5 13v3.5h9V13" stroke="#8A6416" stroke-width="1.4"/><circle cx="14" cy="9" r=".8" fill="#8A6416"/></svg>
+    <div>
+      <h3>Cara mencetak modul</h3>
+      <ol>
+        <li>Buka modul yang diinginkan, lalu tekan <strong><code>Ctrl+P</code></strong> (Windows) atau <strong><code>Cmd+P</code></strong> (Mac).</li>
+        <li>Pilih ukuran kertas <strong>A4</strong> dan margin <strong>None / Tanpa Batas</strong>.</li>
+        <li>Aktifkan opsi <strong>"Background graphics" / "Grafik latar belakang"</strong> agar warna chip marhalah dan aksen thabaqah ikut tercetak.</li>
+        <li>Setiap modul berisi beberapa pertemuan; cetak semua halaman atau pilih rentang pertemuan tertentu sesuai kebutuhan.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <section class="blok" id="thab-bidayah">
+    <div class="blok-head">
+      <span class="blok-tier" style="background:#E4572E;">B-1&ndash;B-4</span>
+      <h2>Bidayah</h2>
+      <span class="blok-gloss">&middot; permulaan</span>
+    </div>
+    <p class="blok-sub">2 dari 12 modul tersedia di thabaqah ini.</p>
+    <div class="marhalah-grid">
+    <div class="marhalah-card" style="--accent:#E4572E;--accent-soft:#FCE9E3">
+      <div class="mc-head">
+        <span class="mc-badge">B-1</span>
+        <span class="mc-materi">Bilangan 1&ndash;20 &amp; Pola Berulang</span>
+      </div>
+      <div class="mc-regs">
+        <a class="reg-pill reg-done" href="modul-konsep-b1-register-a-bimbel-insan-sejahtera.html" style="--accent:#E4572E">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">25 hlm</span>
+        </a>
+        <a class="reg-pill reg-done" href="modul-konsep-b1-register-b-bimbel-insan-sejahtera.html" style="--accent:#E4572E">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">19 hlm</span>
+        </a>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="marhalah-card" style="--accent:#E4572E;--accent-soft:#FCE9E3">
+      <div class="mc-head">
+        <span class="mc-badge">B-2</span>
+        <span class="mc-materi">Bilangan sampai 100 &amp; Bar Model Part&ndash;Whole</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="marhalah-card" style="--accent:#E4572E;--accent-soft:#FCE9E3">
+      <div class="mc-head">
+        <span class="mc-badge">B-3</span>
+        <span class="mc-materi">Bilangan sampai 1000 &amp; Operasi Bersusun</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="marhalah-card" style="--accent:#E4572E;--accent-soft:#FCE9E3">
+      <div class="mc-head">
+        <span class="mc-badge">B-4</span>
+        <span class="mc-materi">Perkalian&ndash;Pembagian Dasar &amp; Pecahan Satuan</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="blok" id="thab-tamhid">
+    <div class="blok-head">
+      <span class="blok-tier" style="background:#F2994A;">T-1&ndash;T-4</span>
+      <h2>Tamhid</h2>
+      <span class="blok-gloss">&middot; peletakan dasar</span>
+    </div>
+    <p class="blok-sub">2 dari 12 modul tersedia di thabaqah ini.</p>
+    <div class="marhalah-grid">
+    <div class="marhalah-card" style="--accent:#F2994A;--accent-soft:#FDEEE0">
+      <div class="mc-head">
+        <span class="mc-badge">T-1</span>
+        <span class="mc-materi">Bilangan sampai 10.000 &amp; Perkalian&ndash;Pembagian Bersusun</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <a class="reg-pill reg-done" href="modul-konsep-t1-register-b-bimbel-insan-sejahtera.html" style="--accent:#F2994A">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">21 hlm</span>
+        </a>
+        <a class="reg-pill reg-done" href="modul-konsep-t1-register-c-bimbel-insan-sejahtera.html" style="--accent:#F2994A">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">17 hlm</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="marhalah-card" style="--accent:#F2994A;--accent-soft:#FDEEE0">
+      <div class="mc-head">
+        <span class="mc-badge">T-2</span>
+        <span class="mc-materi">Operasi Campuran, Keliling &amp; Luas</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="marhalah-card" style="--accent:#F2994A;--accent-soft:#FDEEE0">
+      <div class="mc-head">
+        <span class="mc-badge">T-3</span>
+        <span class="mc-materi">FPB&ndash;KPK &amp; Pecahan Berbeda Penyebut</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="marhalah-card" style="--accent:#F2994A;--accent-soft:#FDEEE0">
+      <div class="mc-head">
+        <span class="mc-badge">T-4</span>
+        <span class="mc-materi">Desimal &amp; Koordinat Kuadran I</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="blok" id="thab-taqwiyah">
+    <div class="blok-head">
+      <span class="blok-tier" style="background:#2E9E63;">Q-1&ndash;Q-4</span>
+      <h2>Taqwiyah</h2>
+      <span class="blok-gloss">&middot; penguatan</span>
+    </div>
+    <p class="blok-sub">0 dari 12 modul tersedia di thabaqah ini.</p>
+    <div class="marhalah-grid">
+    <div class="marhalah-card" style="--accent:#2E9E63;--accent-soft:#E5F4EC">
+      <div class="mc-head">
+        <span class="mc-badge">Q-1</span>
+        <span class="mc-materi">Operasi Pecahan Lanjut &amp; Volume Bangun Ruang</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="marhalah-card" style="--accent:#2E9E63;--accent-soft:#E5F4EC">
+      <div class="mc-head">
+        <span class="mc-badge">Q-2</span>
+        <span class="mc-materi">Rasio, Skala &amp; Kecepatan</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="marhalah-card" style="--accent:#2E9E63;--accent-soft:#E5F4EC">
+      <div class="mc-head">
+        <span class="mc-badge">Q-3</span>
+        <span class="mc-materi">Persentase &amp; Lingkaran</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="marhalah-card" style="--accent:#2E9E63;--accent-soft:#E5F4EC">
+      <div class="mc-head">
+        <span class="mc-badge">Q-4</span>
+        <span class="mc-materi">Pengantar Aljabar &amp; Persamaan 1&ndash;2 Langkah</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="blok" id="thab-tahlil">
+    <div class="blok-head">
+      <span class="blok-tier" style="background:#2F6FED;">H-1&ndash;H-4</span>
+      <h2>Tahlil</h2>
+      <span class="blok-gloss">&middot; analisis</span>
+    </div>
+    <p class="blok-sub">0 dari 12 modul tersedia di thabaqah ini.</p>
+    <div class="marhalah-grid">
+    <div class="marhalah-card" style="--accent:#2F6FED;--accent-soft:#E7EDFC">
+      <div class="mc-head">
+        <span class="mc-badge">H-1</span>
+        <span class="mc-materi">Bilangan Bulat Negatif &amp; Himpunan</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="marhalah-card" style="--accent:#2F6FED;--accent-soft:#E7EDFC">
+      <div class="mc-head">
+        <span class="mc-badge">H-2</span>
+        <span class="mc-materi">Bentuk Aljabar, PLSV &amp; PtLSV</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="marhalah-card" style="--accent:#2F6FED;--accent-soft:#E7EDFC">
+      <div class="mc-head">
+        <span class="mc-badge">H-3</span>
+        <span class="mc-materi">Bangun Ruang Sisi Datar &amp; Statistika</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="marhalah-card" style="--accent:#2F6FED;--accent-soft:#E7EDFC">
+      <div class="mc-head">
+        <span class="mc-badge">H-4</span>
+        <span class="mc-materi">SPLDV, Relasi&ndash;Fungsi &amp; Pythagoras</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="blok" id="thab-itqan">
+    <div class="blok-head">
+      <span class="blok-tier" style="background:#B08420;">I-1&ndash;I-4</span>
+      <h2>Itqan</h2>
+      <span class="blok-gloss">&middot; penyempurnaan</span>
+    </div>
+    <p class="blok-sub">0 dari 12 modul tersedia di thabaqah ini.</p>
+    <div class="marhalah-grid">
+    <div class="marhalah-card" style="--accent:#B08420;--accent-soft:#FCF6E5">
+      <div class="mc-head">
+        <span class="mc-badge">I-1</span>
+        <span class="mc-materi">Bentuk Akar &amp; Persamaan Kuadrat</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="marhalah-card" style="--accent:#B08420;--accent-soft:#FCF6E5">
+      <div class="mc-head">
+        <span class="mc-badge">I-2</span>
+        <span class="mc-materi">Fungsi Kuadrat &amp; Kesebangunan</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="marhalah-card" style="--accent:#B08420;--accent-soft:#FCF6E5">
+      <div class="mc-head">
+        <span class="mc-badge">I-3</span>
+        <span class="mc-materi">Lingkaran Lanjut &amp; Bangun Ruang Sisi Lengkung</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="marhalah-card" style="--accent:#B08420;--accent-soft:#FCF6E5">
+      <div class="mc-head">
+        <span class="mc-badge">I-4</span>
+        <span class="mc-materi">Sintesis Lintas Bidang (Setara AKM/TKA)</span>
+      </div>
+      <div class="mc-regs">
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">A</span>
+          <span class="rp-age">6&ndash;9 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">B</span>
+          <span class="rp-age">10&ndash;12 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+        <span class="reg-pill reg-pending">
+          <span class="rp-code">C</span>
+          <span class="rp-age">13&ndash;15 th</span>
+          <span class="rp-pages">On Going</span>
+        </span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="f-brand">Bimbel Insan Sejahtera</span>
+  <span class="f-note">Modul Konsep &middot; 20 Marhalah &middot; 60 Modul (A/B/C) &middot; Cetak A4</span>
+</footer>
+
+</body>
+</html>
