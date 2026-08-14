@@ -1,0 +1,2731 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Modul Konsep I-1 Register C — Bimbel Insan Sejahtera</title>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [["$", "$"], ["\\(", "\\)"]],
+      displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+      packages: { "[+]": ["ams"] }
+    },
+    svg: { fontCache: "global" }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#0F2A4E; --teal:#007A7A; --soft-teal:#E0F2F1; --soft-navy:#E8EEF7;
+    --gold:#B08420; --soft-gold:#FCF6E5; --greyline:#C8CED6; --ink:#26313F;
+
+    --bidayah:#E4572E;  --bidayah-soft:#FCE9E3;
+    --tamhid:#F2994A;   --tamhid-soft:#FDEEE0;
+    --taqwiyah:#2E9E63; --taqwiyah-soft:#E5F4EC;
+    --tahlil:#2F6FED;   --tahlil-soft:#E7EDFC;
+    --itqan:#B08420;    --itqan-soft:#FCF6E5;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  body{
+    font-family:"Plus Jakarta Sans",sans-serif;
+    font-size:9.5pt; line-height:1.55; color:var(--ink);
+    background:#EAEDF1; margin:0; padding:0;
+  }
+  h1,h2,h3,.brand-name,.section-title{font-family:"Fraunces",serif;}
+
+  /* ============ PAGE (A4) ============ */
+  .page-container{counter-reset:page;}
+  .page{
+    background:#fff; width:21cm; min-height:29.7cm; height:auto;
+    padding:1.45cm 2.3cm 0.9cm 2.3cm; margin:1cm auto;
+    box-shadow:0 0 10px rgba(0,0,0,.18); position:relative;
+    display:flex; flex-direction:column;
+  }
+  .page-header{margin:-1.45cm -2.3cm 0 -2.3cm; width:21cm;}
+  .brand-bar{height:4px;background:linear-gradient(90deg,var(--teal),var(--navy));
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .header-inner{padding:10px 2.3cm 8px 2.3cm;display:flex;justify-content:space-between;align-items:center;
+    background:var(--soft-navy); -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .brand-left{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-logo{height:38px;width:auto;display:block;object-fit:contain;}
+  .brand-name{font-size:17pt;font-weight:700;color:var(--navy);}
+  .brand-tagline{font-size:7.6pt;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:.6px;margin-top:2px;}
+
+  .level-strip{padding:6px 2.3cm 6px;background:#fff;border-bottom:1px solid var(--greyline);
+    display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+
+  .chips-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+  .chip{font-size:7.6pt;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+  .chip-marhalah{color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .chip-register{border:1.4px solid var(--teal);color:var(--teal);background:#fff;}
+  .chip-bidang{border:1.4px solid var(--greyline);color:#5A6272;background:#fff;}
+  .thabaqah-label{font-size:7.6pt;color:#5A6272;font-weight:600;}
+
+  .student-bar{padding:7px 2.3cm;margin:0 -2.3cm 12px -2.3cm;background:#F7F8FA;
+    border-bottom:1px solid var(--greyline);font-size:8.3pt;font-weight:600;color:#3A4252;
+    display:flex;gap:26px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .student-bar span{border-bottom:1px solid #99A1B3;padding-bottom:1px;min-width:110px;display:inline-block;}
+
+  .content{flex-grow:1;display:flex;flex-direction:column;}
+  .eyebrow{font-size:7.7pt;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--teal);margin:6px 0 3px;}
+  .cpa-trail{font-size:7.4pt;color:#8A91A0;letter-spacing:.3px;margin-bottom:6px;text-transform:uppercase;}
+  .cpa-trail b{color:var(--navy);}
+  .soal-utama{font-size:9.6pt;margin-bottom:6px;}
+  .soal-utama .no{font-weight:800;color:var(--navy);}
+
+  /* --- Ilustrasi: Konkret (ikon) -> Gambar (model/representasi terstruktur) --- */
+  .illustration-row{display:flex;gap:14px;align-items:center;margin:4px 0 6px 4px;flex-wrap:wrap;}
+  .stage-block{display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0;}
+  .stage-block .cap{font-size:6.4pt;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#9099A8;}
+  .cpa-arrow{font-size:15px;color:var(--greyline);flex-shrink:0;margin:0 -4px;}
+
+  .icon-plain{width:52px;height:52px;border-radius:50%;background:#fff;border:1.6px solid var(--navy);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:26px;line-height:1;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .icon-row{display:flex;gap:8px;flex-wrap:wrap;max-width:150px;}
+  .icon-row .icon-plain{width:38px;height:38px;font-size:20px;}
+
+  .combined-bar{display:flex;width:200px;height:30px;border:1.5px solid var(--navy);border-radius:5px;overflow:hidden;flex-shrink:0;}
+  .combined-bar .seg{flex:1;border-right:1px solid rgba(255,255,255,.55);display:flex;align-items:center;
+    justify-content:center;font-size:7.2pt;font-weight:800;color:#fff;}
+  .combined-bar .seg:last-child{border-right:none;}
+  .seg.a{background:var(--teal);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .seg.b{background:var(--gold);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .seg.c{background:var(--tahlil);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .seg.empty{background:#fff;color:var(--navy);}
+  .bar-brace{font-size:7.4pt;font-weight:700;color:var(--navy);text-align:center;margin-top:2px;}
+
+  .bar-legend{display:flex;flex-direction:column;gap:4px;font-size:8pt;padding-top:2px;flex-shrink:0;}
+  .bar-legend .row{display:flex;align-items:center;gap:7px;}
+  .bar-legend .sw{width:11px;height:11px;border-radius:3px;flex-shrink:0;border:1px solid rgba(0,0,0,.15);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  /* --- Diagram batang (Data) --- */
+  .bar-chart{display:flex;align-items:flex-end;gap:11px;padding:0 8px 0 2px;
+    border-left:1.4px solid var(--navy);border-bottom:1.4px solid var(--navy);}
+  .bc-col{display:flex;flex-direction:column;align-items:center;gap:3px;width:46px;flex-shrink:0;}
+  .bc-val{font-size:6.8pt;font-weight:800;color:var(--navy);}
+  .bc-bar{width:22px;border-radius:3px 3px 0 0;background:var(--teal);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .bc-bar.gold{background:var(--gold);}
+  .bc-label{font-size:6.3pt;color:#5A6272;font-weight:700;margin-top:2px;text-align:center;
+    width:46px;overflow-wrap:break-word;word-break:break-word;line-height:1.15;}
+
+  /* --- KOMPONEN KHUSUS I-1 (Thabaqah Itqan) --- */
+  /* Kotak/persegi panjang area berlabel: untuk model luas (selisih kuadrat, melengkapkan kuadrat, akar-persegi) */
+  .area-square{border:1.6px solid var(--navy);display:flex;align-items:center;justify-content:center;
+    font-weight:800;color:var(--navy);font-size:7.3pt;flex-shrink:0;text-align:center;line-height:1.2;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  /* Pembungkus generik untuk diagram SVG baru (bidang L, kubus isometrik, dsb.) */
+  .diagram-wrap{display:inline-block;}
+  .diagram-wrap svg{display:block;}
+  .diagram-cap{font-size:6.8pt;font-weight:700;color:#5A6272;text-align:center;margin-top:3px;}
+
+  .equation-block{background:var(--soft-navy);border:1px solid var(--soft-navy);border-left:3px solid var(--navy);
+    border-radius:5px;padding:5px 15px;margin:3px 0 6px 6px;display:inline-block;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .word-block{background:var(--soft-navy);border:1px solid var(--soft-navy);border-left:3px solid var(--navy);
+    border-radius:5px;padding:7px 15px;margin:3px 0 7px 6px;font-size:9.3pt;font-weight:700;color:var(--navy);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  .practice-item{display:flex;gap:8px;margin-bottom:7px;break-inside:avoid;font-size:9pt;}
+  .practice-item .no{font-weight:800;color:var(--navy);min-width:16px;}
+  .isian-inline{display:inline-block;border-bottom:1.4px solid #7A8296;min-width:26px;height:14px;margin:0 2px;}
+
+  .isian-row{display:flex;align-items:baseline;gap:8px;font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:5px;flex-wrap:wrap;}
+  .isian-row .line{flex:1;border-bottom:1px solid #99A1B3;height:13px;min-width:40px;}
+  .scratch-area{flex-grow:1;min-height:40px;margin-bottom:10px;position:relative;
+    border:1.3px dashed var(--greyline);border-radius:7px;padding:10px 16px;
+    background-image:radial-gradient(circle, #D7DDE7 1px, transparent 1px);
+    background-size:15px 15px; background-position:6px 6px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .scratch-area .label{position:absolute;top:-9px;left:12px;background:#fff;padding:0 8px;
+    font-size:7.2pt;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#9099A8;}
+
+  /* --- Label karakteristik TWM (Blok Nalar) --- */
+  .twm-tag{display:inline-flex;align-items:center;gap:4px;font-size:7.3pt;font-weight:800;padding:3px 10px;
+    border-radius:20px;border:1.4px solid var(--teal);color:var(--teal);background:#fff;margin-right:6px;white-space:nowrap;}
+
+  .reason-item{margin-bottom:5px;font-size:8.7pt;}
+  .reason-item .lbl{font-size:7pt;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.3px;display:block;margin-bottom:1px;}
+
+  /* --- Kotak analisis kesalahan (wajib min. 1x per pertemuan) --- */
+  .kesalahan-box{background:var(--bidayah-soft);border:0.9px solid var(--bidayah);border-radius:5px;
+    padding:5px 13px;margin:5px 0 2px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .kesalahan-box .tag{font-size:7.3pt;font-weight:800;color:var(--bidayah);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:4px;}
+  .kesalahan-box .salah{font-size:8.7pt;font-style:italic;color:#8A3A24;margin:2px 0 6px;background:#fff;
+    border-radius:4px;padding:5px 9px;border:1px dashed #E4572E;}
+  .kesalahan-box .tanya{font-size:8.6pt;color:#6B3420;font-weight:700;}
+
+  /* --- Kotak Pekerjaan Rumah --- */
+  .pr-box{border:1.4px dashed var(--navy);border-radius:6px;padding:7px 14px;background:#FAFBFC;margin-top:5px;}
+  .pr-box .tag{font-size:7.3pt;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:3px;}
+  .pr-box ol{margin:0;padding-left:16px;font-size:8.5pt;}
+  .pr-box li{margin-bottom:2px;}
+
+  .reflect-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;font-size:8.6pt;font-weight:600;color:#3A4252;}
+
+  .checklist-row{display:flex;gap:16px;flex-wrap:wrap;font-size:7.6pt;color:#8A91A0;font-weight:600;margin-top:3px;}
+  .checklist-row .ck{display:flex;align-items:center;gap:4px;}
+  .checklist-row .box{width:9px;height:9px;border:1.2px solid #9099A8;border-radius:2px;flex-shrink:0;display:inline-block;}
+
+  .block-title{display:flex;align-items:baseline;gap:8px;margin:2px 0 2px;flex-wrap:wrap;}
+  .block-title .name{font-family:"Fraunces",serif;font-size:12.5pt;font-weight:700;color:var(--navy);}
+  .block-title .mnr{font-size:7.3pt;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.4px;}
+  .block-sep{border-top:2px solid var(--navy);margin:7px 0 5px;}
+
+  .numcard{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:28px;
+    border:1.6px solid var(--navy);border-radius:6px;font-family:"Fraunces",serif;font-weight:700;font-size:11.5pt;
+    color:var(--navy);background:var(--soft-navy);padding:0 6px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .numcard.ghost{background:#fff;border-style:dashed;border-color:var(--teal);color:var(--teal);}
+  .numcard.neg{background:var(--tahlil-soft);border-color:var(--tahlil);color:#1B3F8F;}
+  .numcard.gold{background:var(--itqan-soft);border-color:var(--itqan);color:#7A5A15;}
+  .numcard-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+  .numcard-arrow{color:var(--greyline);font-size:13px;}
+
+  .page-footer{margin-top:auto;padding-top:8px;border-top:1px solid var(--greyline);
+    display:flex;justify-content:space-between;font-size:6.8pt;color:#8A91A0;}
+
+  /* --- Tahukah Kamu --- */
+  .fun-fact-box{background:var(--soft-teal);border:0.9px solid var(--teal);border-radius:5px;
+    padding:5px 13px;margin:5px 0 3px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .fun-fact-box .tag{font-size:7.2pt;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:2px;}
+  .fun-fact-box p{margin:0;font-size:8.3pt;color:#1D4E4E;line-height:1.45;}
+
+  /* --- Latihan Soal --- */
+  .ls-bagian-label{font-size:8.6pt;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.5px;
+    margin:14px 0 7px;padding-bottom:4px;border-bottom:1.5px solid var(--gold);display:flex;align-items:baseline;gap:8px;}
+  .ls-bagian-label:first-child{margin-top:0;}
+  .ls-bagian-label .src{font-size:7pt;font-weight:600;color:#9099A8;text-transform:none;letter-spacing:0;}
+  .ls-item{display:flex;gap:8px;margin-bottom:8px;break-inside:avoid;font-size:8.8pt;}
+  .ls-item .no{font-weight:800;color:var(--navy);min-width:18px;flex-shrink:0;}
+  .ls-item .body{flex:1;}
+  .ls-nalar-tag{display:inline-block;font-size:6.3pt;font-weight:800;color:#fff;background:var(--gold);border-radius:10px;
+    padding:1.5px 7px;margin-left:6px;letter-spacing:.3px;vertical-align:middle;white-space:nowrap;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .scope-strip{padding:7px 2.3cm;background:#fff;border-bottom:1px solid var(--greyline);
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .scope-count{margin-left:auto;font-size:7.3pt;color:#8A91A0;font-weight:600;}
+
+  /* --- Kunci Jawaban (dokumen guru) --- */
+  .warn-bar{background:#A63A3A;color:#fff;text-align:center;font-size:7.6pt;font-weight:800;
+    letter-spacing:.6px;text-transform:uppercase;padding:5px 0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .kunci-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px 20px;}
+  .kunci-item{display:flex;gap:6px;padding:1.4px 0;border-bottom:1px dotted var(--greyline);font-size:7.6pt;line-height:1.32;break-inside:avoid;}
+  .kunci-item .no{font-weight:800;color:var(--navy);min-width:16px;flex-shrink:0;}
+  .kunci-item .ans{color:#2E3745;}
+  .kunci-item .ans b{color:var(--teal);}
+  .kunci-bagian-label{font-size:7.3pt;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.4px;
+    grid-column:1/-1;margin:3px 0 1px;}
+  .kunci-bagian-label:first-child{margin-top:0;}
+
+  .catatan-teal{font-size:7.8pt;color:#5A6272;background:var(--soft-teal);border-radius:5px;padding:7px 12px;margin-top:10px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .catatan-gold{font-size:7.3pt;color:#5A6272;background:var(--soft-gold);border-left:3px solid var(--gold);
+    line-height:1.35;border-radius:5px;padding:5px 12px;margin-top:5px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .catatan-navy{font-size:7.3pt;color:#5A6272;background:var(--soft-navy);border-left:3px solid var(--navy);
+    line-height:1.35;border-radius:5px;padding:5px 12px;margin-top:5px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  /* ============ PRINT ============ */
+  @media print{
+    @page{size:A4;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;page-break-after:always;}
+    .page:last-child{page-break-after:auto;}
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  }
+</style>
+</head>
+<body>
+<div class="page-container">
+<!-- ================================================================= -->
+<!-- PERTEMUAN 1 · BIDANG BILANGAN · HALAMAN A                       -->
+<!-- Blok Konsep (MNR 1-2) + Blok Nalar (MNR 3, TWM)                 -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Bilangan &middot; Pertemuan 1 dari 4</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menerapkan sifat-sifat pangkat bilangan bulat (perkalian, pembagian, pangkat dari pangkat, pangkat negatif, dan pangkat nol) untuk menyederhanakan bentuk berpangkat.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Reyhan mengunggah video edukasi singkat. Karena dibagikan ulang oleh penontonnya, jumlah penonton berlipat dua setiap jam: jam ke-1 ada $2^1$ orang, jam ke-3 tercatat $2^3$ orang. Tanpa menghitung nilai penuhnya dulu, tentukan hasil kali $2^3 \times 2^2$ menggunakan sifat pangkat, lalu bandingkan dengan $2^5$ (jumlah penonton pada jam ke-5).</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#128241;</div><div class="icon-plain">&#128257;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="bar-chart" style="height:70px;align-items:flex-end;">
+          <div class="bc-col"><div class="bc-val">2</div><div class="bc-bar" style="height:8px;"></div><div class="bc-label">Jam 1</div></div>
+          <div class="bc-col"><div class="bc-val">4</div><div class="bc-bar" style="height:16px;"></div><div class="bc-label">Jam 2</div></div>
+          <div class="bc-col"><div class="bc-val">8</div><div class="bc-bar" style="height:28px;"></div><div class="bc-label">Jam 3</div></div>
+          <div class="bc-col"><div class="bc-val">16</div><div class="bc-bar gold" style="height:44px;"></div><div class="bc-label">Jam 4</div></div>
+          <div class="bc-col"><div class="bc-val">32</div><div class="bc-bar gold" style="height:60px;"></div><div class="bc-label">Jam 5</div></div>
+        </div>
+        <span class="cap">Gambar &middot; Pertumbuhan Berlipat</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$2^3 \times 2^2 = 2^{3+2} = 2^5 = 32$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Contoh Terbimbing Tambahan (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Akun rival kehilangan pengikut palsu sehingga jumlahnya menyusut dari $3^5$ menjadi $3^5 \div 3^2 = 3^{5-2} = 3^3$ pengikut &mdash; ini <b>sifat pembagian pangkat</b>: kurangi pangkatnya. Bila jumlah itu dipromosikan ulang tiga putaran, $(3^2)^3 = 3^{2\times3}=3^6$ &mdash; ini <b>pangkat dari pangkat</b>: kalikan pangkatnya. Dan ingat dua kasus khusus: <b>pangkat nol</b> selalu $a^0=1$ (tidak ada penggandaan sama sekali), dan <b>pangkat negatif</b> berarti kebalikan: $a^{-n}=\dfrac{1}{a^n}$, misalnya $3^{-2}=\dfrac{1}{9}$.</div>
+
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) $5^3 \times 5^4 = 5^{\ldots}$ &nbsp;<span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>b) $7^6 \div 7^2 = 7^{\ldots}$ &nbsp;<span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>c) $(2^3)^2 = 2^{\ldots}$ &nbsp;<span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>d) $4^0 = $ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>e) $2^{-3} = $ <span class="isian-inline" style="min-width:34px;"></span> (bentuk pecahan)</div>
+      <div>f) $3^2 \times 3^{-2} = $ <span class="isian-inline" style="min-width:26px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Specialising</span><span class="twm-tag">Generalising</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Specialising &mdash; uji dengan satu contoh angka</span>Ambil satu contoh konkret untuk memeriksa apakah $a^m \times a^n = a^{m+n}$ tetap berlaku ketika salah satu pangkatnya nol, misalnya $6^3 \times 6^0$. Tunjukkan hasilnya sama dengan $6^3$.</div>
+    <div class="reason-item"><span class="lbl">Generalising &mdash; rumuskan aturan umum</span>Dari beberapa contoh perkalian pangkat sejenis yang sudah dikerjakan, tuliskan aturan umum untuk $a^m \times a^n$ dalam bentuk simbol, dan jelaskan apakah aturan itu tetap berlaku untuk sembarang bilangan bulat $m$ dan $n$ (termasuk yang negatif).</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Danu berkata: &ldquo;$2^3 \times 2^2 = 4^5$, karena pangkatnya dijumlahkan sekaligus basisnya juga saling dikalikan.&rdquo;</div>
+      <div class="tanya">Apakah Danu benar? Hitung $2^3 \times 2^2$ dan $4^5$ secara terpisah untuk membuktikan jawabanmu. Bagian mana dari penalaran Danu yang keliru?</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Bilangan &middot; Pertemuan 1 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 1 · BIDANG BILANGAN · HALAMAN B                       -->
+<!-- Blok Pemecahan Masalah (MNR 4-5) + Penutup (MNR 6)              -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Bilangan &middot; Pertemuan 1 dari 4</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>sifat perkalian pangkat</b> dan <b>sifat pembagian pangkat</b> &mdash; diterapkan pada perbandingan dua akun media sosial.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Akun A memiliki pengikut sejumlah $2^4 \times 2^3$ setelah promosi ganda. Akun B awalnya memiliki $5^6$ pengikut, lalu turun menjadi $5^6 \div 5^4$ setelah pembersihan akun palsu. (a) Nyatakan masing-masing dalam bentuk pangkat tunggal, lalu hitung nilainya. (b) Akun mana yang jumlah pengikutnya lebih besar?</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="numcard-row"><span class="numcard">2<sup>4</sup>&times;2<sup>3</sup></span><span class="numcard-arrow">=</span><span class="numcard">2<sup>7</sup></span><span class="numcard-arrow">=</span><span class="numcard">128</span></div>
+        <span class="cap">Akun A</span>
+      </div>
+      <div class="cpa-arrow">vs</div>
+      <div class="stage-block">
+        <div class="numcard-row"><span class="numcard gold">5<sup>6</sup>&divide;5<sup>4</sup></span><span class="numcard-arrow">=</span><span class="numcard gold">5<sup>2</sup></span><span class="numcard-arrow">=</span><span class="numcard gold">25</span></div>
+        <span class="cap">Akun B</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$2^4\times2^3=2^7=128 \qquad 5^6\div5^4=5^2=25 \qquad 128>25$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: gabungkan dulu pangkatnya sebelum menghitung nilai penuh &mdash; jauh lebih ringan daripada mengalikan $2\times2\times2\times2\times2\times2\times2$ satu per satu. <i>(Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Akun C memiliki $3^5\times3^2$ pengikut, akun D memiliki $4^7\div4^5$ pengikut.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;flex-wrap:wrap;">
+      <div>Akun C = <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>Akun D = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>Lebih besar: <span class="isian-inline" style="min-width:34px;"></span></div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. $6^2\times6^3=6^{\ldots}$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>2. $9^5\div9^3=9^{\ldots}$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>3. $(5^2)^3=5^{\ldots}$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>4. $7^0\times7^3=$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>5. $2^{-4}=$ <span class="isian-inline" style="min-width:34px;"></span> (bentuk pecahan)</div>
+      <div>6. $10^3\times10^{-1}=10^{\ldots}$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>7. Sebuah tabungan berlipat dua tiap bulan mulai dari $2^1$. Setelah 6 bulan, nyatakan dalam bentuk pangkat lalu hitung nilainya. <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>8. Manakah lebih besar, $3^4$ atau $4^3$? Buktikan dengan menghitung keduanya. <span class="isian-inline" style="min-width:34px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Istilah &ldquo;viral&rdquo; pada media sosial terinspirasi dari pola pertumbuhan berpangkat mirip penyebaran virus. Pola serupa dikenal sebagai Hukum Moore dalam dunia teknologi: jumlah transistor pada cip komputer diamati berlipat dua kira-kira setiap dua tahun sejak tahun 1965.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Sederhanakan: $8^4 \times 8^{-2}$, lalu hitung nilainya.</li>
+        <li>Sebuah kultur bakteri berlipat tiga tiap jam mulai dari $3^1$. Nyatakan jumlahnya setelah 4 jam dalam bentuk pangkat, lalu hitung nilainya.</li>
+        <li>Buktikan dengan angka bahwa $\left(2^2\right)^3 = 2^2\times2^2\times2^2$, lalu tuliskan kesimpulan sifat pangkat dari pangkat.</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Bilangan &middot; Pertemuan 1 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 2 · BIDANG BILANGAN · HALAMAN A                       -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Bilangan &middot; Pertemuan 2 dari 4</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menyederhanakan bentuk akar serta melakukan penjumlahan, pengurangan, dan perkalian bentuk akar sejenis.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Bu Wilda merintis usaha kolam pembesaran ikan lele. Ia memiliki dua kolam berbentuk persegi dengan luas 18 m&sup2; dan 8 m&sup2;. Untuk memesan bambu pembatas sepanjang satu sisi tiap kolam (dinyatakan sebagai akar dari luasnya), sederhanakan $\sqrt{18}$ dan $\sqrt{8}$, lalu jumlahkan keduanya.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#128031;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div style="display:flex;gap:10px;align-items:flex-end;">
+          <div class="area-square" style="width:64px;height:64px;background:var(--soft-teal);">18 m&sup2;</div>
+          <div class="area-square" style="width:44px;height:44px;background:var(--soft-gold);">8 m&sup2;</div>
+        </div>
+        <span class="cap">Gambar &middot; Dua Kolam Persegi</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$\sqrt{18}=\sqrt{9\times2}=3\sqrt2, \qquad \sqrt{8}=\sqrt{4\times2}=2\sqrt2$$
+    <div style="margin-top:2px;">$$3\sqrt2+2\sqrt2=5\sqrt2 \approx 7{,}1\text{ m}$$</div></div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Contoh Terbimbing Tambahan (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Bentuk akar juga bisa <b>dikalikan</b> dan <b>dikurangi</b> selama sejenis. Untuk perkalian, kalikan angka di dalam akar: $\sqrt3\times\sqrt{12}=\sqrt{36}=6$ &mdash; ini menghitung luas lahan berbentuk persegi panjang dengan panjang $\sqrt3$ m dan lebar $\sqrt{12}$ m. Untuk pengurangan sejenis: $4\sqrt5-\sqrt5=3\sqrt5$ (sama seperti $4x-x=3x$, hanya saja &ldquo;$x$&rdquo;-nya di sini adalah $\sqrt5$).</div>
+
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) $\sqrt{50}=\ldots\sqrt2$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>b) $\sqrt{27}=\ldots\sqrt3$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>c) $2\sqrt3+5\sqrt3=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>d) $7\sqrt6-3\sqrt6=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>e) $\sqrt2\times\sqrt8=$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>f) $\sqrt5\times\sqrt5=$ <span class="isian-inline" style="min-width:26px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Conjecturing</span><span class="twm-tag">Convincing</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Conjecturing &mdash; ajukan dugaan dari pola</span>Perhatikan bahwa $\sqrt4=2$, $\sqrt9=3$, $\sqrt{16}=4$ (hasilnya bulat), sedangkan $\sqrt{18}$ dan $\sqrt8$ tidak bulat. Buat dugaanmu: bilangan berapa saja di bawah 20 yang akar kuadratnya adalah bilangan bulat?</div>
+    <div class="reason-item"><span class="lbl">Convincing &mdash; yakinkan dengan bukti</span>Seorang teman berpendapat $\sqrt{18}+\sqrt8$ tidak bisa disederhanakan lebih lanjut karena angka di dalam akar berbeda (18 dan 8). Yakinkan dia bahwa pendapat itu keliru dengan menunjukkan langkah penyederhanaannya.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Nadia menulis: $\sqrt{18}+\sqrt8=\sqrt{26}$.</div>
+      <div class="tanya">Periksa dengan nilai desimal: $\sqrt{18}\approx4{,}24$, $\sqrt8\approx2{,}83$, jumlahnya $\approx7{,}07$. Berapa nilai $\sqrt{26}$? Apakah keduanya sama? Jelaskan cara yang benar.</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Bilangan &middot; Pertemuan 2 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 2 · BIDANG BILANGAN · HALAMAN B                       -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Bilangan &middot; Pertemuan 2 dari 4</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>penyederhanaan bentuk akar</b> dan <b>penjumlahan akar sejenis</b> &mdash; diterapkan pada perencanaan tiga petak sawah percobaan.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Pak Doni memiliki tiga petak sawah percobaan hidroponik berbentuk persegi dengan luas berturut-turut 12 m&sup2;, 27 m&sup2;, dan 3 m&sup2;. (a) Nyatakan sisi tiap petak dalam bentuk akar paling sederhana. (b) Jika ketiga sisi itu disambung membentuk satu garis pembatas lurus, berapa total panjangnya?</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div style="display:flex;gap:8px;align-items:flex-end;">
+          <div class="area-square" style="width:52px;height:52px;background:var(--soft-teal);">12 m&sup2;</div>
+          <div class="area-square" style="width:70px;height:70px;background:var(--soft-gold);">27 m&sup2;</div>
+          <div class="area-square" style="width:28px;height:28px;background:var(--itqan-soft);">3 m&sup2;</div>
+        </div>
+        <span class="cap">Gambar &middot; Tiga Petak Sawah</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$\sqrt{12}=2\sqrt3,\quad \sqrt{27}=3\sqrt3,\quad \sqrt3=1\sqrt3 \;\Rightarrow\; 2\sqrt3+3\sqrt3+1\sqrt3=6\sqrt3\approx10{,}4\text{ m}$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: kenali dulu bahwa ketiganya sejenis ($\sqrt3$) sebelum dihitung nilai desimalnya satu per satu &mdash; penjumlahan koefisien jauh lebih ringan. <i>(Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Tiga petak kebun sayur berluas 8 m&sup2;, 50 m&sup2;, dan 18 m&sup2;.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;flex-wrap:wrap;">
+      <div>Sisi-sisi = <span class="isian-inline" style="min-width:80px;"></span></div>
+      <div>Total sambungan = <span class="isian-inline" style="min-width:50px;"></span></div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. $\sqrt{32}=\ldots\sqrt2$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>2. $\sqrt{75}=\ldots\sqrt3$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>3. $3\sqrt7+4\sqrt7=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>4. $9\sqrt2-5\sqrt2=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>5. $\sqrt5\times\sqrt{20}=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>6. $\sqrt3\times\sqrt3=$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>7. Sebuah taman persegi berluas 48 m&sup2;. Nyatakan sisinya dalam bentuk akar paling sederhana. <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>8. Dua kolam berluas 20 m&sup2; dan 45 m&sup2;. Jumlahkan sisi kedua kolam dalam bentuk akar paling sederhana. <span class="isian-inline" style="min-width:34px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Simbol akar (&radic;) berasal dari huruf &ldquo;r&rdquo; (radix, bahasa Latin untuk &ldquo;akar&rdquo;) yang disingkat oleh matematikawan Jerman Christoph Rudolff dalam bukunya <i>Coss</i> pada tahun 1525, jauh sebelum kalkulator ada.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Sederhanakan $\sqrt{72}$ dan $\sqrt{98}$, lalu jumlahkan hasilnya.</li>
+        <li>Ukur (atau taksir) luas satu ruangan di rumahmu berbentuk persegi. Nyatakan panjang sisinya dalam bentuk akar paling sederhana bila luasnya bukan kuadrat sempurna.</li>
+        <li>Hitung $\sqrt6\times\sqrt{24}$, lalu jelaskan mengapa hasilnya berupa bilangan bulat.</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Bilangan &middot; Pertemuan 2 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 3 · BIDANG BILANGAN · HALAMAN A                       -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Bilangan &middot; Pertemuan 3 dari 4</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat merasionalkan penyebut berbentuk akar tunggal dengan mengalikan pembilang dan penyebut dengan bentuk akar yang sesuai.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Sebuah laporan efisiensi unduh internet dinyatakan $E=\dfrac{6}{\sqrt3}$. Bentuk ini belum rapi karena masih ada akar di penyebutnya. Ubahlah menjadi bentuk rasional (tanpa akar di penyebut).</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#128246;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="numcard-row"><span class="numcard">6/&radic;3</span><span class="numcard-arrow">&times;</span><span class="numcard ghost">&radic;3/&radic;3</span><span class="numcard-arrow">=</span><span class="numcard">6&radic;3/3</span><span class="numcard-arrow">=</span><span class="numcard">2&radic;3</span></div>
+        <span class="cap">Gambar &middot; Langkah Merasionalkan</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$\dfrac{6}{\sqrt3}\times\dfrac{\sqrt3}{\sqrt3}=\dfrac{6\sqrt3}{3}=2\sqrt3\approx3{,}46$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Contoh Terbimbing Tambahan (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Bila angka di dalam akar penyebut masih bisa disederhanakan, sederhanakan dulu: $\dfrac{5}{\sqrt8}=\dfrac{5}{2\sqrt2}$, lalu rasionalkan seperti biasa: $\dfrac{5}{2\sqrt2}\times\dfrac{\sqrt2}{\sqrt2}=\dfrac{5\sqrt2}{4}$.</div>
+
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) $\tfrac{4}{\sqrt2}=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>b) $\tfrac{9}{\sqrt3}=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>c) $\tfrac{10}{\sqrt5}=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>d) $\tfrac{3}{\sqrt{12}}=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>e) $\tfrac{8}{\sqrt2}=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>f) $\tfrac{7}{\sqrt7}=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Characterising</span><span class="twm-tag">Classifying</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Characterising &mdash; kenali ciri langkahnya</span>Apa ciri langkah pertama yang selalu dilakukan untuk merasionalkan bentuk $\dfrac{a}{\sqrt b}$? Jelaskan mengapa mengalikan dengan $\dfrac{\sqrt b}{\sqrt b}$ tidak mengubah nilai pecahan aslinya.</div>
+    <div class="reason-item"><span class="lbl">Classifying &mdash; kelompokkan menurut kriteria</span>Kelompokkan bentuk berikut menjadi &ldquo;sudah rasional&rdquo; dan &ldquo;belum rasional&rdquo;: $\dfrac52$, $\dfrac{3}{\sqrt7}$, $\dfrac{\sqrt6}{4}$, $\dfrac{9}{\sqrt9}$. Perhatikan bentuk $\dfrac{9}{\sqrt9}$ &mdash; apakah benar-benar belum rasional?</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Bima menulis: $\dfrac{6}{\sqrt3}=6\sqrt3$.</div>
+      <div class="tanya">Bima lupa membagi hasilnya dengan penyebut baru setelah mengalikan. Hitung nilai desimal $\dfrac{6}{\sqrt3}$ dan $6\sqrt3$ &mdash; samakah keduanya? Tuliskan langkah yang benar.</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Bilangan &middot; Pertemuan 3 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 3 · BIDANG BILANGAN · HALAMAN B                       -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Bilangan &middot; Pertemuan 3 dari 4</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>merasionalkan penyebut</b> dan <b>menyederhanakan bentuk akar</b> &mdash; diterapkan pada perbandingan efisiensi dua paket data.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Efisiensi dua paket data dinyatakan $E_1=\dfrac{12}{\sqrt6}$ dan $E_2=\sqrt{18}$. (a) Rasionalkan $E_1$ dan sederhanakan $E_2$. (b) Manakah nilainya lebih besar?</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="numcard-row"><span class="numcard">E<sub>1</sub></span><span class="numcard-arrow">=</span><span class="numcard">2&radic;6</span><span class="numcard-arrow">&asymp;</span><span class="numcard">4,90</span></div>
+      </div>
+      <div class="stage-block">
+        <div class="numcard-row"><span class="numcard gold">E<sub>2</sub></span><span class="numcard-arrow">=</span><span class="numcard gold">3&radic;2</span><span class="numcard-arrow">&asymp;</span><span class="numcard gold">4,24</span></div>
+      </div>
+    </div>
+
+    <div class="equation-block">$$E_1=\dfrac{12}{\sqrt6}\times\dfrac{\sqrt6}{\sqrt6}=\dfrac{12\sqrt6}{6}=2\sqrt6\approx4{,}90 \qquad E_2=\sqrt{18}=3\sqrt2\approx4{,}24 \qquad E_1>E_2$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat untuk membandingkan: kuadratkan dulu kedua bentuk akhirnya ($2\sqrt6\to4\times6=24$, $3\sqrt2\to9\times2=18$) tanpa perlu hitung desimal penuh &mdash; yang kuadratnya lebih besar pasti nilainya lebih besar. <i>(Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Bandingkan $E_3=\dfrac{8}{\sqrt2}$ dan $E_4=\sqrt{45}$.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;flex-wrap:wrap;">
+      <div>$E_3=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>$E_4=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>Lebih besar: <span class="isian-inline" style="min-width:26px;"></span></div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. $\dfrac{5}{\sqrt5}=$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>2. $\dfrac{20}{\sqrt{10}}=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>3. $\dfrac{6}{\sqrt2}=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>4. $\dfrac{15}{\sqrt3}=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>5. $\dfrac{4}{\sqrt{20}}=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>6. $\dfrac{18}{\sqrt6}=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>7. Sebuah rumus fisika sederhana menghasilkan $\dfrac{9}{\sqrt3}$ m/s. Rasionalkan dan taksir nilai desimalnya. <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>8. Bandingkan $\dfrac{10}{\sqrt2}$ dan $\sqrt{40}$ &mdash; manakah lebih besar? <span class="isian-inline" style="min-width:34px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Sebelum kalkulator ditemukan, membagi dengan bilangan desimal tak berujung seperti $\sqrt3\approx1{,}732\ldots$ sangat merepotkan bila dihitung manual. Merasionalkan penyebut mengubahnya menjadi perkalian dengan bilangan bulat, jauh lebih mudah dikerjakan dengan tangan.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Rasionalkan $\dfrac{14}{\sqrt7}$ dan $\dfrac{9}{\sqrt{27}}$.</li>
+        <li>Bandingkan $\dfrac{16}{\sqrt8}$ dengan $\sqrt{32}$ &mdash; apakah keduanya sama nilainya? Buktikan.</li>
+        <li>Jelaskan dengan kalimatmu sendiri mengapa merasionalkan penyebut tidak mengubah nilai asli suatu pecahan.</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Bilangan &middot; Pertemuan 3 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 4 · BIDANG BILANGAN · HALAMAN A (SINTESIS)            -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Bilangan &middot; Pertemuan 4 dari 4 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menuliskan bilangan sangat besar atau sangat kecil dalam notasi ilmiah, serta melakukan operasi perkalian dan pembagian notasi ilmiah.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Sebuah aplikasi belajar daring mencatat total 4.500.000 unduhan sepanjang tahun ini. Aplikasi B tercatat $3{,}2\times10^5$ unduhan pada periode yang sama. Nyatakan 4.500.000 dalam notasi ilmiah, lalu tentukan berapa kali lipat unduhan aplikasi A dibanding aplikasi B.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#128242;</div><div class="icon-plain">&#128202;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="numcard-row"><span class="numcard" style="font-size:9pt;">4.500.000</span><span class="numcard-arrow">geser 6 angka</span><span class="numcard">4,5&times;10<sup>6</sup></span></div>
+        <span class="cap">Gambar &middot; Pergeseran Koma</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$4.500.000=4{,}5\times10^6 \qquad \dfrac{4{,}5\times10^6}{3{,}2\times10^5}\approx14{,}1\text{ kali lipat}$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Contoh Terbimbing Tambahan (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Notasi ilmiah juga dipakai untuk angka yang sangat <b>kecil</b>. Ukuran satu partikel debu pada pendingin ruang server adalah 0,000032 m, ditulis $3{,}2\times10^{-5}$ m (pangkat negatif karena angkanya kurang dari 1). Bila terdapat $2\times10^3$ partikel berjajar, total panjang barisannya adalah $(3{,}2\times10^{-5})\times(2\times10^3)=6{,}4\times10^{-2}$ m $=0{,}064$ m.</div>
+
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) $67.000.000=\ldots\times10^{\ldots}$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>b) $0{,}00091=\ldots\times10^{\ldots}$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>c) $(2\times10^3)\times(3\times10^2)=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>d) $(8\times10^6)\div(2\times10^2)=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>e) $5{,}2\times10^4$ ditulis biasa $=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>f) $7\times10^{-3}$ ditulis biasa $=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Critiquing</span><span class="twm-tag">Improving</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Critiquing &mdash; periksa apakah sudah tepat</span>Seorang siswa menulis $45\times10^5$ sebagai notasi ilmiah dari 4.500.000. Kritisi jawaban ini: apakah sudah memenuhi syarat notasi ilmiah (koefisien harus antara 1 dan 10)?</div>
+    <div class="reason-item"><span class="lbl">Improving &mdash; perbaiki agar tepat</span>Perbaiki penulisan $45\times10^5$ tadi agar memenuhi syarat notasi ilmiah yang benar, dan jelaskan langkah perbaikannya.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Zaki menulis: $0{,}00047=4{,}7\times10^5$.</div>
+      <div class="tanya">Hitung berapa nilai $4{,}7\times10^5$ sebenarnya. Apakah sama dengan 0,00047? Untuk bilangan lebih kecil dari 1, apakah pangkat 10-nya seharusnya positif atau negatif?</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Bilangan &middot; Pertemuan 4 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 4 · BIDANG BILANGAN · HALAMAN B (SINTESIS)            -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Bilangan &middot; Pertemuan 4 dari 4 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>sifat pangkat</b>, <b>bentuk akar &amp; rasionalisasi</b>, dan <b>notasi ilmiah</b> &mdash; sintesis penutup Bidang Bilangan.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Sebuah startup rintisan memiliki total pengguna $2^{10}$ orang setelah promosi berpangkat. Biaya server per pengguna dinyatakan $\dfrac{8}{\sqrt2}$ ribu rupiah (belum dirasionalkan). (a) Hitung total pengguna dan nyatakan dalam notasi ilmiah. (b) Rasionalkan biaya per pengguna. (c) Taksir total biaya seluruh pengguna.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="numcard-row"><span class="numcard">2<sup>10</sup></span><span class="numcard-arrow">=</span><span class="numcard">1.024</span><span class="numcard-arrow">=</span><span class="numcard">1,024&times;10<sup>3</sup></span></div>
+        <span class="cap">Total Pengguna</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$2^{10}=1.024\approx1{,}024\times10^3 \qquad \dfrac{8}{\sqrt2}=\dfrac{8\sqrt2}{2}=4\sqrt2\approx5{,}657\text{ ribu rupiah}$$
+    <div style="margin-top:2px;">$$\text{Total biaya}\approx1.024\times\text{Rp}5.657\approx\text{Rp}5{,}8\text{ juta}$$</div></div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: taksir dulu dengan pembulatan (1.000 pengguna &times; Rp5.700 &asymp; Rp5,7 juta) untuk memeriksa kewajaran hasil sebelum menghitung persis. <i>(Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Startup lain memiliki $2^8$ pengguna, biaya per pengguna $\dfrac{18}{\sqrt2}$ ribu rupiah.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;flex-wrap:wrap;">
+      <div>Total pengguna = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>Biaya/pengguna (rasional) = <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>Taksiran total biaya = <span class="isian-inline" style="min-width:50px;"></span></div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. $2^6\times2^3=$ <span class="isian-inline" style="min-width:34px;"></span> $=\ldots\times10^{\ldots}$</div>
+      <div>2. $\sqrt{200}=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>3. $\dfrac{20}{\sqrt5}=$ <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>4. $92.000.000=\ldots\times10^{\ldots}$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>5. $0{,}0000056=\ldots\times10^{\ldots}$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>6. $(3\times10^4)\times(2\times10^{-2})=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>7. Sebuah gudang data menyimpan $5\times10^7$ berkas, bertambah $2\times10^6$ berkas per bulan. Setelah 3 bulan, berapa total berkasnya? <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>8. Nyatakan hasil $\sqrt{48}+\dfrac{6}{\sqrt3}$ dalam bentuk akar paling sederhana (sejenis). <span class="isian-inline" style="min-width:40px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Jarak Bumi ke Matahari (150.000.000 km) dan ukuran sebagian besar virus (0,0000001 m) sama-sama ditulis ringkas dalam notasi ilmiah: $1{,}5\times10^8$ km dan $1\times10^{-7}$ m. Tanpa notasi ini, para ilmuwan harus menulis puluhan angka nol setiap kali mencatat data.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Nyatakan 815.000.000 dan 0,0000039 dalam notasi ilmiah.</li>
+        <li>Hitung $(6{,}4\times10^8)\div(1{,}6\times10^3)$, nyatakan hasilnya dalam notasi ilmiah yang benar.</li>
+        <li>Cari satu data besar (misal jumlah penduduk suatu negara) dan satu data kecil (misal ukuran sel) dari sumber terpercaya, lalu nyatakan keduanya dalam notasi ilmiah.</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Bilangan &middot; Pertemuan 4 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 1 · BIDANG ALJABAR · HALAMAN A                        -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Aljabar &middot; Pertemuan 1 dari 3</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat memfaktorkan bentuk aljabar tingkat lanjut, termasuk selisih dua kuadrat, pemfaktoran berkelompok, dan bentuk trinomial $ax^2+bx+c$.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Sebuah lahan parkir berbentuk persegi berukuran sisi $x$ meter akan diperluas dengan mengurangi sisi tetangganya sepanjang 3 meter, membentuk persegi panjang. Luas lahan baru dinyatakan $x^2-9$. Faktorkan bentuk ini untuk menemukan ukuran panjang dan lebar lahan parkir yang baru.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#128663;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="area-square" style="width:80px;height:80px;background:var(--soft-teal);position:relative;">
+          <span style="position:absolute;top:2px;left:2px;font-size:6.5pt;">(x&minus;3)</span>
+          <span style="position:absolute;bottom:2px;right:2px;font-size:6.5pt;">(x+3)</span>
+          x&sup2;&minus;9
+        </div>
+        <span class="cap">Gambar &middot; Model Luas</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$x^2-9=(x-3)(x+3)$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Pemfaktoran Berkelompok &amp; Trinomial (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Untuk bentuk 4 suku seperti $x^3+2x^2+3x+6$, gunakan <b>pemfaktoran berkelompok</b>: kelompokkan dua-dua, $(x^3+2x^2)+(3x+6)=x^2(x+2)+3(x+2)=(x+2)(x^2+3)$. Untuk trinomial $ax^2+bx+c$ dengan $a\neq1$ seperti $2x^2+7x+3$, cari dua bilangan yang hasil kalinya $a\times c=6$ dan jumlahnya $b=7$, yaitu 6 dan 1: $2x^2+6x+x+3=2x(x+3)+1(x+3)=(2x+1)(x+3)$.</div>
+
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) $x^2-16=$ <span class="isian-inline" style="min-width:60px;"></span></div>
+      <div>b) $4x^2-25=$ <span class="isian-inline" style="min-width:60px;"></span></div>
+      <div>c) $x^3+3x^2+2x+6=$ <span class="isian-inline" style="min-width:70px;"></span></div>
+      <div>d) $3x^2+10x+3=$ <span class="isian-inline" style="min-width:70px;"></span></div>
+      <div>e) $2x^2+5x+2=$ <span class="isian-inline" style="min-width:60px;"></span></div>
+      <div>f) $x^2-49=$ <span class="isian-inline" style="min-width:60px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Specialising</span><span class="twm-tag">Generalising</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Specialising &mdash; uji dengan satu contoh angka</span>Substitusikan $x=5$ ke $x^2-9$ dan ke $(x-3)(x+3)$ secara terpisah. Apakah kedua hasilnya sama? Ulangi dengan $x=10$. Apa yang ditunjukkan hasil ini?</div>
+    <div class="reason-item"><span class="lbl">Generalising &mdash; rumuskan aturan umum</span>Dari pola $x^2-9=(x-3)(x+3)$ dan $4x^2-25=(2x-5)(2x+5)$, tuliskan rumus umum untuk memfaktorkan $a^2-b^2$ dalam bentuk simbol.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Fahri memfaktorkan: $x^2+9=(x-3)(x+3)$.</div>
+      <div class="tanya">Kalikan kembali $(x-3)(x+3)$ &mdash; apakah hasilnya $x^2+9$ atau $x^2-9$? Mengapa $x^2+9$ (jumlah dua kuadrat) tidak bisa difaktorkan dengan cara yang sama seperti selisih dua kuadrat?</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Aljabar &middot; Pertemuan 1 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 1 · BIDANG ALJABAR · HALAMAN B                        -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Aljabar &middot; Pertemuan 1 dari 3</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>pemfaktoran selisih kuadrat</b> dan <b>pemfaktoran trinomial</b> &mdash; diterapkan pada desain kemasan usaha kecil.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Alas kotak kemasan berbentuk persegi panjang memiliki luas $x^2-36$ cm&sup2; untuk desain A, dan $3x^2+11x+6$ cm&sup2; untuk desain B. Faktorkan kedua bentuk luas ini untuk menemukan kemungkinan ukuran panjang &times; lebar tiap desain.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="numcard-row"><span class="numcard">x<sup>2</sup>&minus;36</span><span class="numcard-arrow">=</span><span class="numcard">(x&minus;6)(x+6)</span></div>
+        <span class="cap">Desain A</span>
+      </div>
+    </div>
+    <div class="illustration-row" style="margin-top:4px;">
+      <div class="stage-block">
+        <div class="numcard-row"><span class="numcard gold">3x<sup>2</sup>+11x+6</span><span class="numcard-arrow">=</span><span class="numcard gold">(3x+2)(x+3)</span></div>
+        <span class="cap">Desain B</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$x^2-36=(x-6)(x+6) \qquad 3x^2+11x+6=(3x+2)(x+3)$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat untuk desain A: kenali langsung pola $a^2-b^2$ tanpa perlu mencari pasangan bilangan seperti pada trinomial &mdash; jauh lebih ringkas. <i>(Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Desain C berluas $x^2-64$ cm&sup2;, desain D berluas $2x^2+9x+4$ cm&sup2;.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;flex-wrap:wrap;">
+      <div>Desain C = <span class="isian-inline" style="min-width:70px;"></span></div>
+      <div>Desain D = <span class="isian-inline" style="min-width:70px;"></span></div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. $x^2-4=$ <span class="isian-inline" style="min-width:60px;"></span></div>
+      <div>2. $9x^2-1=$ <span class="isian-inline" style="min-width:60px;"></span></div>
+      <div>3. $x^2+5x+6=$ <span class="isian-inline" style="min-width:60px;"></span></div>
+      <div>4. $2x^2+7x+3=$ <span class="isian-inline" style="min-width:60px;"></span></div>
+      <div>5. $x^3+4x^2+3x+12=$ <span class="isian-inline" style="min-width:70px;"></span></div>
+      <div>6. $5x^2+16x+3=$ <span class="isian-inline" style="min-width:60px;"></span></div>
+      <div>7. Luas alas kotak $x^2-100$ cm&sup2;. Faktorkan untuk menentukan panjang &times; lebar. <span class="isian-inline" style="min-width:60px;"></span></div>
+      <div>8. Luas alas kotak lain $4x^2+13x+3$ cm&sup2;. Faktorkan bentuk ini. <span class="isian-inline" style="min-width:60px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Pemfaktoran $a^2-b^2=(a-b)(a+b)$ dipakai pedagang zaman dahulu untuk mempercepat perkalian mental &mdash; misalnya $47\times53=(50-3)(50+3)=50^2-3^2=2.500-9=2.491$, jauh lebih cepat daripada mengalikan langsung.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Faktorkan $x^2-81$ dan $2x^2+9x+9$.</li>
+        <li>Faktorkan berkelompok: $x^3+5x^2+2x+10$.</li>
+        <li>Gunakan trik $a^2-b^2$ untuk menghitung $98\times102$ secara mental, lalu tuliskan langkahmu.</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Aljabar &middot; Pertemuan 1 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 2 · BIDANG ALJABAR · HALAMAN A                        -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Aljabar &middot; Pertemuan 2 dari 3</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menyelesaikan persamaan kuadrat dengan metode pemfaktoran dan metode melengkapkan kuadrat sempurna.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Sebuah drone pengiriman melepas paket dari ketinggian tertentu. Tinggi paket (dalam meter) mengikuti persamaan $h=-x^2+7x-10$, dengan $x$ dalam detik. Tentukan pada detik keberapa paket menyentuh tanah (yaitu saat $h=0$) dengan memfaktorkan persamaan $-x^2+7x-10=0$.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#128230;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="numcard-row"><span class="numcard">x<sup>2</sup>&minus;7x+10=0</span><span class="numcard-arrow">=</span><span class="numcard">(x&minus;2)(x&minus;5)=0</span></div>
+        <span class="cap">Gambar &middot; Bentuk Difaktorkan</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$-x^2+7x-10=0 \;\Rightarrow\; x^2-7x+10=0 \;\Rightarrow\; (x-2)(x-5)=0 \;\Rightarrow\; x=2\text{ atau }x=5$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Melengkapkan Kuadrat Sempurna (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Tidak semua persamaan kuadrat mudah difaktorkan. Untuk $x^2+6x-7=0$, gunakan <b>melengkapkan kuadrat sempurna</b>: pindahkan konstanta, $x^2+6x=7$; tambahkan $\left(\tfrac{6}{2}\right)^2=9$ ke kedua ruas: $x^2+6x+9=16$; ruas kiri menjadi kuadrat sempurna: $(x+3)^2=16$; akarkan: $x+3=\pm4$, sehingga $x=1$ atau $x=-7$.</div>
+
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) $(x-3)(x-4)=0 \Rightarrow x=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>b) $x^2-5x+6=0 \Rightarrow x=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>c) $x^2+2x-8=0 \Rightarrow x=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>d) $x^2+4x=\ldots \Rightarrow (x+2)^2=\ldots+4$</div>
+      <div>e) $x^2-6x+5=0$, lengkapi kuadrat $\Rightarrow x=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>f) $x^2-2x-15=0 \Rightarrow x=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Conjecturing</span><span class="twm-tag">Convincing</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Conjecturing &mdash; ajukan dugaan dari pola</span>Perhatikan bahwa $(x-2)(x-5)=0$ memiliki solusi $x=2$ dan $x=5$ &mdash; tepat sama dengan angka di dalam kurung (dengan tanda berlawanan). Buat dugaan: bagaimana cara membaca solusi langsung dari bentuk $(x-a)(x-b)=0$ tanpa perlu menghitung ulang?</div>
+    <div class="reason-item"><span class="lbl">Convincing &mdash; yakinkan dengan bukti</span>Yakinkan temanmu bahwa dugaanmu benar dengan menguji pada $(x+3)(x-7)=0$. Tunjukkan langkahnya sampai memperoleh solusi $x$.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Vino menulis: dari $(x-2)(x-5)=0$, karena hasil kali dua bilangan adalah nol, maka $x-2=0$ dan $x-5=0$ harus berlaku <b>sekaligus</b>, sehingga $x=2$ dan $x=5$ pada saat bersamaan.</div>
+      <div class="tanya">Bisakah satu nilai $x$ sama dengan 2 dan 5 secara bersamaan? Jelaskan mengapa &ldquo;atau&rdquo; (bukan &ldquo;dan&rdquo;) adalah kata penghubung yang tepat untuk kedua solusi ini.</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Aljabar &middot; Pertemuan 2 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 2 · BIDANG ALJABAR · HALAMAN B                        -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Aljabar &middot; Pertemuan 2 dari 3</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>penyelesaian dengan pemfaktoran</b> dan <b>melengkapkan kuadrat sempurna</b> &mdash; diterapkan pada lintasan bola dalam pertandingan futsal.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Lintasan tendangan bola futsal mengikuti $h=-x^2+8x-12$ (meter, terhadap waktu $x$ detik). (a) Faktorkan untuk menemukan kapan bola menyentuh lantai. (b) Gunakan melengkapkan kuadrat pada $x^2-8x+12=0$ untuk memeriksa jawabanmu dengan cara berbeda.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="numcard-row"><span class="numcard">(x&minus;2)(x&minus;6)=0</span></div>
+        <span class="cap">Cara Pemfaktoran</span>
+      </div>
+      <div class="cpa-arrow">=</div>
+      <div class="stage-block">
+        <div class="numcard-row"><span class="numcard gold">(x&minus;4)<sup>2</sup>=4</span></div>
+        <span class="cap">Cara Melengkapkan Kuadrat</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$x^2-8x+12=0 \Rightarrow (x-2)(x-6)=0 \Rightarrow x=2\text{ atau }x=6$$
+    <div style="margin-top:2px;">$$x^2-8x=-12 \Rightarrow (x-4)^2=4 \Rightarrow x-4=\pm2 \Rightarrow x=2\text{ atau }x=6\ \checkmark$$</div></div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: bila persamaan mudah difaktorkan (bilangan bulat, hasil kali dan jumlah pas), pemfaktoran jauh lebih ringkas daripada melengkapkan kuadrat. <i>(Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Selesaikan $x^2-10x+21=0$ dengan pemfaktoran, lalu periksa dengan melengkapkan kuadrat.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;flex-wrap:wrap;">
+      <div>Pemfaktoran: $x=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>Melengkapkan kuadrat: $x=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. $x^2-9x+20=0 \Rightarrow x=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>2. $x^2+3x-10=0 \Rightarrow x=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>3. $x^2-4x-5=0$ (kuadrat sempurna) $\Rightarrow x=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>4. $x^2+10x=\ldots \Rightarrow (x+5)^2=\ldots+25$</div>
+      <div>5. $x^2-12x+27=0 \Rightarrow x=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>6. $x^2+x-6=0 \Rightarrow x=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>7. Lintasan roket mainan $h=-x^2+6x-8$. Tentukan kapan roket mendarat. <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>8. Selesaikan $x^2-14x+45=0$ dengan melengkapkan kuadrat sempurna. <span class="isian-inline" style="min-width:50px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Metode melengkapkan kuadrat sudah dipakai matematikawan Babilonia sekitar 4.000 tahun lalu &mdash; jauh sebelum notasi aljabar modern ada &mdash; mereka menggambarkannya secara geometris dengan menyusun ulang persegi dan persegi panjang di atas tanah liat.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Selesaikan $x^2-11x+24=0$ dengan pemfaktoran.</li>
+        <li>Selesaikan $x^2+8x-9=0$ dengan melengkapkan kuadrat sempurna.</li>
+        <li>Jelaskan dengan kalimatmu sendiri kapan sebaiknya memakai pemfaktoran dan kapan sebaiknya memakai melengkapkan kuadrat.</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Aljabar &middot; Pertemuan 2 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 3 · BIDANG ALJABAR · HALAMAN A (SINTESIS)             -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Aljabar &middot; Pertemuan 3 dari 3 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menyelesaikan persamaan kuadrat dengan rumus kuadratik (rumus abc) serta menentukan jumlah dan hasil kali akar tanpa menyelesaikan persamaannya penuh.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Lintasan anak panah dari busur olahraga mengikuti $h=-2x^2+5x+3$ (meter). Persamaan $2x^2-5x-3=0$ tidak mudah difaktorkan dengan tebakan cepat. Gunakan <b>rumus kuadratik</b> $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$ untuk menemukan kapan anak panah menyentuh tanah.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#127993;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="numcard-row"><span class="numcard">a=2</span><span class="numcard">b=&minus;5</span><span class="numcard">c=&minus;3</span></div>
+        <span class="cap">Gambar &middot; Identifikasi Koefisien</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$x=\dfrac{-(-5)\pm\sqrt{(-5)^2-4(2)(-3)}}{2(2)}=\dfrac{5\pm\sqrt{25+24}}{4}=\dfrac{5\pm7}{4}$$
+    <div style="margin-top:2px;">$$x=3\ \text{atau}\ x=-\tfrac12\ \text{(ditolak, waktu tak boleh negatif)}$$</div></div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Jumlah &amp; Hasil Kali Akar (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Tanpa menyelesaikan persamaan penuh, jumlah dan hasil kali akar $ax^2+bx+c=0$ bisa langsung dihitung: $x_1+x_2=-\dfrac{b}{a}$ dan $x_1\times x_2=\dfrac{c}{a}$. Untuk $2x^2-5x-3=0$: jumlah akar $=-\dfrac{-5}{2}=\dfrac52$, hasil kali akar $=\dfrac{-3}{2}$. Periksa: $3+(-\tfrac12)=\tfrac52\ \checkmark$ dan $3\times(-\tfrac12)=-\tfrac32\ \checkmark$.</div>
+
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) $x^2-3x-4=0$: $a=$<span class="isian-inline" style="min-width:20px;"></span> $b=$<span class="isian-inline" style="min-width:20px;"></span> $c=$<span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>b) Diskriminan soal (a): $b^2-4ac=$ <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>c) $x=$ (rumus kuadratik) <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>d) Jumlah akar $x^2-3x-4=0$ = <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>e) Hasil kali akar $x^2-3x-4=0$ = <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>f) $2x^2+x-6=0$: jumlah akar = <span class="isian-inline" style="min-width:30px;"></span>, hasil kali = <span class="isian-inline" style="min-width:30px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Characterising</span><span class="twm-tag">Classifying</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Characterising &mdash; kenali ciri penentunya</span>Nilai $b^2-4ac$ (disebut diskriminan) menentukan jenis akar suatu persamaan kuadrat. Apa ciri yang membedakan persamaan dengan diskriminan positif, nol, dan negatif? Uji pada $x^2-6x+9=0$ (diskriminan nol) &mdash; berapa akarnya?</div>
+    <div class="reason-item"><span class="lbl">Classifying &mdash; kelompokkan menurut kriteria</span>Kelompokkan persamaan berikut berdasarkan tanda diskriminannya (positif / nol / negatif): $x^2-5x+6=0$, $x^2-4x+4=0$, $x^2+2x+5=0$. Hitung diskriminan tiap persamaan untuk membuktikan pengelompokanmu.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Untuk $x^2-3x-4=0$, Reza menghitung jumlah akar sebagai $-\dfrac{-4}{1}=4$ (memakai nilai $c$, bukan $b$).</div>
+      <div class="tanya">Selesaikan $x^2-3x-4=0$ dengan pemfaktoran untuk menemukan akar sebenarnya, lalu jumlahkan. Apakah hasilnya 4? Rumus mana yang seharusnya dipakai Reza untuk jumlah akar?</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Aljabar &middot; Pertemuan 3 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 3 · BIDANG ALJABAR · HALAMAN B (SINTESIS)             -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Aljabar &middot; Pertemuan 3 dari 3 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>pemfaktoran</b>, <b>rumus kuadratik</b>, dan <b>jumlah &amp; hasil kali akar</b> &mdash; sintesis penutup Bidang Aljabar.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Dua UMKM bersaudara berbagi modal usaha sebesar Rp70 juta, dengan hasil kali modal mereka (dalam juta rupiah) sebesar 1.200. (a) Nyatakan sebagai persamaan kuadrat dengan $x$ = modal UMKM pertama. (b) Selesaikan dengan rumus kuadratik. (c) Periksa jawabanmu memakai jumlah &amp; hasil kali akar.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="numcard-row"><span class="numcard">x+y=70</span><span class="numcard-arrow">&amp;</span><span class="numcard">xy=1.200</span></div>
+        <span class="cap">Dua Modal UMKM</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$x(70-x)=1.200 \;\Rightarrow\; x^2-70x+1.200=0 \;\Rightarrow\; x=\dfrac{70\pm\sqrt{4.900-4.800}}{2}=\dfrac{70\pm10}{2}$$
+    <div style="margin-top:2px;">$$x=40\text{ atau }x=30$$</div>
+    <div style="margin-top:2px;">$$\text{Periksa: }40+30=70\ \checkmark \qquad 40\times30=1.200\ \checkmark$$</div></div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: setelah mendapat solusi, langsung uji dengan rumus jumlah &amp; hasil kali akar &mdash; tidak perlu substitusi ulang ke persamaan asal yang lebih panjang. <i>(Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Dua bilangan berjumlah 18 dan hasil kali 77. Tentukan kedua bilangan itu dengan rumus kuadratik.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;flex-wrap:wrap;">
+      <div>Persamaan: <span class="isian-inline" style="min-width:80px;"></span></div>
+      <div>$x=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. $x^2+2x-8=0$ (rumus kuadratik) $\Rightarrow x=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>2. $3x^2-2x-1=0 \Rightarrow x=$ <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>3. Diskriminan $x^2+4x+4=0$ = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>4. Jumlah akar $x^2-9x+14=0$ = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>5. Hasil kali akar $2x^2-3x-5=0$ = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>6. Jumlah akar $3x^2+7x-6=0$ = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>7. Dua bilangan berjumlah 15, hasil kali 56. Tentukan keduanya dengan persamaan kuadrat. <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>8. Tanpa menyelesaikan penuh, tentukan jumlah dan hasil kali akar $x^2-11x+24=0$. <span class="isian-inline" style="min-width:50px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Rumus kuadratik yang kita pakai sekarang telah dikenal sejak abad ke-9 oleh matematikawan Persia Al-Khawarizmi, yang namanya menjadi asal kata &ldquo;algoritma&rdquo;. Karyanya <i>Al-Jabr</i> juga menjadi asal kata &ldquo;aljabar&rdquo;.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+    <div class="reflect-row" style="margin-top:2px;">
+      <span>Dari tiga cara menyelesaikan persamaan kuadrat (faktor, kuadrat sempurna, rumus abc), yang paling mudah bagiku adalah</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:100px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Selesaikan $2x^2-7x-4=0$ dengan rumus kuadratik.</li>
+        <li>Dua bilangan berjumlah 22 dan hasil kali 112. Tentukan keduanya.</li>
+        <li>Bandingkan hasil pemfaktoran, melengkapkan kuadrat, dan rumus kuadratik untuk $x^2-5x+6=0$ &mdash; tunjukkan ketiganya memberi jawaban yang sama.</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Aljabar &middot; Pertemuan 3 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 1 · BIDANG PENGUKURAN · HALAMAN A (SINTESIS)          -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Pengukuran &middot; Pertemuan 1 dari 1 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menerapkan sifat pangkat dan bentuk akar untuk menghitung luas dan volume bangun pada masalah pengukuran nyata.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Sebuah wadah penyimpanan air berbentuk kubus memiliki volume $27.000$ cm&sup3;. Untuk menentukan panjang rusuknya, kita perlu <b>akar pangkat tiga</b> dari volume tersebut: $\sqrt[3]{27.000}$. Tentukan panjang rusuk wadah itu.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#128167;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="area-square" style="width:64px;height:64px;background:var(--soft-teal);">s&sup3;<br>=27.000</div>
+        <span class="cap">Gambar &middot; Kubus Wadah</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$27.000=27\times1.000=3^3\times10^3=(3\times10)^3=30^3 \;\Rightarrow\; \sqrt[3]{27.000}=30\text{ cm}$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Pangkat &amp; Akar pada Luas Panel (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Sifat pangkat juga berguna untuk luas: sebuah panel surya persegi memiliki luas $196$ cm&sup2;. Sisi panel $=\sqrt{196}=14$ cm. Bila 4 panel identik disusun sejajar memanjang, total panjangnya $=4\times14=56$ cm, dan bila disusun membentuk persegi besar $2\times2$ panel, luas totalnya $=(2\times14)^2=28^2=784$ cm&sup2; $=4\times196$ &mdash; sesuai sifat $(ka)^2=k^2a^2$.</div>
+
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) Volume kubus 8.000 cm&sup3;, rusuk = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>b) Luas persegi 225 cm&sup2;, sisi = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>c) Volume kubus 64 cm&sup3;, rusuk = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>d) Luas persegi 169 cm&sup2;, sisi = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>e) Volume kubus 1.000.000 cm&sup3;, rusuk = <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>f) Luas persegi 50 cm&sup2;, sisi (bentuk akar) = <span class="isian-inline" style="min-width:40px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Specialising</span><span class="twm-tag">Critiquing</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Specialising &mdash; uji dengan satu contoh angka</span>Uji apakah menggandakan rusuk kubus akan menggandakan volumenya juga. Hitung volume kubus rusuk 2 cm, lalu volume kubus rusuk 4 cm. Apakah volumenya tepat dua kali lipat?</div>
+    <div class="reason-item"><span class="lbl">Critiquing &mdash; periksa apakah sudah tepat</span>Seorang siswa menyimpulkan dari hasil di atas bahwa &ldquo;menggandakan rusuk kubus selalu menggandakan volumenya, sama seperti pada persegi&rdquo;. Kritisi kesimpulan itu: apakah benar berlaku faktor kali dua yang sama, mengingat sifat pangkat $(2s)^3=2^3\times s^3$?</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Yusuf berkata: &ldquo;Bila rusuk kubus digandakan, volumenya juga tepat digandakan (dikali 2).&rdquo;</div>
+      <div class="tanya">Hitung volume kubus rusuk 3 cm dan kubus rusuk 6 cm (rusuk digandakan). Berapa kali lipat volumenya bertambah? Apakah benar hanya 2 kali?</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Pengukuran &middot; Pertemuan 1 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 1 · BIDANG PENGUKURAN · HALAMAN B (SINTESIS)          -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Pengukuran &middot; Pertemuan 1 dari 1 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>akar kuadrat untuk luas</b> dan <b>akar pangkat tiga untuk volume</b> &mdash; diterapkan pada perencanaan kemasan usaha kerajinan sabun.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Usaha kerajinan sabun batangan mencetak sabun berbentuk kubus dengan volume 512 cm&sup3; per batang. Kemasan luar berbentuk persegi dengan luas alas 289 cm&sup2;. (a) Tentukan rusuk sabun. (b) Tentukan sisi alas kemasan. (c) Apakah sabun muat di dalam kemasan (bandingkan rusuk sabun dengan sisi alas)?</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="area-square" style="width:60px;height:60px;background:var(--soft-teal);">512 cm&sup3;</div>
+        <span class="cap">Sabun (Kubus)</span>
+      </div>
+      <div class="cpa-arrow">vs</div>
+      <div class="stage-block">
+        <div class="area-square" style="width:70px;height:70px;background:var(--soft-gold);">289 cm&sup2;</div>
+        <span class="cap">Alas Kemasan</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$\sqrt[3]{512}=8\text{ cm (rusuk sabun)} \qquad \sqrt{289}=17\text{ cm (sisi alas kemasan)} \qquad 8<17\ \Rightarrow\ \text{muat}$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: kenali dulu $512=2^9=(2^3)^3=8^3$ tanpa perlu mencoba-coba bilangan satu per satu. <i>(Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Sabun jenis lain volumenya 1.331 cm&sup3;, kemasannya berluas alas 400 cm&sup2;.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;flex-wrap:wrap;">
+      <div>Rusuk sabun = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>Sisi kemasan = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>Muat? <span class="isian-inline" style="min-width:34px;"></span></div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. $\sqrt[3]{125}=$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>2. $\sqrt{324}=$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>3. Volume kubus rusuk 9 cm = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>4. Luas persegi sisi 15 cm = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>5. $\sqrt[3]{1.728}=$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>6. $\sqrt{441}=$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>7. Tangki air kubus bervolume 216 m&sup3;. Berapa panjang rusuknya? <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>8. Taman persegi berluas 361 m&sup2;. Berapa panjang sisinya, dan berapa keliling pagarnya? <span class="isian-inline" style="min-width:34px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Kubus Rubik yang populer sejak 1974 memiliki $3^3=27$ kubus kecil penyusun &mdash; tepat menunjukkan mengapa pangkat tiga sering disebut &ldquo;kubik&rdquo;, karena berkaitan langsung dengan volume bangun kubus.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Sebuah kubus penyimpanan bervolume 4.096 cm&sup3;. Tentukan panjang rusuknya.</li>
+        <li>Sebuah lapangan persegi berluas 900 m&sup2;. Tentukan panjang sisinya dan keliling pagarnya.</li>
+        <li>Jelaskan mengapa mencari rusuk kubus dari volumenya memakai akar pangkat tiga, bukan akar pangkat dua.</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Pengukuran &middot; Pertemuan 1 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 1 · BIDANG GEOMETRI · HALAMAN A                       -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Geometri &middot; Pertemuan 1 dari 2</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menjelaskan hubungan geometris antara akar kuadrat dan sisi persegi, termasuk menentukan panjang diagonal persegi dari panjang sisinya.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Pengrajin ubin memotong ubin persegi menjadi dua segitiga siku-siku sama kaki dengan cara membelah menurut diagonalnya. Jika ubin berukuran sisi 5 cm, berapa panjang diagonal potongannya? Gunakan Teorema Pythagoras: $d^2=s^2+s^2$.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#129704;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="diagram-wrap"><svg width="90" height="90" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="70" height="70" fill="#E0F2F1" stroke="#0F2A4E" stroke-width="1.6"/><line x1="10" y1="10" x2="80" y2="80" stroke="#B08420" stroke-width="1.6" stroke-dasharray="3,2"/><text x="40" y="8" font-size="7.5" fill="#0F2A4E" font-weight="700" text-anchor="middle">5 cm</text><text x="4" y="48" font-size="7.5" fill="#0F2A4E" font-weight="700" text-anchor="middle" transform="rotate(-90 4 48)">5 cm</text><text x="52" y="52" font-size="7.5" fill="#7A5A15" font-weight="700">d</text></svg></div>
+        <span class="cap">Gambar &middot; Diagonal Persegi</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$d^2=5^2+5^2=50 \;\Rightarrow\; d=\sqrt{50}=5\sqrt2\approx7{,}07\text{ cm}$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Rumus Umum Diagonal Persegi (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Karena kedua sisi persegi selalu sama panjang $s$, rumus diagonal persegi bisa digeneralisasi: $d^2=s^2+s^2=2s^2$, sehingga $d=s\sqrt2$. Ini berlaku untuk persegi ukuran berapa pun. Sebaliknya, bila diagonal $d$ diketahui, sisi persegi dapat dicari dengan $s=\dfrac{d}{\sqrt2}=\dfrac{d\sqrt2}{2}$ (dirasionalkan).</div>
+
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) Persegi sisi 6 cm, diagonal = <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>b) Persegi sisi 4 cm, diagonal = <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>c) Persegi sisi 10 cm, diagonal = <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>d) Diagonal $8\sqrt2$ cm, sisi = <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>e) Persegi sisi 3 cm, diagonal (desimal, 2 angka) &asymp; <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>f) Diagonal $s\sqrt2$ untuk $s=12$ cm = <span class="isian-inline" style="min-width:40px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Generalising</span><span class="twm-tag">Convincing</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Generalising &mdash; rumuskan aturan umum</span>Dari beberapa contoh persegi dengan sisi berbeda, tuliskan mengapa rumus $d=s\sqrt2$ berlaku untuk semua ukuran persegi, tidak hanya untuk sisi 5 cm.</div>
+    <div class="reason-item"><span class="lbl">Convincing &mdash; yakinkan dengan bukti</span>Yakinkan temanmu bahwa rasio $\dfrac{d}{s}$ pada persegi selalu sama (yaitu $\sqrt2$), berapa pun ukuran persegi itu, dengan membandingkan hasil dari dua persegi berbeda ukuran.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Sari menghitung diagonal persegi sisi 6 cm sebagai $d=6+6=12$ cm.</div>
+      <div class="tanya">Gunakan Teorema Pythagoras untuk menghitung diagonal sebenarnya. Apakah diagonal persegi sama dengan jumlah dua sisinya? Jelaskan mengapa langkah Sari keliru secara geometris (bayangkan bentuk segitiga yang terbentuk).</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Geometri &middot; Pertemuan 1 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 1 · BIDANG GEOMETRI · HALAMAN B                       -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Geometri &middot; Pertemuan 1 dari 2</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>diagonal persegi</b> dan <b>penyederhanaan bentuk akar</b> &mdash; diterapkan pada pemasangan layar televisi.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Sebuah layar televisi berbentuk persegi memiliki sisi 40 cm. Ukuran televisi biasa dinyatakan berdasarkan panjang diagonalnya. (a) Hitung diagonal layar dalam bentuk akar paling sederhana. (b) Taksir nilai desimalnya (2 angka di belakang koma).</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="diagram-wrap"><svg width="90" height="90" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="70" height="70" fill="#FCF6E5" stroke="#0F2A4E" stroke-width="1.6"/><line x1="10" y1="10" x2="80" y2="80" stroke="#B08420" stroke-width="1.6" stroke-dasharray="3,2"/><text x="40" y="8" font-size="7.5" fill="#0F2A4E" font-weight="700" text-anchor="middle">40 cm</text><text x="52" y="52" font-size="7.5" fill="#7A5A15" font-weight="700">d</text></svg></div>
+        <span class="cap">Gambar &middot; Layar Televisi</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$d=40\sqrt2=\sqrt{1.600\times2}=\sqrt{3.200}\text{ cm} \qquad 40\sqrt2\approx56{,}57\text{ cm}$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: langsung pakai $d=s\sqrt2$ tanpa perlu menuliskan ulang Teorema Pythagoras setiap kali &mdash; berlaku khusus untuk persegi. <i>(Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Sebuah bingkai foto persegi bersisi 25 cm.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;flex-wrap:wrap;">
+      <div>Diagonal (bentuk akar) = <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>Taksiran desimal &asymp; <span class="isian-inline" style="min-width:34px;"></span> cm</div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. Persegi sisi 7 cm, diagonal = <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>2. Persegi sisi 9 cm, diagonal = <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>3. Diagonal $6\sqrt2$ cm, sisi = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>4. Persegi sisi 20 cm, diagonal (desimal 2 angka) &asymp; <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>5. Persegi sisi 11 cm, diagonal = <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>6. Diagonal $10\sqrt2$ cm, sisi = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>7. Sebuah taplak meja persegi bersisi 90 cm. Hitung diagonalnya dalam bentuk akar paling sederhana. <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>8. Layar ponsel persegi berdiagonal $5\sqrt2$ cm. Berapa panjang sisinya? <span class="isian-inline" style="min-width:26px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Rasio diagonal terhadap sisi pada persegi ($\sqrt2\approx1{,}414$) dikenal sebagai salah satu bilangan irasional pertama yang ditemukan manusia, oleh para matematikawan Yunani kuno sekitar abad ke-5 SM &mdash; penemuan yang saat itu mengejutkan karena menunjukkan tidak semua panjang bisa dinyatakan sebagai pecahan.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Sebuah keramik lantai persegi bersisi 30 cm. Hitung diagonalnya dalam bentuk akar paling sederhana dan bentuk desimal (2 angka).</li>
+        <li>Sebuah layar laptop persegi berdiagonal $12\sqrt2$ cm. Tentukan panjang sisinya.</li>
+        <li>Ukur (atau taksir) sisi satu benda persegi di rumahmu, lalu hitung diagonalnya.</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Geometri &middot; Pertemuan 1 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 2 · BIDANG GEOMETRI · HALAMAN A (SINTESIS)            -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Geometri &middot; Pertemuan 2 dari 2 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menjelaskan hubungan geometris antara akar pangkat tiga dan rusuk kubus, termasuk menentukan panjang diagonal ruang kubus.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Sebuah kotak penyimpanan berbentuk kubus dengan rusuk 6 cm akan dipasangi kawat lurus menyusuri sudut terjauh (dari satu pojok bawah ke pojok atas seberangnya) &mdash; disebut <b>diagonal ruang</b>. Rumusnya $D=s\sqrt3$. Tentukan panjang kawat itu.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#128230;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="diagram-wrap"><svg width="100" height="90" viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="20,70 20,25 50,10 50,55" fill="#E0F2F1" stroke="#0F2A4E" stroke-width="1.3"/>
+          <polygon points="20,25 50,10 80,25 50,40" fill="#E7EDFC" stroke="#0F2A4E" stroke-width="1.3"/>
+          <polygon points="50,55 80,40 80,70 50,90" fill="#FCF6E5" stroke="#0F2A4E" stroke-width="1.3" opacity="0"/>
+          <polygon points="50,40 80,25 80,70 50,85" fill="#FCF6E5" stroke="#0F2A4E" stroke-width="1.3"/>
+          <line x1="20" y1="70" x2="80" y2="25" stroke="#B08420" stroke-width="1.6" stroke-dasharray="3,2"/>
+          <text x="46" y="52" font-size="7.5" fill="#7A5A15" font-weight="700">D</text>
+          <text x="14" y="50" font-size="7" fill="#0F2A4E" font-weight="700">6 cm</text>
+        </svg></div>
+        <span class="cap">Gambar &middot; Kubus &amp; Diagonal Ruang</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$D=s\sqrt3=6\sqrt3\approx10{,}39\text{ cm}$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Dari Mana Rumus $s\sqrt3$? (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Rumus ini berasal dari <b>dua kali Pythagoras berurutan</b>: diagonal alas (persegi) $=s\sqrt2$, lalu diagonal ruang adalah sisi miring segitiga siku-siku dengan alas $s\sqrt2$ dan tinggi $s$: $D^2=(s\sqrt2)^2+s^2=2s^2+s^2=3s^2$, sehingga $D=s\sqrt3$. Bandingkan dengan akar pangkat tiga: bila diketahui <b>volume</b> kubus (bukan rusuknya), gunakan $s=\sqrt[3]{V}$ terlebih dahulu, baru hitung diagonal ruangnya.</div>
+
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) Kubus rusuk 4 cm, diagonal ruang = <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>b) Kubus rusuk 9 cm, diagonal ruang = <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>c) Kubus bervolume 1.000 cm&sup3;, rusuknya = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>d) Lanjutan (c): diagonal ruangnya = <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>e) Kubus rusuk 2 cm, diagonal alas = <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>f) Kubus rusuk 2 cm, diagonal ruang = <span class="isian-inline" style="min-width:40px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Classifying</span><span class="twm-tag">Improving</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Classifying &mdash; kelompokkan menurut kriteria</span>Kelompokkan tiga jenis panjang pada kubus berikut menurut rumusnya: sisi ($s$), diagonal sisi/alas ($s\sqrt2$), dan diagonal ruang ($s\sqrt3$). Untuk kubus rusuk 5 cm, hitung ketiganya dan urutkan dari yang terpendek.</div>
+    <div class="reason-item"><span class="lbl">Improving &mdash; perbaiki agar tepat</span>Seorang siswa menyamakan diagonal sisi dan diagonal ruang kubus karena sama-sama disebut &ldquo;diagonal&rdquo;. Perbaiki pemahaman itu dengan menjelaskan perbedaan posisi keduanya pada bangun kubus.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Fikri menghitung diagonal ruang kubus rusuk 5 cm sebagai $D=5\sqrt2\approx7{,}07$ cm (memakai rumus diagonal sisi persegi).</div>
+      <div class="tanya">Diagonal ruang menghubungkan dua pojok kubus yang paling berjauhan (melewati bagian dalam kubus), bukan hanya menyeberangi satu permukaan datar. Rumus mana yang seharusnya dipakai Fikri, $s\sqrt2$ atau $s\sqrt3$? Jelaskan alasannya.</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Geometri &middot; Pertemuan 2 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 2 · BIDANG GEOMETRI · HALAMAN B (SINTESIS)            -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Geometri &middot; Pertemuan 2 dari 2 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>akar pangkat tiga dari volume</b> dan <b>diagonal ruang kubus</b> &mdash; sintesis penutup Bidang Geometri.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Sebuah lemari es portabel berbentuk kubus memiliki volume 125.000 cm&sup3;. Untuk memastikan sebatang termometer sepanjang 55 cm bisa dimasukkan secara diagonal, (a) tentukan rusuk lemari es, (b) hitung diagonal ruangnya, (c) apakah termometer itu muat?</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="diagram-wrap"><svg width="100" height="90" viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="20,70 20,25 50,10 50,55" fill="#E0F2F1" stroke="#0F2A4E" stroke-width="1.3"/>
+          <polygon points="20,25 50,10 80,25 50,40" fill="#E7EDFC" stroke="#0F2A4E" stroke-width="1.3"/>
+          <polygon points="50,40 80,25 80,70 50,85" fill="#FCF6E5" stroke="#0F2A4E" stroke-width="1.3"/>
+          <line x1="20" y1="70" x2="80" y2="25" stroke="#B08420" stroke-width="1.6" stroke-dasharray="3,2"/>
+          <text x="46" y="52" font-size="7.5" fill="#7A5A15" font-weight="700">D</text>
+        </svg></div>
+        <span class="cap">Gambar &middot; Lemari Es Kubus</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$s=\sqrt[3]{125.000}=50\text{ cm} \qquad D=50\sqrt3\approx86{,}60\text{ cm} \qquad 55<86{,}60\ \Rightarrow\ \text{muat}$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: kenali $125.000=125\times1.000=5^3\times10^3=(5\times10)^3=50^3$ tanpa mencoba-coba angka. <i>(Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Kotak penyimpanan kubus bervolume 64.000 cm&sup3;. Sebatang pipa lurus 70 cm akan diselipkan secara diagonal.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;flex-wrap:wrap;">
+      <div>Rusuk = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>Diagonal ruang &asymp; <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>Muat? <span class="isian-inline" style="min-width:34px;"></span></div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. Kubus rusuk 8 cm, diagonal ruang = <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>2. Kubus rusuk 3 cm, diagonal alas = <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>3. $\sqrt[3]{343}=$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>4. $\sqrt[3]{8.000}=$ <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>5. Kubus bervolume 27 cm&sup3;, diagonal ruangnya = <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>6. Kubus rusuk 7 cm, diagonal ruang (desimal 2 angka) &asymp; <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>7. Sebuah wadah kubus bervolume 216.000 cm&sup3;. Tentukan rusuk dan diagonal ruangnya. <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>8. Bandingkan diagonal sisi dan diagonal ruang kubus rusuk 6 cm &mdash; mana yang lebih panjang, dan berapa selisihnya (desimal)? <span class="isian-inline" style="min-width:50px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Rubik's Cube 3&times;3&times;3 dan dadu permainan sama-sama berbentuk kubus. Diagonal ruang kubuslah yang menentukan ukuran kotak kemasan minimum yang dibutuhkan bila benda kubus itu diletakkan miring &mdash; prinsip yang sama dipakai dalam desain kemasan logistik untuk menghemat ruang pengiriman.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+    <div class="reflect-row" style="margin-top:2px;">
+      <span>Dari seluruh Bidang Geometri Marhalah I-1, bagian yang paling menantang bagiku adalah</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:100px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Kubus penyimpanan bervolume 1.331 cm&sup3;. Tentukan rusuk dan diagonal ruangnya.</li>
+        <li>Kubus rusuk 15 cm. Hitung diagonal alas dan diagonal ruangnya (bentuk akar paling sederhana dan desimal).</li>
+        <li>Cari satu benda kubus di rumahmu, taksir panjang rusuknya, lalu hitung diagonal ruangnya.</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Geometri &middot; Pertemuan 2 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 1 · BIDANG DATA · HALAMAN A                           -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Data &middot; Pertemuan 1 dari 2</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat membaca, membandingkan, dan mengoperasikan data berskala besar yang disajikan dalam notasi ilmiah.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Tabel populasi tiga kota mencatat: Kota A $=2{,}4\times10^6$ jiwa, Kota B $=8{,}1\times10^5$ jiwa, Kota C $=3{,}6\times10^6$ jiwa. Urutkan ketiga kota dari populasi terkecil ke terbesar, lalu hitung selisih populasi Kota C dan Kota A.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#127961;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="freq-table">
+          <tr><th>Kota</th><th>Populasi</th></tr>
+          <tr><td>B</td><td>8,1&times;10<sup>5</sup></td></tr>
+          <tr><td>A</td><td>2,4&times;10<sup>6</sup></td></tr>
+          <tr><td>C</td><td>3,6&times;10<sup>6</sup></td></tr>
+        </div>
+        <span class="cap">Gambar &middot; Tabel Terurut</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$8{,}1\times10^5 < 2{,}4\times10^6 < 3{,}6\times10^6 \qquad 3{,}6\times10^6-2{,}4\times10^6=1{,}2\times10^6\text{ jiwa}$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Membandingkan Pangkat Berbeda (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Saat membandingkan notasi ilmiah, <b>bandingkan pangkat 10 lebih dulu</b>: pangkat yang lebih besar berarti bilangannya lebih besar, seperti terlihat pada $8{,}1\times10^5$ vs $2{,}4\times10^6$ &mdash; meski $8{,}1>2{,}4$, karena pangkatnya lebih kecil, nilainya tetap lebih kecil. Bila pangkatnya sama (seperti Kota A dan C, sama-sama $10^6$), baru bandingkan koefisiennya: $2{,}4<3{,}6$.</div>
+
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) $5{,}2\times10^4$ vs $1{,}8\times10^5$: lebih besar <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>b) $6{,}3\times10^7$ vs $6{,}1\times10^7$: lebih besar <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>c) $4\times10^6+3\times10^6=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>d) $9\times10^8-2\times10^8=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>e) Urutkan naik: $3\times10^5$, $7\times10^4$, $1\times10^6$ <span class="isian-inline" style="min-width:70px;"></span></div>
+      <div>f) $2{,}5\times10^6\times2=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Characterising</span><span class="twm-tag">Conjecturing</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Characterising &mdash; kenali ciri penentunya</span>Apa ciri utama yang menentukan besar-kecilnya suatu bilangan dalam notasi ilmiah &mdash; koefisien atau pangkat 10-nya? Jelaskan dengan mengacu pada perbandingan Kota B dan Kota A tadi.</div>
+    <div class="reason-item"><span class="lbl">Conjecturing &mdash; ajukan dugaan dari pola</span>Buat dugaan: bila dua bilangan notasi ilmiah memiliki pangkat 10 yang sama, langkah apa yang cukup dilakukan untuk membandingkan keduanya? Uji dugaanmu pada Kota A dan Kota C.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Salma menyimpulkan $8{,}1\times10^5$ lebih besar dari $2{,}4\times10^6$ karena $8{,}1>2{,}4$.</div>
+      <div class="tanya">Tuliskan kedua bilangan itu dalam bentuk biasa (angka penuh). Manakah yang benar-benar lebih besar? Bagian mana dari penalaran Salma yang mengabaikan faktor penting?</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Data &middot; Pertemuan 1 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 1 · BIDANG DATA · HALAMAN B                           -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Data &middot; Pertemuan 1 dari 2</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>perbandingan notasi ilmiah</b> dan <b>operasi penjumlahan/pengurangan</b> &mdash; diterapkan pada laporan keuangan tiga cabang usaha waralaba.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Tiga cabang waralaba mencatat omzet tahunan: Cabang X $=4{,}2\times10^8$ rupiah, Cabang Y $=9{,}5\times10^7$ rupiah, Cabang Z $=1{,}1\times10^9$ rupiah. (a) Urutkan dari omzet terkecil. (b) Hitung total omzet ketiga cabang, nyatakan dalam notasi ilmiah.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="bar-chart" style="height:70px;align-items:flex-end;">
+          <div class="bc-col"><div class="bc-val">Y</div><div class="bc-bar" style="height:14px;"></div><div class="bc-label">9,5&times;10&#8311;</div></div>
+          <div class="bc-col"><div class="bc-val">X</div><div class="bc-bar" style="height:36px;"></div><div class="bc-label">4,2&times;10&#8312;</div></div>
+          <div class="bc-col"><div class="bc-val">Z</div><div class="bc-bar gold" style="height:60px;"></div><div class="bc-label">1,1&times;10&#8313;</div></div>
+        </div>
+        <span class="cap">Gambar &middot; Diagram Batang Omzet</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$9{,}5\times10^7 < 4{,}2\times10^8 < 1{,}1\times10^9$$
+    <div style="margin-top:2px;">$$0{,}42\times10^9+0{,}095\times10^9+1{,}1\times10^9=1{,}615\times10^9\text{ rupiah}$$</div></div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: samakan dulu pangkat 10 semua bilangan (jadikan $10^9$) sebelum menjumlahkan koefisiennya &mdash; sama seperti menyamakan penyebut pecahan. <i>(Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Cabang P $=6{,}0\times10^8$, Cabang Q $=2{,}3\times10^7$, Cabang R $=8{,}4\times10^8$.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;flex-wrap:wrap;">
+      <div>Urutan naik: <span class="isian-inline" style="min-width:100px;"></span></div>
+      <div>Total omzet = <span class="isian-inline" style="min-width:50px;"></span></div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. $3{,}1\times10^5$ vs $9\times10^4$: lebih besar <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>2. $7{,}2\times10^6+1{,}8\times10^6=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>3. $5\times10^8-3{,}5\times10^8=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>4. Urutkan naik: $4\times10^6$, $4\times10^7$, $9\times10^5$ <span class="isian-inline" style="min-width:70px;"></span></div>
+      <div>5. $2{,}1\times10^7\times3=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>6. $6\times10^9\div2=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>7. Populasi dua kota $5{,}5\times10^6$ dan $3{,}2\times10^6$. Hitung selisihnya. <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>8. Tiga toko daring mencatat penjualan $2\times10^5$, $8\times10^4$, $1{,}5\times10^5$ unit. Hitung totalnya. <span class="isian-inline" style="min-width:40px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Badan Pusat Statistik dan lembaga sensus dunia rutin melaporkan data kependudukan dalam notasi ilmiah karena angkanya mencapai miliaran &mdash; populasi dunia saat ini sekitar $8\times10^9$ jiwa, jauh lebih ringkas ditulis daripada 8.000.000.000.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Urutkan dari terkecil: $6{,}4\times10^7$, $9\times10^6$, $6{,}5\times10^7$.</li>
+        <li>Hitung total tiga data: $3{,}2\times10^8$, $7{,}1\times10^7$, $9\times10^8$.</li>
+        <li>Cari satu data statistik nasional (misal jumlah pengguna internet) yang dinyatakan dalam angka besar, lalu ubah ke notasi ilmiah.</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Data &middot; Pertemuan 1 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 2 · BIDANG DATA · HALAMAN A (SINTESIS)                -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Data &middot; Pertemuan 2 dari 2 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat membaca, membandingkan, dan mengoperasikan data berskala sangat kecil yang disajikan dalam notasi ilmiah berpangkat negatif.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Laboratorium kualitas air mencatat konsentrasi tiga zat pencemar: Zat P $=4{,}5\times10^{-4}$ ppm, Zat Q $=2{,}1\times10^{-5}$ ppm, Zat R $=6{,}0\times10^{-4}$ ppm. Urutkan ketiganya dari konsentrasi terkecil, lalu hitung selisih konsentrasi Zat R dan Zat P.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#129514;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="freq-table">
+          <tr><th>Zat</th><th>Konsentrasi</th></tr>
+          <tr><td>Q</td><td class="neg">2,1&times;10&supminus;&#8309;</td></tr>
+          <tr><td>P</td><td class="neg">4,5&times;10&supminus;&#8308;</td></tr>
+          <tr><td>R</td><td class="neg">6,0&times;10&supminus;&#8308;</td></tr>
+        </div>
+        <span class="cap">Gambar &middot; Tabel Terurut</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$2{,}1\times10^{-5} < 4{,}5\times10^{-4} < 6{,}0\times10^{-4} \qquad 6{,}0\times10^{-4}-4{,}5\times10^{-4}=1{,}5\times10^{-4}\text{ ppm}$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Membandingkan Pangkat Negatif (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Untuk pangkat negatif, aturan perbandingan <b>terbalik</b> dari biasanya: pangkat yang <b>lebih besar</b> (mendekati nol, misal $10^{-4}$) menandai bilangan yang <b>lebih besar</b> dibanding pangkat yang lebih kecil (lebih negatif, misal $10^{-5}$) &mdash; karena $10^{-4}=0{,}0001$ lebih besar dari $10^{-5}=0{,}00001$. Inilah sebabnya Zat Q ($10^{-5}$) paling kecil meski koefisiennya bukan yang terkecil.</div>
+
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) $3\times10^{-3}$ vs $7\times10^{-4}$: lebih besar <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>b) $5{,}5\times10^{-6}$ vs $5{,}1\times10^{-6}$: lebih besar <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>c) $8\times10^{-5}+2\times10^{-5}=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>d) $9\times10^{-4}-4\times10^{-4}=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>e) Urutkan naik: $6\times10^{-5}$, $2\times10^{-3}$, $9\times10^{-6}$ <span class="isian-inline" style="min-width:80px;"></span></div>
+      <div>f) $4\times10^{-5}\times2=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Critiquing</span><span class="twm-tag">Improving</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Critiquing &mdash; periksa apakah sudah tepat</span>Seorang siswa berpendapat: &ldquo;Aturan perbandingan notasi ilmiah untuk pangkat negatif sama persis dengan pangkat positif &mdash; pangkat lebih besar berarti nilai lebih besar.&rdquo; Kritisi pendapat ini menggunakan hasil perbandingan Zat P dan Zat Q di atas.</div>
+    <div class="reason-item"><span class="lbl">Improving &mdash; perbaiki agar tepat</span>Perbaiki pernyataan siswa tadi menjadi kalimat yang benar dan lengkap, sehingga berlaku baik untuk pangkat positif maupun negatif.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Dinda menyimpulkan $2{,}1\times10^{-5}$ lebih besar dari $4{,}5\times10^{-4}$ karena $-5$ &ldquo;kelihatan lebih besar&rdquo; secara angka dibanding $-4$.</div>
+      <div class="tanya">Tuliskan kedua bilangan itu dalam bentuk desimal penuh. Manakah yang benar-benar lebih besar? Ingat: untuk bilangan negatif sebagai pangkat, semakin negatif (semakin kecil) pangkatnya, semakin kecil pula nilai bilangannya. Jelaskan kekeliruan Dinda.</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Data &middot; Pertemuan 2 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- PERTEMUAN 2 · BIDANG DATA · HALAMAN B (SINTESIS · PENUTUP MARHALAH) -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+        <span class="thabaqah-label">ITQAN &middot; penyempurnaan</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Data &middot; Pertemuan 2 dari 2 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>perbandingan notasi ilmiah pangkat negatif</b> dan <b>operasi hitung</b> &mdash; sintesis penutup Bidang Data sekaligus penutup Marhalah I-1.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Sebuah chip komputer memiliki tiga komponen berukuran: transistor $=7\times10^{-9}$ m, kapasitor $=3{,}2\times10^{-7}$ m, resistor $=5{,}5\times10^{-8}$ m. (a) Urutkan dari yang terkecil. (b) Hitung total ketiga ukuran itu bila disusun berjajar dalam satu baris.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="freq-table">
+          <tr><th>Komponen</th><th>Ukuran</th></tr>
+          <tr><td>Transistor</td><td class="neg">7&times;10&supminus;&#8313;</td></tr>
+          <tr><td>Resistor</td><td class="neg">5,5&times;10&supminus;&#8312;</td></tr>
+          <tr><td>Kapasitor</td><td class="neg">3,2&times;10&supminus;&#8311;</td></tr>
+        </div>
+        <span class="cap">Gambar &middot; Tabel Terurut</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$7\times10^{-9} < 5{,}5\times10^{-8} < 3{,}2\times10^{-7}$$
+    <div style="margin-top:2px;">$$0{,}007\times10^{-6}+0{,}055\times10^{-6}+0{,}32\times10^{-6}=0{,}382\times10^{-6}=3{,}82\times10^{-7}\text{ m}$$</div></div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: samakan dulu pangkat 10 semua bilangan (jadikan $10^{-6}$) sebelum menjumlahkan koefisiennya, persis seperti saat bekerja dengan pangkat positif. <i>(Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Tiga partikel berukuran $4\times10^{-6}$ m, $9\times10^{-7}$ m, dan $1{,}2\times10^{-5}$ m.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;flex-wrap:wrap;">
+      <div>Urutan naik: <span class="isian-inline" style="min-width:100px;"></span></div>
+      <div>Total = <span class="isian-inline" style="min-width:50px;"></span></div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. $6\times10^{-4}$ vs $9\times10^{-5}$: lebih besar <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>2. $3{,}5\times10^{-6}+1{,}5\times10^{-6}=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>3. $8\times10^{-3}-3\times10^{-3}=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>4. Urutkan naik: $5\times10^{-7}$, $5\times10^{-5}$, $5\times10^{-9}$ <span class="isian-inline" style="min-width:90px;"></span></div>
+      <div>5. $2{,}4\times10^{-5}\times3=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>6. $9\times10^{-6}\div3=$ <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>7. Ukuran dua sel darah $6{,}5\times10^{-6}$ m dan $2\times10^{-6}$ m. Hitung selisihnya. <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>8. Tiga jenis partikel udara berukuran $2{,}5\times10^{-6}$ m, $1\times10^{-7}$ m, $8\times10^{-7}$ m. Hitung totalnya. <span class="isian-inline" style="min-width:40px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Ukuran transistor pada cip komputer modern kini mendekati $5\times10^{-9}$ m (5 nanometer) &mdash; lebih kecil dari kebanyakan virus. Tanpa notasi ilmiah pangkat negatif, para insinyur akan kesulitan menuliskan dan membandingkan ukuran sekecil ini secara akurat.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+    <div class="reflect-row" style="margin-top:2px;">
+      <span>Dari seluruh Marhalah I-1, bagian yang paling menantang bagiku adalah</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:100px;height:12px;"></span>
+    </div>
+    <div class="catatan-teal" style="margin:6px 0;"><b style="color:var(--navy);">Catatan guru:</b> Ini pertemuan terakhir Modul Konsep Marhalah I-1 &mdash; kelima Bidang telah selesai dibahas. Langkah berikutnya adalah <b>Latihan Soal Sebelum TAM</b> (2 halaman di belakang modul ini), lalu <b>Tes Akhir Marhalah (TAM) I-1</b> sebagai syarat kenaikan ke Marhalah I-2 &mdash; instrumen terpisah dari modul ini.</div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Urutkan dari terkecil: $4\times10^{-5}$, $4\times10^{-7}$, $4\times10^{-6}$.</li>
+        <li>Hitung total tiga data: $2{,}1\times10^{-5}$, $6\times10^{-6}$, $9\times10^{-5}$.</li>
+        <li>Cari satu data berukuran sangat kecil (misal ukuran virus atau sel) dari sumber terpercaya, lalu nyatakan dalam notasi ilmiah.</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Data &middot; Pertemuan 12 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- LATIHAN SOAL SEBELUM TAM · HALAMAN 1 (Bagian 1-3)          -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="scope-strip">
+      <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+      <span class="chip chip-bidang">Latihan Soal &middot; Sebelum TAM</span>
+      <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+      <span class="scope-count">25 butir campuran &middot; 5 Bidang &middot; Kumulatif Pertemuan 1&ndash;12 &middot; Hal. 1/2</span>
+    </div>
+  </div>
+
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:8pt;color:#5A6272;margin-bottom:8px;">Kerjakan seluruh soal berikut secara mandiri. Latihan ini mengulas semua yang telah dipelajari pada Marhalah I-1 sebagai persiapan sebelum Tes Akhir Marhalah (TAM).</div>
+    <div class="ls-bagian-label">Bagian 1 &middot; Bilangan <span class="src">(Pertemuan 1&ndash;4)</span></div>
+    <div class="ls-item"><div class="no">1.</div><div class="body">Sederhanakan: $3^4\times3^2\div3^3=$ <span class="isian-inline" style="min-width:34px;"></span>
+    </div></div>
+    <div class="ls-item"><div class="no">2.</div><div class="body">Sederhanakan $\sqrt{72}$ ke bentuk akar paling sederhana. <span class="isian-inline" style="min-width:50px;"></span>
+    </div></div>
+    <div class="ls-item"><div class="no">3.</div><div class="body">Rasionalkan $\dfrac{15}{\sqrt5}$.<div style="margin-top:3px;"><span class="isian-inline" style="min-width:50px;"></span></div>
+    </div></div>
+    <div class="ls-item"><div class="no">4.</div><div class="body">Fajar menduga: &ldquo;$2^{-n}$ selalu bernilai lebih kecil dari 1 untuk sembarang bilangan bulat positif $n$.&rdquo; Uji dugaan itu dengan tiga nilai $n$ berbeda, lalu jelaskan mengapa dugaan itu selalu benar.<span class="ls-nalar-tag">NALAR</span>
+      <div class="scratch-area" style="min-height:32px;margin-top:5px;"></div>
+    </div></div>
+    <div class="ls-bagian-label">Bagian 2 &middot; Aljabar <span class="src">(Pertemuan 5&ndash;7)</span></div>
+    <div class="ls-item"><div class="no">5.</div><div class="body">Faktorkan $x^2-121$. <span class="isian-inline" style="min-width:60px;"></span>
+    </div></div>
+    <div class="ls-item"><div class="no">6.</div><div class="body">Selesaikan $x^2-8x+15=0$ dengan pemfaktoran. $x=$ <span class="isian-inline" style="min-width:50px;"></span>
+    </div></div>
+    <div class="ls-item"><div class="no">7.</div><div class="body">Selesaikan $2x^2+x-3=0$ dengan rumus kuadratik. $x=$ <span class="isian-inline" style="min-width:50px;"></span>
+    </div></div>
+    <div class="ls-item"><div class="no">8.</div><div class="body">Nabila menyimpulkan bahwa jumlah dan hasil kali akar $x^2-7x+10=0$ berturut-turut adalah 7 dan 10 tanpa perlu menyelesaikan persamaannya. Periksa kesimpulan itu dengan menyelesaikan persamaan secara penuh (pemfaktoran), lalu bandingkan hasilnya.<span class="ls-nalar-tag">NALAR</span>
+      <div class="scratch-area" style="min-height:32px;margin-top:5px;"></div>
+    </div></div>
+    <div class="ls-bagian-label">Bagian 3 &middot; Pengukuran <span class="src">(Pertemuan 8)</span></div>
+    <div class="ls-item"><div class="no">9.</div><div class="body">Kubus bervolume 3.375 cm&sup3;. Tentukan panjang rusuknya. <span class="isian-inline" style="min-width:34px;"></span>
+    </div></div>
+    <div class="ls-item"><div class="no">10.</div><div class="body">Persegi berluas 676 cm&sup2;. Tentukan panjang sisinya. <span class="isian-inline" style="min-width:34px;"></span>
+    </div></div>
+    <div class="ls-item"><div class="no">11.</div><div class="body">Sebuah bak air kubus memiliki volume 1.728 liter. Berapa panjang rusuknya (dalam satuan yang sama)? <span class="isian-inline" style="min-width:34px;"></span>
+    </div></div>
+    <div class="ls-item"><div class="no">12.</div><div class="body">Seorang siswa mengusulkan pintasan: &ldquo;untuk mencari sisi dari luas dan rusuk dari volume, selalu gunakan akar kuadrat.&rdquo; Ujilah pintasan itu pada kedua kasus (luas persegi dan volume kubus). Kapan pintasan itu benar, kapan keliru, dan bagaimana memperbaikinya?<span class="ls-nalar-tag">NALAR</span>
+      <div class="scratch-area" style="min-height:32px;margin-top:5px;"></div>
+    </div></div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Latihan Soal Sebelum TAM &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- LATIHAN SOAL SEBELUM TAM · HALAMAN 2 (Bagian 4-6)          -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="scope-strip">
+      <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+      <span class="chip chip-bidang">Latihan Soal &middot; Sebelum TAM</span>
+      <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+      <span class="scope-count">25 butir campuran &middot; 5 Bidang &middot; Kumulatif Pertemuan 1&ndash;12 &middot; Hal. 2/2</span>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="ls-bagian-label" style="margin-top:4px;">Bagian 4 &middot; Geometri <span class="src">(Pertemuan 9&ndash;10)</span></div>
+    <div class="ls-item"><div class="no">13.</div><div class="body">Persegi bersisi 8 cm. Tentukan panjang diagonalnya (bentuk akar paling sederhana). <span class="isian-inline" style="min-width:40px;"></span>
+    </div></div>
+    <div class="ls-item"><div class="no">14.</div><div class="body">Kubus bersisi 7 cm. Tentukan panjang diagonal ruangnya (bentuk akar paling sederhana). <span class="isian-inline" style="min-width:40px;"></span>
+    </div></div>
+    <div class="ls-item"><div class="no">15.</div><div class="body">Kubus bervolume 512 cm&sup3;. Tentukan diagonal alas dan diagonal ruangnya.<div style="margin-top:3px;">Diagonal alas = <span class="isian-inline" style="min-width:40px;"></span> &nbsp;&nbsp; Diagonal ruang = <span class="isian-inline" style="min-width:40px;"></span></div>
+    </div></div>
+    <div class="ls-item"><div class="no">16.</div><div class="body">Rendy menyatakan: &ldquo;Diagonal ruang kubus selalu tepat 1,5 kali diagonal alasnya, berapa pun ukuran kubusnya.&rdquo; Ujilah pernyataan itu pada kubus rusuk 4 cm dan kubus rusuk 10 cm menggunakan rumus $s\sqrt2$ dan $s\sqrt3$. Apakah pernyataan itu benar?<span class="ls-nalar-tag">NALAR</span>
+      <div class="scratch-area" style="min-height:32px;margin-top:5px;"></div>
+    </div></div>
+    <div class="ls-bagian-label">Bagian 5 &middot; Data <span class="src">(Pertemuan 11&ndash;12)</span></div>
+    <div class="ls-item"><div class="no">17.</div><div class="body">Urutkan dari terkecil: $5{,}2\times10^6$, $9\times10^5$, $5{,}5\times10^6$. <span class="isian-inline" style="min-width:90px;"></span>
+    </div></div>
+    <div class="ls-item"><div class="no">18.</div><div class="body">Hitung: $(3{,}4\times10^7)+(6\times10^6)=$ <span class="isian-inline" style="min-width:50px;"></span>
+    </div></div>
+    <div class="ls-item"><div class="no">19.</div><div class="body">Urutkan dari terkecil: $4\times10^{-5}$, $7\times10^{-7}$, $4\times10^{-6}$. <span class="isian-inline" style="min-width:90px;"></span>
+    </div></div>
+    <div class="ls-item"><div class="no">20.</div><div class="body">Wafiq berkata: &ldquo;Untuk membandingkan dua bilangan berpangkat negatif dalam notasi ilmiah, cukup lihat koefisiennya saja &mdash; sama seperti bilangan biasa.&rdquo; Ujilah pendapat itu pada $3{,}6\times10^{-6}$ dan $9\times10^{-7}$, lalu perbaiki pendapat Wafiq bila keliru.<span class="ls-nalar-tag">NALAR</span>
+      <div class="scratch-area" style="min-height:32px;margin-top:5px;"></div>
+    </div></div>
+    <div class="ls-bagian-label">Bagian 6 &middot; Campuran <span class="src">(Semua Bidang)</span></div>
+    <div class="ls-item"><div class="no">21.</div><div class="body">Hitung: $2^3\times2^{-1}+\sqrt{16}=$ <span class="isian-inline" style="min-width:34px;"></span>
+    </div></div>
+    <div class="ls-item"><div class="no">22.</div><div class="body">Selesaikan $x^2-6x-16=0$. $x=$ <span class="isian-inline" style="min-width:50px;"></span>
+    </div></div>
+    <div class="ls-item"><div class="no">23.</div><div class="body">Kubus bervolume 729 cm&sup3;. Tentukan rusuk dan diagonal ruangnya (bentuk akar).<div style="margin-top:3px;">Rusuk = <span class="isian-inline" style="min-width:34px;"></span> &nbsp;&nbsp; Diagonal ruang = <span class="isian-inline" style="min-width:40px;"></span></div>
+    </div></div>
+    <div class="ls-item"><div class="no">24.</div><div class="body">Rasionalkan dan sederhanakan: $\dfrac{24}{\sqrt6}=$ <span class="isian-inline" style="min-width:40px;"></span>
+    </div></div>
+    <div class="ls-item"><div class="no">25.</div><div class="body">Sebuah pengukuran mencatat $2{,}8\times10^8$ dan $6{,}5\times10^7$. Hitung jumlah keduanya dan nyatakan dalam notasi ilmiah. <span class="isian-inline" style="min-width:50px;"></span>
+    </div></div>
+
+    <div class="catatan-teal" style="margin-top:14px;"><b style="color:var(--navy);">Catatan guru:</b> Setelah Latihan Soal ini dikoreksi dan dibahas bersama, siswa siap mengikuti <b>Tes Akhir Marhalah (TAM) I-1</b> &mdash; instrumen terpisah dari modul ini, sebagai syarat kenaikan ke Marhalah I-2.</div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah I-1 &middot; Latihan Soal Sebelum TAM &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<!-- ================================================================= -->
+<!-- KUNCI JAWABAN (DOKUMEN GURU)                               -->
+<!-- ================================================================= -->
+<section class="page">
+  <div class="page-header">
+    <div class="warn-bar">Dokumen Guru &middot; Bukan Untuk Siswa</div>
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Kunci Jawaban</div>
+        <div class="brand-tagline">Latihan Soal Sebelum TAM &middot; Marhalah I-1</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="scope-strip">
+      <span class="chip chip-marhalah" style="background:#B08420">I-1</span>
+      <span class="chip chip-bidang">25 Butir &middot; 5 Bidang &middot; Register C</span>
+      <span class="scope-count">Simpan terpisah dari lembar siswa</span>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="kunci-grid">
+      <div class="kunci-bagian-label">Bagian 1 &middot; Bilangan</div>
+      <div class="kunci-item"><span class="no">1.</span><span class="ans">$3^4\times3^2\div3^3=3^{4+2-3}=3^3=$ <b>27</b></span></div>
+      <div class="kunci-item"><span class="no">2.</span><span class="ans">$\sqrt{72}=\sqrt{36\times2}=$ <b>$6\sqrt2$</b></span></div>
+      <div class="kunci-item"><span class="no">3.</span><span class="ans">$\dfrac{15}{\sqrt5}\times\dfrac{\sqrt5}{\sqrt5}=\dfrac{15\sqrt5}{5}=$ <b>$3\sqrt5$</b></span></div>
+      <div class="kunci-item"><span class="no">4.</span><span class="ans">Benar. Contoh: $2^{-1}=0{,}5$, $2^{-3}=0{,}125$, $2^{-5}=0{,}03125$ &mdash; semua $&lt;1$. Alasan: $2^{-n}=\dfrac{1}{2^n}$, dan karena $2^n\geq2>1$ untuk $n\geq1$, pecahan $\dfrac{1}{2^n}$ pasti <b>kurang dari 1</b>.</span></div>
+      <div class="kunci-bagian-label">Bagian 2 &middot; Aljabar</div>
+      <div class="kunci-item"><span class="no">5.</span><span class="ans">$x^2-121=$ <b>$(x-11)(x+11)$</b></span></div>
+      <div class="kunci-item"><span class="no">6.</span><span class="ans">$(x-3)(x-5)=0 \Rightarrow x=$ <b>3 atau 5</b></span></div>
+      <div class="kunci-item"><span class="no">7.</span><span class="ans">$a=2,b=1,c=-3$: $x=\dfrac{-1\pm\sqrt{1+24}}{4}=\dfrac{-1\pm5}{4} \Rightarrow x=$ <b>1 atau $-\tfrac32$</b></span></div>
+      <div class="kunci-item"><span class="no">8.</span><span class="ans">Benar. $(x-2)(x-5)=0 \Rightarrow x=2$ atau $5$. Jumlah $=2+5=$ <b>7</b> $\checkmark$, hasil kali $=2\times5=$ <b>10</b> $\checkmark$ &mdash; sesuai rumus $-\tfrac{b}{a}$ dan $\tfrac{c}{a}$ tanpa perlu menyelesaikan penuh.</span></div>
+      <div class="kunci-bagian-label">Bagian 3 &middot; Pengukuran</div>
+      <div class="kunci-item"><span class="no">9.</span><span class="ans">$3.375=15^3 \Rightarrow$ rusuk $=$ <b>15 cm</b></span></div>
+      <div class="kunci-item"><span class="no">10.</span><span class="ans">$\sqrt{676}=$ <b>26 cm</b></span></div>
+      <div class="kunci-item"><span class="no">11.</span><span class="ans">$1.728=12^3 \Rightarrow$ rusuk $=$ <b>12</b></span></div>
+      <div class="kunci-item"><span class="no">12.</span><span class="ans">Keliru sebagian. Untuk luas persegi memakai akar <b>kuadrat</b> ($s=\sqrt{L}$) &mdash; benar; untuk volume kubus harus memakai akar <b>pangkat tiga</b> ($s=\sqrt[3]{V}$), bukan akar kuadrat. Perbaikan: gunakan akar sesuai jumlah dimensi (2 dimensi = akar kuadrat, 3 dimensi = akar pangkat tiga).</span></div>
+      <div class="kunci-bagian-label">Bagian 4 &middot; Geometri</div>
+      <div class="kunci-item"><span class="no">13.</span><span class="ans">$d=8\sqrt2=$ <b>$8\sqrt2$ cm</b></span></div>
+      <div class="kunci-item"><span class="no">14.</span><span class="ans">$D=7\sqrt3=$ <b>$7\sqrt3$ cm</b></span></div>
+      <div class="kunci-item"><span class="no">15.</span><span class="ans">$512=8^3 \Rightarrow s=8$ cm. Diagonal alas $=8\sqrt2$; diagonal ruang $=$ <b>$8\sqrt3$ cm</b></span></div>
+      <div class="kunci-item"><span class="no">16.</span><span class="ans">Salah. Rusuk 4: diagonal alas $4\sqrt2\approx5{,}66$, diagonal ruang $4\sqrt3\approx6{,}93$ (rasio $\approx1{,}22$). Rusuk 10: $10\sqrt2\approx14{,}14$, $10\sqrt3\approx17{,}32$ (rasio $\approx1{,}22$). Rasio sebenarnya adalah $\sqrt{3}/\sqrt{2}=\sqrt{1{,}5}\approx$ <b>1,22</b>, bukan 1,5.</span></div>
+      <div class="kunci-bagian-label">Bagian 5 &middot; Data</div>
+      <div class="kunci-item"><span class="no">17.</span><span class="ans"><b>$9\times10^5,\ 5{,}2\times10^6,\ 5{,}5\times10^6$</b></span></div>
+      <div class="kunci-item"><span class="no">18.</span><span class="ans">$3{,}4\times10^7+0{,}6\times10^7=$ <b>$4\times10^7$</b></span></div>
+      <div class="kunci-item"><span class="no">19.</span><span class="ans"><b>$7\times10^{-7},\ 4\times10^{-6},\ 4\times10^{-5}$</b></span></div>
+      <div class="kunci-item"><span class="no">20.</span><span class="ans">Keliru. Meski koefisien 3,6 &lt; 9 tampak lebih kecil, pangkatnya harus dibandingkan lebih dulu: $10^{-6}>10^{-7}$, sehingga $3{,}6\times10^{-6}$ justru <b>lebih besar</b> dari $9\times10^{-7}$. Perbaikan: bandingkan pangkat 10 terlebih dahulu, baru koefisien bila pangkatnya sama.</span></div>
+      <div class="kunci-bagian-label">Bagian 6 &middot; Campuran</div>
+      <div class="kunci-item"><span class="no">21.</span><span class="ans">$2^2+4=4+4=$ <b>8</b></span></div>
+      <div class="kunci-item"><span class="no">22.</span><span class="ans">$(x-8)(x+2)=0 \Rightarrow x=$ <b>8 atau $-2$</b></span></div>
+      <div class="kunci-item"><span class="no">23.</span><span class="ans">$729=9^3 \Rightarrow$ rusuk $=$ <b>9 cm</b>; diagonal ruang $=$ <b>$9\sqrt3$ cm</b></span></div>
+      <div class="kunci-item"><span class="no">24.</span><span class="ans">$\dfrac{24}{\sqrt6}\times\dfrac{\sqrt6}{\sqrt6}=\dfrac{24\sqrt6}{6}=$ <b>$4\sqrt6$</b></span></div>
+      <div class="kunci-item"><span class="no">25.</span><span class="ans">$2{,}8\times10^8+0{,}65\times10^8=$ <b>$3{,}45\times10^8$</b></span></div>
+    </div>
+
+    <div class="catatan-gold">
+      <b style="color:var(--navy);">Catatan koreksi:</b> Butir bertanda <span class="ls-nalar-tag" style="margin-left:0;">NALAR</span>
+      (no. 4, 8, 12, 16, 20 &mdash; 5 dari 25 butir = 20%) dinilai dari kualitas alasan dan contoh pengujian yang
+      diberikan, bukan hanya dari jawaban akhir, sesuai kaidah porsi nalar TAM (&ge;20% bernalar). Butir 12, 16, dan 20
+      secara khusus menuntut siswa menemukan <i>kapan</i> sebuah aturan atau pendapat gagal berlaku; jawaban tanpa
+      pengujian numerik belum lengkap.
+    </div>
+
+    <div class="catatan-navy">
+      <b style="color:var(--navy);">Panduan Skor:</b> 20 butir non-nalar = 4 poin/butir (80 poin); 5 butir nalar =
+      4 poin/butir dinilai dari kelengkapan alasan dan pengujian (20 poin). Total 100 poin. Siswa dengan skor &ge;70 dan
+      seluruh butir nalar terjawab layak melanjutkan ke TAM I-1. Skor &lt;70 disarankan mengulang Bagian yang lemah
+      dengan soal variasi &mdash; bukan mengulang butir yang sama &mdash; sebelum mengikuti TAM.
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Kunci Jawaban &middot; Marhalah I-1 &middot; Latihan Soal Sebelum TAM</span>
+  </div>
+</section>
+</div></body></html>
