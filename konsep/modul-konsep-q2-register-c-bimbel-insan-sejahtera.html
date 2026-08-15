@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Modul Konsep Q-2 — Bimbel Insan Sejahtera</title>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [["$", "$"], ["\\(", "\\)"]],
+      displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+      packages: { "[+]": ["ams"] }
+    },
+    svg: { fontCache: "global" }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#0F2A4E; --teal:#007A7A; --soft-teal:#E0F2F1; --soft-navy:#E8EEF7;
+    --gold:#B08420; --soft-gold:#FCF6E5; --greyline:#C8CED6; --ink:#26313F;
+
+    --bidayah:#E4572E;  --bidayah-soft:#FCE9E3;
+    --tamhid:#F2994A;   --tamhid-soft:#FDEEE0;
+    --taqwiyah:#2E9E63; --taqwiyah-soft:#E5F4EC;
+    --tahlil:#2F6FED;   --tahlil-soft:#E7EDFC;
+    --itqan:#B08420;    --itqan-soft:#FCF6E5;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  body{
+    font-family:"Plus Jakarta Sans",sans-serif;
+    font-size:9.5pt; line-height:1.55; color:var(--ink);
+    background:#EAEDF1; margin:0; padding:0;
+  }
+  h1,h2,h3,.brand-name,.section-title{font-family:"Fraunces",serif;}
+
+  /* ============ PAGE (A4) ============ */
+  .page-container{counter-reset:page;}
+  .page{
+    background:#fff; width:21cm; min-height:29.7cm; height:auto;
+    padding:1.6cm 2.3cm 1.1cm 2.3cm; margin:1cm auto;
+    box-shadow:0 0 10px rgba(0,0,0,.18); position:relative;
+    display:flex; flex-direction:column;
+  }
+  .page-header{margin:-1.6cm -2.3cm 0 -2.3cm; width:21cm;}
+  .brand-bar{height:4px;background:linear-gradient(90deg,var(--teal),var(--navy));
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .header-inner{padding:12px 2.3cm 10px 2.3cm;display:flex;justify-content:space-between;align-items:center;
+    background:var(--soft-navy); -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .brand-left{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-logo{height:42px;width:auto;display:block;object-fit:contain;}
+  .brand-name{font-size:17pt;font-weight:700;color:var(--navy);}
+  .brand-tagline{font-size:7.6pt;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:.6px;margin-top:2px;}
+
+  .level-strip{padding:7px 2.3cm 8px;background:#fff;border-bottom:1px solid var(--greyline);
+    display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+
+  .chips-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+  .chip{font-size:7.6pt;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+  .chip-marhalah{color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .chip-register{border:1.4px solid var(--teal);color:var(--teal);background:#fff;}
+  .chip-bidang{border:1.4px solid var(--greyline);color:#5A6272;background:#fff;}
+  .thabaqah-label{font-size:7.6pt;color:#5A6272;font-weight:600;}
+
+  .student-bar{padding:8px 2.3cm;margin:0 -2.3cm 16px -2.3cm;background:#F7F8FA;
+    border-bottom:1px solid var(--greyline);font-size:8.3pt;font-weight:600;color:#3A4252;
+    display:flex;gap:26px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .student-bar span{border-bottom:1px solid #99A1B3;padding-bottom:1px;min-width:110px;display:inline-block;}
+
+  .content{flex-grow:1;display:flex;flex-direction:column;}
+  .eyebrow{font-size:7.7pt;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--teal);margin:8px 0 3px;}
+  .cpa-trail{font-size:7.4pt;color:#8A91A0;letter-spacing:.3px;margin-bottom:8px;text-transform:uppercase;}
+  .cpa-trail b{color:var(--navy);}
+  .soal-utama{font-size:9.6pt;margin-bottom:8px;}
+  .soal-utama .no{font-weight:800;color:var(--navy);}
+
+  /* --- Ilustrasi: Konkret (ikon SVG) -> Gambar (model/representasi terstruktur) --- */
+  .illustration-row{display:flex;gap:16px;align-items:center;margin:5px 0 8px 4px;flex-wrap:wrap;}
+  .stage-block{display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0;}
+  .stage-block .cap{font-size:6.4pt;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#9099A8;}
+  .cpa-arrow{font-size:15px;color:var(--greyline);flex-shrink:0;margin:0 -4px;}
+
+  .icon-plain{width:52px;height:52px;border-radius:50%;background:#fff;border:1.6px solid var(--navy);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:26px;line-height:1;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .icon-row{display:flex;gap:8px;flex-wrap:wrap;max-width:150px;}
+  .icon-row .icon-plain{width:34px;height:34px;font-size:18px;}
+
+  .combined-bar{display:flex;width:200px;height:30px;border:1.5px solid var(--navy);border-radius:5px;overflow:hidden;flex-shrink:0;}
+  .combined-bar .seg{flex:1;border-right:1px solid rgba(255,255,255,.55);}
+  .combined-bar .seg:last-child{border-right:none;}
+  .seg.a{background:var(--teal);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .seg.b{background:var(--gold);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .seg.empty{background:#fff;}
+
+  .bar-legend{display:flex;flex-direction:column;gap:5px;font-size:8pt;padding-top:2px;}
+  .bar-legend .row{display:flex;align-items:center;gap:7px;}
+  .bar-legend .sw{width:11px;height:11px;border-radius:3px;flex-shrink:0;border:1px solid rgba(0,0,0,.15);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  /* --- Ten-frame: representasi kuantitas konkret->gambar untuk membilang & nilai tempat --- */
+  .ten-frame{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:repeat(2,1fr);
+    gap:4px;width:125px;height:52px;flex-shrink:0;}
+  .tf-cell{border:1.4px solid var(--navy);border-radius:4px;background:#fff;}
+  .tf-cell.fill-teal{background:var(--teal);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .tf-cell.fill-gold{background:var(--gold);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .tf-cell.fill-red{background:#D64545;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .tf-cell.fill-green{background:#2E9E63;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .tf-caption{font-size:7.6pt;font-weight:700;color:var(--navy);margin-top:4px;text-align:center;}
+
+  /* --- Balok puluhan-satuan (base-ten blocks) untuk nilai tempat --- */
+  .baseten-row{display:flex;gap:16px;align-items:flex-end;}
+  .baseten-group{display:flex;flex-direction:column;align-items:center;gap:5px;}
+  .ten-rod{width:16px;height:74px;background:var(--navy);border-radius:2px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .ten-rod-row{display:flex;gap:4px;}
+  .unit-stack{display:flex;flex-direction:column-reverse;gap:2px;}
+  .unit-cube{width:16px;height:16px;background:var(--gold);border-radius:2px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .baseten-cap{font-size:7.2pt;font-weight:700;color:#5A6272;text-align:center;}
+
+  /* --- Pola berulang (Aljabar) --- */
+  .pattern-strip{display:flex;gap:9px;align-items:center;flex-wrap:wrap;}
+  .pattern-item{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+  .pattern-blank{width:32px;height:32px;flex-shrink:0;border:1.7px dashed var(--teal);border-radius:6px;background:#fff;}
+  .shp{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .shp-circle-t{width:32px;height:32px;border-radius:50%;background:var(--teal);}
+  .shp-circle-g{width:32px;height:32px;border-radius:50%;background:var(--gold);}
+  .shp-square-t{width:28px;height:28px;background:var(--teal);border-radius:4px;}
+  .shp-square-g{width:28px;height:28px;background:var(--gold);border-radius:4px;}
+  .shp-tri-t{width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-bottom:28px solid var(--teal);}
+  .shp-tri-g{width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-bottom:28px solid var(--gold);}
+  .shp-sm{transform:scale(.62);}
+  .shp-lg{transform:scale(1.15);}
+
+  /* --- Perbandingan langsung: panjang / berat / isi (Pengukuran) --- */
+  .compare-bars{display:flex;flex-direction:column;gap:9px;}
+  .cbar-row{display:flex;align-items:center;gap:10px;}
+  .cbar-label{font-size:8pt;font-weight:700;color:var(--navy);min-width:56px;}
+  .cbar{height:15px;border-radius:3px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .cbar.teal{background:var(--teal);}
+  .cbar.gold{background:var(--gold);}
+
+  .scale-visual{display:flex;flex-direction:column;align-items:center;}
+  .scale-visual svg{display:block;}
+
+  .jar-row{display:flex;gap:16px;align-items:flex-end;}
+  .jar{width:34px;height:56px;border:1.6px solid var(--navy);border-radius:0 0 6px 6px;position:relative;overflow:hidden;background:#fff;}
+  .jar .fill{position:absolute;bottom:0;left:0;right:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .jar-cap{font-size:7.2pt;font-weight:700;color:#5A6272;text-align:center;margin-top:4px;}
+
+  .daytime-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .daytime-card{border:1px solid var(--greyline);border-radius:7px;padding:7px 9px;display:flex;flex-direction:column;
+    align-items:center;gap:4px;width:72px;flex-shrink:0;}
+  .daytime-card .lbl{font-size:7.3pt;font-weight:700;color:var(--navy);}
+
+  /* --- Bangun datar dasar (Geometri) --- */
+  .shape-gallery{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end;}
+  .shape-card{display:flex;flex-direction:column;align-items:center;gap:5px;}
+  .shape-card .lbl{font-size:7.4pt;font-weight:700;color:var(--navy);}
+
+  /* --- Posisi & arah (Geometri) --- */
+  .position-scene{border:1px solid var(--greyline);border-radius:8px;padding:8px 12px;background:#FAFBFC;display:inline-block;}
+  .pos-grid{display:grid;grid-template-columns:repeat(3,46px);grid-template-rows:repeat(3,46px);gap:5px;}
+  .pos-cell{display:flex;align-items:center;justify-content:center;}
+  .pos-cell.center{border:1.6px solid var(--navy);border-radius:6px;background:var(--soft-navy);
+    font-size:6.4pt;font-weight:800;color:var(--navy);text-align:center;line-height:1.2;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  /* --- Piktograf (Data) --- */
+  .pictograf{display:flex;flex-direction:column;gap:7px;}
+  .pf-row{display:flex;align-items:center;gap:10px;}
+  .pf-label{font-size:8.2pt;font-weight:700;color:var(--navy);min-width:64px;flex-shrink:0;}
+  .pf-icons{display:flex;gap:3px;flex-wrap:wrap;align-items:center;}
+  .pf-icons svg{flex-shrink:0;}
+  .pf-icons span{font-size:13px;line-height:1;}
+  .pf-count{font-size:7.8pt;color:#8A91A0;font-weight:700;margin-left:6px;}
+
+  .equation-block{background:var(--soft-navy);border:1px solid var(--soft-navy);border-left:3px solid var(--navy);
+    border-radius:5px;padding:6px 16px;margin:3px 0 8px 6px;display:inline-block;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .word-block{background:var(--soft-navy);border:1px solid var(--soft-navy);border-left:3px solid var(--navy);
+    border-radius:5px;padding:8px 16px;margin:4px 0 10px 6px;font-size:9.3pt;font-weight:700;color:var(--navy);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  .nalar-box{background:var(--soft-gold);border:0.9px solid var(--gold);border-radius:5px;
+    padding:6px 14px;margin:5px 0 9px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .nalar-box .tag{font-size:7.3pt;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:3px;}
+  .nalar-box p{margin:0;font-size:8.8pt;font-style:italic;color:#5C4A16;}
+
+  .practice-item{display:flex;gap:8px;margin-bottom:7px;break-inside:avoid;font-size:9pt;}
+  .practice-item .no{font-weight:800;color:var(--navy);min-width:16px;}
+  .practice-item .body{flex:1;}
+  ol.opsi{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 14px;}
+  ol.opsi li{font-size:8.7pt;}
+  ol.opsi li::before{content:attr(data-o) ". ";font-weight:700;color:var(--navy);}
+  .isian-inline{display:inline-block;border-bottom:1.4px solid #7A8296;min-width:26px;height:14px;margin:0 2px;}
+
+  .eksplorasi-block{flex-grow:1;display:flex;flex-direction:column;margin-top:8px;}
+  .eksplorasi-prompt{font-size:8.7pt;color:#3A4252;margin:3px 0 6px;}
+  .isian-row{display:flex;align-items:baseline;gap:8px;font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:5px;flex-wrap:wrap;}
+  .isian-row .line{flex:1;border-bottom:1px solid #99A1B3;height:13px;min-width:40px;}
+  .scratch-area{flex-grow:1;min-height:40px;margin-bottom:10px;position:relative;
+    border:1.3px dashed var(--greyline);border-radius:7px;padding:10px 16px;
+    background-image:radial-gradient(circle, #D7DDE7 1px, transparent 1px);
+    background-size:15px 15px; background-position:6px 6px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .scratch-area .label{position:absolute;top:-9px;left:12px;background:#fff;padding:0 8px;
+    font-size:7.2pt;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#9099A8;}
+
+  /* --- Strip alur pertemuan (menit → blok) --- */
+  .flow-strip{display:flex;gap:4px;margin-top:5px;flex-wrap:wrap;}
+  .flow-chip{font-size:6.5pt;font-weight:700;padding:3px 8px;border-radius:12px;background:#F0F2F5;color:#8A91A0;white-space:nowrap;}
+  .flow-chip.active{background:var(--navy);color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .flow-chip.done{background:#DDE3EC;color:#5A6272;}
+
+  /* --- Label karakteristik TWM (Blok Nalar) --- */
+  .twm-tag{display:inline-flex;align-items:center;gap:4px;font-size:7.3pt;font-weight:800;padding:3px 10px;
+    border-radius:20px;border:1.4px solid var(--teal);color:var(--teal);background:#fff;margin-right:6px;white-space:nowrap;}
+
+  .reason-item{margin-bottom:6px;font-size:8.7pt;}
+  .reason-item .lbl{font-size:7pt;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.3px;display:block;margin-bottom:1px;}
+
+  /* --- Kotak analisis kesalahan (wajib min. 1x per pertemuan) --- */
+  .kesalahan-box{background:var(--bidayah-soft);border:0.9px solid var(--bidayah);border-radius:5px;
+    padding:6px 14px;margin:6px 0 2px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .kesalahan-box .tag{font-size:7.3pt;font-weight:800;color:var(--bidayah);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:4px;}
+  .kesalahan-box .salah{font-size:8.7pt;font-style:italic;color:#8A3A24;margin:2px 0 6px;background:#fff;
+    border-radius:4px;padding:5px 9px;border:1px dashed #E4572E;}
+  .kesalahan-box .tanya{font-size:8.6pt;color:#6B3420;font-weight:700;}
+
+  /* --- Kotak Pekerjaan Rumah --- */
+  .pr-box{border:1.4px dashed var(--navy);border-radius:6px;padding:7px 14px;background:#FAFBFC;margin-top:5px;}
+  .pr-box .tag{font-size:7.3pt;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:3px;}
+  .pr-box ol{margin:0;padding-left:16px;font-size:8.5pt;}
+  .pr-box li{margin-bottom:2px;}
+
+  .reflect-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;font-size:8.6pt;font-weight:600;color:#3A4252;}
+
+  .checklist-row{display:flex;gap:16px;flex-wrap:wrap;font-size:7.6pt;color:#8A91A0;font-weight:600;margin-top:3px;}
+  .checklist-row .ck{display:flex;align-items:center;gap:4px;}
+  .checklist-row .box{width:9px;height:9px;border:1.2px solid #9099A8;border-radius:2px;flex-shrink:0;display:inline-block;}
+
+  .block-title{display:flex;align-items:baseline;gap:8px;margin:2px 0 2px;flex-wrap:wrap;}
+  .block-title .name{font-family:"Fraunces",serif;font-size:12.5pt;font-weight:700;color:var(--navy);}
+  .block-title .mnr{font-size:7.3pt;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.4px;}
+  .block-title .time{font-size:7.3pt;font-weight:700;color:#8A91A0;margin-left:auto;}
+  .block-sep{border-top:2px solid var(--navy);margin:9px 0 6px;}
+
+  .numcard{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:28px;
+    border:1.6px solid var(--navy);border-radius:6px;font-family:"Fraunces",serif;font-weight:700;font-size:11.5pt;
+    color:var(--navy);background:var(--soft-navy);padding:0 6px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .numcard.ghost{background:#fff;border-style:dashed;border-color:var(--teal);color:var(--teal);}
+  .numcard-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+  .numcard-arrow{color:var(--greyline);font-size:13px;}
+
+  .page-footer{margin-top:auto;padding-top:10px;border-top:1px solid var(--greyline);
+    display:flex;justify-content:space-between;font-size:6.8pt;color:#8A91A0;}
+
+  /* --- Tahukah Kamu (pengisi ruang kosong yang bermanfaat) --- */
+  .fun-fact-box{background:var(--soft-teal);border:0.9px solid var(--teal);border-radius:5px;
+    padding:6px 14px;margin:6px 0 3px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .fun-fact-box .tag{font-size:7.2pt;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:2px;}
+  .fun-fact-box p{margin:0;font-size:8.3pt;color:#1D4E4E;line-height:1.45;}
+
+  /* --- Latihan Soal (review campuran sebelum TAM) --- */
+  .ls-bagian-label{font-size:8.6pt;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.5px;
+    margin:14px 0 7px;padding-bottom:4px;border-bottom:1.5px solid var(--gold);display:flex;align-items:baseline;gap:8px;}
+  .ls-bagian-label:first-child{margin-top:0;}
+  .ls-bagian-label .src{font-size:7pt;font-weight:600;color:#9099A8;text-transform:none;letter-spacing:0;}
+  .ls-item{display:flex;gap:8px;margin-bottom:10px;break-inside:avoid;font-size:8.8pt;}
+  .ls-item .no{font-weight:800;color:var(--navy);min-width:16px;flex-shrink:0;}
+  .ls-item .body{flex:1;}
+  .ls-nalar-tag{display:inline-block;font-size:6.3pt;font-weight:800;color:#fff;background:var(--gold);border-radius:10px;
+    padding:1.5px 7px;margin-left:6px;letter-spacing:.3px;vertical-align:middle;white-space:nowrap;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .scope-strip{padding:8px 2.3cm;background:#fff;border-bottom:1px solid var(--greyline);
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .scope-count{margin-left:auto;font-size:7.3pt;color:#8A91A0;font-weight:600;}
+
+  /* --- Kunci Jawaban (dokumen guru) --- */
+  .warn-bar{background:#A63A3A;color:#fff;text-align:center;font-size:7.6pt;font-weight:800;
+    letter-spacing:.6px;text-transform:uppercase;padding:5px 0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .kunci-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 22px;}
+  .kunci-item{display:flex;gap:6px;padding:6px 0;border-bottom:1px dotted var(--greyline);font-size:8.2pt;break-inside:avoid;}
+  .kunci-item .no{font-weight:800;color:var(--navy);min-width:16px;flex-shrink:0;}
+  .kunci-item .ans{color:#2E3745;}
+  .kunci-item .ans b{color:var(--teal);}
+  .kunci-bagian-label{font-size:7.6pt;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.4px;
+    grid-column:1/-1;margin:8px 0 2px;}
+  .kunci-bagian-label:first-child{margin-top:0;}
+
+  /* ============ PRINT ============ */
+  @media print{
+    @page{size:A4;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;page-break-after:always;}
+    .page:last-child{page-break-after:auto;}
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  }
+</style>
+</head>
+
+<body>
+<div class="page-container">
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2E9E63">Q-2</span>
+        <span class="thabaqah-label">TAQWIYAH &middot; penguatan &middot; JALUR PADAT</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Bilangan &middot; Pertemuan 1 dari 2</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:4px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menyatakan dan menyederhanakan rasio dua besaran, serta menyatakan satu besaran sebagai pecahan dari besaran lain. <i>Digabung (Jalur Padat).</i></div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow">MNR 1 &middot; Masalah Nyata (Rasio Dua Besaran)</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Dalam pemilihan Ketua OSIS, dari 40 pemilih di kelas 8, 24 orang memilih kandidat A dan sisanya memilih kandidat B. Nyatakan rasio pemilih A&nbsp;:&nbsp;B dalam bentuk paling sederhana.</div>
+
+    <div class="illustration-row" style="margin-bottom:2px;">
+      <div class="stage-block">
+        <div class="icon-plain">&#128499;&#65039;</div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="combined-bar" style="width:150px;height:22px;">
+          <div class="seg a"></div><div class="seg a"></div><div class="seg a"></div><div class="seg b"></div><div class="seg b"></div>
+        </div>
+        <span class="cap">Gambar &middot; 24:16 &rarr; &divide;8</span>
+      </div>
+      <div class="bar-legend">
+        <div class="row"><span class="sw" style="background:#007A7A"></span> A = 24 org &rarr; 3 bagian</div>
+        <div class="row"><span class="sw" style="background:#B08420"></span> B = 16 org &rarr; 2 bagian</div>
+      </div>
+    </div>
+
+    <div class="equation-block" style="margin:2px 0 5px;">$$24:16 = (24\div8):(16\div8) = 3:2$$</div>
+
+    <div class="eyebrow">MNR 2 &middot; Besaran sebagai Pecahan dari Besaran Lain (Topik Kedua &middot; Guru Memandu)</div>
+    <div style="font-size:8.3pt;margin-bottom:4px;">Toko &ldquo;Kios Barokah&rdquo; menjual 45 kaos: 18 polos, 27 bermotif. Berbeda dari pecahan-dari-total, sekarang kita bandingkan <b>satu besaran terhadap besaran lain</b>: kaos polos sbg pecahan dari kaos bermotif = <b>18/27 = 2/3</b>.</div>
+
+    <div class="eyebrow" style="margin-top:3px;">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 14px;font-size:8.1pt;font-weight:600;margin-bottom:1px;">
+      <div>a) Sederhanakan rasio 28:35 = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>b) Sederhanakan rasio 45:60 = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>c) Klub 50 anggota, 20 pria sisanya wanita. Rasio = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>d) 18 suka Mat., 12 suka IPA. Mat. sbg pecahan dr IPA = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>e) 32 kelereng merah, 24 biru. Rasio = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>f) 60 kendaraan, 36 motor sisanya mobil. Motor/mobil = <span class="isian-inline" style="min-width:34px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:4px 0 2px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 5px;">
+      <span class="twm-tag">Specialising</span><span class="twm-tag">Generalising</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Specialising &mdash; coba contoh khusus</span>Sederhanakan rasio 18:24 dan 12:16 secara terpisah. Apakah keduanya menghasilkan rasio paling sederhana yang sama?</div>
+    <div class="reason-item"><span class="lbl">Generalising &mdash; tarik aturan umum</span>Dari contoh-contoh penyederhanaan rasio tadi, buat 1 aturan umum: langkah apa yang selalu dilakukan untuk menyederhanakan rasio?</div>
+
+    <div class="kesalahan-box" style="margin:4px 0 0;padding:4px 14px;">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Fajar menyederhanakan rasio 18:24 dengan cara mengurangi 6 dari kedua sisi, sehingga ia menuliskan hasilnya 12:18.</div>
+      <div class="tanya">Di mana letak kesalahan Fajar? (Sederhanakan 18:24 dan 12:18 dengan FPB &mdash; samakah hasilnya?) Bagaimana cara yang benar?</div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah Q-2 &middot; Bilangan &middot; Pertemuan 1 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2E9E63">Q-2</span>
+        <span class="thabaqah-label">TAQWIYAH &middot; penguatan &middot; JALUR PADAT</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Bilangan &middot; Pertemuan 1 dari 2</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan penyederhanaan rasio dan besaran sebagai pecahan dari besaran lain pada situasi usaha nyata.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Toko sepatu &ldquo;Langkah Baru&rdquo; menjual 60 pasang sepatu bulan ini: 36 pasang sepatu olahraga dan sisanya sepatu formal. (a) Nyatakan rasio sepatu olahraga&nbsp;:&nbsp;formal dalam bentuk paling sederhana. (b) Nyatakan banyak sepatu formal sebagai pecahan dari total penjualan. (c) Nyatakan banyak sepatu olahraga sebagai pecahan dari banyak sepatu formal.</div>
+
+    <div class="illustration-row" style="margin-bottom:5px;">
+      <div class="stage-block">
+        <div class="combined-bar" style="width:200px;height:30px;">
+          <div class="seg a"></div><div class="seg a"></div><div class="seg a"></div><div class="seg b"></div><div class="seg b"></div>
+        </div>
+        <span class="cap">Gambar &middot; 5 Bagian &times; 12 Pasang</span>
+      </div>
+      <div class="bar-legend">
+        <div class="row"><span class="sw" style="background:#007A7A"></span> Olahraga = 36 pasang = 3 bagian</div>
+        <div class="row"><span class="sw" style="background:#B08420"></span> Formal = 24 pasang = 2 bagian</div>
+      </div>
+    </div>
+
+    <div class="equation-block">$$36:24 = 3:2$$</div>
+    <div class="word-block">(b) Formal sbg pecahan dari total = 24/60 = <b>2/5</b>. &nbsp; (c) Olahraga sbg pecahan dari formal = 36/24 = <b>3/2</b>.</div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;">Kios alat tulis menjual 50 buku tulis: 30 bergaris dan sisanya bergambar kotak-kotak. Rasio buku bergaris&nbsp;:&nbsp;buku kotak-kotak paling sederhana = <span class="isian-inline" style="min-width:40px;"></span></div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. Sederhanakan rasio 21:28 = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>2. Sederhanakan rasio 54:36 = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>3. 45 siswa: 27 futsal sisanya basket. Rasio futsal:basket = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>4. Futsal sbg pecahan dari total (no.3) = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>5. Basket sbg pecahan dari futsal (no.3) = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>6. Sederhanakan rasio 16:40 = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>7. Toko roti buat 80 roti: 48 manis sisanya tawar. Rasio manis:tawar = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>8. Tawar sbg pecahan dari total (no.7) = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>9. Sederhanakan rasio 63:81 = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>10. Uang saku Rp50.000, ditabung Rp30.000 sisanya dibelanjakan. Rasio tabungan:belanja = <span class="isian-inline" style="min-width:26px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Rasio emas (<i>golden ratio</i>) yang nilainya sekitar 1 : 1,618 sering dipakai desainer logo dan arsitek karena dianggap paling nyaman dipandang mata &mdash; termasuk pada logo beberapa perusahaan teknologi besar dunia!</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Sederhanakan rasio 40:64.</li>
+        <li>Dari 36 pensil, 21 berwarna sisanya hitam. Nyatakan rasio warna:hitam paling sederhana.</li>
+        <li>Toko kue &ldquo;Manis Selalu&rdquo; menjual 72 kue: 45 kue cokelat sisanya kue vanila. Nyatakan banyak kue vanila sebagai pecahan dari banyak kue cokelat.</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah Q-2 &middot; Bilangan &middot; Pertemuan 1 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2E9E63">Q-2</span>
+        <span class="thabaqah-label">TAQWIYAH &middot; penguatan &middot; JALUR PADAT</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Bilangan &middot; Pertemuan 2 dari 2 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:4px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menyatakan rasio tiga besaran &amp; memakai <i>before-after model</i> untuk kasus jumlah tetap. <i>Digabung (Jalur Padat) &middot; sintesis Bilangan.</i></div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow">MNR 1 &middot; Masalah Nyata (Rasio Tiga Besaran)</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Dana kegiatan OSIS Rp900.000 dibagi untuk 3 divisi &mdash; Olahraga, Seni, Sosial &mdash; dengan rasio 5:3:2. Berapa dana tiap divisi?</div>
+
+    <div class="illustration-row" style="margin-bottom:3px;">
+      <div class="stage-block">
+        <div class="icon-plain">&#128176;</div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="combined-bar" style="width:180px;height:20px;">
+          <div class="seg a"></div><div class="seg a"></div><div class="seg a"></div><div class="seg a"></div><div class="seg a"></div><div class="seg b"></div><div class="seg b"></div><div class="seg b"></div><div class="seg" style="background:#2E9E63;flex:1;"></div><div class="seg" style="background:#2E9E63;flex:1;"></div>
+        </div>
+        <span class="cap">Gambar &middot; 5(teal):3(gold):2(hijau) &middot; 10 bag &times; Rp90rb</span>
+      </div>
+    </div>
+    <div class="word-block" style="margin:2px 0 6px;">5+3+2=10 bagian &rarr; 900.000&divide;10=Rp90.000/bagian &rarr; Olahraga=<b>Rp450.000</b>, Seni=<b>Rp270.000</b>, Sosial=<b>Rp180.000</b>.</div>
+
+    <div class="eyebrow">MNR 2 &middot; Bar Model Rasio: Jumlah Tetap (Topik Kedua &middot; Guru Memandu)</div>
+    <div style="font-size:8.2pt;margin-bottom:2px;"><b><i>Before-after model</i></b> (mulai Q-2): bar sebelum &amp; sesudah, total tetap sama. Uang Rafi:Bela=5:3 (total tetap Rp80.000), Rafi beri sebagian ke Bela hingga rasio jadi 1:1. Berapa uang masing-masing &amp; berapa yang diberikan?</div>
+    <div style="font-size:8.3pt;margin:2px 0 4px;">Sebelum: <span class="combined-bar" style="display:inline-flex;width:60px;height:13px;vertical-align:middle;margin:0 4px;"><span class="seg a" style="flex:5;"></span><span class="seg b" style="flex:3;"></span></span> 8 bag=Rp80.000&rarr;Rp10.000/bag &rarr; Rafi=Rp50.000, Bela=Rp30.000. Sesudah: <span class="combined-bar" style="display:inline-flex;width:40px;height:13px;vertical-align:middle;margin:0 4px;"><span class="seg a" style="flex:1;"></span><span class="seg b" style="flex:1;"></span></span> 1:1, masing-masing=Rp40.000 &rarr; Rafi memberi <b>Rp10.000</b>.</div>
+
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px 16px;font-size:8.3pt;font-weight:600;margin-bottom:2px;">
+      <div>a) Bagi 600 dgn rasio 3:2:1, bagian terbesar = <span class="isian-inline" style="min-width:36px;"></span></div>
+      <div>b) Bagi 1.000.000 dgn rasio 4:3:3, tiap bagian sama = <span class="isian-inline" style="min-width:36px;"></span></div>
+      <div>c) Uang A:B=3:1, total tetap 40.000. Rasio jadi 1:1, uang A = <span class="isian-inline" style="min-width:36px;"></span></div>
+      <div>d) Usia P:Q=5:3, selisih 8 th. Usia P = <span class="isian-inline" style="min-width:36px;"></span></div>
+      <div>e) Bagi 350 dgn rasio 4:3, bagian terbesar = <span class="isian-inline" style="min-width:36px;"></span></div>
+      <div>f) Uang C:D=2:1, total tetap 60.000. Rasio jadi 1:1, tiap orang = <span class="isian-inline" style="min-width:36px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:5px 0 3px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 5px;">
+      <span class="twm-tag">Conjecturing</span><span class="twm-tag">Convincing</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Conjecturing &mdash; susun dugaan</span>Rasio Rafi:Bela berubah 5:3 jadi 1:1 (total tetap). Apakah uang Rafi PASTI berkurang?</div>
+    <div class="reason-item"><span class="lbl">Convincing &mdash; yakinkan temanmu</span>Hitung selisih uang Rafi sebelum &amp; sesudah, jelaskan kenapa berkurang.</div>
+
+    <div class="kesalahan-box" style="margin:3px 0 0;padding:4px 14px;">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Uang Rafi:Bela=5:3, total tetap Rp80.000. Dimas hitung 5&minus;3=2 bagian=Rp80.000, tiap bagian=Rp40.000, uang Rafi=5&times;40.000=Rp200.000.</div>
+      <div class="tanya">Di mana kesalahan Dimas? (Bandingkan dgn total uang.) Kapan bagian rasio dijumlah, kapan dikurangkan?</div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah Q-2 &middot; Bilangan &middot; Pertemuan 2 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2E9E63">Q-2</span>
+        <span class="thabaqah-label">TAQWIYAH &middot; penguatan &middot; JALUR PADAT</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Bilangan &middot; Pertemuan 2 dari 2 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan rasio tiga besaran dan bar model jumlah tetap &mdash; sintesis Bidang Bilangan.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Koperasi bagi untung Rp1.200.000 ke 3 pengurus rasio 3:2:1; bulan depan direncanakan rata (1:1:1) dgn untung sama. Selisih bagian Ketua?</div>
+
+    <div style="font-size:8.3pt;margin:3px 0 4px;">Sebelum: <span class="combined-bar" style="display:inline-flex;width:60px;height:13px;vertical-align:middle;margin:0 4px;"><span class="seg a" style="flex:3;"></span><span class="seg b" style="flex:2;"></span><span class="seg" style="background:#2E9E63;flex:1;"></span></span> 6 bagian, 1.200.000&divide;6=Rp200.000/bag &rarr; Ketua=3&times;200.000=<b>Rp600.000</b>. Sesudah: <span class="combined-bar" style="display:inline-flex;width:60px;height:13px;vertical-align:middle;margin:0 4px;"><span class="seg a" style="flex:1;"></span><span class="seg b" style="flex:1;"></span><span class="seg" style="background:#2E9E63;flex:1;"></span></span> 1:1:1, tiap orang=1.200.000&divide;3=<b>Rp400.000</b>. Selisih Ketua=600.000&minus;400.000=<b>Rp200.000</b> (berkurang).</div>
+
+    <div class="eyebrow" style="margin-top:3px;">Bar Model Rasio: Selisih Tetap</div>
+    <div style="font-size:8.3pt;margin-bottom:2px;">Kasus <b>selisih tetap</b> dipakai saat SELISIH dua besaran tidak berubah walau rasionya berubah &mdash; contoh klasiknya selisih usia. Usia Kakak:Adik=7:4, selisih tetap 9 tahun. <span class="combined-bar" style="display:inline-flex;width:70px;height:13px;vertical-align:middle;margin:0 4px;"><span class="seg a" style="flex:7;"></span><span class="seg b" style="flex:4;"></span></span> Selisih=7&minus;4=3 bag=9th &rarr; 1 bag=3th &rarr; Kakak=<b>21th</b>, Adik=<b>12th</b>.</div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;">Uang kas 3 regu Pramuka dibagi rasio 4:3:2 dari total tetap Rp900.000. Bagian regu dengan rasio 4 = <span class="isian-inline" style="min-width:50px;"></span></div>
+
+    <div class="eyebrow" style="margin-top:4px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px 14px;font-size:8.2pt;font-weight:600;">
+      <div>1. Bagi 480 dgn rasio 5:3, bagian terbesar = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>2. Bagi 720 dgn rasio 4:3:2, bagian terkecil = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>3. Uang E:F=7:5, total tetap 96.000. Rasio jadi 1:1, uang tiap orang = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>4. Usia G:H=9:5, selisih 12 tahun. Usia G = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>5. Bagi 1.000 dgn rasio 6:4, bagian terbesar = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>6. Rasio A:B:C=3:2:5, total 800. Bagian B = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>7. Uang I:J=3:2, total tetap 75.000. Rasio jadi 1:1, uang tiap orang = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>8. Usia K:L=8:5, selisih 15 tahun. Usia L = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>9. Bagi 630 dgn rasio 5:2, bagian terbesar = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>10. Rasio M:N:O=4:3:1, total 960. Bagian O = <span class="isian-inline" style="min-width:26px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box" style="margin:4px 0 2px;padding:5px 12px;">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Soal <i>bar model</i> rasio jumlah tetap &amp; selisih tetap sering muncul di kompetisi matematika seperti Cambridge Checkpoint dan olimpiade SD-SMP!</p>
+    </div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Bagi Rp540.000 dengan rasio 5:4.</li>
+        <li>Rasio usia Bunda:Ayah = 9:10, selisih 3 tahun. Berapa usia Ayah?</li>
+        <li>Uang kas kelas Rp150.000 dibagi 3 sie (Acara:Konsumsi:Perlengkapan) dengan rasio 3:2:1. Berapa bagian sie Konsumsi?</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah Q-2 &middot; Bilangan &middot; Pertemuan 2 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2E9E63">Q-2</span>
+        <span class="thabaqah-label">TAQWIYAH &middot; penguatan &middot; JALUR PADAT</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Aljabar &middot; Pertemuan 1 dari 1 (Digabung)</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:4px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat mengenali perbandingan senilai dan berbalik nilai, serta menyatakan hubungan dalam tabel dan grafik sederhana. <i>Digabung (Jalur Padat).</i></div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow">MNR 1 &middot; Masalah Nyata (Perbandingan Senilai)</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Andra kerja paruh waktu sebagai kurir, dibayar Rp15.000/jam. Lengkapi tabel upah untuk 1&ndash;4 jam. Apa yang terjadi tiap jam bertambah 1?</div>
+
+    <div class="illustration-row" style="margin-bottom:2px;">
+      <div class="stage-block">
+        <div class="icon-plain">&#128700;</div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <table style="border-collapse:collapse;font-size:7.8pt;">
+          <thead><tr style="background:var(--soft-navy);"><th style="padding:1.5px 9px;border:1px solid #0F2A4E;">Jam</th><th style="padding:1.5px 9px;border:1px solid #0F2A4E;">1</th><th style="padding:1.5px 9px;border:1px solid #0F2A4E;">2</th><th style="padding:1.5px 9px;border:1px solid #0F2A4E;">3</th><th style="padding:1.5px 9px;border:1px solid #0F2A4E;">4</th></tr></thead>
+          <tbody><tr><td style="padding:1.5px 9px;border:1px solid #C8CED6;font-weight:700;">Upah</td><td style="padding:1.5px 9px;border:1px solid #C8CED6;text-align:center;">15rb</td><td style="padding:1.5px 9px;border:1px solid #C8CED6;text-align:center;">30rb</td><td style="padding:1.5px 9px;border:1px solid #C8CED6;text-align:center;">45rb</td><td style="padding:1.5px 9px;border:1px solid #C8CED6;text-align:center;">60rb</td></tr></tbody>
+        </table>
+        <span class="cap">Gambar &middot; Tabel Senilai</span>
+      </div>
+      <div class="stage-block">
+        <svg width="66" height="46" viewBox="0 0 66 46"><line x1="6" y1="40" x2="6" y2="4" stroke="#8A91A0" stroke-width="1"/><line x1="6" y1="40" x2="60" y2="40" stroke="#8A91A0" stroke-width="1"/><line x1="6" y1="40" x2="54" y2="8" stroke="#0F2A4E" stroke-width="1.8"/><circle cx="18" cy="32" r="1.8" fill="#007A7A"/><circle cx="30" cy="24" r="1.8" fill="#007A7A"/><circle cx="42" cy="16" r="1.8" fill="#007A7A"/><circle cx="54" cy="8" r="1.8" fill="#007A7A"/></svg>
+        <span class="cap">Grafik &middot; Garis Lurus dr 0</span>
+      </div>
+    </div>
+
+    <div class="word-block" style="margin:2px 0 5px;">Upah = 15.000&times;jam. Hasil bagi upah&divide;jam selalu tetap (Rp15.000) &mdash; ciri <b>perbandingan senilai</b>, grafiknya garis lurus dari titik (0,0).</div>
+
+    <div class="eyebrow">MNR 2 &middot; Perbandingan Berbalik Nilai (Topik Kedua &middot; Guru Memandu)</div>
+    <div style="font-size:8.3pt;margin-bottom:4px;">Proyek cat pagar selesai <b>6 hari</b> oleh <b>4 orang</b>. Jika pekerja jadi <b>8 orang</b> (kecepatan sama): 4&times;6&divide;8 = <b>3 hari</b> &mdash; makin banyak pekerja, makin sedikit hari. Hasil kali pekerja&times;hari selalu tetap = 24. Ciri <b>berbalik nilai</b>.</div>
+
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px 16px;font-size:8.3pt;font-weight:600;margin-bottom:2px;">
+      <div>a) Ongkos ojek online Rp3.000/km. Untuk 5 km = <span class="isian-inline" style="min-width:36px;"></span></div>
+      <div>b) Dari no.a, untuk 8 km = <span class="isian-inline" style="min-width:36px;"></span></div>
+      <div>c) Tangki terisi penuh 4 jam oleh 2 pompa. Jika 4 pompa = <span class="isian-inline" style="min-width:36px;"></span> jam</div>
+      <div>d) Dari no.c, jika 8 pompa = <span class="isian-inline" style="min-width:36px;"></span> jam</div>
+      <div>e) Harga 3 buku Rp45.000. Harga 7 buku = <span class="isian-inline" style="min-width:36px;"></span></div>
+      <div>f) Proyek 10 hari oleh 6 pekerja. Jika 12 pekerja = <span class="isian-inline" style="min-width:36px;"></span> hari</div>
+    </div>
+
+    <div class="block-sep" style="margin:5px 0 3px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 5px;">
+      <span class="twm-tag">Characterising</span><span class="twm-tag">Classifying</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Characterising &mdash; sebut ciri khasnya</span>Apa ciri khas tabel perbandingan senilai? Perhatikan hasil bagi (nilai per satuan) di setiap baris, dibandingkan hasil kali pada tabel berbalik nilai.</div>
+    <div class="reason-item"><span class="lbl">Classifying &mdash; kelompokkan</span>Kelompokkan menjadi &ldquo;senilai&rdquo; atau &ldquo;berbalik nilai&rdquo;: (1) banyak buku &amp; total harga, (2) banyak pekerja &amp; waktu proyek, (3) kecepatan &amp; waktu tempuh jarak tetap. Jelaskan dasarnya.</div>
+
+    <div class="kesalahan-box" style="margin:4px 0 0;padding:5px 14px;">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Bagas mengira makin banyak pekerja, makin lama proyek selesai (&ldquo;makin ramai, makin susah diatur&rdquo;), sehingga untuk proyek 4 pekerja&rarr;6 hari, ia menuliskan 8 pekerja butuh 12 hari.</div>
+      <div class="tanya">Dengan asumsi tiap pekerja bekerja sama cepat, di mana letak kesalahan Bagas? Kenapa menambah pekerja MENGURANGI hari yang dibutuhkan?</div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah Q-2 &middot; Aljabar &middot; Pertemuan 1 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2E9E63">Q-2</span>
+        <span class="thabaqah-label">TAQWIYAH &middot; penguatan &middot; JALUR PADAT</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Aljabar &middot; Pertemuan 1 dari 1 (Digabung)</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan perbandingan senilai dan berbalik nilai pada situasi usaha nyata.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Kedai kopi kecil &ldquo;Ngopi Yuk&rdquo; membeli biji kopi: harganya sebanding lurus dengan berat (senilai) &mdash; 2 kg seharga Rp180.000. (a) Berapa harga 5 kg? Sementara itu, stok 300 kg biji kopi akan habis dalam beberapa hari tergantung pemakaian per hari (berbalik nilai): (b) jika terpakai 15 kg/hari, dalam berapa hari stok habis? (c) jika pemakaian naik jadi 25 kg/hari, berapa hari stok bertahan?</div>
+
+    <div class="equation-block">$$180.000\div2=\text{Rp}90.000/\text{kg};\quad 5\times90.000=\text{Rp}450.000$$</div>
+    <div class="word-block" style="margin-left:0;">(b) 300&divide;15 = <b>20 hari</b>. &nbsp; (c) 300&divide;25 = <b>12 hari</b> &mdash; makin banyak pemakaian per hari, makin sedikit hari stok bertahan.</div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;">Toko kain menjual kain seharga Rp28.000/meter (senilai). Untuk 6 meter = <span class="isian-inline" style="min-width:50px;"></span></div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. Ongkos taksi Rp4.000/km. Untuk 9 km = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>2. 3 tukang selesai renovasi 12 hari. 6 tukang = <span class="isian-inline" style="min-width:26px;"></span> hari</div>
+      <div>3. Harga 4 kg gula Rp68.000. Harga 1 kg = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>4. Dari no.3, harga 9 kg = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>5. Kolam terisi penuh 10 jam oleh 3 pompa. Jika 5 pompa = <span class="isian-inline" style="min-width:26px;"></span> jam</div>
+      <div>6. 5 pekerja bangun pagar 8 hari. 10 pekerja = <span class="isian-inline" style="min-width:26px;"></span> hari</div>
+      <div>7. Sewa mobil Rp250.000/hari. Untuk 4 hari = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>8. Dari no.7, budget Rp1.500.000 cukup untuk sewa <span class="isian-inline" style="min-width:26px;"></span> hari</div>
+      <div>9. 6 mesin cetak selesai 500 lembar dalam 5 menit. Jika 15 mesin = <span class="isian-inline" style="min-width:26px;"></span> menit</div>
+      <div>10. Harga 1 lusin roti Rp36.000 (senilai). Harga 1 roti = <span class="isian-inline" style="min-width:26px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Dalam fisika, Hukum Boyle menyatakan tekanan dan volume gas berbanding berbalik nilai &mdash; prinsip yang sama juga dipakai untuk merancang ban sepeda dan alat suntik!</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Ongkos ojek Rp3.500/km. Berapa ongkos untuk 12 km?</li>
+        <li>4 penjahit menyelesaikan 20 baju seragam dalam 5 hari. Berapa hari jika dikerjakan 10 penjahit?</li>
+        <li>Harga 6 pensil Rp18.000 (senilai). Berapa harga 15 pensil?</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah Q-2 &middot; Aljabar &middot; Pertemuan 1 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2E9E63">Q-2</span>
+        <span class="thabaqah-label">TAQWIYAH &middot; penguatan &middot; JALUR PADAT</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Pengukuran &middot; Pertemuan 1 dari 1 (Digabung)</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:4px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menghitung jarak sebenarnya menggunakan skala, serta menghitung kecepatan, jarak, waktu tempuh, dan kecepatan rata-rata. <i>Digabung (Jalur Padat).</i></div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow">MNR 1 &middot; Masalah Nyata (Skala Denah)</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Pada denah renovasi kantin sekolah digunakan skala 1:200. Jika panjang kantin pada denah 8 cm, berapa panjang sebenarnya?</div>
+
+    <div class="illustration-row" style="margin-bottom:2px;">
+      <div class="stage-block">
+        <div class="icon-plain">&#128506;&#65039;</div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <svg width="80" height="34" viewBox="0 0 80 34"><rect x="4" y="6" width="26" height="18" fill="none" stroke="#0F2A4E" stroke-width="1.5"/><text x="17" y="30" font-family="Plus Jakarta Sans" font-size="6" text-anchor="middle" fill="#5A6272">8 cm</text><path d="M38 15 L48 15" stroke="#8A91A0" stroke-width="1"/><path d="M44 12 L48 15 L44 18" fill="none" stroke="#8A91A0" stroke-width="1"/><rect x="52" y="3" width="22" height="24" fill="none" stroke="#007A7A" stroke-width="1.5"/><text x="63" y="32" font-family="Plus Jakarta Sans" font-size="6" text-anchor="middle" fill="#5A6272">16 m</text></svg>
+        <span class="cap">Gambar &middot; Skala 1:200</span>
+      </div>
+    </div>
+
+    <div class="equation-block" style="margin:2px 0 5px;">$$8\ \text{cm} \times 200 = 1.600\ \text{cm} = 16\ \text{m}$$</div>
+
+    <div class="eyebrow">MNR 2 &middot; Kecepatan (Topik Kedua &middot; Guru Memandu)</div>
+    <div style="font-size:8.3pt;margin-bottom:3px;">Kak Salma naik motor 18 km/30 menit: 18&divide;0,5=<b>36 km/jam</b>. Pulang: 12 km/10mnt lalu 8 km/40mnt. Kecepatan rata-rata=<b>total jarak&divide;total waktu</b> (bukan rata-rata tiap ruas)=20 km&divide;50mnt=<b>24 km/jam</b>.</div>
+
+    <div class="eyebrow" style="margin-top:3px;">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 14px;font-size:8.1pt;font-weight:600;margin-bottom:1px;">
+      <div>a) Skala 1:500, jarak peta 6cm. Jarak asli = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>b) Skala 1:1jt, jarak peta 4,5cm. Jarak asli = <span class="isian-inline" style="min-width:34px;"></span> km</div>
+      <div>c) Motor tempuh 60km dlm 1,5jam. Kecepatan = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>d) Kecepatan 45km/jam, waktu 2jam. Jarak = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>e) Jarak 100km, kecepatan 50km/jam. Waktu = <span class="isian-inline" style="min-width:34px;"></span></div>
+      <div>f) Denah skala 1:150, ruang tamu 5cm. Panjang asli = <span class="isian-inline" style="min-width:34px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:4px 0 2px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 4px;">
+      <span class="twm-tag">Critiquing</span><span class="twm-tag">Improving</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Critiquing &mdash; nilai gagasan</span>Cara 1: rata-ratakan kecepatan 2 ruas (72 &amp; 12 km/jam) langsung. Cara 2: total jarak&divide;total waktu. Mana benar? Kenapa cara lain keliru?</div>
+    <div class="reason-item"><span class="lbl">Improving &mdash; cara lebih efisien</span>Cara tercepat menghitung kecepatan rata-rata jika ada &gt;2 ruas perjalanan?</div>
+
+    <div class="kesalahan-box" style="margin:3px 0 0;padding:4px 14px;">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Kecepatan rata-rata Kak Salma (12 km/10mnt lalu 8 km/40mnt): Doni rata-ratakan kedua kecepatan ruas: 72 km/jam &amp; 12 km/jam, sehingga (72+12)&divide;2=42 km/jam.</div>
+      <div class="tanya">Di mana kesalahan Doni? (Hitung ulang dgn total jarak&divide;total waktu.) Kenapa rata-rata kecepatan langsung bisa keliru?</div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah Q-2 &middot; Pengukuran &middot; Pertemuan 1 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2E9E63">Q-2</span>
+        <span class="thabaqah-label">TAQWIYAH &middot; penguatan &middot; JALUR PADAT</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Pengukuran &middot; Pertemuan 1 dari 1 (Digabung)</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan skala peta dan kecepatan &mdash; sintesis Bidang Pengukuran.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Pada peta wisata kota berskala 1:50.000, jarak antara Alun-Alun dan Taman Kota tergambar 6 cm. (a) Berapa jarak sebenarnya dalam km? (b) Jika Salma bersepeda menempuh jarak itu dalam 20 menit, berapa kecepatan rata-ratanya dalam km/jam?</div>
+
+    <div class="equation-block">$$6\ \text{cm} \times 50.000 = 300.000\ \text{cm} = 3\ \text{km}$$</div>
+    <div class="word-block" style="margin-left:0;">Kecepatan = 3 km &divide; (20/60 jam) = 3&divide;(1/3) = <b>9 km/jam</b>.</div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;">Pada peta skala 1:25.000, jarak tergambar 8 cm. Jarak sebenarnya = <span class="isian-inline" style="min-width:50px;"></span> km</div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. Skala 1:300, jarak denah 10 cm. Jarak asli = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>2. Skala 1:2.000.000, jarak peta 3 cm. Jarak asli = <span class="isian-inline" style="min-width:26px;"></span> km</div>
+      <div>3. Mobil menempuh 120 km dalam 2 jam. Kecepatan = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>4. Kecepatan 80 km/jam, waktu 3 jam. Jarak = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>5. Jarak 150 km, kecepatan 50 km/jam. Waktu = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>6. Skala 1:400, panjang asli 20 m. Panjang di denah = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>7. Motor menempuh 45 km dalam 45 menit. Kecepatan = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>8. Kecepatan rata-rata: 15 km/10 menit lalu 5 km/20 menit. Kecepatan rata-rata = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>9. Skala peta 1:150.000, jarak asli 30 km. Jarak di peta = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>10. Kereta menempuh 240 km dalam 3 jam. Kecepatan = <span class="isian-inline" style="min-width:26px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Kecepatan rata-rata pelari maraton elite dunia sekitar 20 km/jam selama lebih dari 2 jam nonstop &mdash; dihitung dengan cara yang sama persis seperti kecepatan rata-rata Kak Salma, hanya saja tanpa &ldquo;istirahat macet&rdquo;!</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Skala 1:250, jarak denah 12 cm. Berapa jarak aslinya?</li>
+        <li>Motor menempuh 54 km dalam 45 menit. Berapa kecepatannya?</li>
+        <li>Perjalanan: 10 km dalam 15 menit lalu 15 km dalam 45 menit. Berapa kecepatan rata-ratanya?</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah Q-2 &middot; Pengukuran &middot; Pertemuan 1 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2E9E63">Q-2</span>
+        <span class="thabaqah-label">TAQWIYAH &middot; penguatan &middot; JALUR PADAT</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Geometri &middot; Pertemuan 1 dari 1 (Digabung)</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:4px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat mengenali dan membedakan unsur-unsur (sisi, rusuk, titik sudut) pada prisma dan limas. <i>Digabung (Jalur Padat).</i></div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow">MNR 1 &middot; Masalah Nyata (Prisma)</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Sebuah tenda pramuka berbentuk prisma segitiga (alasnya segitiga, sisi tegaknya persegi panjang). Amati bentuknya: berapa banyak sisi, rusuk, dan titik sudut yang dimilikinya?</div>
+
+    <div class="illustration-row" style="margin-bottom:2px;">
+      <div class="stage-block">
+        <div class="icon-plain">&#9978;</div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <svg width="92" height="58" viewBox="0 0 110 70">
+          <polygon points="15,55 45,55 60,15 30,15" fill="none" stroke="#0F2A4E" stroke-width="1.6"/>
+          <polygon points="45,55 95,55 95,25 60,15" fill="none" stroke="#0F2A4E" stroke-width="1.6" stroke-dasharray="0"/>
+          <line x1="15" y1="55" x2="65" y2="65" stroke="#0F2A4E" stroke-width="1.6" stroke-dasharray="3,2"/>
+          <line x1="30" y1="15" x2="80" y2="25" stroke="#0F2A4E" stroke-width="1.6"/>
+          <line x1="60" y1="15" x2="95" y2="25" stroke="#0F2A4E" stroke-width="1.6"/>
+          <line x1="65" y1="65" x2="95" y2="55" stroke="#0F2A4E" stroke-width="1.6" stroke-dasharray="3,2"/>
+          <circle cx="15" cy="55" r="2" fill="#007A7A"/><circle cx="45" cy="55" r="2" fill="#007A7A"/><circle cx="30" cy="15" r="2" fill="#007A7A"/>
+          <circle cx="65" cy="65" r="2" fill="#B08420"/><circle cx="95" cy="55" r="2" fill="#B08420"/><circle cx="80" cy="25" r="2" fill="#B08420"/>
+        </svg>
+        <span class="cap">Gambar &middot; Rangka Prisma Segitiga</span>
+      </div>
+    </div>
+
+    <div class="word-block" style="margin:2px 0 4px;">Prisma segitiga: <b>5 sisi</b> (2 alas + 3 sisi tegak), <b>9 rusuk</b>, <b>6 titik sudut</b>.</div>
+
+    <div class="eyebrow">MNR 2 &middot; Limas (Topik Kedua &middot; Guru Memandu)</div>
+    <div style="font-size:8.2pt;margin-bottom:3px;">Tenda regu lain berbentuk limas segiempat (alas persegi, sisi tegak segitiga bertemu di 1 puncak): <b>5 sisi</b> (1 alas+4 tegak), <b>8 rusuk</b>, <b>5 titik sudut</b> (4 alas+1 puncak). Beda dari prisma: limas cuma 1 alas, semua sisi tegak bertemu di 1 titik.</div>
+
+    <div class="eyebrow" style="margin-top:3px;">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 14px;font-size:8.1pt;font-weight:600;margin-bottom:1px;">
+      <div>a) Prisma segiempat (balok): sisi? <span class="isian-inline" style="min-width:28px;"></span></div>
+      <div>b) Prisma segiempat: rusuk? <span class="isian-inline" style="min-width:28px;"></span></div>
+      <div>c) Prisma segiempat: titik sudut? <span class="isian-inline" style="min-width:28px;"></span></div>
+      <div>d) Limas segitiga: sisi? <span class="isian-inline" style="min-width:28px;"></span></div>
+      <div>e) Limas segilima: sisi? <span class="isian-inline" style="min-width:28px;"></span></div>
+      <div>f) Prisma segilima: titik sudut? <span class="isian-inline" style="min-width:28px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:4px 0 2px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 5px;">
+      <span class="twm-tag">Specialising</span><span class="twm-tag">Classifying</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Specialising &mdash; coba contoh khusus</span>Hitung unsur-unsur prisma segilima (alas segi lima): berapa sisi, rusuk, dan titik sudutnya? Tuliskan cara berpikirmu.</div>
+    <div class="reason-item"><span class="lbl">Classifying &mdash; kelompokkan</span>Kelompokkan menjadi &ldquo;prisma&rdquo; atau &ldquo;limas&rdquo;: kotak sepatu, kemasan cokelat batang segitiga, piramida Giza, atap rumah adat joglo. Jelaskan dasarnya.</div>
+
+    <div class="kesalahan-box" style="margin:4px 0 0;padding:4px 14px;">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Vino menghitung titik sudut limas segiempat dengan cara yang sama seperti prisma (2 &times; banyak sisi alas), sehingga ia menuliskan titik sudut limas segiempat = 2&times;4 = 8.</div>
+      <div class="tanya">Di mana letak kesalahan Vino? (Petunjuk: hitung ulang titik sudut limas segiempat langsung dari gambarnya &mdash; ada berapa titik di alas, dan berapa titik di puncak?) Kenapa rumus titik sudut limas berbeda dari prisma?</div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah Q-2 &middot; Geometri &middot; Pertemuan 1 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2E9E63">Q-2</span>
+        <span class="thabaqah-label">TAQWIYAH &middot; penguatan &middot; JALUR PADAT</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Geometri &middot; Pertemuan 1 dari 1 (Digabung)</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan unsur-unsur prisma dan limas &mdash; sintesis Bidang Geometri.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Sebuah pabrik kemasan merancang 2 desain kotak baru: Desain A berbentuk prisma segitiga (untuk cokelat batang), Desain B berbentuk limas segiempat (untuk permen tumpeng mini). (a) Hitung total sisi + rusuk + titik sudut untuk masing-masing desain. (b) Desain mana yang unsurnya lebih banyak?</div>
+
+    <table style="border-collapse:collapse;font-size:8.2pt;margin:4px 0 6px;">
+      <thead><tr style="background:var(--soft-navy);"><th style="padding:2.5px 10px;border:1px solid #0F2A4E;">Desain</th><th style="padding:2.5px 10px;border:1px solid #0F2A4E;">Sisi</th><th style="padding:2.5px 10px;border:1px solid #0F2A4E;">Rusuk</th><th style="padding:2.5px 10px;border:1px solid #0F2A4E;">Titik Sudut</th><th style="padding:2.5px 10px;border:1px solid #0F2A4E;">Total</th></tr></thead>
+      <tbody>
+        <tr><td style="padding:2px 10px;border:1px solid #C8CED6;">A &middot; Prisma segitiga</td><td style="padding:2px 10px;border:1px solid #C8CED6;text-align:center;">5</td><td style="padding:2px 10px;border:1px solid #C8CED6;text-align:center;">9</td><td style="padding:2px 10px;border:1px solid #C8CED6;text-align:center;">6</td><td style="padding:2px 10px;border:1px solid #C8CED6;text-align:center;"><b>20</b></td></tr>
+        <tr><td style="padding:2px 10px;border:1px solid #C8CED6;">B &middot; Limas segiempat</td><td style="padding:2px 10px;border:1px solid #C8CED6;text-align:center;">5</td><td style="padding:2px 10px;border:1px solid #C8CED6;text-align:center;">8</td><td style="padding:2px 10px;border:1px solid #C8CED6;text-align:center;">5</td><td style="padding:2px 10px;border:1px solid #C8CED6;text-align:center;"><b>18</b></td></tr>
+      </tbody>
+    </table>
+
+    <div class="word-block" style="margin-left:0;">Desain A (prisma segitiga) memiliki total unsur lebih banyak: <b>20 &gt; 18</b>.</div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;">Prisma segiempat (balok) memiliki total sisi + rusuk + titik sudut = <span class="isian-inline" style="min-width:50px;"></span></div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. Prisma segienam: berapa sisi? <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>2. Prisma segienam: berapa rusuk? <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>3. Prisma segienam: berapa titik sudut? <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>4. Limas segienam: berapa sisi? <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>5. Limas segienam: berapa rusuk? <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>6. Limas segienam: berapa titik sudut? <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>7. Prisma segitujuh: berapa titik sudut? <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>8. Limas segidelapan: berapa rusuk? <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>9. Bangun ruang bersisi 5, rusuk 8, titik sudut 5 &mdash; namanya? <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>10. Bangun ruang bersisi 6, rusuk 12, titik sudut 8 &mdash; namanya? <span class="isian-inline" style="min-width:26px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Rangka jembatan dan menara sering memakai bentuk prisma segitiga karena bentuk ini paling kokoh menahan beban dibanding bentuk lain &mdash; itulah sebabnya Menara Eiffel penuh pola segitiga!</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Prisma segidelapan: berapa sisi, rusuk, dan titik sudutnya?</li>
+        <li>Limas segitujuh: berapa sisi, rusuk, dan titik sudutnya?</li>
+        <li>Kotak parsel berbentuk limas segiempat dan kotak kado lain berbentuk prisma segitiga. Kotak mana yang total unsurnya (sisi+rusuk+titik sudut) lebih sedikit?</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah Q-2 &middot; Geometri &middot; Pertemuan 1 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2E9E63">Q-2</span>
+        <span class="thabaqah-label">TAQWIYAH &middot; penguatan &middot; JALUR PADAT</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Data &middot; Pertemuan 1 dari 1 (Digabung)</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:4px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa menghitung rata-rata berkelompok, membaca diagram garis &amp; membandingkan kecenderungan. <i>Digabung &middot; pertemuan terakhir Q-2.</i></div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow">MNR 1 &middot; Masalah Nyata (Rata-rata Lanjut)</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Skor <i>try out</i> Matematika kelas 8C: 4 siswa nilai 70, 10 siswa nilai 80, 8 siswa nilai 90, 3 siswa nilai 100. Berapa rata-ratanya?</div>
+
+    <div class="illustration-row" style="margin-bottom:2px;">
+      <div class="stage-block">
+        <div class="icon-plain">&#128221;</div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <table style="border-collapse:collapse;font-size:7.8pt;">
+          <thead><tr style="background:var(--soft-navy);"><th style="padding:1px 7px;border:1px solid #0F2A4E;">Nilai</th><th style="padding:1px 7px;border:1px solid #0F2A4E;">70</th><th style="padding:1px 7px;border:1px solid #0F2A4E;">80</th><th style="padding:1px 7px;border:1px solid #0F2A4E;">90</th><th style="padding:1px 7px;border:1px solid #0F2A4E;">100</th></tr></thead>
+          <tbody><tr><td style="padding:1px 7px;border:1px solid #C8CED6;font-weight:700;">Siswa</td><td style="padding:1px 7px;border:1px solid #C8CED6;text-align:center;">4</td><td style="padding:1px 7px;border:1px solid #C8CED6;text-align:center;">10</td><td style="padding:1px 7px;border:1px solid #C8CED6;text-align:center;">8</td><td style="padding:1px 7px;border:1px solid #C8CED6;text-align:center;">3</td></tr></tbody>
+        </table>
+        <span class="cap">Gambar &middot; Tabel Frekuensi Nilai</span>
+      </div>
+    </div>
+
+    <div class="equation-block" style="margin:2px 0 3px;">$$\frac{4(70)+10(80)+8(90)+3(100)}{4+10+8+3}=\frac{2.100}{25}=84$$</div>
+
+    <div class="eyebrow">MNR 2 &middot; Diagram Garis &amp; Kecenderungan (Topik Kedua &middot; Guru Memandu)</div>
+    <div style="font-size:8.2pt;margin-bottom:1px;">Kedai &ldquo;Segar Terus&rdquo; catat penjualan es kelapa muda (gelas) 5 minggu: 40, 55, 50, 68, 75.</div>
+
+    <div class="illustration-row" style="margin-bottom:1px;">
+      <div class="stage-block">
+        <svg width="100" height="30" viewBox="0 0 140 48">
+          <line x1="8" y1="40" x2="132" y2="40" stroke="#8A91A0" stroke-width="1"/>
+          <line x1="8" y1="40" x2="8" y2="4" stroke="#8A91A0" stroke-width="1"/>
+          <polyline points="18,28 42,17 66,21 90,9 114,4" fill="none" stroke="#0F2A4E" stroke-width="1.6"/>
+          <circle cx="18" cy="28" r="2" fill="#007A7A"/><circle cx="42" cy="17" r="2" fill="#007A7A"/><circle cx="66" cy="21" r="2" fill="#007A7A"/><circle cx="90" cy="9" r="2" fill="#007A7A"/><circle cx="114" cy="4" r="2" fill="#007A7A"/>
+          <text x="18" y="47" font-family="Plus Jakarta Sans" font-size="5.5" text-anchor="middle" fill="#5A6272">M1</text>
+          <text x="42" y="47" font-family="Plus Jakarta Sans" font-size="5.5" text-anchor="middle" fill="#5A6272">M2</text>
+          <text x="66" y="47" font-family="Plus Jakarta Sans" font-size="5.5" text-anchor="middle" fill="#5A6272">M3</text>
+          <text x="90" y="47" font-family="Plus Jakarta Sans" font-size="5.5" text-anchor="middle" fill="#5A6272">M4</text>
+          <text x="114" y="47" font-family="Plus Jakarta Sans" font-size="5.5" text-anchor="middle" fill="#5A6272">M5</text>
+        </svg>
+        <span class="cap">Gambar &middot; Diagram Garis &middot; turun di M3, tren <b>naik</b> (40&rarr;75)</span>
+      </div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:3px;">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 14px;font-size:8.1pt;font-weight:600;margin-bottom:1px;">
+      <div>a) Nilai 5(2),6(5),7(8),8(5). Total siswa = <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>b) Total nilai (data no.a) = <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>c) Rata-rata (data no.a) = <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>d) Penjualan 4 hari: 20,25,22,30. Kecenderungan = <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>e) Selisih hari terakhir&amp;pertama (no.d) = <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>f) Nilai 60(3),70(6),80(9),90(2). Total siswa = <span class="isian-inline" style="min-width:30px;"></span></div>
+    </div>
+
+    <div class="block-sep" style="margin:4px 0 2px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 5px;">
+      <span class="twm-tag">Conjecturing</span><span class="twm-tag">Improving</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Conjecturing &mdash; susun dugaan</span>Jika tren Minggu 1&ndash;5 berlanjut, berapa perkiraan penjualan Minggu 6?</div>
+    <div class="reason-item"><span class="lbl">Improving &mdash; cara lebih baik</span>Tabel angka vs diagram garis, mana lebih cepat tunjukkan naik-turun? Mengapa?</div>
+
+    <div class="kesalahan-box" style="margin:3px 0 0;padding:4px 14px;">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Rata-rata nilai <i>try out</i> (4 nilai70, 10 nilai80, 8 nilai90, 3 nilai100): Citra merata-ratakan ke-4 angka saja: (70+80+90+100)&divide;4=85, tanpa perhitungkan banyak siswa.</div>
+      <div class="tanya">Di mana kesalahan Citra? Kenapa banyak siswa tiap nilai perlu diperhitungkan?</div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah Q-2 &middot; Data &middot; Pertemuan 1 &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2E9E63">Q-2</span>
+        <span class="thabaqah-label">TAQWIYAH &middot; penguatan &middot; JALUR PADAT</span>
+        <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+        <span class="chip chip-bidang">Data &middot; Pertemuan 1 dari 1 (Digabung)</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5 &middot; Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan rata-rata lanjut dan perbandingan kecenderungan &mdash; sintesis Bidang Data.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Dua kedai catat penjualan es kelapa (gelas) 4 minggu. Segar Terus: 40,55,50,68. Dingin Nikmat: 60,58,62,65. (a) Rata-rata tiap kedai? (b) Kedai mana tren pertumbuhannya lebih signifikan?</div>
+
+    <div class="equation-block" style="margin:2px 0 1px 6px;padding:3px 12px;">$$\text{Segar Terus}=\frac{40+55+50+68}{4}=53{,}25$$</div>
+    <div class="equation-block" style="margin:1px 0 2px 6px;padding:3px 12px;">$$\text{Dingin Nikmat}=\frac{60+58+62+65}{4}=61{,}25$$</div>
+    <div class="word-block" style="margin:2px 0 4px 0;padding:5px 12px;">Segar Terus naik 40&rarr;68 (+70%), Dingin Nikmat stabil 60&rarr;65 (+8%). Meski rata-ratanya lebih rendah, <b>Segar Terus</b> tren pertumbuhannya jauh lebih signifikan.</div>
+
+    <div class="eyebrow" style="margin-top:2px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;">Kedai &ldquo;Manis Sejuk&rdquo; mencatat penjualan 4 minggu: 30, 42, 38, 55. Rata-rata penjualannya = <span class="isian-inline" style="min-width:50px;"></span></div>
+
+    <div class="eyebrow" style="margin-top:4px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px 14px;font-size:8.3pt;font-weight:600;">
+      <div>1. Nilai 6(4org),7(7org),8(6org),9(3org). Total siswa = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>2. Total nilai (data no.1) = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>3. Rata-rata (data no.1) = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>4. Omzet 4 bulan: 2jt, 2,5jt, 2,3jt, 3jt. Kecenderungannya = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>5. Selisih omzet bulan terakhir &amp; pertama (no.4) = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>6. Nilai 50(2),60(5),70(10),80(3). Rata-rata = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>7. Pengunjung toko 5 hari: 80,95,88,102,110. Kecenderungannya = <span class="isian-inline" style="min-width:26px;"></span></div>
+      <div>8. Selisih pengunjung hari ke-5 &amp; ke-1 (no.7) = <span class="isian-inline" style="min-width:26px;"></span></div>
+    </div>
+
+    <div class="fun-fact-box" style="margin:3px 0 2px;padding:4px 12px;">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Analis bisnis &amp; peramal cuaca memakai &ldquo;rata-rata bergerak&rdquo; dari diagram garis untuk melihat tren asli di balik naik-turun harian yang berisik!</p>
+    </div>
+
+    <div class="block-sep" style="margin:4px 0 3px;"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div style="font-size:7.6pt;color:#5A6272;background:var(--soft-teal);border-radius:5px;padding:4px 10px;margin:3px 0;">
+      <b style="color:var(--navy);">Catatan guru:</b> Pertemuan terakhir Modul Konsep Marhalah Q-2 (5 Bidang selesai, Jalur Padat Register C). Langkah berikutnya: <b>Tes Akhir Marhalah (TAM) Q-2</b> untuk kesiapan naik ke Q-3 &mdash; bukan bagian dari modul ini.
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Nilai 70(5org),80(8org),90(7org). Berapa rata-ratanya?</li>
+        <li>Laba mingguan koperasi sekolah 4 minggu: 150rb,180rb,165rb,210rb. Bagaimana kecenderungannya?</li>
+        <li>Dari data no.2, berapa selisih laba minggu terakhir dan minggu pertama?</li>
+      </ol>
+    </div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah Q-2 &middot; Data &middot; Pertemuan 1 &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="scope-strip">
+      <span class="chip chip-marhalah" style="background:#2E9E63">Q-2</span>
+      <span class="chip chip-bidang">Latihan Soal &middot; Sebelum TAM</span>
+      <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+      <span class="scope-count">25 butir campuran &middot; 5 Bidang &middot; Kumulatif Pertemuan 1&ndash;6 &middot; Hal. 1/2</span>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Kabir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.8pt;color:#5A6272;margin-bottom:5px;">Kerjakan semua soal berikut sendiri. Soal ini mengulas semua yang sudah dipelajari di Marhalah Q-2, sebagai persiapan sebelum Tes Akhir Marhalah (TAM).</div>
+
+    <div class="ls-bagian-label">Bagian 1 &middot; Bilangan <span class="src">(Pertemuan 1&ndash;2)</span></div>
+    <div class="ls-item"><div class="no">1.</div><div class="body">Sederhanakan rasio 32:48. <span class="isian-inline" style="min-width:50px;"></span></div></div>
+    <div class="ls-item"><div class="no">2.</div><div class="body">Dari 54 anggota koperasi, 30 pria sisanya wanita. Rasio pria:wanita paling sederhana = <span class="isian-inline" style="min-width:40px;"></span></div></div>
+    <div class="ls-item"><div class="no">3.</div><div class="body">Dana studi tur Rp720.000 dibagi 3 kelas dengan rasio 5:4:3. Berapa bagian kelas dengan rasio 5? <span class="isian-inline" style="min-width:40px;"></span></div></div>
+    <div class="ls-item"><div class="no">4.</div><div class="body">Rasio uang X:Y = 7:3, dengan total tetap Rp100.000.<span class="ls-nalar-tag">NALAR</span><br>Apakah mungkin uang Y menjadi lebih besar dari uang X pada kondisi rasio 7:3 ini? Jelaskan alasanmu, lalu hitung selisih uang X dan Y.
+      <div class="scratch-area" style="min-height:26px;margin-top:3px;"></div>
+    </div></div>
+
+    <div class="ls-bagian-label">Bagian 2 &middot; Aljabar <span class="src">(Pertemuan 3)</span></div>
+    <div class="ls-item"><div class="no">5.</div><div class="body">Ongkos ojek Rp3.500/km (senilai). Ongkos untuk 6 km = <span class="isian-inline" style="min-width:40px;"></span></div></div>
+    <div class="ls-item"><div class="no">6.</div><div class="body">5 tukang selesaikan renovasi dalam 8 hari. Jika 10 tukang (berbalik nilai) = <span class="isian-inline" style="min-width:30px;"></span> hari</div></div>
+    <div class="ls-item"><div class="no">7.</div><div class="body">Harga 3 kg beras Rp45.000 (senilai). Harga 8 kg = <span class="isian-inline" style="min-width:40px;"></span></div></div>
+    <div class="ls-item"><div class="no">8.</div><div class="body">Windi berkata: &ldquo;Semua hubungan dua besaran yang nilainya sama-sama naik pasti berbanding senilai.&rdquo;<span class="ls-nalar-tag">NALAR</span><br>Benarkah pernyataan Windi? Berikan 1 contoh hubungan yang sama-sama naik tapi BUKAN berbanding senilai, untuk membuktikan jawabanmu.
+      <div class="scratch-area" style="min-height:26px;margin-top:3px;"></div>
+    </div></div>
+
+    <div class="ls-bagian-label">Bagian 3 &middot; Pengukuran <span class="src">(Pertemuan 4)</span></div>
+    <div class="ls-item"><div class="no">9.</div><div class="body">Skala 1:600, jarak denah 7 cm. Jarak asli = <span class="isian-inline" style="min-width:40px;"></span></div></div>
+    <div class="ls-item"><div class="no">10.</div><div class="body">Skala 1:1.500.000, jarak peta 5 cm. Jarak asli dalam km = <span class="isian-inline" style="min-width:40px;"></span></div></div>
+    <div class="ls-item"><div class="no">11.</div><div class="body">Motor menempuh 84 km dalam 1 jam 24 menit. Kecepatannya = <span class="isian-inline" style="min-width:40px;"></span></div></div>
+    <div class="ls-item"><div class="no">12.</div><div class="body">Sebuah mobil menempuh 30 km dalam 20 menit, lalu 45 km dalam 30 menit karena jalan tol lancar.<span class="ls-nalar-tag">NALAR</span><br>Hitung kecepatan rata-rata keseluruhan perjalanan (bukan rata-rata dari kedua kecepatan ruas), lalu jelaskan mengapa cara ini yang benar.
+      <div class="scratch-area" style="min-height:26px;margin-top:3px;"></div>
+    </div></div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah Q-2 &middot; Latihan Soal Sebelum TAM &middot; Register C &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="scope-strip">
+      <span class="chip chip-marhalah" style="background:#2E9E63">Q-2</span>
+      <span class="chip chip-bidang">Latihan Soal &middot; Sebelum TAM</span>
+      <span class="chip chip-register">Register C &middot; 13&ndash;15 th</span>
+      <span class="scope-count">25 butir campuran &middot; 5 Bidang &middot; Kumulatif Pertemuan 1&ndash;6 &middot; Hal. 2/2</span>
+    </div>
+  </div>
+  <div class="content">
+    <div class="ls-bagian-label" style="margin-top:4px;">Bagian 4 &middot; Geometri <span class="src">(Pertemuan 5)</span></div>
+    <div class="ls-item"><div class="no">13.</div><div class="body">Limas segitiga: berapa titik sudutnya? <span class="isian-inline" style="min-width:40px;"></span></div></div>
+    <div class="ls-item"><div class="no">14.</div><div class="body">Prisma segienam: berapa rusuknya? <span class="isian-inline" style="min-width:40px;"></span></div></div>
+    <div class="ls-item"><div class="no">15.</div><div class="body">Bangun ruang bersisi 7, rusuk 15, titik sudut 10 &mdash; namanya? <span class="isian-inline" style="min-width:60px;"></span></div></div>
+    <div class="ls-item"><div class="no">16.</div><div class="body">Faisal berkata: &ldquo;Prisma selalu punya jumlah sisi genap, sedangkan limas selalu punya jumlah sisi ganjil.&rdquo;<span class="ls-nalar-tag">NALAR</span><br>Benarkah pernyataan Faisal? Buktikan dengan menghitung jumlah sisi pada prisma segitiga dan limas segiempat, lalu tarik kesimpulan yang tepat.
+      <div class="scratch-area" style="min-height:34px;margin-top:5px;"></div>
+    </div></div>
+
+    <div class="ls-bagian-label">Bagian 5 &middot; Data <span class="src">(Pertemuan 6)</span></div>
+    <div class="ls-item"><div class="no">17.</div><div class="body">Nilai 60(5org), 70(8org), 80(9org), 90(3org). Total siswa = <span class="isian-inline" style="min-width:30px;"></span></div></div>
+    <div class="ls-item"><div class="no">18.</div><div class="body">Rata-rata dari data no.17 = <span class="isian-inline" style="min-width:30px;"></span></div></div>
+    <div class="ls-item"><div class="no">19.</div><div class="body">Data pengunjung pameran 4 hari: 120, 135, 128, 150. Kecenderungannya = <span class="isian-inline" style="min-width:60px;"></span></div></div>
+    <div class="ls-item"><div class="no">20.</div><div class="body">Dari data no.19, seorang panitia menyimpulkan &ldquo;pengunjung selalu naik setiap hari tanpa kecuali&rdquo; karena hari terakhir (150) lebih banyak dari hari pertama (120).<span class="ls-nalar-tag">NALAR</span><br>Apakah kesimpulan ini tepat? Perhatikan hari ke-3 (128) dibanding hari ke-2 (135). Jelaskan bedanya antara &ldquo;tren naik&rdquo; dan &ldquo;naik setiap hari tanpa kecuali&rdquo;.
+      <div class="scratch-area" style="min-height:34px;margin-top:5px;"></div>
+    </div></div>
+
+    <div class="ls-bagian-label">Bagian 6 &middot; Campuran <span class="src">(Semua Bidang)</span></div>
+    <div class="ls-item"><div class="no">21.</div><div class="body">Sederhanakan rasio 27:45. <span class="isian-inline" style="min-width:60px;"></span></div></div>
+    <div class="ls-item"><div class="no">22.</div><div class="body">Harga 5 buku Rp60.000 (senilai). Harga 8 buku = <span class="isian-inline" style="min-width:30px;"></span></div></div>
+    <div class="ls-item"><div class="no">23.</div><div class="body">Skala 1:800, jarak denah 9 cm. Jarak asli = <span class="isian-inline" style="min-width:30px;"></span></div></div>
+    <div class="ls-item"><div class="no">24.</div><div class="body">Limas segiempat: berapa rusuknya? <span class="isian-inline" style="min-width:30px;"></span></div></div>
+    <div class="ls-item"><div class="no">25.</div><div class="body">Nilai 65(4org), 75(6org), 85(10org). Rata-ratanya = <span class="isian-inline" style="min-width:30px;"></span></div></div>
+
+    <div style="font-size:7.8pt;color:#5A6272;background:var(--soft-teal);border-radius:5px;padding:7px 12px;margin-top:14px;">
+      <b style="color:var(--navy);">Catatan guru:</b> Setelah Latihan Soal ini dikoreksi dan dibahas bersama, siswa siap mengikuti <b>Tes Akhir Marhalah (TAM) Q-2</b> &mdash; instrumen terpisah dari modul ini, sebagai syarat kenaikan ke Marhalah Q-3.
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah Q-2 &middot; Latihan Soal Sebelum TAM &middot; Register C &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="warn-bar">Dokumen Guru &middot; Bukan Untuk Siswa</div>
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Kunci Jawaban</div>
+        <div class="brand-tagline">Latihan Soal Sebelum TAM &middot; Marhalah Q-2</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="scope-strip">
+      <span class="chip chip-marhalah" style="background:#2E9E63">Q-2</span>
+      <span class="chip chip-bidang">25 Butir &middot; 5 Bidang &middot; Register C</span>
+      <span class="scope-count">Simpan terpisah dari lembar siswa</span>
+    </div>
+  </div>
+  <div class="content">
+    <div class="kunci-grid">
+      <div class="kunci-bagian-label">Bagian 1 &middot; Bilangan</div>
+      <div class="kunci-item"><span class="no">1.</span><span class="ans">32:48 &divide;16 = <b>2:3</b></span></div>
+      <div class="kunci-item"><span class="no">2.</span><span class="ans">30:24 &divide;6 = <b>5:4</b></span></div>
+      <div class="kunci-item"><span class="no">3.</span><span class="ans">5+4+3=12 bagian &rarr; 720.000&divide;12=60.000 &rarr; 5&times;60.000 = <b>Rp300.000</b></span></div>
+      <div class="kunci-item"><span class="no">4.</span><span class="ans">Tidak mungkin &mdash; bagian Y (3) selalu lebih kecil dari X (7). X=Rp70.000, Y=Rp30.000, selisih = <b>Rp40.000</b>.</span></div>
+
+      <div class="kunci-bagian-label">Bagian 2 &middot; Aljabar</div>
+      <div class="kunci-item"><span class="no">5.</span><span class="ans">3.500&times;6 = <b>Rp21.000</b></span></div>
+      <div class="kunci-item"><span class="no">6.</span><span class="ans">5&times;8=40 (tetap) &rarr; 40&divide;10 = <b>4 hari</b></span></div>
+      <div class="kunci-item"><span class="no">7.</span><span class="ans">45.000&divide;3=15.000/kg &rarr; 8&times;15.000 = <b>Rp120.000</b></span></div>
+      <div class="kunci-item"><span class="no">8.</span><span class="ans">Salah. Contoh: y = x+5 &mdash; keduanya naik bersama, tapi y/x tidak tetap (bukan senilai).</span></div>
+
+      <div class="kunci-bagian-label">Bagian 3 &middot; Pengukuran</div>
+      <div class="kunci-item"><span class="no">9.</span><span class="ans">7&times;600=4.200 cm = <b>42 m</b></span></div>
+      <div class="kunci-item"><span class="no">10.</span><span class="ans">5&times;1.500.000=7.500.000 cm = <b>75 km</b></span></div>
+      <div class="kunci-item"><span class="no">11.</span><span class="ans">84&divide;1,4 = <b>60 km/jam</b></span></div>
+      <div class="kunci-item"><span class="no">12.</span><span class="ans">75 km &divide; 50 menit (5/6 jam) = <b>90 km/jam</b>. Benar karena memperhitungkan bobot waktu tiap ruas, bukan rata-rata 2 kecepatan.</span></div>
+
+      <div class="kunci-bagian-label">Bagian 4 &middot; Geometri</div>
+      <div class="kunci-item"><span class="no">13.</span><span class="ans"><b>4</b> titik sudut</span></div>
+      <div class="kunci-item"><span class="no">14.</span><span class="ans">3&times;6=<b>18</b> rusuk</span></div>
+      <div class="kunci-item"><span class="no">15.</span><span class="ans"><b>Prisma segilima</b> (2 alas + 5 sisi tegak = 7 sisi)</span></div>
+      <div class="kunci-item"><span class="no">16.</span><span class="ans">Salah. Prisma segitiga = <b>5 sisi (ganjil)</b>, sudah membantah klaimnya. Jumlah sisi tergantung bentuk alas, bukan pola genap/ganjil tetap.</span></div>
+
+      <div class="kunci-bagian-label">Bagian 5 &middot; Data</div>
+      <div class="kunci-item"><span class="no">17.</span><span class="ans">5+8+9+3 = <b>25 siswa</b></span></div>
+      <div class="kunci-item"><span class="no">18.</span><span class="ans">(300+560+720+270)&divide;25 = 1.850&divide;25 = <b>74</b></span></div>
+      <div class="kunci-item"><span class="no">19.</span><span class="ans">120&rarr;150, cenderung <b>naik</b></span></div>
+      <div class="kunci-item"><span class="no">20.</span><span class="ans">Tidak tepat &mdash; hari ke-3 (128) lebih rendah dari hari ke-2 (135). Tren naik, tapi tidak SETIAP hari naik.</span></div>
+
+      <div class="kunci-bagian-label">Bagian 6 &middot; Campuran</div>
+      <div class="kunci-item"><span class="no">21.</span><span class="ans">27:45 &divide;9 = <b>3:5</b></span></div>
+      <div class="kunci-item"><span class="no">22.</span><span class="ans">60.000&divide;5=12.000/buku &rarr; 8&times;12.000 = <b>Rp96.000</b></span></div>
+      <div class="kunci-item"><span class="no">23.</span><span class="ans">9&times;800=7.200 cm = <b>72 m</b></span></div>
+      <div class="kunci-item"><span class="no">24.</span><span class="ans"><b>8</b> rusuk</span></div>
+      <div class="kunci-item"><span class="no">25.</span><span class="ans">(260+450+850)&divide;20 = 1.560&divide;20 = <b>78</b></span></div>
+    </div>
+
+    <div style="font-size:7.6pt;color:#5A6272;background:var(--soft-gold);border-left:3px solid var(--gold);border-radius:5px;padding:5px 12px;margin-top:6px;">
+      <b style="color:var(--navy);">Catatan koreksi:</b> Butir <span class="ls-nalar-tag" style="margin-left:0;">NALAR</span> (no.4,8,12,16,20 &mdash; 20%) dinilai dari kualitas alasan, bukan hanya jawaban akhir.
+    </div>
+
+    <div style="font-size:7.6pt;color:#5A6272;background:var(--soft-navy);border-left:3px solid var(--navy);border-radius:5px;padding:5px 12px;margin-top:6px;">
+      <b style="color:var(--navy);">Panduan Skor:</b> 20 butir non-nalar = 4 poin/butir (80 poin), 5 butir nalar = 4 poin/butir dari kelengkapan alasan (20 poin). Total 100. Skor &ge;70 layak lanjut TAM; &lt;70 ulang Bagian lemah dulu.
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dokumen guru, dilarang disebarluaskan ke siswa.</span>
+    <span>Kunci Jawaban &middot; Marhalah Q-2 &middot; Latihan Soal Sebelum TAM</span>
+  </div>
+</section>
+</div></body></html>

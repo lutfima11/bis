@@ -1,0 +1,2011 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Modul Konsep B-2 — Bimbel Insan Sejahtera</title>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [["$", "$"], ["\\(", "\\)"]],
+      displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+      packages: { "[+]": ["ams"] }
+    },
+    svg: { fontCache: "global" }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#0F2A4E; --teal:#007A7A; --soft-teal:#E0F2F1; --soft-navy:#E8EEF7;
+    --gold:#B08420; --soft-gold:#FCF6E5; --greyline:#C8CED6; --ink:#26313F;
+
+    --bidayah:#E4572E;  --bidayah-soft:#FCE9E3;
+    --tamhid:#F2994A;   --tamhid-soft:#FDEEE0;
+    --taqwiyah:#2E9E63; --taqwiyah-soft:#E5F4EC;
+    --tahlil:#2F6FED;   --tahlil-soft:#E7EDFC;
+    --itqan:#B08420;    --itqan-soft:#FCF6E5;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  body{
+    font-family:"Plus Jakarta Sans",sans-serif;
+    font-size:9.5pt; line-height:1.55; color:var(--ink);
+    background:#EAEDF1; margin:0; padding:0;
+  }
+  h1,h2,h3,.brand-name,.section-title{font-family:"Fraunces",serif;}
+
+  /* ============ PAGE (A4) ============ */
+  .page-container{counter-reset:page;}
+  .page{
+    background:#fff; width:21cm; min-height:29.7cm; height:auto;
+    padding:1.6cm 2.3cm 1.1cm 2.3cm; margin:1cm auto;
+    box-shadow:0 0 10px rgba(0,0,0,.18); position:relative;
+    display:flex; flex-direction:column;
+  }
+  .page-header{margin:-1.6cm -2.3cm 0 -2.3cm; width:21cm;}
+  .brand-bar{height:4px;background:linear-gradient(90deg,var(--teal),var(--navy));
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .header-inner{padding:12px 2.3cm 10px 2.3cm;display:flex;justify-content:space-between;align-items:center;
+    background:var(--soft-navy); -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .brand-left{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-logo{height:42px;width:auto;display:block;object-fit:contain;}
+  .brand-name{font-size:17pt;font-weight:700;color:var(--navy);}
+  .brand-tagline{font-size:7.6pt;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:.6px;margin-top:2px;}
+
+  .level-strip{padding:7px 2.3cm 8px;background:#fff;border-bottom:1px solid var(--greyline);
+    display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+
+  .chips-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+  .chip{font-size:7.6pt;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+  .chip-marhalah{color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .chip-register{border:1.4px solid var(--teal);color:var(--teal);background:#fff;}
+  .chip-bidang{border:1.4px solid var(--greyline);color:#5A6272;background:#fff;}
+  .thabaqah-label{font-size:7.6pt;color:#5A6272;font-weight:600;}
+
+  .student-bar{padding:8px 2.3cm;margin:0 -2.3cm 16px -2.3cm;background:#F7F8FA;
+    border-bottom:1px solid var(--greyline);font-size:8.3pt;font-weight:600;color:#3A4252;
+    display:flex;gap:26px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .student-bar span{border-bottom:1px solid #99A1B3;padding-bottom:1px;min-width:110px;display:inline-block;}
+
+  .content{flex-grow:1;display:flex;flex-direction:column;}
+  .eyebrow{font-size:7.7pt;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--teal);margin:8px 0 3px;}
+  .cpa-trail{font-size:7.4pt;color:#8A91A0;letter-spacing:.3px;margin-bottom:8px;text-transform:uppercase;}
+  .cpa-trail b{color:var(--navy);}
+  .soal-utama{font-size:9.6pt;margin-bottom:8px;}
+  .soal-utama .no{font-weight:800;color:var(--navy);}
+
+  /* --- Ilustrasi: Konkret (ikon SVG) -> Gambar (model/representasi terstruktur) --- */
+  .illustration-row{display:flex;gap:16px;align-items:center;margin:5px 0 8px 4px;flex-wrap:wrap;}
+  .stage-block{display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0;}
+  .stage-block .cap{font-size:6.4pt;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#9099A8;}
+  .cpa-arrow{font-size:15px;color:var(--greyline);flex-shrink:0;margin:0 -4px;}
+
+  .icon-plain{width:52px;height:52px;border-radius:50%;background:#fff;border:1.6px solid var(--navy);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:26px;line-height:1;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .icon-row{display:flex;gap:8px;flex-wrap:wrap;max-width:150px;}
+  .icon-row .icon-plain{width:34px;height:34px;font-size:18px;}
+
+  .combined-bar{display:flex;width:200px;height:30px;border:1.5px solid var(--navy);border-radius:5px;overflow:hidden;flex-shrink:0;}
+  .combined-bar .seg{flex:1;border-right:1px solid rgba(255,255,255,.55);}
+  .combined-bar .seg:last-child{border-right:none;}
+  .seg.a{background:var(--teal);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .seg.b{background:var(--gold);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .seg.empty{background:#fff;}
+
+  .bar-legend{display:flex;flex-direction:column;gap:5px;font-size:8pt;padding-top:2px;}
+  .bar-legend .row{display:flex;align-items:center;gap:7px;}
+  .bar-legend .sw{width:11px;height:11px;border-radius:3px;flex-shrink:0;border:1px solid rgba(0,0,0,.15);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  /* --- Ten-frame: representasi kuantitas konkret->gambar untuk membilang & nilai tempat --- */
+  .ten-frame{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:repeat(2,1fr);
+    gap:4px;width:125px;height:52px;flex-shrink:0;}
+  .tf-cell{border:1.4px solid var(--navy);border-radius:4px;background:#fff;}
+  .tf-cell.fill-teal{background:var(--teal);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .tf-cell.fill-gold{background:var(--gold);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .tf-cell.fill-red{background:#D64545;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .tf-cell.fill-green{background:#2E9E63;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .tf-caption{font-size:7.6pt;font-weight:700;color:var(--navy);margin-top:4px;text-align:center;}
+
+  /* --- Balok puluhan-satuan (base-ten blocks) untuk nilai tempat --- */
+  .baseten-row{display:flex;gap:16px;align-items:flex-end;}
+  .baseten-group{display:flex;flex-direction:column;align-items:center;gap:5px;}
+  .ten-rod{width:16px;height:74px;background:var(--navy);border-radius:2px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .ten-rod-row{display:flex;gap:4px;}
+  .unit-stack{display:flex;flex-direction:column-reverse;gap:2px;}
+  .unit-cube{width:16px;height:16px;background:var(--gold);border-radius:2px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .baseten-cap{font-size:7.2pt;font-weight:700;color:#5A6272;text-align:center;}
+
+  /* --- Pola berulang (Aljabar) --- */
+  .pattern-strip{display:flex;gap:9px;align-items:center;flex-wrap:wrap;}
+  .pattern-item{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+  .pattern-blank{width:32px;height:32px;flex-shrink:0;border:1.7px dashed var(--teal);border-radius:6px;background:#fff;}
+  .shp{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .shp-circle-t{width:32px;height:32px;border-radius:50%;background:var(--teal);}
+  .shp-circle-g{width:32px;height:32px;border-radius:50%;background:var(--gold);}
+  .shp-square-t{width:28px;height:28px;background:var(--teal);border-radius:4px;}
+  .shp-square-g{width:28px;height:28px;background:var(--gold);border-radius:4px;}
+  .shp-tri-t{width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-bottom:28px solid var(--teal);}
+  .shp-tri-g{width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-bottom:28px solid var(--gold);}
+  .shp-sm{transform:scale(.62);}
+  .shp-lg{transform:scale(1.15);}
+
+  /* --- Perbandingan langsung: panjang / berat / isi (Pengukuran) --- */
+  .compare-bars{display:flex;flex-direction:column;gap:9px;}
+  .cbar-row{display:flex;align-items:center;gap:10px;}
+  .cbar-label{font-size:8pt;font-weight:700;color:var(--navy);min-width:56px;}
+  .cbar{height:15px;border-radius:3px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .cbar.teal{background:var(--teal);}
+  .cbar.gold{background:var(--gold);}
+
+  .scale-visual{display:flex;flex-direction:column;align-items:center;}
+  .scale-visual svg{display:block;}
+
+  .jar-row{display:flex;gap:16px;align-items:flex-end;}
+  .jar{width:34px;height:56px;border:1.6px solid var(--navy);border-radius:0 0 6px 6px;position:relative;overflow:hidden;background:#fff;}
+  .jar .fill{position:absolute;bottom:0;left:0;right:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .jar-cap{font-size:7.2pt;font-weight:700;color:#5A6272;text-align:center;margin-top:4px;}
+
+  .daytime-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .daytime-card{border:1px solid var(--greyline);border-radius:7px;padding:7px 9px;display:flex;flex-direction:column;
+    align-items:center;gap:4px;width:72px;flex-shrink:0;}
+  .daytime-card .lbl{font-size:7.3pt;font-weight:700;color:var(--navy);}
+
+  /* --- Bangun datar dasar (Geometri) --- */
+  .shape-gallery{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end;}
+  .shape-card{display:flex;flex-direction:column;align-items:center;gap:5px;}
+  .shape-card .lbl{font-size:7.4pt;font-weight:700;color:var(--navy);}
+
+  /* --- Posisi & arah (Geometri) --- */
+  .position-scene{border:1px solid var(--greyline);border-radius:8px;padding:8px 12px;background:#FAFBFC;display:inline-block;}
+  .pos-grid{display:grid;grid-template-columns:repeat(3,46px);grid-template-rows:repeat(3,46px);gap:5px;}
+  .pos-cell{display:flex;align-items:center;justify-content:center;}
+  .pos-cell.center{border:1.6px solid var(--navy);border-radius:6px;background:var(--soft-navy);
+    font-size:6.4pt;font-weight:800;color:var(--navy);text-align:center;line-height:1.2;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  /* --- Piktograf (Data) --- */
+  .pictograf{display:flex;flex-direction:column;gap:7px;}
+  .pf-row{display:flex;align-items:center;gap:10px;}
+  .pf-label{font-size:8.2pt;font-weight:700;color:var(--navy);min-width:64px;flex-shrink:0;}
+  .pf-icons{display:flex;gap:3px;flex-wrap:wrap;align-items:center;}
+  .pf-icons svg{flex-shrink:0;}
+  .pf-icons span{font-size:13px;line-height:1;}
+  .pf-count{font-size:7.8pt;color:#8A91A0;font-weight:700;margin-left:6px;}
+
+  .equation-block{background:var(--soft-navy);border:1px solid var(--soft-navy);border-left:3px solid var(--navy);
+    border-radius:5px;padding:6px 16px;margin:3px 0 8px 6px;display:inline-block;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .word-block{background:var(--soft-navy);border:1px solid var(--soft-navy);border-left:3px solid var(--navy);
+    border-radius:5px;padding:8px 16px;margin:4px 0 10px 6px;font-size:9.3pt;font-weight:700;color:var(--navy);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  .nalar-box{background:var(--soft-gold);border:0.9px solid var(--gold);border-radius:5px;
+    padding:6px 14px;margin:5px 0 9px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .nalar-box .tag{font-size:7.3pt;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:3px;}
+  .nalar-box p{margin:0;font-size:8.8pt;font-style:italic;color:#5C4A16;}
+
+  .practice-item{display:flex;gap:8px;margin-bottom:7px;break-inside:avoid;font-size:9pt;}
+  .practice-item .no{font-weight:800;color:var(--navy);min-width:16px;}
+  .practice-item .body{flex:1;}
+  ol.opsi{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 14px;}
+  ol.opsi li{font-size:8.7pt;}
+  ol.opsi li::before{content:attr(data-o) ". ";font-weight:700;color:var(--navy);}
+  .isian-inline{display:inline-block;border-bottom:1.4px solid #7A8296;min-width:26px;height:14px;margin:0 2px;}
+
+  .eksplorasi-block{flex-grow:1;display:flex;flex-direction:column;margin-top:8px;}
+  .eksplorasi-prompt{font-size:8.7pt;color:#3A4252;margin:3px 0 6px;}
+  .isian-row{display:flex;align-items:baseline;gap:8px;font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:5px;flex-wrap:wrap;}
+  .isian-row .line{flex:1;border-bottom:1px solid #99A1B3;height:13px;min-width:40px;}
+  .scratch-area{flex-grow:1;min-height:40px;margin-bottom:10px;position:relative;
+    border:1.3px dashed var(--greyline);border-radius:7px;padding:10px 16px;
+    background-image:radial-gradient(circle, #D7DDE7 1px, transparent 1px);
+    background-size:15px 15px; background-position:6px 6px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .scratch-area .label{position:absolute;top:-9px;left:12px;background:#fff;padding:0 8px;
+    font-size:7.2pt;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#9099A8;}
+
+  /* --- Strip alur pertemuan (menit → blok) --- */
+  .flow-strip{display:flex;gap:4px;margin-top:5px;flex-wrap:wrap;}
+  .flow-chip{font-size:6.5pt;font-weight:700;padding:3px 8px;border-radius:12px;background:#F0F2F5;color:#8A91A0;white-space:nowrap;}
+  .flow-chip.active{background:var(--navy);color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .flow-chip.done{background:#DDE3EC;color:#5A6272;}
+
+  /* --- Label karakteristik TWM (Blok Nalar) --- */
+  .twm-tag{display:inline-flex;align-items:center;gap:4px;font-size:7.3pt;font-weight:800;padding:3px 10px;
+    border-radius:20px;border:1.4px solid var(--teal);color:var(--teal);background:#fff;margin-right:6px;white-space:nowrap;}
+
+  .reason-item{margin-bottom:6px;font-size:8.7pt;}
+  .reason-item .lbl{font-size:7pt;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.3px;display:block;margin-bottom:1px;}
+
+  /* --- Kotak analisis kesalahan (wajib min. 1x per pertemuan) --- */
+  .kesalahan-box{background:var(--bidayah-soft);border:0.9px solid var(--bidayah);border-radius:5px;
+    padding:6px 14px;margin:6px 0 2px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .kesalahan-box .tag{font-size:7.3pt;font-weight:800;color:var(--bidayah);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:4px;}
+  .kesalahan-box .salah{font-size:8.7pt;font-style:italic;color:#8A3A24;margin:2px 0 6px;background:#fff;
+    border-radius:4px;padding:5px 9px;border:1px dashed #E4572E;}
+  .kesalahan-box .tanya{font-size:8.6pt;color:#6B3420;font-weight:700;}
+
+  /* --- Kotak Pekerjaan Rumah --- */
+  .pr-box{border:1.4px dashed var(--navy);border-radius:6px;padding:7px 14px;background:#FAFBFC;margin-top:5px;}
+  .pr-box .tag{font-size:7.3pt;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:3px;}
+  .pr-box ol{margin:0;padding-left:16px;font-size:8.5pt;}
+  .pr-box li{margin-bottom:2px;}
+
+  .reflect-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;font-size:8.6pt;font-weight:600;color:#3A4252;}
+
+  .checklist-row{display:flex;gap:16px;flex-wrap:wrap;font-size:7.6pt;color:#8A91A0;font-weight:600;margin-top:3px;}
+  .checklist-row .ck{display:flex;align-items:center;gap:4px;}
+  .checklist-row .box{width:9px;height:9px;border:1.2px solid #9099A8;border-radius:2px;flex-shrink:0;display:inline-block;}
+
+  .block-title{display:flex;align-items:baseline;gap:8px;margin:2px 0 2px;flex-wrap:wrap;}
+  .block-title .name{font-family:"Fraunces",serif;font-size:12.5pt;font-weight:700;color:var(--navy);}
+  .block-title .mnr{font-size:7.3pt;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.4px;}
+  .block-title .time{font-size:7.3pt;font-weight:700;color:#8A91A0;margin-left:auto;}
+  .block-sep{border-top:2px solid var(--navy);margin:9px 0 6px;}
+
+  .numcard{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:28px;
+    border:1.6px solid var(--navy);border-radius:6px;font-family:"Fraunces",serif;font-weight:700;font-size:11.5pt;
+    color:var(--navy);background:var(--soft-navy);padding:0 6px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .numcard.ghost{background:#fff;border-style:dashed;border-color:var(--teal);color:var(--teal);}
+  .numcard-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+  .numcard-arrow{color:var(--greyline);font-size:13px;}
+
+  .page-footer{margin-top:auto;padding-top:10px;border-top:1px solid var(--greyline);
+    display:flex;justify-content:space-between;font-size:6.8pt;color:#8A91A0;}
+
+  /* --- Tahukah Kamu (pengisi ruang kosong yang bermanfaat) --- */
+  .fun-fact-box{background:var(--soft-teal);border:0.9px solid var(--teal);border-radius:5px;
+    padding:6px 14px;margin:6px 0 3px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .fun-fact-box .tag{font-size:7.2pt;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:2px;}
+  .fun-fact-box p{margin:0;font-size:8.3pt;color:#1D4E4E;line-height:1.45;}
+
+  /* --- Latihan Soal (review campuran sebelum TAM) --- */
+  .ls-bagian-label{font-size:8.6pt;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.5px;
+    margin:14px 0 7px;padding-bottom:4px;border-bottom:1.5px solid var(--gold);display:flex;align-items:baseline;gap:8px;}
+  .ls-bagian-label:first-child{margin-top:0;}
+  .ls-bagian-label .src{font-size:7pt;font-weight:600;color:#9099A8;text-transform:none;letter-spacing:0;}
+  .ls-item{display:flex;gap:8px;margin-bottom:10px;break-inside:avoid;font-size:8.8pt;}
+  .ls-item .no{font-weight:800;color:var(--navy);min-width:16px;flex-shrink:0;}
+  .ls-item .body{flex:1;}
+  .ls-nalar-tag{display:inline-block;font-size:6.3pt;font-weight:800;color:#fff;background:var(--gold);border-radius:10px;
+    padding:1.5px 7px;margin-left:6px;letter-spacing:.3px;vertical-align:middle;white-space:nowrap;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .scope-strip{padding:8px 2.3cm;background:#fff;border-bottom:1px solid var(--greyline);
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .scope-count{margin-left:auto;font-size:7.3pt;color:#8A91A0;font-weight:600;}
+
+  /* --- Kunci Jawaban (dokumen guru) --- */
+  .warn-bar{background:#A63A3A;color:#fff;text-align:center;font-size:7.6pt;font-weight:800;
+    letter-spacing:.6px;text-transform:uppercase;padding:5px 0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .kunci-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 22px;}
+  .kunci-item{display:flex;gap:6px;padding:6px 0;border-bottom:1px dotted var(--greyline);font-size:8.2pt;break-inside:avoid;}
+  .kunci-item .no{font-weight:800;color:var(--navy);min-width:16px;flex-shrink:0;}
+  .kunci-item .ans{color:#2E3745;}
+  .kunci-item .ans b{color:var(--teal);}
+  .kunci-bagian-label{font-size:7.6pt;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.4px;
+    grid-column:1/-1;margin:8px 0 2px;}
+  .kunci-bagian-label:first-child{margin-top:0;}
+
+  /* ============ PRINT ============ */
+  @media print{
+    @page{size:A4;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;page-break-after:always;}
+    .page:last-child{page-break-after:auto;}
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  }
+</style>
+</head>
+<body>
+<div class="page-container">
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Bilangan · Pertemuan 1 dari 3</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Shaghir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menyatakan bilangan sampai 100 dalam bentuk puluhan dan satuan menggunakan balok dasar-sepuluh.</div>
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1–2 · CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+    <div class="eyebrow">MNR 1 · Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Kak Dinda menyimpan kelerengnya dalam kantong kecil — setiap kantong tepat berisi 10 kelereng. Ia punya 3 kantong penuh dan 6 kelereng lepas di luar kantong. Berapa kelereng Kak Dinda semuanya?</div>
+    <div class="illustration-row">
+      <div class="stage-block"><div class="icon-plain">🔵</div><span class="cap">Konkret</span></div>
+      <div class="cpa-arrow">→</div>
+      <div class="stage-block"><div class="baseten-row">
+          <div class="baseten-group"><div class="ten-rod-row"><div class="ten-rod"></div><div class="ten-rod"></div><div class="ten-rod"></div></div><div class="baseten-cap">3 puluhan</div></div>
+          <div class="baseten-group"><div class="unit-stack"><div class="unit-cube"></div><div class="unit-cube"></div><div class="unit-cube"></div><div class="unit-cube"></div><div class="unit-cube"></div><div class="unit-cube"></div></div><div class="baseten-cap">6 satuan</div></div>
+        </div><span class="cap">Gambar · Balok Puluhan-Satuan</span></div>
+      <div class="bar-legend"><div class="row"><span class="sw" style="background:#0F2A4E"></span> 1 kantong = 10 kelereng</div><div class="row"><span class="sw" style="background:#B08420"></span> 6 kelereng lepas</div><div class="row"><span class="sw" style="background:#fff;border-color:#0F2A4E"></span> Total = 36 kelereng</div></div>
+    </div>
+    <div class="equation-block">$$36 = 3\ \text{puluhan} + 6\ \text{satuan}$$</div>
+    <div class="eyebrow">MNR 2 · Contoh Terbimbing Tambahan (Guru Memandu di Papan Tulis)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Sekarang coba 52 kelereng: 5 kantong penuh + 2 lepas, jadi <b>52 = 5 puluhan + 2 satuan</b>. Bagaimana dengan 80 kelereng? Karena 80 bisa diikat menjadi 8 kantong penuh tanpa sisa, maka <b>80 = 8 puluhan + 0 satuan</b>.</div>
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) 45 = <span class="isian-inline" style="min-width:14px;"></span>p <span class="isian-inline" style="min-width:14px;"></span>s</div>
+      <div>b) 78 = <span class="isian-inline" style="min-width:14px;"></span>p <span class="isian-inline" style="min-width:14px;"></span>s</div>
+      <div>c) 90 = <span class="isian-inline" style="min-width:14px;"></span>p <span class="isian-inline" style="min-width:14px;"></span>s</div>
+      <div>d) 29 = <span class="isian-inline" style="min-width:14px;"></span>p <span class="isian-inline" style="min-width:14px;"></span>s</div>
+      <div>e) 8 = <span class="isian-inline" style="min-width:14px;"></span>p <span class="isian-inline" style="min-width:14px;"></span>s</div>
+      <div>f) 63 = <span class="isian-inline" style="min-width:14px;"></span>p <span class="isian-inline" style="min-width:14px;"></span>s</div>
+    </div>
+    <div style="font-size:6.6pt;color:#9099A8;margin-top:1px;">(p = puluhan, s = satuan)</div>
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 · TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Specialising</span><span class="twm-tag">Generalising</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+    <div class="reason-item"><span class="lbl">Specialising → Generalising — coba contoh khusus, tarik aturan umum</span>Coba tulis bentuk puluhan-satuan untuk 24, 58, dan 71. Kalau begitu, untuk bilangan dua angka mana pun, bagaimana caramu langsung tahu angka puluhannya tanpa menghitung ulang?</div>
+    <div class="reason-item"><span class="lbl">Convincing — yakinkan temanmu</span>Yakinkan temanmu bahwa 90 sama dengan 9 puluhan dan 0 satuan, bukan 9 satuan. Apa buktimu?</div>
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Yusuf menulis: &ldquo;47 = 4 satuan + 7 puluhan.&rdquo;</div>
+      <div class="tanya">Apakah tulisan Yusuf benar? Coba hitung: 4 satuan + 7 puluhan sebenarnya sama dengan bilangan berapa? Di bagian mana letak kesalahannya?</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Bilangan &middot; Pertemuan 1 &middot; Register A &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Bilangan · Pertemuan 1 dari 3</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4–5 · Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan nilai tempat dengan penjumlahan dua kelompok — mulai marhalah ini kita mengenal alat baru: <b>bar model</b>.</div>
+    <div class="soal-utama"><span class="no">Soal 4.</span> Rafi mengumpulkan perangko dalam 2 album. Album pertama berisi 34 perangko, album kedua berisi 25 perangko. Berapa perangko Rafi semuanya?</div>
+    <div style="font-size:8.3pt;color:#3A4252;margin-bottom:6px;"><b style="color:var(--navy);">Bar model — part-whole:</b> satu batang panjang mewakili KESELURUHAN (whole), dan dibagi menjadi bagian-bagian (part) sesuai jumlahnya. Ini alat baku yang akan kita pakai untuk semua soal cerita mulai sekarang.</div>
+    <div class="illustration-row" style="margin-bottom:5px;">
+      <div class="stage-block"><div class="combined-bar" style="width:230px;"><div class="seg a" style="flex:34;"></div><div class="seg b" style="flex:25;"></div></div><span class="cap">Bar Model · Part-Whole</span></div>
+      <div class="bar-legend"><div class="row"><span class="sw" style="background:#007A7A"></span> Album 1 = 34 perangko</div><div class="row"><span class="sw" style="background:#B08420"></span> Album 2 = 25 perangko</div><div class="row"><span class="sw" style="background:#fff;border-color:#0F2A4E"></span> Keseluruhan = jumlah kedua bagian</div></div>
+    </div>
+    <div class="equation-block">$$34 + 25 = 59\ \text{perangko}$$</div>
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: jumlahkan puluhan dulu (30+20=50), lalu satuan (4+5=9), lalu gabungkan (50+9=59). <i>(Guru minta siswa bandingkan cara ini dengan cara bersusun — Critiquing &amp; Improving.)</i></div>
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Nadia punya 2 kotak pensil warna: kotak 1 berisi 18 pensil, kotak 2 berisi 21 pensil.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Semuanya = <span class="isian-inline" style="min-width:34px;"></span> pensil</div>
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. 36 = <span class="isian-inline" style="min-width:14px;"></span>p <span class="isian-inline" style="min-width:14px;"></span>s</div>
+      <div>2. Kotak A 42 kelereng, Kotak B 15 kelereng. Semuanya = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>3. 71 = <span class="isian-inline" style="min-width:14px;"></span>p <span class="isian-inline" style="min-width:14px;"></span>s</div>
+      <div>4. Rak 1 ada 26 buku, Rak 2 ada 33 buku. Semuanya = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>5. Bentuk panjang dari 58: <span class="isian-inline" style="min-width:20px;"></span> + <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>6. Kantong A 19 manik, Kantong B 24 manik. Semuanya = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>7. 64 = <span class="isian-inline" style="min-width:14px;"></span>p <span class="isian-inline" style="min-width:14px;"></span>s</div>
+      <div>8. Keranjang 1 berisi 47 apel, Keranjang 2 berisi 30 apel. Semuanya = <span class="isian-inline" style="min-width:24px;"></span></div>
+    </div>
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Balok puluhan-satuan yang kita pakai hari ini terinspirasi dari alat peraga <i>base-ten blocks</i> yang dipakai di seluruh dunia untuk membantu anak memahami nilai tempat — bahkan sebelum ada kalkulator!</p>
+    </div>
+    <div class="block-sep"></div>
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Tulis bentuk puluhan-satuan dari 53 dan 89.</li>
+        <li>Kotakmu berisi 27 kancing biru dan 16 kancing merah. Berapa semuanya? Gambarkan bar modelnya.</li>
+        <li>Tuliskan 3 bilangan yang lebih besar dari 50 tetapi lebih kecil dari 70.</li>
+      </ol>
+    </div>
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Bilangan &middot; Pertemuan 1 &middot; Register A &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Bilangan · Pertemuan 2 dari 3</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Shaghir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menyatakan bentuk panjang serta membandingkan dan mengurutkan bilangan dua angka.</div>
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1–2 · CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+    <div class="eyebrow">MNR 1 · Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Di pojok baca kelas ada 2 rak. Rak A berisi 47 buku, Rak B berisi 52 buku. Rak mana yang lebih banyak bukunya?</div>
+    <div class="illustration-row">
+      <div class="stage-block"><div class="icon-plain">📚</div><span class="cap">Konkret</span></div>
+      <div class="cpa-arrow">→</div>
+      <div class="stage-block" style="display:flex;flex-direction:row;gap:14px;"><div><div class="baseten-row">
+          <div class="baseten-group"><div class="ten-rod-row"><div class="ten-rod"></div><div class="ten-rod"></div><div class="ten-rod"></div><div class="ten-rod"></div></div><div class="baseten-cap">4 puluhan</div></div>
+          <div class="baseten-group"><div class="unit-stack"><div class="unit-cube"></div><div class="unit-cube"></div><div class="unit-cube"></div><div class="unit-cube"></div><div class="unit-cube"></div><div class="unit-cube"></div><div class="unit-cube"></div></div><div class="baseten-cap">7 satuan</div></div>
+        </div><div class="tf-caption">Rak A = 47</div></div><div><div class="baseten-row">
+          <div class="baseten-group"><div class="ten-rod-row"><div class="ten-rod"></div><div class="ten-rod"></div><div class="ten-rod"></div><div class="ten-rod"></div><div class="ten-rod"></div></div><div class="baseten-cap">5 puluhan</div></div>
+          <div class="baseten-group"><div class="unit-stack"><div class="unit-cube"></div><div class="unit-cube"></div></div><div class="baseten-cap">2 satuan</div></div>
+        </div><div class="tf-caption">Rak B = 52</div></div></div>
+    </div>
+    <div class="cpa-trail" style="margin-top:2px;">Bandingkan angka puluhan dulu: <b>5 &gt; 4</b>, jadi 52 &gt; 47 — tidak perlu melihat angka satuan.</div>
+    <div class="equation-block">$$47 = 40+7 \qquad 52 = 50+2 \qquad 52 > 47$$</div>
+    <div class="eyebrow">MNR 2 · Contoh Terbimbing Tambahan (Guru Memandu di Papan Tulis)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Bandingkan 68 dan 71: puluhan 6 &lt; 7, jadi <b>68 &lt; 71</b>. Tapi kalau puluhannya sama, misalnya 34 dan 39: keduanya 3 puluhan, jadi lihat satuan — 4 &lt; 9, maka <b>34 &lt; 39</b>.</div>
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) Bandingkan 56 &middot; 61, lebih besar = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>b) Bandingkan 83 &middot; 79, lebih besar = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>c) Bentuk panjang 65 = <span class="isian-inline" style="min-width:20px;"></span> + <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>d) Bandingkan 42 &middot; 45, lebih kecil = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>e) Bentuk panjang 90 = <span class="isian-inline" style="min-width:20px;"></span> + <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>f) Bandingkan 77 &middot; 77, hasilnya <span class="isian-inline" style="min-width:40px;"></span></div>
+    </div>
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 · TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Characterising</span><span class="twm-tag">Classifying</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+    <div class="reason-item"><span class="lbl">Characterising — sebutkan ciri</span>Perhatikan aturan membandingkan dua bilangan dua angka. Apa yang harus dilihat LEBIH DULU — angka puluhan atau angka satuan? Mengapa?</div>
+    <div class="reason-item"><span class="lbl">Classifying — kelompokkan berdasarkan ciri</span>Kelompokkan bilangan berikut menjadi dua kelompok: &ldquo;kurang dari 50&rdquo; dan &ldquo;50 atau lebih&rdquo; — 38, 52, 47, 91, 12, 68. Apa dasar pengelompokanmu?</div>
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Made membandingkan 39 dan 41, lalu berkata: &ldquo;39 lebih besar, karena 9 lebih besar dari 4.&rdquo;</div>
+      <div class="tanya">Apakah Made benar? Angka mana yang seharusnya dibandingkan lebih dulu — satuan atau puluhan? Betulkan jawaban Made.</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Bilangan &middot; Pertemuan 2 &middot; Register A &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Bilangan · Pertemuan 2 dari 3</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4–5 · Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan membandingkan dan mengurutkan bilangan pada tiga kelompok sekaligus &mdash; bar model comparison untuk melihat selisihnya.</div>
+    <div class="soal-utama"><span class="no">Soal 4.</span> Tiga anak mengumpulkan kelereng untuk lomba kelas: Budi 38 butir, Sari 52 butir, Tono 45 butir. (a) Urutkan dari yang paling sedikit. (b) Berapa selisih kelereng Sari dan Budi?</div>
+    <div class="compare-bars" style="margin:5px 0 6px;">
+      <div class="cbar-row"><span class="cbar-label">Budi</span><div class="cbar teal" style="width:114px;"></div><span style="font-size:7.8pt;font-weight:700;">38</span></div>
+      <div class="cbar-row"><span class="cbar-label">Tono</span><div class="cbar teal" style="width:135px;"></div><span style="font-size:7.8pt;font-weight:700;">45</span></div>
+      <div class="cbar-row"><span class="cbar-label">Sari</span><div class="cbar gold" style="width:156px;"></div><span style="font-size:7.8pt;font-weight:700;">52</span></div>
+    </div>
+    <div class="word-block" style="margin-left:0;">Urutan: Budi (38) &lt; Tono (45) &lt; Sari (52)</div>
+    <div class="equation-block">$$52 - 38 = 14\ \text{(selisih Sari dan Budi)}$$</div>
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Bandingkan koleksi stiker: Alya 63, Fira 59.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;"><div>Lebih banyak = <span class="isian-inline" style="min-width:50px;"></span></div><div>Selisih = <span class="isian-inline" style="min-width:24px;"></span></div></div>
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. Bandingkan 74 &middot; 68, lebih besar = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>2. Urutkan dari terkecil: 55, 21, 60, 38 → <span class="isian-inline" style="min-width:20px;"></span> &lt; <span class="isian-inline" style="min-width:20px;"></span> &lt; <span class="isian-inline" style="min-width:20px;"></span> &lt; <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>3. Bentuk panjang 83 = <span class="isian-inline" style="min-width:20px;"></span> + <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>4. Selisih 90 dan 76 = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>5. Bandingkan 32 &middot; 29, lebih kecil = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>6. Rani 48 manik, Ela 61 manik. Selisihnya = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>7. Bentuk panjang 27 = <span class="isian-inline" style="min-width:20px;"></span> + <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>8. Urutkan dari terbesar: 44, 70, 12 → <span class="isian-inline" style="min-width:20px;"></span> &gt; <span class="isian-inline" style="min-width:20px;"></span> &gt; <span class="isian-inline" style="min-width:20px;"></span></div>
+    </div>
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Kata &ldquo;puluhan&rdquo; dan &ldquo;satuan&rdquo; sebenarnya berasal dari sistem hitung berbasis 10 &mdash; sistem ini dipakai hampir semua orang di dunia karena kita punya 10 jari!</p>
+    </div>
+    <div class="block-sep"></div>
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Bandingkan 58 dan 85. Lingkari yang lebih besar.</li>
+        <li>Urutkan dari terkecil: 19, 91, 45, 6.</li>
+        <li>Kelerengmu 36, kelereng adikmu 24. Berapa selisihnya?</li>
+      </ol>
+    </div>
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Bilangan &middot; Pertemuan 2 &middot; Register A &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Bilangan · Pertemuan 3 dari 3 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Shaghir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat membilang loncat 2, 5, dan 10, serta mengenali polanya.</div>
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1–2 · CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+    <div class="eyebrow">MNR 1 · Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Toko kue menata donat di atas piring — setiap piring diisi tepat 5 donat. Ada 6 piring penuh berjajar di meja. Berapa donat semuanya, tanpa menghitung satu-satu?</div>
+    <div class="illustration-row">
+      <div class="stage-block"><div class="icon-row" style="max-width:160px;"><div class="icon-plain">🍩</div><div class="icon-plain">🍩</div><div class="icon-plain">🍩</div><div class="icon-plain">🍩</div><div class="icon-plain">🍩</div><div class="icon-plain">🍩</div></div><span class="cap">Konkret · 6 Piring</span></div>
+      <div class="cpa-arrow">→</div>
+      <div class="stage-block"><div class="numcard-row"><div class="numcard">5</div><span class="numcard-arrow">→</span><div class="numcard">10</div><span class="numcard-arrow">→</span><div class="numcard">15</div><span class="numcard-arrow">→</span><div class="numcard">20</div><span class="numcard-arrow">→</span><div class="numcard">25</div><span class="numcard-arrow">→</span><div class="numcard">30</div></div><span class="cap">Gambar · Loncat 5</span></div>
+    </div>
+    <div class="equation-block">$$5+5+5+5+5+5 = 30\ \text{donat}$$</div>
+    <div class="eyebrow">MNR 2 · Loncat 2 dan Loncat 10 (Guru Memandu di Papan Tulis)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Membilang loncat 2 (untuk pasangan sepatu): 2, 4, 6, 8, 10, ... Membilang loncat 10 (untuk kelereng dalam kantong isi 10): 10, 20, 30, ..., 100. Semua barisan ini punya pola yang sama: setiap langkah bertambah dengan jumlah yang tetap.</div>
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) Loncat 2: 12, 14, 16, <span class="isian-inline" style="min-width:20px;"></span>, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>b) Loncat 5: 20, 25, 30, <span class="isian-inline" style="min-width:20px;"></span>, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>c) Loncat 10: 40, 50, 60, <span class="isian-inline" style="min-width:20px;"></span>, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>d) Loncat 2: 30, 32, <span class="isian-inline" style="min-width:20px;"></span>, 36, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>e) Loncat 5: 5, 10, <span class="isian-inline" style="min-width:20px;"></span>, 20, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>f) Loncat 10: 10, <span class="isian-inline" style="min-width:20px;"></span>, 30, <span class="isian-inline" style="min-width:20px;"></span>, 50</div>
+    </div>
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 · TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Conjecturing</span><span class="twm-tag">Convincing</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+    <div class="reason-item"><span class="lbl">Conjecturing — susun dugaan</span>Kalau barisan loncat 5 dimulai dari 5, menurutmu bilangan ke-10 dalam barisan itu berapa? Tulis dugaanmu dulu sebelum menghitung satu-satu.</div>
+    <div class="reason-item"><span class="lbl">Convincing — yakinkan temanmu</span>Yakinkan temanmu bahwa barisan 3, 6, 9, 12 BUKAN loncat 2. Apa buktimu?</div>
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Doni membilang loncat 5 begini: &ldquo;5, 10, 16, 20, 25.&rdquo;</div>
+      <div class="tanya">Apakah barisan Doni benar? Di angka mana pola loncat 5 mulai rusak? Berapa seharusnya?</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Bilangan &middot; Pertemuan 3 &middot; Register A &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Bilangan · Pertemuan 3 dari 3 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4–5 · Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan nilai tempat, perbandingan, dan membilang loncat &mdash; sintesis seluruh Bidang Bilangan pertemuan ini.</div>
+    <div class="soal-utama"><span class="no">Soal 4.</span> Kelas 2A mengumpulkan 45 botol plastik untuk daur ulang, Kelas 2B mengumpulkan 38 botol. (a) Berapa botol kedua kelas semuanya? (b) Berapa selisih botol kedua kelas?</div>
+    <div class="illustration-row" style="margin-bottom:5px;">
+      <div class="stage-block"><div class="combined-bar" style="width:210px;"><div class="seg a" style="flex:45;"></div><div class="seg b" style="flex:38;"></div></div><span class="cap">Bar Model · Part-Whole (Total)</span></div>
+    </div>
+    <div class="equation-block">$$45+38 = 83\ \text{botol} \qquad\qquad 45-38 = 7\ \text{(selisih)}$$</div>
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: 45 + 38 = 45 + 40 &minus; 2 = 85 &minus; 2 = 83. <i>(Guru minta siswa bandingkan dengan cara bersusun — Critiquing &amp; Improving.)</i></div>
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Kebun sekolah punya 24 pohon mangga dan 19 pohon jambu.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;"><div>Semua pohon = <span class="isian-inline" style="min-width:30px;"></span></div><div>Selisih = <span class="isian-inline" style="min-width:24px;"></span></div></div>
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. Lanjutkan loncat 5: 35, 40, 45, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>2. Lanjutkan loncat 10: 50, 60, <span class="isian-inline" style="min-width:20px;"></span>, 80</div>
+      <div>3. Kotak A 27 kelereng, Kotak B 34 kelereng. Semuanya = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>4. Lanjutkan loncat 2: 44, 46, 48, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>5. Selisih 60 dan 45 = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>6. Bilangan ke-5 dari barisan loncat 5 mulai 10: 10,15,20,25,<span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>7. Toko A jual 52 roti, Toko B jual 39 roti. Semuanya = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>8. Lanjutkan loncat 10 mundur: 90, 80, <span class="isian-inline" style="min-width:20px;"></span>, 60</div>
+    </div>
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Membilang loncat sudah dipakai pedagang zaman dulu untuk menghitung barang dengan cepat &mdash; misalnya menghitung telur per 10 butir dalam sekejap, tanpa menghitung satu per satu!</p>
+    </div>
+    <div class="block-sep"></div>
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Lanjutkan barisan loncat 5: 45, 50, 55, ___, ___.</li>
+        <li>Kelasmu punya 32 pensil biru dan 27 pensil merah. Berapa semuanya? Gambarkan bar modelnya.</li>
+        <li>Tuliskan barisan loncat 10 dari 20 sampai 100.</li>
+      </ol>
+    </div>
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Bilangan &middot; Pertemuan 3 &middot; Register A &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Aljabar · Pertemuan 1 dari 2</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Shaghir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat melanjutkan pola bilangan loncat dan melengkapi barisan sederhana.</div>
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1–2 · CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+    <div class="eyebrow">MNR 1 · Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Ibu menyusun kursi untuk pesta ulang tahun dalam barisan: baris pertama 2 kursi, baris kedua 4 kursi, baris ketiga 6 kursi. Kalau polanya diteruskan, berapa kursi di baris keempat dan kelima?</div>
+    <div class="illustration-row">
+      <div class="stage-block"><div class="icon-plain">🪑</div><span class="cap">Konkret</span></div>
+      <div class="cpa-arrow">→</div>
+      <div class="stage-block"><div class="numcard-row"><div class="numcard">2</div><span class="numcard-arrow">→</span><div class="numcard">4</div><span class="numcard-arrow">→</span><div class="numcard">6</div><span class="numcard-arrow">→</span><div class="numcard ghost">?</div><span class="numcard-arrow">→</span><div class="numcard ghost">?</div></div><span class="cap">Gambar · Pola Loncat 2</span></div>
+    </div>
+    <div class="equation-block">$$2,\ 4,\ 6,\ 8,\ 10 \qquad (\text{setiap baris} +2\ \text{kursi})$$</div>
+    <div class="eyebrow">MNR 2 · Contoh Terbimbing Tambahan (Guru Memandu di Papan Tulis)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Coba pola lain: 10, 15, 20, 25, ... — setiap suku bertambah <b>5</b>. Bagaimana dengan 90, 80, 70, ... ? Polanya <b>berkurang 10</b> setiap langkah, jadi lanjutannya 60, 50.</div>
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) 3, 6, 9, <span class="isian-inline" style="min-width:20px;"></span>, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>b) 50, 45, 40, <span class="isian-inline" style="min-width:20px;"></span>, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>c) 7, 9, 11, <span class="isian-inline" style="min-width:20px;"></span>, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>d) 100, 90, 80, <span class="isian-inline" style="min-width:20px;"></span>, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>e) 4, 8, 12, <span class="isian-inline" style="min-width:20px;"></span>, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>f) 25, 30, 35, <span class="isian-inline" style="min-width:20px;"></span>, <span class="isian-inline" style="min-width:20px;"></span></div>
+    </div>
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 · TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Critiquing</span><span class="twm-tag">Improving</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+    <div class="reason-item"><span class="lbl">Critiquing — menilai gagasan</span>Rio menyusun pola 5, 10, 14, 20 dan bilang itu adalah pola loncat 5. Apa yang salah dari pernyataan Rio?</div>
+    <div class="reason-item"><span class="lbl">Improving — memperbaiki menjadi lebih efektif</span>Perbaiki pola Rio supaya benar-benar menjadi pola loncat 5 yang konsisten dari 5 sampai 4 suku.</div>
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Sinta melanjutkan pola &ldquo;20, 18, 16, ...&rdquo; dengan menulis &ldquo;20, 18, 16, 15, 14.&rdquo;</div>
+      <div class="tanya">Berapa selisih antar suku yang sebenarnya pada pola Sinta? Betulkan lanjutan pola tersebut.</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Aljabar &middot; Pertemuan 1 &middot; Register A &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Aljabar · Pertemuan 1 dari 2</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4–5 · Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan pola bilangan dengan penjumlahan nilai tempat yang sudah dipelajari.</div>
+    <div class="soal-utama"><span class="no">Soal 4.</span> Panitia lomba menyusun hadiah dalam pola: hari 1 = 10 bungkus, hari 2 = 20 bungkus, hari 3 = 30 bungkus. (a) Berapa bungkus di hari ke-5 jika pola diteruskan? (b) Berapa total bungkus dari hari 1 sampai hari 3?</div>
+    <div class="numcard-row" style="margin-bottom:6px;"><div class="numcard">10</div><span class="numcard-arrow">→</span><div class="numcard">20</div><span class="numcard-arrow">→</span><div class="numcard">30</div><span class="numcard-arrow">→</span><div class="numcard ghost">40</div><span class="numcard-arrow">→</span><div class="numcard ghost">50</div></div>
+    <div class="combined-bar" style="width:180px;margin-bottom:4px;"><div class="seg a" style="flex:10;"></div><div class="seg a" style="flex:20;"></div><div class="seg b" style="flex:30;"></div></div>
+    <div class="equation-block">$$\text{Hari ke-5} = 50\ \text{bungkus} \qquad 10+20+30 = 60\ \text{bungkus}$$</div>
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Pola menabung Fajar: minggu 1 = 5 ribu, minggu 2 = 10 ribu, minggu 3 = 15 ribu.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Tabungan minggu ke-4 = <span class="isian-inline" style="min-width:30px;"></span> ribu</div>
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. 6, 12, 18, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>2. 80, 70, 60, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>3. Lanjutkan: 2, 4, 6, 8, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>4. 15, 20, 25, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>5. Suku ke-4 dari pola 3,6,9,... = <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>6. 90, 80, 70, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>7. Lanjutkan: 5, 10, 15, 20, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>8. 12, 14, 16, <span class="isian-inline" style="min-width:20px;"></span></div>
+    </div>
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Pola bilangan seperti ini adalah dasar dari <i>barisan aritmetika</i> yang akan kamu pelajari lebih dalam di marhalah-marhalah berikutnya!</p>
+    </div>
+    <div class="block-sep"></div>
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Lanjutkan pola: 4, 8, 12, ___, ___.</li>
+        <li>Buat pola loncat 10 sendiri, mulai dari angka berapa pun, sampai 5 suku.</li>
+        <li>Pola 60, 50, 40, ___, ___ — lengkapi dan jelaskan aturannya.</li>
+      </ol>
+    </div>
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Aljabar &middot; Pertemuan 1 &middot; Register A &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Aljabar · Pertemuan 2 dari 2 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Shaghir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menyelesaikan kalimat matematika terbuka sederhana menggunakan bar model.</div>
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1–2 · CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+    <div class="eyebrow">MNR 1 · Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Dina punya beberapa boneka. Ia membeli 4 boneka lagi, sekarang jumlahnya menjadi 7. Berapa boneka Dina mula-mula?</div>
+    <div class="illustration-row">
+      <div class="stage-block"><div class="icon-plain">🧸</div><span class="cap">Konkret</span></div>
+      <div class="cpa-arrow">→</div>
+      <div class="stage-block"><div class="combined-bar" style="width:140px;"><div class="seg empty" style="flex:3;border:1.4px dashed var(--teal);"></div><div class="seg a" style="flex:4;"></div></div><span class="cap">Gambar · Bagian Belum Diketahui</span></div>
+      <div class="bar-legend"><div class="row"><span class="sw" style="background:#fff;border:1.4px dashed #007A7A;"></span> Belum diketahui (kotak &#9633;)</div><div class="row"><span class="sw" style="background:#007A7A"></span> Ditambah 4</div><div class="row"><span class="sw" style="background:#fff;border-color:#0F2A4E"></span> Hasil akhir = 7</div></div>
+    </div>
+    <div class="equation-block">$$\square + 4 = 7 \qquad \square = 7-4 = 3$$</div>
+    <div class="eyebrow">MNR 2 · Contoh Terbimbing Tambahan (Guru Memandu di Papan Tulis)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Kalimat terbuka juga bisa berbentuk pengurangan: <b>9 &minus; &#9633; = 5</b>. Kita cari kotaknya dengan membalik: &#9633; = 9 &minus; 5 = 4. Bar model membantu kita LIHAT bagian mana yang hilang, sebelum menghitung.</div>
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) &#9633; + 5 = 9, &#9633; = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>b) 6 + &#9633; = 10, &#9633; = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>c) &#9633; &minus; 3 = 8, &#9633; = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>d) 12 &minus; &#9633; = 7, &#9633; = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>e) &#9633; + 8 = 15, &#9633; = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>f) 20 &minus; &#9633; = 14, &#9633; = <span class="isian-inline" style="min-width:24px;"></span></div>
+    </div>
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 · TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Specialising</span><span class="twm-tag">Classifying</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+    <div class="reason-item"><span class="lbl">Specialising — coba contoh khusus</span>Coba selesaikan &#9633; + 2 = 5, lalu &#9633; + 2 = 8, lalu &#9633; + 2 = 10. Apa yang selalu sama, dan apa yang selalu berubah?</div>
+    <div class="reason-item"><span class="lbl">Classifying — kelompokkan berdasarkan ciri</span>Kelompokkan kalimat berikut menjadi &ldquo;kotak dicari dengan penjumlahan&rdquo; dan &ldquo;kotak dicari dengan pengurangan&rdquo;: &#9633;+3=9, 10&minus;&#9633;=6, 4+&#9633;=11.</div>
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Bayu menyelesaikan &ldquo;&#9633; + 6 = 10&rdquo; dengan menulis &ldquo;&#9633; = 10 + 6 = 16.&rdquo;</div>
+      <div class="tanya">Bayu memakai operasi apa? Seharusnya operasi apa yang dipakai untuk mencari &#9633;? Berapa jawaban yang benar?</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Aljabar &middot; Pertemuan 2 &middot; Register A &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Aljabar · Pertemuan 2 dari 2 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4–5 · Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan pola bilangan dan kalimat terbuka &mdash; sintesis Bidang Aljabar dengan bar model.</div>
+    <div class="soal-utama"><span class="no">Soal 4.</span> Kevin punya kelereng. Ia memberi 6 kelereng ke adiknya, sisanya tinggal 9. (a) Berapa kelereng Kevin mula-mula? (b) Kalau polanya kelereng Kevin bertambah 3 tiap minggu mulai dari sisanya sekarang, berapa kelereng Kevin 2 minggu lagi?</div>
+    <div class="combined-bar" style="width:170px;margin-bottom:4px;"><div class="seg empty" style="flex:9;border:1.4px dashed var(--teal);"></div><div class="seg a" style="flex:6;"></div></div>
+    <div class="equation-block">$$\square - 6 = 9 \Rightarrow \square = 15 \qquad 9,\ 12,\ 15$$</div>
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: karena hasil dari mengurangi 6 adalah 9, kita cukup BALIK operasinya jadi menjumlahkan: 9+6=15. <i>(Guru minta siswa bandingkan cara ini dengan mencoba-coba angka — Critiquing &amp; Improving.)</i></div>
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Wati punya stiker. Ia dapat 8 stiker lagi, jumlahnya jadi 20.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Stiker Wati mula-mula = <span class="isian-inline" style="min-width:30px;"></span></div>
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. &#9633; + 7 = 13, &#9633; = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>2. 15 &minus; &#9633; = 9, &#9633; = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>3. Lanjutkan: 6, 9, 12, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>4. &#9633; + 10 = 18, &#9633; = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>5. &#9633; &minus; 5 = 11, &#9633; = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>6. 20 &minus; &#9633; = 13, &#9633; = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>7. Lanjutkan: 30, 25, 20, <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>8. &#9633; + 9 = 16, &#9633; = <span class="isian-inline" style="min-width:24px;"></span></div>
+    </div>
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Kotak &#9633; yang kita pakai hari ini adalah cikal-bakal huruf <i>x</i> yang akan kamu temui di pelajaran aljabar bertahun-tahun ke depan!</p>
+    </div>
+    <div class="block-sep"></div>
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Dari semua yang dipelajari di Bidang Aljabar, bagian favoritku adalah</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Selesaikan: &#9633; + 9 = 14 dan 16 &minus; &#9633; = 10.</li>
+        <li>Buat sendiri 1 kalimat terbuka penjumlahan dan 1 pengurangan, lalu selesaikan.</li>
+        <li>Lanjutkan pola: 8, 16, 24, ___, ___.</li>
+      </ol>
+    </div>
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Aljabar &middot; Pertemuan 2 &middot; Register A &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Pengukuran · Pertemuan 1 dari 2</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Shaghir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat mengukur panjang benda menggunakan satuan tak baku, lalu mengenal satuan sentimeter.</div>
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1–2 · CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+    <div class="eyebrow">MNR 1 · Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Alya mengukur panjang mejanya menggunakan jengkal tangannya sendiri: ternyata 6 jengkal. Kakaknya mengukur meja yang sama dengan jengkalnya yang lebih besar: ternyata hanya 4 jengkal. Mengapa hasilnya berbeda, padahal mejanya sama?</div>
+    <div class="illustration-row">
+      <div class="stage-block"><div class="icon-plain">🖐️</div><span class="cap">Konkret · Jengkal</span></div>
+      <div class="cpa-arrow">→</div>
+      <div class="stage-block"><svg width="130" height="40" viewBox="0 0 140 40"><rect x="2" y="14" width="136" height="12" fill="#E8EEF7" stroke="#0F2A4E" stroke-width="1.4"/><line x1="24" y1="10" x2="24" y2="30" stroke="#0F2A4E" stroke-width="1"/><line x1="46" y1="10" x2="46" y2="30" stroke="#0F2A4E" stroke-width="1"/><line x1="68" y1="10" x2="68" y2="30" stroke="#0F2A4E" stroke-width="1"/><line x1="90" y1="10" x2="90" y2="30" stroke="#0F2A4E" stroke-width="1"/><line x1="112" y1="10" x2="112" y2="30" stroke="#0F2A4E" stroke-width="1"/></svg><span class="cap">Gambar · Penggaris (satuan cm)</span></div>
+    </div>
+    <div class="word-block">Satuan tak baku (jengkal) berbeda tiap orang → hasilnya tidak konsisten. Karena itu kita perlu satuan BAKU yang sama untuk semua orang: sentimeter (cm).</div>
+    <div class="eyebrow">MNR 2 · Contoh Terbimbing Tambahan (Guru Memandu di Papan Tulis)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Guru mengukur pensil dengan penggaris: ujung pensil ada tepat di angka <b>12</b> pada penggaris, jadi panjang pensil = <b>12 cm</b>. Selalu mulai mengukur dari angka 0!</div>
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) Panjang buku tulismu &asymp; <span class="isian-inline" style="min-width:30px;"></span> cm (ukur sendiri)</div>
+      <div>b) Panjang pensilmu &asymp; <span class="isian-inline" style="min-width:30px;"></span> cm (ukur sendiri)</div>
+      <div>c) 1 jengkal &asymp; <span class="isian-inline" style="min-width:30px;"></span> cm (perkirakan)</div>
+      <div>d) Panjang penghapusmu &asymp; <span class="isian-inline" style="min-width:30px;"></span> cm (ukur sendiri)</div>
+      <div>e) Mana yang lebih panjang, 15 cm atau 9 cm? <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>f) Mana lebih pendek, 20 cm atau 25 cm? <span class="isian-inline" style="min-width:24px;"></span></div>
+    </div>
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 · TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Generalising</span><span class="twm-tag">Conjecturing</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+    <div class="reason-item"><span class="lbl">Conjecturing — susun dugaan</span>Menurutmu, kenapa satuan seperti jengkal atau langkah kaki tidak cocok dipakai untuk mengukur di toko bangunan atau pabrik? Tulis dugaanmu.</div>
+    <div class="reason-item"><span class="lbl">Generalising — menarik aturan umum</span>Dari contoh jengkal tadi, buatlah aturan umum: mengapa satuan pengukuran yang disepakati bersama (satuan baku seperti cm) selalu lebih baik daripada satuan pribadi, di mana pun dan kapan pun dipakai?</div>
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Dito mengukur pensil dengan meletakkan ujungnya di angka <b>2</b> pada penggaris (bukan di angka 0), lalu membaca angka di ujung lain sebagai panjang pensil.</div>
+      <div class="tanya">Apa yang salah dari cara Dito mengukur? Bagaimana seharusnya ia memulai pengukuran?</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Pengukuran &middot; Pertemuan 1 &middot; Register A &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Pengukuran · Pertemuan 1 dari 2</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4–5 · Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan pengukuran panjang dengan penjumlahan dan perbandingan yang sudah dipelajari.</div>
+    <div class="soal-utama"><span class="no">Soal 4.</span> Tali A panjangnya 28 cm, Tali B panjangnya 15 cm. Kedua tali disambung menjadi satu tanpa tumpang tindih. (a) Berapa panjang tali gabungan? (b) Berapa selisih panjang Tali A dan Tali B semula?</div>
+    <div class="combined-bar" style="width:200px;margin-bottom:4px;"><div class="seg a" style="flex:28;"></div><div class="seg b" style="flex:15;"></div></div>
+    <div class="equation-block">$$28+15 = 43\ \text{cm} \qquad\qquad 28-15 = 13\ \text{cm}$$</div>
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Pita merah 34 cm, pita kuning 22 cm, disambung jadi satu.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;"><div>Panjang gabungan = <span class="isian-inline" style="min-width:34px;"></span> cm</div><div>Selisih = <span class="isian-inline" style="min-width:24px;"></span> cm</div></div>
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. Tongkat 40 cm dan 18 cm disambung. Panjang = <span class="isian-inline" style="min-width:24px;"></span> cm</div>
+      <div>2. Selisih 55 cm dan 30 cm = <span class="isian-inline" style="min-width:24px;"></span> cm</div>
+      <div>3. Ukur panjang telapak kakimu &asymp; <span class="isian-inline" style="min-width:30px;"></span> cm</div>
+      <div>4. Pita 60 cm dipotong 25 cm. Sisa = <span class="isian-inline" style="min-width:24px;"></span> cm</div>
+      <div>5. Mana lebih panjang, 48 cm atau 39 cm? <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>6. Dua pensil 17 cm dan 14 cm digabung. Panjang = <span class="isian-inline" style="min-width:24px;"></span> cm</div>
+      <div>7. Selisih 70 cm dan 52 cm = <span class="isian-inline" style="min-width:24px;"></span> cm</div>
+      <div>8. Urutkan dari terpendek: 33cm, 19cm, 45cm → <span class="isian-inline" style="min-width:60px;"></span></div>
+    </div>
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Satuan sentimeter berasal dari kata Latin <i>centum</i> yang berarti seratus &mdash; karena 1 meter dibagi menjadi 100 bagian sama besar untuk menjadi 100 sentimeter!</p>
+    </div>
+    <div class="block-sep"></div>
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Ukur 3 benda di rumahmu dengan penggaris, catat panjangnya dalam cm.</li>
+        <li>Dua pita 26 cm dan 19 cm disambung. Berapa panjang totalnya?</li>
+        <li>Urutkan hasil pengukuranmu tadi dari yang terpanjang.</li>
+      </ol>
+    </div>
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Pengukuran &middot; Pertemuan 1 &middot; Register A &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Pengukuran · Pertemuan 2 dari 2 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Shaghir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat membaca jam tepat dan setengah jam, serta mengenal nilai mata uang rupiah.</div>
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1–2 · CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+    <div class="eyebrow">MNR 1 · Masalah Nyata (Waktu)</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Bel istirahat sekolah Alya berbunyi ketika jarum pendek jam menunjuk angka 9 dan jarum panjang menunjuk angka 12. Pukul berapakah itu?</div>
+    <div class="illustration-row">
+      <div class="stage-block"><div class="icon-plain">🔔</div><span class="cap">Konkret</span></div>
+      <div class="cpa-arrow">→</div>
+      <div class="stage-block"><svg width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="30" r="27" fill="#fff" stroke="#0F2A4E" stroke-width="2"/><line x1="30" y1="30" x2="30" y2="14" stroke="#0F2A4E" stroke-width="2.5" stroke-linecap="round"/><line x1="30" y1="30" x2="44" y2="30" stroke="#007A7A" stroke-width="2" stroke-linecap="round"/><circle cx="30" cy="30" r="2" fill="#0F2A4E"/></svg><span class="cap">Gambar · Jam Tepat</span></div>
+    </div>
+    <div class="word-block" style="margin-left:0;">Pukul 09.00 — jarum panjang di angka 12, jarum pendek di angka 9.</div>
+    <div class="eyebrow">MNR 2 · Setengah Jam &amp; Mata Uang Rupiah (Topik Kedua)</div>
+    <div style="font-size:8.6pt;margin-bottom:6px;">Kalau jarum panjang menunjuk ke angka <b>6</b>, itu tandanya <b>setengah jam lebih</b> — misalnya pukul 09.30. Sekarang uang: kita punya pecahan Rp1.000, Rp2.000, Rp5.000, dan Rp10.000. Dua lembar Rp5.000 = Rp10.000.</div>
+    <div class="illustration-row" style="margin:4px 0 6px;">
+      <div class="stage-block"><svg width="46" height="28" viewBox="0 0 46 28"><rect x="1" y="1" width="44" height="26" rx="3" fill="#E5F4EC" stroke="#2E9E63" stroke-width="1.6"/><text x="23" y="18" font-size="9" font-weight="700" fill="#1E7247" text-anchor="middle">1000</text></svg><span class="cap">Rp1.000</span></div>
+      <div class="stage-block"><svg width="46" height="28" viewBox="0 0 46 28"><rect x="1" y="1" width="44" height="26" rx="3" fill="#FCF6E5" stroke="#B08420" stroke-width="1.6"/><text x="23" y="18" font-size="9" font-weight="700" fill="#7A5A16" text-anchor="middle">5000</text></svg><span class="cap">Rp5.000</span></div>
+      <div class="stage-block"><svg width="46" height="28" viewBox="0 0 46 28"><rect x="1" y="1" width="44" height="26" rx="3" fill="#E7EDFC" stroke="#2F6FED" stroke-width="1.6"/><text x="23" y="18" font-size="8.3" font-weight="700" fill="#0F2A4E" text-anchor="middle">10000</text></svg><span class="cap">Rp10.000</span></div>
+    </div>
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) Jarum panjang di 12, jarum pendek di 7 → pukul <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>b) Jarum panjang di 6, jarum pendek di antara 3 dan 4 → pukul <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>c) 2 lembar Rp1.000 = Rp <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>d) 1 lembar Rp5.000 + 1 lembar Rp1.000 = Rp <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>e) Pukul 11.00, jarum pendek menunjuk angka <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>f) 3 lembar Rp2.000 = Rp <span class="isian-inline" style="min-width:30px;"></span></div>
+    </div>
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 · TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Characterising</span><span class="twm-tag">Improving</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+    <div class="reason-item"><span class="lbl">Characterising — sebutkan ciri</span>Apa ciri posisi jarum panjang ketika waktunya TEPAT jam (bukan setengah jam)?</div>
+    <div class="reason-item"><span class="lbl">Improving — memperbaiki menjadi lebih efektif</span>Kalau kamu harus membayar Rp8.000 dengan lembaran yang ada, kombinasi mana yang memakai lembaran PALING SEDIKIT?</div>
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Fira membaca jam yang jarum panjangnya di angka 6 dan jarum pendeknya di antara 4-5, lalu ia berkata: &ldquo;Ini pukul 4.06.&rdquo;</div>
+      <div class="tanya">Apa yang salah dari cara Fira membaca posisi jarum panjang di angka 6? Pukul berapa yang benar?</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Pengukuran &middot; Pertemuan 2 &middot; Register A &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Pengukuran · Pertemuan 2 dari 2 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4–5 · Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan panjang, waktu, dan uang &mdash; sintesis seluruh Bidang Pengukuran pertemuan ini.</div>
+    <div class="soal-utama"><span class="no">Soal 4.</span> Nadia mulai membaca buku pukul 09.00 dan selesai pukul 09.30. Setelah itu ia jajan dengan uang Rp5.000, membeli es krim seharga Rp3.000. (a) Berapa lama Nadia membaca? (b) Berapa uang kembaliannya?</div>
+    <div class="equation-block">$$09.30 - 09.00 = 30\ \text{menit} \qquad\qquad 5000-3000 = 2000\ \text{rupiah}$$</div>
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Fajar bermain dari pukul 15.00 sampai 15.30, lalu membeli mainan Rp7.000 dengan uang Rp10.000.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;flex-wrap:wrap;"><div>Lama bermain = <span class="isian-inline" style="min-width:34px;"></span></div><div>Kembalian = Rp<span class="isian-inline" style="min-width:30px;"></span></div></div>
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. Jarum panjang di 12, pendek di 8 → pukul <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>2. Rp2.000 + Rp2.000 + Rp1.000 = Rp <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>3. Dari pukul 10.00 ke 10.30 = <span class="isian-inline" style="min-width:24px;"></span> menit</div>
+      <div>4. Beli Rp4.000, bayar Rp5.000, kembalian = Rp <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>5. Jarum panjang di 6, pendek antara 2-3 → pukul <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>6. 3 lembar Rp5.000 = Rp <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>7. Beli Rp6.000, bayar Rp10.000, kembalian = Rp <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>8. Ukur panjang meja belajarmu &asymp; <span class="isian-inline" style="min-width:24px;"></span> cm</div>
+    </div>
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Kata &ldquo;rupiah&rdquo; berasal dari kata Sanskerta <i>rupyakam</i> yang berarti perak &mdash; jauh sebelum mata uang kertas seperti sekarang ada!</p>
+    </div>
+    <div class="block-sep"></div>
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Dari semua yang dipelajari di Bidang Pengukuran, bagian favoritku adalah</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Gambar jam yang menunjukkan pukul 07.30.</li>
+        <li>Kamu punya Rp10.000 dan membeli buku Rp6.000. Berapa kembaliannya?</li>
+        <li>Catat pukul berapa kamu mulai dan selesai belajar malam ini, hitung lamanya.</li>
+      </ol>
+    </div>
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Pengukuran &middot; Pertemuan 2 &middot; Register A &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Geometri · Pertemuan 1 dari 2</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Shaghir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat mengenali dan menyebutkan nama bangun ruang dasar dari benda di sekitarnya.</div>
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1–2 · CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+    <div class="eyebrow">MNR 1 · Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Di meja belajar Rio ada: dadu, kotak tisu, kaleng susu, bola kasti, dan topi ulang tahun berbentuk kerucut. Bangun ruang apa saja yang membentuk benda-benda itu?</div>
+    <div class="illustration-row">
+      <div class="icon-row" style="max-width:190px;"><div class="icon-plain">🎲</div><div class="icon-plain">📦</div><div class="icon-plain">🥫</div><div class="icon-plain">⚾</div><div class="icon-plain">🎉</div></div>
+      <div class="cpa-arrow">→</div>
+      <div class="stage-block"><div class="shape-gallery"><div class="shape-card"><svg width="40" height="38" viewBox="0 0 44 42">
+      <polygon points="10,14 26,14 26,34 10,34" fill="#007A7A" stroke="#0F2A4E" stroke-width="1.2"/>
+      <polygon points="10,14 18,6 34,6 26,14" fill="#B9DCDA" stroke="#0F2A4E" stroke-width="1.2"/>
+      <polygon points="26,14 34,6 34,26 26,34" fill="#00595A" stroke="#0F2A4E" stroke-width="1.2"/>
+    </svg><span class="lbl">Kubus</span></div><div class="shape-card"><svg width="46" height="38" viewBox="0 0 50 42">
+      <polygon points="8,16 30,16 30,36 8,36" fill="#B08420" stroke="#0F2A4E" stroke-width="1.2"/>
+      <polygon points="8,16 15,7 37,7 30,16" fill="#FCE6C4" stroke="#0F2A4E" stroke-width="1.2"/>
+      <polygon points="30,16 37,7 37,27 30,36" fill="#7A5A16" stroke="#0F2A4E" stroke-width="1.2"/>
+    </svg><span class="lbl">Balok</span></div><div class="shape-card"><svg width="36" height="38" viewBox="0 0 40 42">
+      <path d="M 6 32 A 14 5 0 0 0 34 32 L 34 14 A 14 5 0 0 1 6 14 Z" fill="#E0F2F1" stroke="#007A7A" stroke-width="1.6"/>
+      <ellipse cx="20" cy="14" rx="14" ry="5" fill="#fff" stroke="#007A7A" stroke-width="1.6"/>
+      <path d="M 6 14 A 14 5 0 0 0 34 14" fill="none" stroke="#007A7A" stroke-width="1" opacity="0.5"/>
+    </svg><span class="lbl">Tabung</span></div><div class="shape-card"><svg width="36" height="36" viewBox="0 0 40 40">
+      <defs>
+        <radialGradient id="bola-grad" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#FFFFFF"/>
+          <stop offset="45%" stop-color="#E4572E"/>
+          <stop offset="100%" stop-color="#A83A1C"/>
+        </radialGradient>
+      </defs>
+      <circle cx="20" cy="20" r="17" fill="url(#bola-grad)" stroke="#0F2A4E" stroke-width="1.2"/>
+    </svg><span class="lbl">Bola</span></div><div class="shape-card"><svg width="36" height="38" viewBox="0 0 40 42">
+      <defs>
+        <linearGradient id="kerucut-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#2E9E63"/>
+          <stop offset="55%" stop-color="#8FD1AC"/>
+          <stop offset="100%" stop-color="#1E7247"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="20" cy="33" rx="15" ry="5" fill="#1E7247" stroke="#0F2A4E" stroke-width="1.2"/>
+      <polygon points="20,4 5,33 35,33" fill="url(#kerucut-grad)" stroke="#0F2A4E" stroke-width="1.2"/>
+    </svg><span class="lbl">Kerucut</span></div></div><span class="cap">Gambar · Bangun Ruang Dasar</span></div>
+    </div>
+    <div class="word-block" style="margin-left:0;">Dadu = kubus &middot; Kotak tisu = balok &middot; Kaleng = tabung &middot; Bola kasti = bola &middot; Topi ulang tahun = kerucut</div>
+    <div class="eyebrow">MNR 2 · Contoh Terbimbing Tambahan (Guru Memandu di Papan Tulis)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Kubus punya 6 sisi berbentuk persegi yang sama besar. Balok mirip kubus, tapi sisi-sisinya berbentuk persegi panjang dan tidak semua sama besar. Bola dan tabung punya sisi lengkung; kerucut punya 1 sisi lengkung dan 1 titik puncak.</div>
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) Kotak kado berbentuk <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>b) Roda mobil-mobilan berbentuk sisi <span class="isian-inline" style="min-width:50px;"></span> bangun <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>c) Bangun ruang apa yang tidak punya sudut sama sekali? <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>d) Es krim cone berbentuk <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>e) Kotak sepatu berbentuk <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>f) Bangun ruang apa yang punya titik puncak tapi alasnya lingkaran? <span class="isian-inline" style="min-width:30px;"></span></div>
+    </div>
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 · TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Classifying</span><span class="twm-tag">Critiquing</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+    <div class="reason-item"><span class="lbl">Classifying — kelompokkan berdasarkan ciri</span>Kelompokkan benda berikut menjadi &ldquo;punya sisi datar saja&rdquo; dan &ldquo;punya sisi lengkung&rdquo;: dadu, bola, kotak pensil, kaleng, topi kerucut.</div>
+    <div class="reason-item"><span class="lbl">Critiquing — menilai gagasan</span>Perhatikan lagi bentuk sisi balok — apakah semuanya persegi seperti kubus? Nilai pernyataan ini: &ldquo;Kubus dan balok itu sama saja, sama-sama punya 6 sisi berbentuk kotak.&rdquo;</div>
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Sarah berkata: &ldquo;Kubus dan balok itu sama saja, sama-sama punya 6 sisi berbentuk kotak.&rdquo;</div>
+      <div class="tanya">Perhatikan lagi bentuk sisi balok — apakah semuanya persegi seperti kubus? Bagian mana yang keliru dari pernyataan Sarah?</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Geometri &middot; Pertemuan 1 &middot; Register A &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Geometri · Pertemuan 1 dari 2</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4–5 · Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan pengenalan bangun ruang dengan menghitung dan mengelompokkan benda di sekitar.</div>
+    <div class="soal-utama"><span class="no">Soal 4.</span> Di dalam gudang mainan ada 5 dadu, 3 kaleng cat mini, dan 2 bola. (a) Berapa jumlah benda berbentuk bangun ruang berbeda semuanya? (b) Bangun ruang mana yang jumlahnya paling banyak?</div>
+    <div class="shape-gallery" style="margin-bottom:6px;"><div class="shape-card"><svg width="40" height="38" viewBox="0 0 44 42">
+      <polygon points="10,14 26,14 26,34 10,34" fill="#007A7A" stroke="#0F2A4E" stroke-width="1.2"/>
+      <polygon points="10,14 18,6 34,6 26,14" fill="#B9DCDA" stroke="#0F2A4E" stroke-width="1.2"/>
+      <polygon points="26,14 34,6 34,26 26,34" fill="#00595A" stroke="#0F2A4E" stroke-width="1.2"/>
+    </svg><span class="lbl">Dadu = 5</span></div><div class="shape-card"><svg width="36" height="38" viewBox="0 0 40 42">
+      <path d="M 6 32 A 14 5 0 0 0 34 32 L 34 14 A 14 5 0 0 1 6 14 Z" fill="#E0F2F1" stroke="#007A7A" stroke-width="1.6"/>
+      <ellipse cx="20" cy="14" rx="14" ry="5" fill="#fff" stroke="#007A7A" stroke-width="1.6"/>
+      <path d="M 6 14 A 14 5 0 0 0 34 14" fill="none" stroke="#007A7A" stroke-width="1" opacity="0.5"/>
+    </svg><span class="lbl">Kaleng = 3</span></div><div class="shape-card"><svg width="36" height="36" viewBox="0 0 40 40">
+      <defs>
+        <radialGradient id="bola-grad" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#FFFFFF"/>
+          <stop offset="45%" stop-color="#E4572E"/>
+          <stop offset="100%" stop-color="#A83A1C"/>
+        </radialGradient>
+      </defs>
+      <circle cx="20" cy="20" r="17" fill="url(#bola-grad)" stroke="#0F2A4E" stroke-width="1.2"/>
+    </svg><span class="lbl">Bola = 2</span></div></div>
+    <div class="equation-block">$$5+3+2 = 10\ \text{benda} \qquad\qquad \text{Terbanyak} = \text{Kubus (dadu)}$$</div>
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Ada 4 kotak balok dan 6 kaleng tabung di rak.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Jumlah semua benda = <span class="isian-inline" style="min-width:30px;"></span>, terbanyak = <span class="isian-inline" style="min-width:50px;"></span></div>
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. Sebutkan 1 benda di rumahmu berbentuk kubus.</div>
+      <div>2. Sebutkan 1 benda di rumahmu berbentuk tabung.</div>
+      <div>3. Berapa jumlah sisi lengkung pada bola? <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>4. Sebutkan 1 benda berbentuk kerucut yang kamu tahu.</div>
+      <div>5. 7 dadu + 5 bola = <span class="isian-inline" style="min-width:24px;"></span> benda semuanya</div>
+      <div>6. Apa perbedaan bola dan kerucut? Jelaskan singkat.</div>
+      <div>7. Kaleng susu termasuk bangun ruang <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>8. Sebutkan 1 benda berbentuk balok di sekolahmu.</div>
+    </div>
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Piramida Mesir Kuno sebenarnya adalah bangun ruang <i>limas</i> &mdash; bangun ruang yang lebih rumit dari kubus dan balok yang akan kamu pelajari di marhalah-marhalah selanjutnya!</p>
+    </div>
+    <div class="block-sep"></div>
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Cari dan gambar 5 benda di rumahmu, tulis nama bangun ruangnya.</li>
+        <li>Sebutkan 2 benda berbentuk tabung dan 2 benda berbentuk bola.</li>
+        <li>Jelaskan bedanya kubus dan balok dengan kalimatmu sendiri.</li>
+      </ol>
+    </div>
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Geometri &middot; Pertemuan 1 &middot; Register A &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Geometri · Pertemuan 2 dari 2 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Shaghir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menyusun bangun datar dari potongan yang lebih kecil dan memisahkannya kembali.</div>
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1–2 · CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+    <div class="eyebrow">MNR 1 · Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Kevin menyusun ubin lantai mainan: 2 segitiga digabung sisi miringnya menjadi 1 bangun baru. Bangun apa yang terbentuk?</div>
+    <div class="illustration-row">
+      <div class="stage-block"><svg width="34" height="34" viewBox="0 0 38 38"><polygon points="19,4 34,32 4,32" fill="#FCF6E5" stroke="#B08420" stroke-width="1.8"/></svg><span class="cap">Segitiga 1</span></div>
+      <div style="font-size:15px;color:var(--greyline);">+</div>
+      <div class="stage-block"><svg width="34" height="34" viewBox="0 0 38 38"><polygon points="19,34 4,6 34,6" fill="#E0F2F1" stroke="#007A7A" stroke-width="1.8"/></svg><span class="cap">Segitiga 2</span></div>
+      <div class="cpa-arrow">→</div>
+      <div class="stage-block"><svg width="44" height="34" viewBox="0 0 48 38"><rect x="5" y="4" width="38" height="30" fill="#E8EEF7" stroke="#0F2A4E" stroke-width="1.8"/><line x1="5" y1="34" x2="43" y2="4" stroke="#0F2A4E" stroke-width="1" stroke-dasharray="2,2"/></svg><span class="cap">Persegi Panjang</span></div>
+    </div>
+    <div class="word-block" style="margin-left:0;">2 segitiga sama besar yang digabung sisi miringnya bisa membentuk 1 persegi panjang.</div>
+    <div class="eyebrow">MNR 2 · Memisah Bangun (Guru Memandu di Papan Tulis)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Sebaliknya, 1 persegi bisa dipisah menjadi 2 segitiga sama besar dengan menarik garis dari sudut ke sudut yang berlawanan (garis diagonal). Ini adalah kebalikan dari menyusun.</div>
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) 2 segitiga siku-siku digabung sisi tegaknya bisa jadi bangun apa? <span class="isian-inline" style="min-width:60px;"></span></div>
+      <div>b) 1 persegi panjang dipotong 1 garis lurus tengah bisa jadi 2 bangun apa? <span class="isian-inline" style="min-width:60px;"></span></div>
+      <div>c) Berapa segitiga dibutuhkan untuk membuat 1 persegi panjang? <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>d) Gambar 1 persegi, lalu tarik garis diagonal — jadi berapa segitiga?</div>
+      <div>e) 2 persegi digabung sisinya bisa membentuk bangun apa? <span class="isian-inline" style="min-width:60px;"></span></div>
+      <div>f) Susun bentuk bebas dari 3 segitiga kecil di kertas berpetak.</div>
+    </div>
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 · TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Generalising</span><span class="twm-tag">Convincing</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+    <div class="reason-item"><span class="lbl">Generalising — menarik aturan umum</span>Menurutmu, kalau 4 persegi kecil disusun sama besar berjajar 2x2, bangun besar apa yang terbentuk? Tulis dugaanmu, lalu coba buktikan dengan menggambar. Buat aturan umum: bangun apa saja yang bisa disusun dari beberapa persegi kecil?</div>
+    <div class="reason-item"><span class="lbl">Convincing — yakinkan temanmu</span>Yakinkan temanmu bahwa 2 segitiga sama besar yang digabung TIDAK SELALU membentuk persegi panjang — kadang bisa membentuk bangun lain. Berikan contoh.</div>
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Wawan berkata: &ldquo;Bangun apa pun kalau dipotong 1 garis lurus, pasti hasilnya 2 segitiga.&rdquo;</div>
+      <div class="tanya">Coba potong sebuah persegi dengan garis lurus MENDATAR (bukan diagonal) — bangun apa hasilnya? Apakah pernyataan Wawan selalu benar?</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Geometri &middot; Pertemuan 2 &middot; Register A &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Geometri · Pertemuan 2 dari 2 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4–5 · Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan bangun ruang dan bangun datar &mdash; sintesis seluruh Bidang Geometri pertemuan ini.</div>
+    <div class="soal-utama"><span class="no">Soal 4.</span> Fira membuat rumah-rumahan dari kertas: alasnya 1 balok (badan rumah) dan atapnya disusun dari 2 segitiga yang digabung menjadi bentuk atap segitiga besar. (a) Ada berapa jenis bangun yang dipakai (ruang + datar)? (b) Berapa total keping segitiga yang dipakai untuk membuat 3 rumah-rumahan seperti itu?</div>
+    <div class="illustration-row" style="margin-bottom:5px;"><div class="shape-card"><svg width="46" height="38" viewBox="0 0 50 42">
+      <polygon points="8,16 30,16 30,36 8,36" fill="#B08420" stroke="#0F2A4E" stroke-width="1.2"/>
+      <polygon points="8,16 15,7 37,7 30,16" fill="#FCE6C4" stroke="#0F2A4E" stroke-width="1.2"/>
+      <polygon points="30,16 37,7 37,27 30,36" fill="#7A5A16" stroke="#0F2A4E" stroke-width="1.2"/>
+    </svg><span class="lbl">Badan Rumah</span></div><div class="stage-block"><svg width="38" height="30" viewBox="0 0 40 32"><polygon points="20,2 38,28 2,28" fill="#FCE9E3" stroke="#E4572E" stroke-width="1.8"/><line x1="20" y1="2" x2="20" y2="28" stroke="#E4572E" stroke-width="1" stroke-dasharray="2,2"/></svg><span class="lbl">Atap (2 Segitiga)</span></div>    </div>
+    <div class="equation-block">$$2\ \text{jenis bangun} \qquad\qquad 2 \times 3 = 6\ \text{keping segitiga}$$</div>
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Setiap rumah-rumahan butuh 2 segitiga untuk atap. Rani ingin membuat 4 rumah-rumahan.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Jumlah segitiga yang dibutuhkan = <span class="isian-inline" style="min-width:30px;"></span></div>
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. Sebutkan 2 bangun ruang yang dipakai untuk membuat mainan roket sederhana.</div>
+      <div>2. 3 persegi disusun jadi 1 baris. Ada berapa sudut siku-siku semuanya? <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>3. Gambar sebuah rumah sederhana dari gabungan persegi dan segitiga.</div>
+      <div>4. 2 rumah butuh 4 segitiga atap. 5 rumah butuh <span class="isian-inline" style="min-width:20px;"></span> segitiga</div>
+      <div>5. Sebutkan 1 bangun ruang dan 1 bangun datar yang ada di ruang kelasmu.</div>
+      <div>6. 1 persegi panjang dipotong diagonal jadi <span class="isian-inline" style="min-width:20px;"></span> segitiga</div>
+      <div>7. Susun 4 segitiga kecil menjadi 1 bangun besar, gambarkan hasilnya.</div>
+      <div>8. Apa bedanya bangun ruang dan bangun datar? Jelaskan singkat.</div>
+    </div>
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Bangunan ikonik seperti piramida dan tenda sirkus memakai gabungan bangun datar segitiga karena bentuk ini sangat kokoh dan stabil untuk menahan beban!</p>
+    </div>
+    <div class="block-sep"></div>
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Dari semua yang dipelajari di Bidang Geometri, bagian favoritku adalah</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Gunting kertas menjadi 2 segitiga sama besar, susun jadi persegi panjang, tempel di buku PR.</li>
+        <li>Cari 3 benda di rumah berbentuk bangun ruang, gambar dan beri nama.</li>
+        <li>Gambar 1 bangun besar yang tersusun dari minimal 3 bangun datar kecil.</li>
+      </ol>
+    </div>
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Geometri &middot; Pertemuan 2 &middot; Register A &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Data · Pertemuan 1 dari 2</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Shaghir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat membaca piktograf sederhana dengan aturan 1 simbol = 1 objek.</div>
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1–2 · CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+    <div class="eyebrow">MNR 1 · Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Bu Guru mencatat buah favorit sekelas dengan menempelkan 1 gambar buah untuk setiap anak yang memilihnya. Apel ditempel 6 gambar, jeruk 4 gambar, pisang 8 gambar. Buah apa yang paling disukai sekelas?</div>
+    <div class="illustration-row">
+      <div class="stage-block"><div class="icon-row" style="max-width:100px;"><div class="icon-plain">🍎</div><div class="icon-plain">🍊</div><div class="icon-plain">🍌</div></div><span class="cap">Konkret</span></div>
+      <div class="cpa-arrow">→</div>
+      <div class="stage-block"><div class="pictograf"><div class="pf-row"><span class="pf-label">Apel</span><div class="pf-icons"><span>🍎</span><span>🍎</span><span>🍎</span><span>🍎</span><span>🍎</span><span>🍎</span></div><span class="pf-count">= 6</span></div><div class="pf-row"><span class="pf-label">Jeruk</span><div class="pf-icons"><span>🍊</span><span>🍊</span><span>🍊</span><span>🍊</span></div><span class="pf-count">= 4</span></div><div class="pf-row"><span class="pf-label">Pisang</span><div class="pf-icons"><span>🍌</span><span>🍌</span><span>🍌</span><span>🍌</span><span>🍌</span><span>🍌</span><span>🍌</span><span>🍌</span></div><span class="pf-count">= 8</span></div></div><span class="cap">Gambar · Piktograf (1 gambar = 1 anak)</span></div>
+    </div>
+    <div class="word-block" style="margin-left:0;">Buah paling disukai = pisang (8 gambar, paling banyak)</div>
+    <div class="eyebrow">MNR 2 · Contoh Terbimbing Tambahan (Guru Memandu di Papan Tulis)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Aturan piktograf yang baik: setiap gambar harus mewakili jumlah yang SAMA (di sini, 1 gambar = 1 anak), gambar disusun rapi sejajar, dan diberi label yang jelas supaya mudah dibaca siapa pun.</div>
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) Kalau apel = 6 gambar dan jeruk = 4 gambar, mana yang lebih sedikit? <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>b) Selisih gambar apel dan jeruk = <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>c) Total gambar dari ketiga buah = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>d) Buah yang gambarnya paling sedikit = <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>e) Kalau mangga = 5 gambar, apakah lebih banyak dari jeruk (4)? <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>f) Sebutkan aturan piktograf yang baik (1 kata kunci).</div>
+    </div>
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 · TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Specialising</span><span class="twm-tag">Improving</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+    <div class="reason-item"><span class="lbl">Specialising — coba contoh khusus</span>Coba lihat piktograf khusus yang gambarnya ditempel tidak sejajar dan ukurannya berbeda-beda (contoh khusus buatan guru). Apa masalahnya kalau piktograf dibuat seperti itu?</div>
+    <div class="reason-item"><span class="lbl">Improving — memperbaiki menjadi lebih efektif</span>Bagaimana caramu memperbaiki piktograf yang berantakan tadi supaya lebih mudah dibaca?</div>
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Beni membuat piktograf buah favorit, tapi untuk apel ia memakai gambar besar dan untuk jeruk gambar kecil, padahal keduanya tetap mewakili 1 anak.</div>
+      <div class="tanya">Apa masalah dari piktograf Beni? Bisakah orang lain salah menafsirkan datanya hanya dengan melihat ukuran gambar?</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Data &middot; Pertemuan 1 &middot; Register A &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Data · Pertemuan 1 dari 2</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4–5 · Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan membaca piktograf dengan penjumlahan dan selisih yang sudah dipelajari.</div>
+    <div class="soal-utama"><span class="no">Soal 4.</span> Piktograf hewan peliharaan sekelas: kucing = 7 gambar, ikan = 5 gambar, kelinci = 3 gambar. (a) Berapa jumlah semua hewan peliharaan? (b) Berapa selisih kucing dan kelinci?</div>
+    <div class="pictograf" style="margin-bottom:6px;"><div class="pf-row"><span class="pf-label">Kucing</span><div class="pf-icons"><span>🐱</span><span>🐱</span><span>🐱</span><span>🐱</span><span>🐱</span><span>🐱</span><span>🐱</span></div><span class="pf-count">= 7</span></div><div class="pf-row"><span class="pf-label">Ikan</span><div class="pf-icons"><span>🐟</span><span>🐟</span><span>🐟</span><span>🐟</span><span>🐟</span></div><span class="pf-count">= 5</span></div><div class="pf-row"><span class="pf-label">Kelinci</span><div class="pf-icons"><span>🐰</span><span>🐰</span><span>🐰</span></div><span class="pf-count">= 3</span></div></div>
+    <div class="equation-block">$$7+5+3 = 15\ \text{hewan} \qquad\qquad 7-3 = 4\ \text{(selisih)}$$</div>
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Piktograf mainan favorit: mobil = 6, boneka = 9.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;"><div>Total = <span class="isian-inline" style="min-width:30px;"></span></div><div>Selisih = <span class="isian-inline" style="min-width:24px;"></span></div></div>
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. Buat piktograf sederhana dari benda di rumahmu, minimal 3 kategori.</div>
+      <div>2. Dari piktografmu, tulis kategori paling banyak dan paling sedikit.</div>
+      <div>3. Hitung total semua benda dalam piktografmu.</div>
+      <div>4. Piktograf: A = 8 gambar, B = 5 gambar. Selisihnya = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>5. Piktograf: A = 4, B = 6, C = 5. Total semuanya = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>6. Mengapa piktograf harus punya aturan 1 gambar = 1 objek? <span class="isian-inline" style="min-width:60px;"></span></div>
+      <div>7. Piktograf: X = 9, Y = 3. Selisihnya = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>8. Sebutkan 1 keuntungan piktograf dibanding menghitung manual satu-satu.</div>
+    </div>
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Piktograf sudah dipakai sejak zaman Mesir Kuno untuk mencatat hasil panen dan ternak &mdash; jauh sebelum angka tertulis seperti sekarang dikenal!</p>
+    </div>
+    <div class="block-sep"></div>
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Buat piktograf sederhana dari benda di rumahmu (misalnya jenis buku), minimal 3 kategori.</li>
+        <li>Dari piktografmu, tulis kategori paling banyak dan paling sedikit.</li>
+        <li>Hitung total semua benda dalam piktografmu.</li>
+      </ol>
+    </div>
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Data &middot; Pertemuan 1 &middot; Register A &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Data · Pertemuan 2 dari 2 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Shaghir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menafsirkan piktograf menggunakan istilah 'paling banyak', 'paling sedikit', dan 'sama banyak'.</div>
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1–2 · CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+    <div class="eyebrow">MNR 1 · Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Piktograf warna baju yang dipakai anak kelas hari ini: merah = 5, biru = 5, hijau = 2. Guru bertanya: warna apa yang dipakai sama banyak anak?</div>
+    <div class="illustration-row">
+      <div class="stage-block"><div class="pictograf"><div class="pf-row"><span class="pf-label">Merah</span><div class="pf-icons"><span>🔴</span><span>🔴</span><span>🔴</span><span>🔴</span><span>🔴</span></div><span class="pf-count">= 5</span></div><div class="pf-row"><span class="pf-label">Biru</span><div class="pf-icons"><span>🔵</span><span>🔵</span><span>🔵</span><span>🔵</span><span>🔵</span></div><span class="pf-count">= 5</span></div><div class="pf-row"><span class="pf-label">Hijau</span><div class="pf-icons"><span>🟢</span><span>🟢</span></div><span class="pf-count">= 2</span></div></div><span class="cap">Gambar · Piktograf Warna Baju</span></div>
+    </div>
+    <div class="word-block" style="margin-left:0;">Merah dan biru sama banyak (5 = 5) &middot; Hijau paling sedikit</div>
+    <div class="eyebrow">MNR 2 · Contoh Terbimbing Tambahan (Guru Memandu di Papan Tulis)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Untuk tahu &ldquo;paling banyak&rdquo;, cari baris dengan gambar TERPANJANG. Untuk &ldquo;paling sedikit&rdquo;, cari baris TERPENDEK. Untuk &ldquo;sama banyak&rdquo;, bandingkan jumlah gambarnya — kalau angkanya sama persis, berarti sama banyak, walaupun posisinya di baris berbeda.</div>
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;">
+      <div>a) Kucing=6, Anjing=6, Burung=3 → sama banyak adalah <span class="isian-inline" style="min-width:60px;"></span></div>
+      <div>b) Kucing=6, Anjing=6, Burung=3 → paling sedikit adalah <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>c) A=4, B=7, C=7 → paling banyak adalah <span class="isian-inline" style="min-width:30px;"></span></div>
+      <div>d) A=4, B=7, C=7 → jumlah semuanya = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>e) X=9, Y=9, Z=9 → apakah ketiganya sama banyak? <span class="isian-inline" style="min-width:20px;"></span></div>
+      <div>f) P=2, Q=8 → selisihnya = <span class="isian-inline" style="min-width:20px;"></span></div>
+    </div>
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 · TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Characterising</span><span class="twm-tag">Convincing</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+    <div class="reason-item"><span class="lbl">Characterising — sebutkan ciri</span>Apa ciri yang selalu bisa kamu pakai untuk menentukan kategori mana yang &ldquo;paling banyak&rdquo; pada piktograf manapun, hanya dengan melihat sekilas tanpa menghitung satu-satu?</div>
+    <div class="reason-item"><span class="lbl">Convincing — yakinkan temanmu</span>Yakinkan temanmu bahwa dua kategori dengan jumlah gambar yang sama PASTI &ldquo;sama banyak&rdquo;, walaupun posisinya di piktograf berbeda-beda.</div>
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Dilihat dari piktograf Merah=5, Biru=5, Hijau=2, Zaki berkata: &ldquo;Merah paling banyak, karena ditulis paling atas.&rdquo;</div>
+      <div class="tanya">Apakah posisi paling atas menentukan &ldquo;paling banyak&rdquo;? Apa yang seharusnya dilihat Zaki? Betulkan kesimpulannya.</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Data &middot; Pertemuan 2 &middot; Register A &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+        <span class="thabaqah-label">BIDAYAH &middot; permulaan</span>
+        <span class="chip chip-register">Register A &middot; 6–9 th</span>
+        <span class="chip chip-bidang">Data · Pertemuan 2 dari 2 (Sintesis)</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4–5 · Aplikasi Kehidupan</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan membaca piktograf dengan penafsiran dan penjumlahan &mdash; sintesis seluruh Bidang Data pertemuan ini.</div>
+    <div class="soal-utama"><span class="no">Soal 4.</span> Piktograf camilan favorit sekelas: keripik = 6, biskuit = 9, permen = 6. (a) Camilan mana yang paling disukai? (b) Camilan mana yang sama banyak peminatnya? (c) Berapa total anak yang disurvei?</div>
+    <div class="pictograf" style="margin-bottom:6px;"><div class="pf-row"><span class="pf-label">Keripik</span><div class="pf-icons"><span>🥔</span><span>🥔</span><span>🥔</span><span>🥔</span><span>🥔</span><span>🥔</span></div><span class="pf-count">= 6</span></div><div class="pf-row"><span class="pf-label">Biskuit</span><div class="pf-icons"><span>🍪</span><span>🍪</span><span>🍪</span><span>🍪</span><span>🍪</span><span>🍪</span><span>🍪</span><span>🍪</span><span>🍪</span></div><span class="pf-count">= 9</span></div><div class="pf-row"><span class="pf-label">Permen</span><div class="pf-icons"><span>🍬</span><span>🍬</span><span>🍬</span><span>🍬</span><span>🍬</span><span>🍬</span></div><span class="pf-count">= 6</span></div></div>
+    <div class="equation-block">$$\text{Terbanyak} = \text{biskuit (9)} \qquad \text{Sama banyak} = \text{keripik \& permen (6=6)} \qquad 6+9+6=21$$</div>
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Piktograf hobi: menggambar = 7, bernyanyi = 4, menari = 7.</div>
+    <div style="display:flex;gap:16px;font-size:8.6pt;font-weight:600;flex-wrap:wrap;"><div>Paling sedikit = <span class="isian-inline" style="min-width:40px;"></span></div><div>Sama banyak = <span class="isian-inline" style="min-width:60px;"></span></div><div>Total = <span class="isian-inline" style="min-width:24px;"></span></div></div>
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;">
+      <div>1. Buat piktograf sederhana dari benda di rumahmu, minimal 3 kategori.</div>
+      <div>2. Dari piktografmu, tulis kategori paling banyak dan paling sedikit.</div>
+      <div>3. Hitung total semua benda dalam piktografmu.</div>
+      <div>4. Piktograf: A=7, B=3. Selisihnya = <span class="isian-inline" style="min-width:24px;"></span></div>
+      <div>5. Piktograf: A=5, B=8, C=5. Sama banyak adalah <span class="isian-inline" style="min-width:40px;"></span></div>
+      <div>6. Mengapa kita perlu tahu mana yang 'sama banyak' dalam data? <span class="isian-inline" style="min-width:70px;"></span></div>
+      <div>7. Piktograf: X=8, Y=2. Mana lebih banyak, dan selisihnya? <span class="isian-inline" style="min-width:50px;"></span></div>
+      <div>8. Buat piktograf sendiri dari 3 warna pensil, hitung jumlahnya.</div>
+    </div>
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Diagram yang kita pelajari hari ini adalah awal dari ilmu <i>statistika</i> &mdash; ilmu yang dipakai untuk memahami data besar, mulai dari cuaca sampai hasil pertandingan olahraga!</p>
+    </div>
+    <div class="block-sep"></div>
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hari ini aku belajar cara</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+    <div class="reflect-row" style="margin-top:2px;"><span>Dari semua yang dipelajari di Marhalah B-2, bagian favoritku adalah</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:100px;height:12px;"></span></div>
+    <div style="font-size:7.8pt;color:#5A6272;background:var(--soft-teal);border-radius:5px;padding:6px 10px;margin:6px 0;"><b style="color:var(--navy);">Catatan guru:</b> Ini pertemuan terakhir Modul Konsep Marhalah B-2 (5 Bidang selesai dibahas). Langkah berikutnya adalah <b>Tes Akhir Marhalah (TAM) B-2</b> untuk menentukan kesiapan naik ke B-3 &mdash; bukan bagian dari modul ini.</div>
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol>
+        <li>Buat piktograf sederhana dari benda di rumahmu (misalnya jenis mainan), minimal 3 kategori.</li>
+        <li>Dari piktografmu, tulis kategori mana yang paling banyak, paling sedikit, dan sama banyak (jika ada).</li>
+        <li>Hitung total semua benda dalam piktografmu.</li>
+      </ol>
+    </div>
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Data &middot; Pertemuan 2 &middot; Register A &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="scope-strip">
+      <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+      <span class="chip chip-bidang">Latihan Soal · Sebelum TAM</span>
+      <span class="chip chip-register">Register A &middot; 6–9 th</span>
+      <span class="scope-count">25 butir campuran · 5 Bidang · Kumulatif Pertemuan 1–11 · Hal. 1/2</span>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Shaghir</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+    <div style="font-size:8pt;color:#5A6272;margin-bottom:8px;">Kerjakan semua soal berikut sendiri. Soal ini mengulas semua yang sudah dipelajari di Marhalah B-2, sebagai persiapan sebelum Tes Akhir Marhalah (TAM).</div>
+    <div class="ls-bagian-label">Bagian 1 · Bilangan <span class="src">(Pertemuan 1–3)</span></div>
+    <div class="ls-item"><div class="no">1.</div><div class="body">Nyatakan 68 dalam bentuk puluhan-satuan: <span class="isian-inline" style="min-width:16px;"></span> puluhan <span class="isian-inline" style="min-width:16px;"></span> satuan.</div></div>
+    <div class="ls-item"><div class="no">2.</div><div class="body">Bandingkan 54 dan 45. Lingkari bilangan yang lebih besar.<div style="margin-top:3px;font-weight:700;">54 &nbsp;&nbsp;·&nbsp;&nbsp; 45</div></div></div>
+    <div class="ls-item"><div class="no">3.</div><div class="body">Lanjutkan barisan loncat 5: 15, 20, 25, <span class="isian-inline" style="min-width:22px;"></span>, <span class="isian-inline" style="min-width:22px;"></span>.</div></div>
+    <div class="ls-item"><div class="no">4.</div><div class="body">Dini berkata: &ldquo;Untuk membandingkan dua bilangan dua angka, aku selalu cukup melihat angka satuannya saja.&rdquo; Setujukah kamu? Buktikan benar/salah dengan 2 contoh pasangan bilangan.<span class="ls-nalar-tag">NALAR</span><div class="scratch-area" style="min-height:34px;margin-top:5px;"></div></div></div>
+    <div class="ls-bagian-label">Bagian 2 · Aljabar <span class="src">(Pertemuan 4–5)</span></div>
+    <div class="ls-item"><div class="no">5.</div><div class="body">Lengkapi pola: 8, 16, 24, <span class="isian-inline" style="min-width:22px;"></span>, <span class="isian-inline" style="min-width:22px;"></span>.</div></div>
+    <div class="ls-item"><div class="no">6.</div><div class="body">Selesaikan: &#9633; + 6 = 14, &#9633; = <span class="isian-inline" style="min-width:24px;"></span>.</div></div>
+    <div class="ls-item"><div class="no">7.</div><div class="body">Selesaikan: 18 &minus; &#9633; = 11, &#9633; = <span class="isian-inline" style="min-width:24px;"></span>.</div></div>
+    <div class="ls-item"><div class="no">8.</div><div class="body">Perhatikan pola: 90, 80, 70, 60, &hellip; Menurutmu, suku ke-6 dari barisan ini berapa? Tulis dugaanmu, lalu buktikan tanpa menulis semua suku satu per satu.<span class="ls-nalar-tag">NALAR</span><div class="scratch-area" style="min-height:34px;margin-top:5px;"></div></div></div>
+    <div class="ls-bagian-label">Bagian 3 · Pengukuran <span class="src">(Pertemuan 6–7)</span></div>
+    <div class="ls-item"><div class="no">9.</div><div class="body">Tongkat A = 36 cm, Tongkat B = 24 cm, disambung jadi satu. Panjang gabungan = <span class="isian-inline" style="min-width:30px;"></span> cm.</div></div>
+    <div class="ls-item"><div class="no">10.</div><div class="body">Jarum panjang di angka 12, jarum pendek di angka 4. Pukul berapa? <span class="isian-inline" style="min-width:50px;"></span></div></div>
+    <div class="ls-item"><div class="no">11.</div><div class="body">Beli mainan Rp7.000, bayar dengan Rp10.000. Kembalian = Rp <span class="isian-inline" style="min-width:30px;"></span>.</div></div>
+    <div class="ls-item"><div class="no">12.</div><div class="body">Rian berkata: &ldquo;Untuk mengukur panjang, kita boleh mulai dari angka berapa saja di penggaris, tidak harus dari angka 0.&rdquo; Setujukah kamu? Jelaskan alasanmu.<span class="ls-nalar-tag">NALAR</span><div class="scratch-area" style="min-height:34px;margin-top:5px;"></div></div></div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Latihan Soal Sebelum TAM &middot; Register A &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="scope-strip">
+      <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+      <span class="chip chip-bidang">Latihan Soal · Sebelum TAM</span>
+      <span class="chip chip-register">Register A &middot; 6–9 th</span>
+      <span class="scope-count">25 butir campuran · 5 Bidang · Kumulatif Pertemuan 1–11 · Hal. 2/2</span>
+    </div>
+  </div>
+  <div class="content">
+    <div class="ls-bagian-label">Bagian 4 · Geometri <span class="src">(Pertemuan 8–9)</span></div>
+    <div class="ls-item"><div class="no">13.</div><div class="body">Kaleng susu berbentuk bangun ruang <span class="isian-inline" style="min-width:70px;"></span>.</div></div>
+    <div class="ls-item"><div class="no">14.</div><div class="body">Sebutkan 2 bangun ruang yang punya sisi lengkung: <span class="isian-inline" style="min-width:90px;"></span>.</div></div>
+    <div class="ls-item"><div class="no">15.</div><div class="body">2 segitiga sama besar digabung sisi miringnya bisa membentuk bangun apa? <span class="isian-inline" style="min-width:80px;"></span></div></div>
+    <div class="ls-item"><div class="no">16.</div><div class="body">Sebutkan 2 ciri yang membedakan kubus dari balok.<span class="ls-nalar-tag">NALAR</span><div class="scratch-area" style="min-height:34px;margin-top:5px;"></div></div></div>
+    <div class="ls-bagian-label">Bagian 5 · Data <span class="src">(Pertemuan 10–11)</span></div>
+    <div class="ls-item"><div class="no">17.</div><div class="body">Piktograf: A = 7 gambar, B = 5 gambar. Mana lebih banyak, dan selisihnya? <span class="isian-inline" style="min-width:70px;"></span></div></div>
+    <div class="ls-item"><div class="no">18.</div><div class="body">Piktograf: X = 6, Y = 6, Z = 3. Kategori mana yang sama banyak? <span class="isian-inline" style="min-width:60px;"></span></div></div>
+    <div class="ls-item"><div class="no">19.</div><div class="body">Piktograf: P = 4, Q = 8, R = 4. Total ketiganya = <span class="isian-inline" style="min-width:30px;"></span>.</div></div>
+    <div class="ls-item"><div class="no">20.</div><div class="body">Mengapa piktograf harus punya aturan &ldquo;1 gambar = 1 objek&rdquo; yang konsisten? Apa yang terjadi kalau aturan ini dilanggar?<span class="ls-nalar-tag">NALAR</span><div class="scratch-area" style="min-height:34px;margin-top:5px;"></div></div></div>
+    <div class="ls-bagian-label">Bagian 6 · Campuran <span class="src">(Semua Bidang)</span></div>
+    <div class="ls-item"><div class="no">21.</div><div class="body">Kotak A = 46 kelereng, Kotak B = 27 kelereng. Semuanya = <span class="isian-inline" style="min-width:30px;"></span>.</div></div>
+    <div class="ls-item"><div class="no">22.</div><div class="body">Lengkapi pola: 70, 60, 50, <span class="isian-inline" style="min-width:22px;"></span>.</div></div>
+    <div class="ls-item"><div class="no">23.</div><div class="body">Beli Rp5.000, bayar Rp10.000. Kembalian = Rp <span class="isian-inline" style="min-width:30px;"></span>.</div></div>
+    <div class="ls-item"><div class="no">24.</div><div class="body">Sebutkan 1 benda di sekitarmu berbentuk tabung.</div></div>
+    <div class="ls-item"><div class="no">25.</div><div class="body">Piktograf: A = 8 gambar, B = 5 gambar. Total keduanya = <span class="isian-inline" style="min-width:30px;"></span>.</div></div>
+    <div style="font-size:7.8pt;color:#5A6272;background:var(--soft-teal);border-radius:5px;padding:7px 12px;margin-top:14px;"><b style="color:var(--navy);">Catatan guru:</b> Setelah Latihan Soal ini dikoreksi dan dibahas bersama, siswa siap mengikuti <b>Tes Akhir Marhalah (TAM) B-2</b> &mdash; instrumen terpisah dari modul ini, sebagai syarat kenaikan ke Marhalah B-3.</div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah B-2 &middot; Latihan Soal Sebelum TAM &middot; Register A &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="warn-bar">Dokumen Guru &middot; Bukan Untuk Siswa</div>
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Kunci Jawaban</div>
+        <div class="brand-tagline">Latihan Soal Sebelum TAM · Marhalah B-2</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="scope-strip">
+      <span class="chip chip-marhalah" style="background:#E4572E">B-2</span>
+      <span class="chip chip-bidang">25 Butir &middot; 5 Bidang &middot; Register A</span>
+      
+      <span class="scope-count">Simpan terpisah dari lembar siswa</span>
+    </div>
+  </div>
+  <div class="content">
+    <div class="kunci-grid">
+      <div class="kunci-bagian-label">Bagian 1 · Bilangan</div>
+      <div class="kunci-item"><span class="no">1.</span><span class="ans">68 = <b>6</b> puluhan <b>8</b> satuan</span></div>
+      <div class="kunci-item"><span class="no">2.</span><span class="ans"><b>54</b> lebih besar dari 45 (bandingkan puluhan: 5&gt;4)</span></div>
+      <div class="kunci-item"><span class="no">3.</span><span class="ans"><b>30, 35</b></span></div>
+      <div class="kunci-item"><span class="no">4.</span><span class="ans">Salah. Contoh: 54 vs 45 — satuan 4&lt;5 tapi 54&gt;45 (puluhan menentukan). Harus lihat puluhan lebih dulu, satuan hanya penentu jika puluhan sama.</span></div>
+      <div class="kunci-bagian-label">Bagian 2 · Aljabar</div>
+      <div class="kunci-item"><span class="no">5.</span><span class="ans"><b>32, 40</b> (pola +8)</span></div>
+      <div class="kunci-item"><span class="no">6.</span><span class="ans">&#9633; = <b>8</b></span></div>
+      <div class="kunci-item"><span class="no">7.</span><span class="ans">&#9633; = <b>7</b></span></div>
+      <div class="kunci-item"><span class="no">8.</span><span class="ans"><b>40</b> — pola berkurang 10 tiap suku: 90,80,70,60,50,40 (suku ke-6)</span></div>
+      <div class="kunci-bagian-label">Bagian 3 · Pengukuran</div>
+      <div class="kunci-item"><span class="no">9.</span><span class="ans">36+24 = <b>60</b> cm</span></div>
+      <div class="kunci-item"><span class="no">10.</span><span class="ans">Pukul <b>04.00</b></span></div>
+      <div class="kunci-item"><span class="no">11.</span><span class="ans">10.000&minus;7.000 = Rp<b>3.000</b></span></div>
+      <div class="kunci-item"><span class="no">12.</span><span class="ans">Tidak setuju — pengukuran harus mulai dari angka 0 supaya hasilnya akurat dan bisa dibandingkan dengan pengukuran orang lain.</span></div>
+      <div class="kunci-bagian-label">Bagian 4 · Geometri</div>
+      <div class="kunci-item"><span class="no">13.</span><span class="ans"><b>Tabung</b></span></div>
+      <div class="kunci-item"><span class="no">14.</span><span class="ans"><b>Bola dan tabung</b> (kerucut juga punya sisi lengkung sebagian)</span></div>
+      <div class="kunci-item"><span class="no">15.</span><span class="ans"><b>Persegi panjang</b></span></div>
+      <div class="kunci-item"><span class="no">16.</span><span class="ans">Kubus: semua sisi persegi sama besar. Balok: sisi persegi panjang, ukuran panjang/lebar/tinggi bisa berbeda.</span></div>
+      <div class="kunci-bagian-label">Bagian 5 · Data</div>
+      <div class="kunci-item"><span class="no">17.</span><span class="ans"><b>A</b> lebih banyak, selisih = <b>2</b></span></div>
+      <div class="kunci-item"><span class="no">18.</span><span class="ans"><b>X dan Y</b> (sama-sama 6)</span></div>
+      <div class="kunci-item"><span class="no">19.</span><span class="ans">4+8+4 = <b>16</b></span></div>
+      <div class="kunci-item"><span class="no">20.</span><span class="ans">Kalau ukuran gambar berbeda-beda, orang bisa salah menafsirkan jumlah hanya dari ukuran, bukan dari banyaknya gambar — data jadi tidak adil dan membingungkan.</span></div>
+      <div class="kunci-bagian-label">Bagian 6 · Campuran</div>
+      <div class="kunci-item"><span class="no">21.</span><span class="ans">46+27 = <b>73</b></span></div>
+      <div class="kunci-item"><span class="no">22.</span><span class="ans"><b>40</b></span></div>
+      <div class="kunci-item"><span class="no">23.</span><span class="ans">10.000&minus;5.000 = Rp<b>5.000</b></span></div>
+      <div class="kunci-item"><span class="no">24.</span><span class="ans">Jawaban bervariasi &mdash; contoh: kaleng susu, botol minum</span></div>
+      <div class="kunci-item"><span class="no">25.</span><span class="ans">8+5 = <b>13</b></span></div>
+    </div>
+    <div style="font-size:7.8pt;color:#5A6272;background:var(--soft-gold);border-left:3px solid var(--gold);border-radius:5px;padding:7px 12px;margin-top:10px;"><b style="color:var(--navy);">Catatan koreksi:</b> Butir bertanda <span class="ls-nalar-tag" style="margin-left:0;">NALAR</span> (no. 4, 8, 12, 16, 20 &mdash; 5 dari 25 butir = 20%) dinilai dari kualitas alasan, bukan hanya jawaban akhir, sesuai kaidah porsi nalar TAM (&ge;20% bernalar).</div>
+    <div style="font-size:7.8pt;color:#5A6272;background:var(--soft-navy);border-left:3px solid var(--navy);border-radius:5px;padding:8px 12px;margin-top:10px;"><b style="color:var(--navy);">Panduan Skor:</b> 20 butir non-nalar = 4 poin/butir (80 poin), 5 butir nalar = 4 poin/butir dinilai dari kelengkapan alasan (20 poin). Total 100 poin. Siswa dengan skor &ge;70 dan seluruh butir nalar terjawab layak lanjut ke TAM; skor &lt;70 disarankan mengulang Bagian yang lemah dengan soal variasi (bukan mengulang butir yang sama) sebelum TAM.</div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dokumen guru, dilarang disebarluaskan ke siswa.</span>
+    <span>Kunci Jawaban &middot; Marhalah B-2 &middot; Latihan Soal Sebelum TAM</span>
+  </div>
+</section>
+</div></body></html>
