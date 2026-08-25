@@ -1,0 +1,2303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Modul Konsep H-3 — Bimbel Insan Sejahtera</title>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [["$", "$"], ["\\(", "\\)"]],
+      displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+      packages: { "[+]": ["ams"] }
+    },
+    svg: { fontCache: "global" }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+
+  :root{
+    --navy:#0F2A4E; --teal:#007A7A; --soft-teal:#E0F2F1; --soft-navy:#E8EEF7;
+    --gold:#B08420; --soft-gold:#FCF6E5; --greyline:#C8CED6; --ink:#26313F;
+
+    --bidayah:#E4572E;  --bidayah-soft:#FCE9E3;
+    --tamhid:#F2994A;   --tamhid-soft:#FDEEE0;
+    --taqwiyah:#2E9E63; --taqwiyah-soft:#E5F4EC;
+    --tahlil:#2F6FED;   --tahlil-soft:#E7EDFC;
+    --itqan:#B08420;    --itqan-soft:#FCF6E5;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  body{
+    font-family:"Plus Jakarta Sans",sans-serif;
+    font-size:9.5pt; line-height:1.55; color:var(--ink);
+    background:#EAEDF1; margin:0; padding:0;
+  }
+  h1,h2,h3,.brand-name,.section-title{font-family:"Fraunces",serif;}
+
+  /* ============ PAGE (A4) ============ */
+  .page-container{counter-reset:page;}
+  .page{
+    background:#fff; width:21cm; min-height:29.7cm; height:auto;
+    padding:1.3cm 2.3cm 0.8cm 2.3cm; margin:1cm auto;
+    box-shadow:0 0 10px rgba(0,0,0,.18); position:relative;
+    display:flex; flex-direction:column;
+  }
+  .page-header{margin:-1.3cm -2.3cm 0 -2.3cm; width:21cm;}
+  .brand-bar{height:4px;background:linear-gradient(90deg,var(--teal),var(--navy));
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .header-inner{padding:10px 2.3cm 8px 2.3cm;display:flex;justify-content:space-between;align-items:center;
+    background:var(--soft-navy); -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .brand-left{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-logo{height:38px;width:auto;display:block;object-fit:contain;}
+  .brand-name{font-size:17pt;font-weight:700;color:var(--navy);}
+  .brand-tagline{font-size:7.6pt;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:.6px;margin-top:2px;}
+
+  .level-strip{padding:6px 2.3cm 6px;background:#fff;border-bottom:1px solid var(--greyline);
+    display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+
+  .chips-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+  .chip{font-size:7.6pt;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+  .chip-marhalah{color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .chip-register{border:1.4px solid var(--teal);color:var(--teal);background:#fff;}
+  .chip-bidang{border:1.4px solid var(--greyline);color:#5A6272;background:#fff;}
+  .thabaqah-label{font-size:7.6pt;color:#5A6272;font-weight:600;}
+
+  .student-bar{padding:7px 2.3cm;margin:0 -2.3cm 12px -2.3cm;background:#F7F8FA;
+    border-bottom:1px solid var(--greyline);font-size:8.3pt;font-weight:600;color:#3A4252;
+    display:flex;gap:26px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .student-bar span{border-bottom:1px solid #99A1B3;padding-bottom:1px;min-width:110px;display:inline-block;}
+
+  .content{flex-grow:1;display:flex;flex-direction:column;}
+  .eyebrow{font-size:7.7pt;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--teal);margin:4px 0 2px;}
+  .cpa-trail{font-size:7.4pt;color:#8A91A0;letter-spacing:.3px;margin-bottom:4px;text-transform:uppercase;}
+  .cpa-trail b{color:var(--navy);}
+  .soal-utama{font-size:9.6pt;margin-bottom:4px;}
+  .soal-utama .no{font-weight:800;color:var(--navy);}
+
+  .block-title{display:flex;align-items:baseline;justify-content:space-between;
+    border-bottom:2px solid var(--navy);padding-bottom:2px;margin-bottom:4px;}
+  .block-title .name{font-family:"Fraunces",serif;font-size:12pt;font-weight:700;color:var(--navy);}
+  .block-title .mnr{font-size:7.4pt;font-weight:700;color:#8A91A0;text-transform:uppercase;letter-spacing:.4px;}
+  .block-sep{border:none;border-top:2px solid var(--navy);margin:7px 0 6px;}
+
+  .illustration-row{display:flex;align-items:flex-start;gap:20px;margin-bottom:5px;flex-wrap:wrap;}
+  .stage-block{display:flex;flex-direction:column;align-items:center;gap:4px;}
+  .stage-block .cap{font-size:6.8pt;font-weight:700;color:#8A91A0;text-transform:uppercase;letter-spacing:.3px;}
+  .cpa-arrow{font-size:16pt;color:var(--greyline);align-self:center;font-weight:700;}
+  .icon-row{display:flex;gap:4px;flex-wrap:wrap;}
+  .icon-plain{width:34px;height:34px;border-radius:50%;background:#fff;border:1.6px solid var(--navy);
+    display:flex;align-items:center;justify-content:center;font-size:19px;}
+
+  .bar-legend{display:flex;flex-direction:column;gap:4px;font-size:8pt;padding-top:2px;flex-shrink:0;}
+  .bar-legend .row{display:flex;align-items:center;gap:7px;}
+  .bar-legend .sw{width:11px;height:11px;border-radius:3px;flex-shrink:0;border:1px solid rgba(0,0,0,.15);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  .equation-block{background:var(--soft-navy);border-radius:8px;padding:7px 14px;margin:5px 0 6px;
+    text-align:center;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .word-block{background:var(--soft-teal);border-radius:8px;padding:7px 14px;margin:5px 0 6px;
+    font-size:8.8pt;font-weight:600;color:#204040;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  .isian-inline{display:inline-block;border-bottom:1.4px solid var(--navy);min-width:34px;height:13px;vertical-align:bottom;}
+
+  .twm-tag{display:inline-block;font-size:7.2pt;font-weight:800;color:#fff;background:var(--navy);border-radius:10px;
+    padding:2px 9px;margin-right:6px;letter-spacing:.3px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .reason-item{font-size:8.4pt;margin-bottom:6px;padding-left:2px;}
+  .reason-item .lbl{display:block;font-size:7pt;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.3px;margin-bottom:1px;}
+
+  .kesalahan-box{border:1.4px solid #D9A5A5;background:#FBF0F0;border-radius:8px;padding:8px 12px;margin-top:6px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .kesalahan-box .tag{font-size:7.2pt;font-weight:800;color:#A63A3A;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:3px;}
+  .kesalahan-box .salah{font-size:8.4pt;font-style:italic;color:#3A4252;margin-bottom:3px;}
+  .kesalahan-box .tanya{font-size:8.2pt;color:#5A6272;}
+
+  .fun-fact-box{background:var(--soft-gold);border-radius:8px;padding:6px 12px;margin:6px 0;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .fun-fact-box .tag{font-size:7.2pt;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:2px;}
+  .fun-fact-box p{font-size:8.2pt;margin:0;color:#4A4030;}
+
+  .reflect-row{display:flex;align-items:center;gap:6px;font-size:8.6pt;font-weight:600;margin-bottom:5px;}
+
+  .pr-box{border:1.4px solid var(--teal);border-radius:8px;padding:6px 12px;margin-bottom:6px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .pr-box .tag{font-size:7.2pt;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:3px;}
+  .pr-box ol{margin:0;padding-left:16px;font-size:8.4pt;}
+  .pr-box li{margin-bottom:2px;}
+
+  .checklist-row{display:flex;gap:20px;font-size:8pt;font-weight:600;color:#5A6272;flex-wrap:wrap;}
+  .checklist-row .ck{display:flex;align-items:center;gap:5px;}
+  .checklist-row .box{width:10px;height:10px;border:1.4px solid var(--navy);border-radius:2px;display:inline-block;}
+
+  .page-footer{margin-top:auto;padding-top:8px;border-top:1px solid var(--greyline);
+    display:flex;justify-content:space-between;font-size:6.9pt;color:#9099A8;}
+
+  /* --- Bar model (Blok Pemecahan Masalah, mulai B-2) --- */
+  .combined-bar{display:flex;height:26px;border:1.6px solid var(--navy);border-radius:4px;overflow:hidden;}
+  .combined-bar .seg{display:flex;align-items:center;justify-content:center;font-size:7.6pt;font-weight:800;color:#fff;
+    border-right:1px solid rgba(255,255,255,.5);}
+  .combined-bar .seg:last-child{border-right:none;}
+  .seg.a{background:var(--teal);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .seg.b{background:var(--gold);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .seg.c{background:var(--tahlil);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .seg.empty{background:#fff;color:var(--navy);}
+  .bar-brace{font-size:7.4pt;font-weight:700;color:var(--navy);text-align:center;margin-top:2px;}
+
+  /* --- Diagram batang (Data) --- */
+  .bar-chart{display:flex;align-items:flex-end;gap:11px;padding:0 8px 0 2px;
+    border-left:1.4px solid var(--navy);border-bottom:1.4px solid var(--navy);}
+  .bc-col{display:flex;flex-direction:column;align-items:center;gap:3px;width:46px;flex-shrink:0;}
+  .bc-val{font-size:6.8pt;font-weight:800;color:var(--navy);}
+  .bc-bar{width:22px;border-radius:3px 3px 0 0;background:var(--teal);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .bc-bar.gold{background:var(--gold);}
+  .bc-label{font-size:6.3pt;color:#5A6272;font-weight:700;margin-top:2px;text-align:center;
+    width:46px;overflow-wrap:break-word;word-break:break-word;line-height:1.15;}
+
+  /* --- Komponen khusus Tahlil --- */
+  .numline-wrap{display:inline-block;}
+  .numline-wrap svg{display:block;}
+  .numline-cap{font-size:6.8pt;font-weight:700;color:#5A6272;text-align:center;margin-top:3px;}
+
+  .coord-wrap{display:inline-block;}
+  .coord-wrap svg{display:block;}
+
+  .venn-wrap{display:inline-block;}
+  .venn-wrap svg{display:block;}
+
+  .chart-wrap{display:inline-block;}
+  .chart-wrap svg{display:block;}
+
+  .angle-wrap{display:inline-block;}
+  .angle-wrap svg{display:block;}
+
+  .shape-wrap{display:inline-block;}
+  .shape-wrap svg{display:block;}
+
+  .solid-wrap{display:inline-block;}
+  .solid-wrap svg{display:block;}
+
+  .spinner-wrap{display:inline-block;}
+  .spinner-wrap svg{display:block;}
+
+  .tri-wrap{display:inline-block;}
+  .tri-wrap svg{display:block;}
+
+  .set-box{border:1.6px solid var(--navy);border-radius:12px;padding:7px 14px;background:#fff;
+    display:inline-flex;flex-direction:column;gap:4px;min-width:118px;}
+  .set-box .set-name{font-size:7.4pt;font-weight:800;color:var(--navy);letter-spacing:.4px;}
+  .set-box .set-items{font-size:8.2pt;font-weight:600;color:#3A4252;line-height:1.35;}
+
+  .freq-table{border-collapse:collapse;font-size:7.6pt;}
+  .freq-table th,.freq-table td{border:1px solid var(--greyline);padding:2px 8px;text-align:center;}
+  .freq-table th{background:var(--soft-navy);color:var(--navy);font-weight:800;font-size:7.4pt;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .freq-table td.neg{color:#A63A3A;font-weight:700;}
+
+  .faktor-row{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap;}
+  .faktor-card{border:1.3px solid var(--greyline);border-radius:8px;padding:6px 12px;background:#FAFBFC;
+    font-size:8.2pt;font-weight:600;color:#3A4252;}
+  .faktor-card b{color:var(--navy);}
+
+  .ten-frame{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:repeat(2,1fr);
+    gap:3px;width:112px;}
+  .tf-cell{aspect-ratio:1;border:1.3px solid var(--greyline);border-radius:3px;background:#fff;}
+  .tf-cell.fill-teal{background:var(--teal);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .tf-cell.fill-gold{background:var(--gold);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  /* ============ Latihan Soal & Kunci Jawaban ============ */
+  .ls-bagian-label{font-size:8.6pt;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.4px;
+    margin:10px 0 6px;padding-bottom:3px;border-bottom:1.4px solid var(--greyline);display:flex;justify-content:space-between;}
+  .ls-bagian-label .src{font-size:7pt;font-weight:600;color:#9099A8;text-transform:none;letter-spacing:0;}
+  .ls-item{display:flex;gap:8px;margin-bottom:7px;break-inside:avoid;font-size:8.8pt;}
+  .ls-item .no{font-weight:800;color:var(--navy);min-width:16px;flex-shrink:0;}
+  .ls-item .body{flex:1;}
+  .ls-nalar-tag{display:inline-block;font-size:6.3pt;font-weight:800;color:#fff;background:var(--gold);border-radius:10px;
+    padding:1.5px 7px;margin-left:6px;letter-spacing:.3px;vertical-align:middle;white-space:nowrap;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .scratch-area{border:1px dashed var(--greyline);border-radius:6px;height:26px;margin-top:3px;}
+  .scope-strip{padding:8px 2.3cm;background:#fff;border-bottom:1px solid var(--greyline);
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .scope-count{margin-left:auto;font-size:7.3pt;color:#8A91A0;font-weight:600;}
+
+  .warn-bar{background:#A63A3A;color:#fff;text-align:center;font-size:7.6pt;font-weight:800;
+    letter-spacing:.6px;text-transform:uppercase;padding:5px 0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .kunci-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 22px;}
+  .kunci-item{display:flex;gap:6px;padding:2.2px 0;border-bottom:1px dotted var(--greyline);font-size:8.1pt;break-inside:avoid;}
+  .kunci-item .no{font-weight:800;color:var(--navy);min-width:18px;flex-shrink:0;}
+  .kunci-item .ans{color:#2E3745;}
+  .kunci-item .ans b{color:var(--teal);}
+  .kunci-bagian-label{font-size:7.5pt;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.4px;
+    grid-column:1/-1;margin:5px 0 1px;}
+  .kunci-bagian-label:first-child{margin-top:0;}
+
+  .catatan-teal{font-size:7.8pt;color:#5A6272;background:var(--soft-teal);border-radius:5px;padding:7px 12px;margin-top:10px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .catatan-gold{font-size:7.8pt;color:#5A6272;background:var(--soft-gold);border-left:3px solid var(--gold);
+    border-radius:5px;padding:7px 12px;margin-top:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .catatan-navy{font-size:7.8pt;color:#5A6272;background:var(--soft-navy);border-left:3px solid var(--navy);
+    border-radius:5px;padding:8px 12px;margin-top:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  /* ============ PRINT ============ */
+  @media print{
+    @page{size:A4;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;page-break-after:always;}
+    .page:last-child{page-break-after:auto;}
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  }
+
+</style>
+</head>
+<body>
+<div class="page-container">
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Bilangan &middot; Pertemuan 1 dari 1</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Awsath</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menerapkan operasi bilangan rasional (pecahan, desimal, bertanda) pada masalah pengukuran dan penyajian data.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Panitia menghias taman sekolah dengan pagar bambu berbentuk segitiga: sisi-sisinya berukuran 2,5 m, $3\frac14$ m, dan 1,75 m. Berapa total panjang bambu (keliling) yang dibutuhkan?</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#128207;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <table class="freq-table"><tr><th>Sisi</th><th>Panjang (m)</th></tr><tr><td>a</td><td>2,5</td></tr><tr><td>b</td><td>3&frac14;</td></tr><tr><td>c</td><td>1,75</td></tr></table>
+        <span class="cap">Gambar &middot; Tabel Ukuran Bertanda Rasional</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$K=2{,}5+3{,}25+1{,}75=7{,}5\ \text{m}$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Bilangan Rasional pada Rata-rata Data (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Nilai rata-rata ulangan 3 kelompok tercatat $6,\ 7\frac12,\ 8{,}5$. Untuk menjumlahkan bilangan berbentuk campuran (desimal dan pecahan), <b>samakan bentuknya dahulu</b> (semua ke desimal atau semua ke pecahan): $7\frac12=7{,}5$, sehingga rata-rata $=\frac{6+7{,}5+8{,}5}{3}=\frac{22}{3}\approx7{,}33$. Operasi bilangan rasional (pecahan, desimal, positif, negatif) semuanya mengikuti aturan yang sama seperti bilangan bulat, hanya bentuknya lebih beragam.</div>
+    
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;"><div>a) 2&frac34; + 1,5 = <span class="isian-inline" style="min-width:46px;"></span></div><div>b) 5 &minus; 2&frac13; = <span class="isian-inline" style="min-width:46px;"></span></div><div>c) 3,6 &times; 2 = <span class="isian-inline" style="min-width:46px;"></span></div><div>d) &minus;4,2 + 1,8 = <span class="isian-inline" style="min-width:46px;"></span></div><div>e) 6&frac12; &minus; 2,25 = <span class="isian-inline" style="min-width:46px;"></span></div><div>f) Rata-rata dari 6, 7&frac12;, dan 8,5 adalah <span class="isian-inline" style="min-width:46px;"></span></div></div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Specialising</span><span class="twm-tag">Characterising</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Specialising &mdash; coba kasus khusus</span>Hitung $2\frac14+1{,}75$ dengan dua cara: (a) ubah $2\frac14$ ke desimal dahulu, (b) ubah $1{,}75$ ke pecahan dahulu. Apakah hasilnya sama? Cara mana yang lebih cepat untuk kasus ini?</div><div class="reason-item"><span class="lbl">Characterising &mdash; kenali ciri bilangan rasional</span>Apa ciri yang menjadikan pecahan, desimal, dan bilangan bulat semuanya termasuk bilangan rasional? Berikan 1 contoh dari masing-masing bentuk.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Rian menghitung $5-2\frac13$ dengan: $5-2=3$, lalu diabaikan $\frac13$-nya, sehingga jawabannya 3.</div>
+      <div class="tanya">Apakah langkah Rian benar? Ingat bahwa $2\frac13$ adalah satu bilangan utuh (bukan dua bagian terpisah). Tunjukkan cara yang benar untuk menghitung $5-2\frac13$.</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Bilangan &middot; Pertemuan 1 &middot; Register B &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Bilangan &middot; Pertemuan 1 dari 1</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>operasi bilangan rasional pada pengukuran (keliling)</b> dan <b>pada data (rata-rata)</b> &mdash; pembuka Bidang Bilangan H-3.</div>
+
+    <div class="soal-utama"><span class="no">Soal 2.</span> Rata-rata nilai ulangan tiga kelompok belajar: kelompok A 7,25, kelompok B $6\frac34$, kelompok C 8,1. (a) Ubah rata-rata kelompok B ke bentuk desimal. (b) Hitung rata-rata gabungan ketiga kelompok (asumsikan jumlah anggota tiap kelompok sama).</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <table class="freq-table"><tr><th>Kelompok</th><th>Rata-rata</th></tr><tr><td>A</td><td>7,25</td></tr><tr><td>B</td><td>6&frac34;</td></tr><tr><td>C</td><td>8,1</td></tr></table>
+        <span class="cap">Gambar &middot; Data Rata-rata Nilai</span>
+      </div>
+    </div>
+    
+
+    <div class="equation-block">$$\text{Rata-rata gabungan}=\frac{7{,}25+6{,}75+8{,}1}{3}\approx7{,}37$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: samakan semua bilangan ke bentuk desimal terlebih dahulu sebelum menjumlahkan, terutama saat data bercampur antara pecahan dan desimal seperti ini. <i>(Guru meminta siswa membandingkan dengan menyamakan ke bentuk pecahan &mdash; Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Panjang 3 sisi taman segitiga: 4,2 m, $3\frac12$ m, dan 2,8 m.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Keliling taman = <span class="isian-inline" style="min-width:46px;"></span> m</div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;"><div>1. 3&frac12; + 2,25 = <span class="isian-inline" style="min-width:46px;"></span></div><div>2. 7 &minus; 3&frac14; = <span class="isian-inline" style="min-width:46px;"></span></div><div>3. 4,8 &times; 1&frac12; = <span class="isian-inline" style="min-width:46px;"></span></div><div>4. &minus;2,5 + 6,25 = <span class="isian-inline" style="min-width:46px;"></span></div><div>5. 5&frac14; &minus; 1,8 = <span class="isian-inline" style="min-width:46px;"></span></div><div>6. Rata-rata dari 5, 6&frac12;, dan 7,5 adalah <span class="isian-inline" style="min-width:46px;"></span></div><div>7. Keliling segitiga sisi 2&frac13;, 3,5, dan 4&frac16; adalah <span class="isian-inline" style="min-width:50px;"></span></div><div>8. Ukur 3 benda di rumahmu dengan satuan campuran (misalnya cm dan pecahan cm), hitung totalnya.</div></div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Notasi desimal dengan titik/koma seperti yang kita pakai sekarang mulai dipopulerkan oleh matematikawan Belanda Simon Stevin pada 1585, dalam buku kecil berjudul <i>De Thiende</i> (&ldquo;Persepuluhan&rdquo;) yang mengubah cara Eropa menghitung pecahan.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Cara paling nyaman bagiku menggabungkan pecahan dan desimal adalah dengan</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol><li>Hitung: $4\frac13+2{,}6-1\frac12$.</li><li>Rata-rata 4 nilai: 7,5; $8\frac14$; 6,8; $7\frac12$. Hitung rata-ratanya.</li><li>Ukur keliling salah satu ruangan di rumahmu dalam satuan meter (boleh pakai pecahan/desimal), catat hasilnya.</li></ol>
+    </div>
+    
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Bilangan &middot; Pertemuan 1 &middot; Register B &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Aljabar &middot; Pertemuan 1 dari 1</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Awsath</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menyusun dan menyelesaikan persamaan linear satu variabel yang muncul dari masalah keliling bangun datar dan rata-rata data.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Papan mading sekolah berbentuk persegi panjang dengan lebar 8 m dan keliling 36 m. Susun persamaan linear untuk mencari panjangnya ($x$), lalu selesaikan.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div style="width:90px;height:60px;border:1.6px solid #0F2A4E;border-radius:3px;background:#E7EDFC;display:flex;align-items:center;justify-content:center;font-size:8pt;font-weight:700;color:#0F2A4E;">x &times; 8</div>
+        <span class="cap">Konkret &middot; Papan Mading</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="equation-block" style="margin:0;">$$2x+2(8)=36$$</div>
+        <span class="cap">Lambang &middot; PLSV dari Keliling</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$2x+16=36 \Rightarrow x=10\ \text{m}$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; PLSV dari Rata-rata Data (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Rata-rata 4 nilai ulangan adalah 75, dengan 3 nilai diketahui (70, 80, 76) dan satu nilai belum diketahui ($x$): $\frac{70+80+76+x}{4}=75$. Untuk menyelesaikan, kalikan kedua ruas dengan 4 terlebih dahulu: $70+80+76+x=300 \Rightarrow x=74$. Baik soal keliling maupun rata-rata, keduanya dapat dimodelkan sebagai PLSV dan diselesaikan dengan langkah yang sama seperti pada Marhalah H-2.</div>
+    
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;"><div>a) Keliling persegi panjang $2p+2l=40$, jika $l=6$, maka $p=$ <span class="isian-inline" style="min-width:34px;"></span></div><div>b) Keliling persegi $4s=28$, maka $s=$ <span class="isian-inline" style="min-width:34px;"></span></div><div>c) Rata-rata 3 data $\frac{x+8+12}{3}=10$, maka $x=$ <span class="isian-inline" style="min-width:34px;"></span></div><div>d) Keliling segitiga sama sisi $3s=27$, maka $s=$ <span class="isian-inline" style="min-width:34px;"></span></div><div>e) Rata-rata 4 data $\frac{2x+6}{4}=8$, maka $x=$ <span class="isian-inline" style="min-width:34px;"></span></div><div>f) Keliling $2(x+5)=30$, maka $x=$ <span class="isian-inline" style="min-width:34px;"></span></div></div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Conjecturing</span><span class="twm-tag">Convincing</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Conjecturing &mdash; ajukan dugaan</span>Jika rata-rata 5 data adalah 20 dan 4 data sudah diketahui totalnya 85, ajukan dugaan bagaimana cara tercepat mencari data ke-5 tanpa menyusun persamaan secara formal.</div><div class="reason-item"><span class="lbl">Convincing &mdash; yakinkan dengan bukti</span>Yakinkan temanmu bahwa jawaban $x=74$ pada soal rata-rata di atas benar, dengan menghitung ulang rata-rata keempat nilai (70, 80, 76, 74) untuk membuktikan hasilnya tepat 75.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Yoga menyelesaikan $\frac{70+80+76+x}{4}=75$ dengan langsung menulis $x=75$ (menyamakan dengan rata-ratanya).</div>
+      <div class="tanya">Apakah langkah Yoga benar? Ingat bahwa $x$ adalah satu dari empat nilai yang dijumlahkan, bukan rata-ratanya sendiri. Tunjukkan langkah penyelesaian yang tepat.</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Aljabar &middot; Pertemuan 1 &middot; Register B &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Aljabar &middot; Pertemuan 1 dari 1</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>PLSV dari keliling bangun datar</b> dan <b>PLSV dari rata-rata data</b> &mdash; pembuka Bidang Aljabar H-3.</div>
+
+    <div class="soal-utama"><span class="no">Soal 2.</span> Taman sekolah berbentuk segitiga sama kaki: alasnya $3x$ meter, dan masing-masing sisi miringnya $(x+4)$ meter, dengan keliling total 48 m. (a) Susun dan selesaikan PLSV untuk mencari $x$. (b) Sementara itu, rata-rata 5 nilai try out adalah 78, dengan 4 nilai diketahui berjumlah 310. Berapa nilai ke-5?</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="equation-block" style="margin:0;">$$3x+2(x+4)=48$$</div>
+        <span class="cap">Lambang &middot; Keliling Segitiga Sama Kaki</span>
+      </div>
+    </div>
+    
+
+    <div class="equation-block">$$5x+8=48 \Rightarrow x=8\ \text{m}$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: sederhanakan dahulu bentuk aljabar keliling (kelompokkan suku $x$ dan konstanta) sebelum menyelesaikan persamaannya &mdash; lebih efisien daripada menyelesaikan setiap suku secara terpisah. <i>(Guru meminta siswa membandingkan dengan menyelesaikan tanpa menyederhanakan dahulu &mdash; Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Keliling persegi panjang $2x+2(x+3)=38$.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Nilai x = <span class="isian-inline" style="min-width:34px;"></span></div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;"><div>1. Keliling $2p+2(10)=50$, maka $p=$ <span class="isian-inline" style="min-width:34px;"></span></div><div>2. Keliling persegi $4s=52$, maka $s=$ <span class="isian-inline" style="min-width:34px;"></span></div><div>3. Rata-rata 3 data $\frac{x+15+20}{3}=15$, maka $x=$ <span class="isian-inline" style="min-width:34px;"></span></div><div>4. Keliling segitiga sama sisi $3s=45$, maka $s=$ <span class="isian-inline" style="min-width:34px;"></span></div><div>5. Rata-rata 5 data $\frac{3x+10}{5}=11$, maka $x=$ <span class="isian-inline" style="min-width:34px;"></span></div><div>6. Keliling $2(x+7)=44$, maka $x=$ <span class="isian-inline" style="min-width:34px;"></span></div><div>7. Rata-rata 4 nilai adalah 80, tiga diantaranya berjumlah 235, nilai ke-4 = <span class="isian-inline" style="min-width:34px;"></span></div><div>8. Buat 1 soal cerita keliling bangun datar atau rata-rata data dari sekolahmu yang dimodelkan sebagai PLSV, lengkap penyelesaiannya.</div></div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Rata-rata (mean) sebagai ukuran pemusatan data sudah dipakai sejak zaman Babilonia kuno untuk astronomi, tetapi baru dirumuskan secara sistematis dalam statistik modern oleh matematikawan seperti Carl Friedrich Gauss pada awal abad ke-19.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Menyusun persamaan dari soal keliling atau rata-rata menjadi lebih mudah bagiku setelah</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol><li>Keliling persegi panjang $2x+2(x+5)=54$. Tentukan $x$.</li><li>Rata-rata 4 data adalah 65, tiga diantaranya berjumlah 180. Tentukan data ke-4.</li><li>Buat 1 soal cerita keliling taman/lapangan sekolahmu yang dimodelkan sebagai PLSV, lengkap dengan penyelesaiannya.</li></ol>
+    </div>
+    
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Aljabar &middot; Pertemuan 1 &middot; Register B &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Pengukuran &middot; Pertemuan 1 dari 4</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Awsath</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menghitung keliling dan luas segitiga (termasuk segitiga siku-siku) dan mengklasifikasikannya menurut jenis sisinya.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Bagian sudut lapangan upacara berbentuk segitiga siku-siku dengan kaki 8 m dan 6 m, sisi miring 10 m. Hitung keliling dan luas bagian lapangan tersebut.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#127937;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="tri-wrap"><svg width="170" height="140" viewBox="0 0 170 140" xmlns="http://www.w3.org/2000/svg"><polygon points="20,120 150,120 20,20" fill="#E7EDFC" stroke="#0F2A4E" stroke-width="1.6"/><rect x="20" y="109" width="11" height="11" fill="none" stroke="#0F2A4E" stroke-width="1.2"/><text x="85" y="133" font-size="8.2" fill="#0F2A4E" font-weight="800" text-anchor="middle">8 m</text><text x="11" y="70" font-size="8.2" fill="#0F2A4E" font-weight="800" text-anchor="middle">6 m</text><text x="93" y="64" font-size="8.2" fill="#B08420" font-weight="800" text-anchor="middle">10 m</text></svg><div class="numline-cap">Segitiga siku-siku lapangan upacara</div></div>
+        <span class="cap">Gambar &middot; Segitiga Siku-siku</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$K=8+6+10=24\ \text{m} \qquad L=\tfrac12\times8\times6=24\ \text{m}^2$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Klasifikasi Segitiga Menurut Sisi (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Segitiga diklasifikasikan menurut sisinya: <b>sama sisi</b> (ketiga sisi sama panjang), <b>sama kaki</b> (dua sisi sama panjang), dan <b>sembarang</b> (ketiga sisi berbeda). Rumus luas segitiga selalu $L=\frac12\times\text{alas}\times\text{tinggi}$, di mana tinggi harus <b>tegak lurus</b> terhadap alas yang dipilih &mdash; berlaku untuk semua jenis segitiga, termasuk segitiga siku-siku (di mana salah satu kaki bisa langsung menjadi tinggi).</div>
+    
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;"><div>a) Segitiga sisi 5,5,5 disebut segitiga <span class="isian-inline" style="min-width:60px;"></span></div><div>b) Segitiga sisi 4,4,7 disebut segitiga <span class="isian-inline" style="min-width:60px;"></span></div><div>c) Segitiga alas 10, tinggi 6, luas = <span class="isian-inline" style="min-width:46px;"></span></div><div>d) Segitiga sisi 3,4,5 keliling = <span class="isian-inline" style="min-width:34px;"></span></div><div>e) Segitiga siku-siku kaki 5 dan 12, luas = <span class="isian-inline" style="min-width:46px;"></span></div><div>f) Segitiga sisi 6,8,9 disebut segitiga <span class="isian-inline" style="min-width:60px;"></span></div></div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Specialising</span><span class="twm-tag">Characterising</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Specialising &mdash; coba kasus khusus</span>Hitung luas 3 segitiga dengan alas dan tinggi sama (misalnya alas 8, tinggi 5) tetapi bentuk berbeda (siku-siku, sama kaki, sembarang). Apakah luasnya tetap sama? Mengapa?</div><div class="reason-item"><span class="lbl">Characterising &mdash; kenali ciri segitiga siku-siku</span>Apa ciri khusus segitiga siku-siku yang membuat perhitungan luasnya lebih mudah dibanding segitiga sembarang? Jelaskan hubungan antara kaki segitiga siku-siku dan rumus luas.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Dinda menghitung luas segitiga siku-siku kaki 8 dan 6 dengan: $L=8\times6=48\ \text{m}^2$ (lupa dikali $\frac12$).</div>
+      <div class="tanya">Apakah jawaban Dinda benar? Ingat rumus luas segitiga $L=\frac12\times\text{alas}\times\text{tinggi}$. Bandingkan dengan luas persegi panjang berukuran sama untuk menjelaskan mengapa ada faktor $\frac12$.</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Pengukuran &middot; Pertemuan 1 &middot; Register B &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Pengukuran &middot; Pertemuan 1 dari 4</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menerapkan <b>keliling dan luas segitiga</b> pada perhitungan biaya pemasangan pagar dan rumput taman.</div>
+
+    <div class="soal-utama"><span class="no">Soal 2.</span> Taman baca sekolah berbentuk segitiga siku-siku dengan kaki 12 m dan 9 m, sisi miring 15 m. Jika pagar keliling seharga Rp25.000/m dan rumput seharga Rp8.000/m&sup2;, berapa total biaya pemasangan pagar dan rumput?</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="tri-wrap"><svg width="170" height="140" viewBox="0 0 170 140" xmlns="http://www.w3.org/2000/svg"><polygon points="20,120 150,120 20,20" fill="#E7EDFC" stroke="#0F2A4E" stroke-width="1.6"/><rect x="20" y="109" width="11" height="11" fill="none" stroke="#0F2A4E" stroke-width="1.2"/><text x="85" y="133" font-size="8.2" fill="#0F2A4E" font-weight="800" text-anchor="middle">12 m</text><text x="11" y="70" font-size="8.2" fill="#0F2A4E" font-weight="800" text-anchor="middle">9 m</text><text x="93" y="64" font-size="8.2" fill="#B08420" font-weight="800" text-anchor="middle">15 m</text></svg><div class="numline-cap">Segitiga siku-siku taman baca</div></div>
+        <span class="cap">Gambar &middot; Segitiga Siku-siku</span>
+      </div>
+    </div>
+    
+
+    <div class="equation-block">$$K=12+9+15=36\ \text{m} \qquad L=\tfrac12\times12\times9=54\ \text{m}^2$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: hitung keliling dan luas terlebih dahulu secara terpisah, baru kalikan masing-masing dengan harga satuannya &mdash; jangan mencampur satuan meter (keliling) dengan meter persegi (luas) dalam satu perhitungan. <i>(Guru meminta siswa membandingkan dengan menghitung biaya per sisi satu per satu &mdash; Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Segitiga sama kaki alas 10 m, tinggi 12 m, dan sisi miring masing-masing 13 m.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Keliling = <span class="isian-inline" style="min-width:40px;"></span> m &nbsp;&nbsp; Luas = <span class="isian-inline" style="min-width:40px;"></span> m&sup2;</div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;"><div>1. Segitiga sisi 7,7,7 disebut segitiga <span class="isian-inline" style="min-width:60px;"></span></div><div>2. Segitiga alas 14, tinggi 8, luas = <span class="isian-inline" style="min-width:46px;"></span></div><div>3. Segitiga siku-siku kaki 9 dan 12, sisi miring = <span class="isian-inline" style="min-width:34px;"></span></div><div>4. Segitiga siku-siku kaki 9 dan 12, luas = <span class="isian-inline" style="min-width:46px;"></span></div><div>5. Segitiga sisi 5,5,8 disebut segitiga <span class="isian-inline" style="min-width:60px;"></span></div><div>6. Segitiga keliling 30, dua sisi 9 dan 11, sisi ketiga = <span class="isian-inline" style="min-width:34px;"></span></div><div>7. Segitiga alas 16, luas 64, tinggi = <span class="isian-inline" style="min-width:34px;"></span></div><div>8. Ukur atau perkirakan 1 benda/area segitiga di sekolahmu, hitung keliling dan luasnya.</div></div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Teorema Pythagoras ($a^2+b^2=c^2$) untuk segitiga siku-siku sudah dikenal peradaban Babilonia lebih dari 1.000 tahun sebelum Pythagoras lahir, tetapi ia dan pengikutnya adalah yang pertama memberikan pembuktian matematis formalnya &mdash; topik ini akan dipelajari lebih mendalam di Marhalah H-4.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Bagian tersulit bagiku menghitung keliling dan luas segitiga adalah</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol><li>Segitiga siku-siku kaki 6 dan 8. Hitung sisi miring, keliling, dan luasnya.</li><li>Klasifikasikan segitiga dengan sisi 6,6,10 dan segitiga dengan sisi 5,12,13 menurut jenis sisinya.</li><li>Ukur 1 area berbentuk segitiga di sekitarmu, hitung keliling dan luasnya.</li></ol>
+    </div>
+    
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Pengukuran &middot; Pertemuan 1 &middot; Register B &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Pengukuran &middot; Pertemuan 2 dari 4</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Awsath</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menghitung keliling dan luas jajar genjang, trapesium, belah ketupat, dan layang-layang.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 3.</span> Lapangan parkir sepeda berbentuk jajar genjang dengan alas 12 m dan tinggi 6 m (tegak lurus dari alas ke sisi sejajarnya). Hitung luas lapangan parkir tersebut.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#127958;&#65039;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="shape-wrap"><svg width="140" height="90" viewBox="0 0 140 90" xmlns="http://www.w3.org/2000/svg"><polygon points="20,75 100,75 120,15 40,15" fill="#E7EDFC" stroke="#0F2A4E" stroke-width="1.6"/><text x="60" y="88" font-size="8" fill="#0F2A4E" font-weight="800" text-anchor="middle">alas 12</text><text x="12" y="48" font-size="8" fill="#B08420" font-weight="800" text-anchor="middle">t=6</text></svg></div>
+        <span class="cap">Gambar &middot; Jajar Genjang</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$L=\text{alas}\times\text{tinggi}=12\times6=72\ \text{m}^2$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Trapesium, Belah Ketupat & Layang-layang (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Rumus luas keempat bangun ini: <b>Jajar genjang</b> $L=\text{alas}\times\text{tinggi}$; <b>Trapesium</b> $L=\frac12\times(\text{sisi sejajar}_1+\text{sisi sejajar}_2)\times\text{tinggi}$; <b>Belah ketupat</b> dan <b>Layang-layang</b> sama-sama $L=\frac12\times d_1\times d_2$ (hasil kali kedua diagonal dibagi 2), karena keduanya bisa dibagi menjadi 4 segitiga siku-siku melalui diagonalnya.</div>
+    
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;"><div>a) Jajar genjang alas 10, tinggi 5, luas = <span class="isian-inline" style="min-width:46px;"></span></div><div>b) Trapesium sisi sejajar 6 dan 10, tinggi 4, luas = <span class="isian-inline" style="min-width:50px;"></span></div><div>c) Belah ketupat diagonal 8 dan 6, luas = <span class="isian-inline" style="min-width:46px;"></span></div><div>d) Layang-layang diagonal 10 dan 7, luas = <span class="isian-inline" style="min-width:46px;"></span></div><div>e) Jajar genjang sisi 5 dan 8, keliling = <span class="isian-inline" style="min-width:46px;"></span></div><div>f) Belah ketupat sisi 9, keliling = <span class="isian-inline" style="min-width:46px;"></span></div></div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Classifying</span><span class="twm-tag">Characterising</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Classifying &mdash; kelompokkan bangun berdasar rumus</span>Kelompokkan jajar genjang, trapesium, belah ketupat, dan layang-layang menjadi dua golongan berdasarkan rumus luasnya: golongan yang memakai &ldquo;alas&times;tinggi&rdquo; dan golongan yang memakai &ldquo;diagonal&times;diagonal&rdquo;.</div><div class="reason-item"><span class="lbl">Characterising &mdash; kenali ciri penentu rumus</span>Mengapa belah ketupat dan layang-layang memakai rumus yang sama meski bentuknya berbeda? Apa ciri geometris yang mereka miliki bersama sehingga rumus $\frac12 d_1 d_2$ berlaku untuk keduanya?</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Ardi menghitung luas belah ketupat diagonal 8 dan 6 dengan: $L=8\times6=48\ \text{m}^2$ (lupa dibagi 2).</div>
+      <div class="tanya">Apakah jawaban Ardi benar? Bandingkan dengan luas persegi panjang berukuran $8\times6$ untuk menjelaskan mengapa luas belah ketupat harus dibagi 2.</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Pengukuran &middot; Pertemuan 2 &middot; Register B &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Pengukuran &middot; Pertemuan 2 dari 4</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>jajar genjang, trapesium, dan belah ketupat</b> dalam satu laporan luas area sekolah &mdash; aplikasi tata ruang.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Kanopi tempat parkir motor guru berbentuk trapesium dengan sisi sejajar 14 m dan 8 m, tinggi 5 m. Sementara itu, taman hias sekolah berbentuk belah ketupat dengan diagonal 6 m dan 4 m. (a) Hitung luas kanopi. (b) Hitung luas taman hias.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="shape-wrap"><svg width="150" height="90" viewBox="0 0 150 90" xmlns="http://www.w3.org/2000/svg"><polygon points="30,75 120,75 100,20 50,20" fill="#E5F4EC" stroke="#0F2A4E" stroke-width="1.6"/><text x="75" y="88" font-size="8" fill="#0F2A4E" font-weight="800" text-anchor="middle">alas 14</text><text x="75" y="15" font-size="8" fill="#B08420" font-weight="800" text-anchor="middle">atas 8</text></svg></div>
+        <span class="cap">Gambar &middot; Trapesium</span>
+      </div>
+    </div>
+    
+
+    <div class="equation-block">$$L=\tfrac12\times(14+8)\times5=55\ \text{m}^2$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: samakan langsung ke rumus yang sesuai bentuk bangun (jangan tergoda memakai rumus jajar genjang untuk trapesium) &mdash; identifikasi dulu jenis bangunnya sebelum menghitung. <i>(Guru meminta siswa membandingkan dengan mencoba rumus yang salah lebih dulu &mdash; Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Layang-layang hiasan dengan diagonal 12 m dan 5 m.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Luas layang-layang = <span class="isian-inline" style="min-width:46px;"></span> m&sup2;</div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;"><div>1. Jajar genjang alas 15, tinggi 7, luas = <span class="isian-inline" style="min-width:46px;"></span></div><div>2. Trapesium sisi sejajar 9 dan 15, tinggi 6, luas = <span class="isian-inline" style="min-width:50px;"></span></div><div>3. Belah ketupat diagonal 10 dan 8, luas = <span class="isian-inline" style="min-width:46px;"></span></div><div>4. Layang-layang diagonal 14 dan 9, luas = <span class="isian-inline" style="min-width:46px;"></span></div><div>5. Jajar genjang sisi 6 dan 10, keliling = <span class="isian-inline" style="min-width:46px;"></span></div><div>6. Belah ketupat sisi 11, keliling = <span class="isian-inline" style="min-width:46px;"></span></div><div>7. Trapesium sisi sejajar 10 dan 6, luas 40, tinggi = <span class="isian-inline" style="min-width:34px;"></span></div><div>8. Ukur atau perkirakan 1 bangun (jajar genjang/trapesium/belah ketupat/layang-layang) di sekitarmu, hitung luasnya.</div></div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Belah ketupat dan layang-layang sebenarnya adalah &ldquo;saudara dekat&rdquo; secara matematis: keduanya termasuk kategori bangun yang diagonalnya saling tegak lurus, meski belah ketupat memiliki keempat sisi sama panjang sedangkan layang-layang hanya memiliki dua pasang sisi berdekatan yang sama panjang.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Rumus yang paling mudah kuingat di antara keempat bangun ini adalah</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol><li>Trapesium sisi sejajar 12 dan 18, tinggi 7. Hitung luasnya.</li><li>Belah ketupat diagonal 16 dan 12. Hitung luas dan sisinya (gunakan Pythagoras untuk sisi).</li><li>Cari 1 contoh bangun jajar genjang/trapesium/belah ketupat/layang-layang di sekitarmu, hitung perkiraan luasnya.</li></ol>
+    </div>
+    
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Pengukuran &middot; Pertemuan 2 &middot; Register B &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Pengukuran &middot; Pertemuan 3 dari 4</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Awsath</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menghitung luas permukaan kubus, balok, prisma segitiga, dan limas segiempat.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 5.</span> Koperasi sekolah mengemas kotak kado berbentuk kubus dengan sisi 5 cm untuk dibungkus kertas kado. Berapa luas kertas kado minimal yang dibutuhkan (luas permukaan kubus)?</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#127991;&#65039;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="solid-wrap"><svg width="170" height="130" viewBox="0 0 170 130" xmlns="http://www.w3.org/2000/svg"><polygon points="30,50 110,50 110,110 30,110" fill="#E7EDFC" stroke="#0F2A4E" stroke-width="1.5"/><polygon points="30,50 56,24 136,24 110,50" fill="#D3E0FA" stroke="#0F2A4E" stroke-width="1.5"/><polygon points="110,50 136,24 136,84 110,110" fill="#BFD0F5" stroke="#0F2A4E" stroke-width="1.5"/><text x="70.0" y="124" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">5 cm</text><text x="22" y="80.0" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">5 cm</text><text x="129.0" y="33.0" font-size="7.6" fill="#B08420" font-weight="800" text-anchor="middle">5 cm</text></svg><div class="numline-cap">Kubus sisi 5 cm</div></div>
+        <span class="cap">Gambar &middot; Kubus</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$L=6\times s^2=6\times5^2=150\ \text{cm}^2$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Luas Permukaan Balok, Prisma & Limas (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;"><b>Balok</b> ($p\times l\times t$): $L=2(pl+pt+lt)$. <b>Prisma segitiga</b>: $L=2\times L_{\text{alas segitiga}}+\text{keliling alas}\times\text{tinggi prisma}$. <b>Limas segiempat</b>: $L=L_{\text{alas}}+\text{jumlah luas semua sisi tegak (segitiga)}$. Strategi umum: bayangkan bangun ruang <b>dibuka menjadi jaring-jaring datar</b>, lalu jumlahkan luas semua bagiannya.</div>
+    
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;"><div>a) Luas permukaan kubus sisi 4 = <span class="isian-inline" style="min-width:46px;"></span></div><div>b) Balok 4&times;3&times;2, luas permukaan = <span class="isian-inline" style="min-width:50px;"></span></div><div>c) Kubus sisi 6, luas permukaan = <span class="isian-inline" style="min-width:46px;"></span></div><div>d) Balok 5&times;4&times;3, luas permukaan = <span class="isian-inline" style="min-width:50px;"></span></div><div>e) Rumus luas permukaan balok = <span class="isian-inline" style="min-width:90px;"></span></div><div>f) Rumus luas permukaan kubus = <span class="isian-inline" style="min-width:60px;"></span></div></div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Conjecturing</span><span class="twm-tag">Critiquing</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Conjecturing &mdash; ajukan dugaan</span>Kubus adalah balok istimewa dengan $p=l=t$. Ajukan dugaan: apakah rumus luas permukaan balok $2(pl+pt+lt)$ akan menghasilkan rumus $6s^2$ jika $p=l=t=s$ disubstitusikan? Buktikan.</div><div class="reason-item"><span class="lbl">Critiquing &mdash; nilai strategi jaring-jaring</span>Nilai apakah strategi &ldquo;membayangkan jaring-jaring datar&rdquo; membantu memahami rumus luas permukaan limas segiempat, dibandingkan hanya menghafal rumusnya? Jelaskan alasanmu.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Salsa menghitung luas permukaan balok 4&times;3&times;2 dengan: $L=4\times3\times2=24$ (menghitung volume, bukan luas permukaan).</div>
+      <div class="tanya">Apakah cara Salsa menghasilkan luas permukaan yang benar? Ingat bahwa luas permukaan menghitung <i>luas seluruh sisi luar</i> (satuan persegi), bukan ruang di dalamnya. Tunjukkan cara yang benar.</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Pengukuran &middot; Pertemuan 3 &middot; Register B &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Pengukuran &middot; Pertemuan 3 dari 4</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menerapkan <b>luas permukaan kubus dan balok</b> pada perhitungan bahan pembungkus &mdash; aplikasi pengemasan barang koperasi.</div>
+
+    <div class="soal-utama"><span class="no">Soal 6.</span> Koperasi sekolah mengemas kotak sepatu berbentuk balok berukuran 6 cm &times; 4 cm &times; 3 cm untuk dibungkus. Jika tiap kotak membutuhkan kertas pembungkus seluas luas permukaannya ditambah 10% untuk lipatan, berapa total luas kertas yang dibutuhkan untuk 5 kotak?</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="solid-wrap"><svg width="170" height="130" viewBox="0 0 170 130" xmlns="http://www.w3.org/2000/svg"><polygon points="30,50 110,50 110,110 30,110" fill="#E7EDFC" stroke="#0F2A4E" stroke-width="1.5"/><polygon points="30,50 56,24 136,24 110,50" fill="#D3E0FA" stroke="#0F2A4E" stroke-width="1.5"/><polygon points="110,50 136,24 136,84 110,110" fill="#BFD0F5" stroke="#0F2A4E" stroke-width="1.5"/><text x="70.0" y="124" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">6 cm</text><text x="22" y="80.0" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">3 cm</text><text x="129.0" y="33.0" font-size="7.6" fill="#B08420" font-weight="800" text-anchor="middle">4 cm</text></svg><div class="numline-cap">Balok kotak sepatu</div></div>
+        <span class="cap">Gambar &middot; Balok</span>
+      </div>
+    </div>
+    
+
+    <div class="equation-block">$$L=2(6\times4+6\times3+4\times3)=2(24+18+12)=108\ \text{cm}^2$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: hitung luas permukaan 1 kotak dahulu, tambahkan 10% sekali, baru kalikan dengan banyak kotak &mdash; lebih efisien daripada menghitung tiap kotak dari awal berulang kali. <i>(Guru meminta siswa membandingkan dengan menghitung tiap kotak dari nol &mdash; Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Kubus kado sisi 7 cm akan dibungkus dengan tambahan 15% untuk lipatan.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Total kertas dibutuhkan &asymp; <span class="isian-inline" style="min-width:50px;"></span> cm&sup2;</div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;"><div>1. Luas permukaan kubus sisi 3 = <span class="isian-inline" style="min-width:46px;"></span></div><div>2. Balok 5&times;4&times;2, luas permukaan = <span class="isian-inline" style="min-width:50px;"></span></div><div>3. Kubus sisi 8, luas permukaan = <span class="isian-inline" style="min-width:46px;"></span></div><div>4. Balok 7&times;5&times;3, luas permukaan = <span class="isian-inline" style="min-width:50px;"></span></div><div>5. Prisma segitiga: alas segitiga luas 12, keliling alas 16, tinggi prisma 10, luas permukaan = <span class="isian-inline" style="min-width:50px;"></span></div><div>6. Kubus luas permukaan 96, panjang sisi = <span class="isian-inline" style="min-width:34px;"></span></div><div>7. Balok 4&times;4&times;4, apakah ini termasuk kubus? <span class="isian-inline" style="min-width:40px;"></span></div><div>8. Ukur 1 kotak/dus di rumahmu, hitung luas permukaannya.</div></div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Rumus luas permukaan bangun ruang menjadi dasar penting industri pengemasan modern &mdash; perusahaan menggunakan perhitungan ini untuk meminimalkan bahan kemasan (menghemat biaya) sambil tetap melindungi produk di dalamnya.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Strategi jaring-jaring membantuku memahami luas permukaan karena</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol><li>Balok 8&times;5&times;4. Hitung luas permukaannya.</li><li>Kubus sisi 9. Hitung luas permukaannya, lalu bandingkan dengan rumus $6s^2$.</li><li>Ukur 1 kotak kado atau dus di rumahmu, hitung luas permukaannya lengkap dengan satuan.</li></ol>
+    </div>
+    
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Pengukuran &middot; Pertemuan 3 &middot; Register B &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Pengukuran &middot; Pertemuan 4 dari 4</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Awsath</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menghitung volume kubus, balok, prisma segitiga, dan limas segiempat.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 7.</span> Klub sains membuat akuarium mini berbentuk balok berukuran 8 cm &times; 5 cm &times; 4 cm. Berapa volume air maksimal yang bisa ditampung akuarium tersebut?</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#128167;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="solid-wrap"><svg width="170" height="130" viewBox="0 0 170 130" xmlns="http://www.w3.org/2000/svg"><polygon points="30,50 110,50 110,110 30,110" fill="#E7EDFC" stroke="#0F2A4E" stroke-width="1.5"/><polygon points="30,50 56,24 136,24 110,50" fill="#D3E0FA" stroke="#0F2A4E" stroke-width="1.5"/><polygon points="110,50 136,24 136,84 110,110" fill="#BFD0F5" stroke="#0F2A4E" stroke-width="1.5"/><text x="70.0" y="124" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">8 cm</text><text x="22" y="80.0" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">4 cm</text><text x="129.0" y="33.0" font-size="7.6" fill="#B08420" font-weight="800" text-anchor="middle">5 cm</text></svg><div class="numline-cap">Balok akuarium mini</div></div>
+        <span class="cap">Gambar &middot; Balok</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$V=p\times l\times t=8\times5\times4=160\ \text{cm}^3$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Volume Prisma & Limas (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;"><b>Prisma</b> (termasuk prisma segitiga): $V=L_{\text{alas}}\times\text{tinggi prisma}$. <b>Limas</b>: $V=\frac13\times L_{\text{alas}}\times\text{tinggi limas}$ &mdash; volumenya <b>sepertiga</b> dari prisma dengan alas dan tinggi yang sama, karena 3 limas kongruen bisa disusun membentuk 1 prisma. Kubus dan balok adalah kasus khusus prisma dengan alas persegi/persegi panjang.</div>
+    
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;"><div>a) Volume kubus sisi 5 = <span class="isian-inline" style="min-width:46px;"></span></div><div>b) Volume balok 6&times;4&times;3 = <span class="isian-inline" style="min-width:50px;"></span></div><div>c) Volume kubus sisi 7 = <span class="isian-inline" style="min-width:46px;"></span></div><div>d) Volume balok 10&times;5&times;4 = <span class="isian-inline" style="min-width:50px;"></span></div><div>e) Prisma segitiga alas luas 12, tinggi prisma 10, volume = <span class="isian-inline" style="min-width:50px;"></span></div><div>f) Limas alas luas 24, tinggi limas 9, volume = <span class="isian-inline" style="min-width:50px;"></span></div></div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Convincing</span><span class="twm-tag">Improving</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Convincing &mdash; yakinkan dengan hubungan rumus</span>Yakinkan temanmu bahwa rumus volume limas benar-benar $\frac13$ dari rumus volume prisma dengan alas dan tinggi sama, dengan menghitung kedua volume itu untuk alas luas 18 dan tinggi 12.</div><div class="reason-item"><span class="lbl">Improving &mdash; perbaiki strategi menghafal</span>Alih-alih menghafal 4 rumus volume terpisah, bagaimana kamu bisa mengingat semuanya dengan satu ide besar (&ldquo;alas &times; tinggi&rdquo; sebagai dasar)? Tuliskan strategi ringkasmu.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Yusuf menghitung volume limas dengan alas luas 20 dan tinggi 9 sebagai: $V=20\times9=180\ \text{cm}^3$ (lupa faktor $\frac13$).</div>
+      <div class="tanya">Apakah jawaban Yusuf benar untuk limas (bukan prisma)? Ingat bahwa volume limas adalah $\frac13$ dari prisma dengan alas dan tinggi sama. Tunjukkan hasil yang tepat.</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Pengukuran &middot; Pertemuan 4 &middot; Register B &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Pengukuran &middot; Pertemuan 4 dari 4</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>luas permukaan</b> dan <b>volume bangun ruang</b> dalam satu perbandingan &mdash; sintesis penutup Bidang Pengukuran H-3.</div>
+
+    <div class="soal-utama"><span class="no">Soal 8.</span> Wadah es koperasi berbentuk kubus sisi 6 cm. Sementara itu, satu hiasan atap mading berbentuk limas segiempat dengan alas persegi sisi 6 cm dan tinggi limas 9 cm. (a) Hitung volume kubus. (b) Hitung volume limas. (c) Berapa kali lipat volume kubus dibanding volume limas?</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="solid-wrap"><svg width="170" height="130" viewBox="0 0 170 130" xmlns="http://www.w3.org/2000/svg"><polygon points="30,50 110,50 110,110 30,110" fill="#E7EDFC" stroke="#0F2A4E" stroke-width="1.5"/><polygon points="30,50 56,24 136,24 110,50" fill="#D3E0FA" stroke="#0F2A4E" stroke-width="1.5"/><polygon points="110,50 136,24 136,84 110,110" fill="#BFD0F5" stroke="#0F2A4E" stroke-width="1.5"/><text x="70.0" y="124" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">6 cm</text><text x="22" y="80.0" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">6 cm</text><text x="129.0" y="33.0" font-size="7.6" fill="#B08420" font-weight="800" text-anchor="middle">6 cm</text></svg><div class="numline-cap">Kubus wadah es</div></div>
+        <span class="cap">Gambar &middot; Kubus &amp; Limas</span>
+      </div>
+    </div>
+    
+
+    <div class="equation-block">$$V_{\text{kubus}}=6^3=216 \qquad V_{\text{limas}}=\tfrac13\times36\times9=108\ \text{cm}^3$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: hitung kedua volume secara terpisah menggunakan rumus masing-masing, lalu bagi volume kubus dengan volume limas untuk mendapatkan perbandingannya sekaligus. <i>(Guru meminta siswa membandingkan dengan menaksir secara visual terlebih dahulu &mdash; Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Balok 10&times;6&times;5 dan limas alas luas 30, tinggi 12.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Volume balok = <span class="isian-inline" style="min-width:40px;"></span> &nbsp;&nbsp; Volume limas = <span class="isian-inline" style="min-width:40px;"></span></div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;"><div>1. Volume kubus sisi 4 = <span class="isian-inline" style="min-width:46px;"></span></div><div>2. Volume balok 9&times;6&times;5 = <span class="isian-inline" style="min-width:50px;"></span></div><div>3. Prisma segitiga alas luas 15, tinggi 8, volume = <span class="isian-inline" style="min-width:50px;"></span></div><div>4. Limas alas luas 20, tinggi 12, volume = <span class="isian-inline" style="min-width:50px;"></span></div><div>5. Volume balok 720, alas luas 90, tinggi = <span class="isian-inline" style="min-width:34px;"></span></div><div>6. Kubus volume 125, panjang sisi = <span class="isian-inline" style="min-width:34px;"></span></div></div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Rumus volume limas $V=\frac13\times L_{\text{alas}}\times t$ dibuktikan Eudoxus dari Cnidus (&plusmn;400 SM), meski Mesir Kuno sudah memakai rumus serupa untuk piramida terpotong jauh sebelumnya.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hubungan antara volume prisma dan limas membantuku memahami bahwa</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol><li>Balok 12&times;8&times;6. Hitung volumenya.</li><li>Limas alas persegi sisi 8, tinggi 15. Hitung volumenya.</li><li>Bandingkan volume kubus sisi 6 dengan volume balok 6&times;6&times;12 &mdash; berapa kali lipat perbedaannya, dan mengapa?</li></ol>
+    </div>
+    <div class="catatan-teal"><b>Catatan Guru &mdash; Penutup Bidang Pengukuran H-3:</b> Bidang Pengukuran (segitiga, segiempat, luas permukaan &amp; volume bangun ruang) telah selesai. Siswa lanjut ke Bidang Geometri (sudut &amp; garis sejajar).</div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Pengukuran &middot; Pertemuan 4 &middot; Register B &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Geometri &middot; Pertemuan 1 dari 4</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Awsath</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menentukan besar sudut sehadap, dalam berseberangan, dalam sepihak, dan bertolak belakang pada dua garis sejajar yang dipotong transversal.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Dua garis rel lintasan lari di lapangan sekolah sejajar, dipotong oleh garis start yang miring (transversal). Salah satu sudut yang terbentuk adalah 110&deg;. Tentukan besar sudut sehadap dan sudut dalam berseberangannya.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#128736;&#65039;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="angle-wrap"><svg width="220" height="130" viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg"><line x1="10" y1="35" x2="210" y2="35" stroke="#0F2A4E" stroke-width="1.6"/><line x1="10" y1="95" x2="210" y2="95" stroke="#0F2A4E" stroke-width="1.6"/><line x1="55" y1="10" x2="165" y2="120" stroke="#B08420" stroke-width="1.6"/><text x="4" y="30" font-size="7" fill="#5A6272">k</text><text x="4" y="90" font-size="7" fill="#5A6272">l</text><text x="70" y="25" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">110&deg;</text><text x="100" y="25" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">70&deg;</text><text x="70" y="48" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">70&deg;</text><text x="100" y="48" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">110&deg;</text><text x="122" y="85" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">110&deg;</text><text x="152" y="85" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">70&deg;</text><text x="122" y="108" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">70&deg;</text><text x="152" y="108" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">110&deg;</text></svg><div class="numline-cap">Dua garis sejajar dipotong transversal</div></div>
+        <span class="cap">Gambar &middot; Garis Sejajar &amp; Transversal</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$\angle1=\angle5=110^\circ\ (\text{sehadap}) \qquad \angle3=\angle6=70^\circ\ (\text{berseberangan})$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Empat Jenis Sudut pada Transversal (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Ketika dua garis <b>sejajar</b> dipotong garis <b>transversal</b>, terbentuk 8 sudut dengan hubungan tetap: <b>sudut sehadap</b> (posisi sama, besarnya <i>sama</i>), <b>sudut dalam berseberangan</b> (di antara dua garis sejajar, posisi menyilang, besarnya <i>sama</i>), <b>sudut dalam sepihak</b> (di antara dua garis sejajar, sepihak, jumlahnya $180^\circ$), dan <b>sudut bertolak belakang</b> (hasil perpotongan dua garis, besarnya <i>sama</i>).</div>
+    
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;"><div>a) Sudut sehadap besarnya selalu <span class="isian-inline" style="min-width:60px;"></span></div><div>b) Sudut dalam berseberangan besarnya selalu <span class="isian-inline" style="min-width:60px;"></span></div><div>c) Sudut dalam sepihak jumlahnya selalu <span class="isian-inline" style="min-width:46px;"></span>&deg;</div><div>d) Sudut bertolak belakang besarnya selalu <span class="isian-inline" style="min-width:60px;"></span></div><div>e) Jika &ang;1=115&deg;, maka &ang;5 (sehadap) = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>f) Jika &ang;3=65&deg;, maka sudut dalam sepihaknya = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div></div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Characterising</span><span class="twm-tag">Classifying</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Characterising &mdash; kenali ciri posisi sudut</span>Apa ciri posisi yang membedakan sudut sehadap dari sudut dalam berseberangan pada gambar dua garis sejajar dan transversal? Jelaskan dengan menunjuk posisinya.</div><div class="reason-item"><span class="lbl">Classifying &mdash; kelompokkan pasangan sudut</span>Dari 8 sudut yang terbentuk pada gambar, kelompokkan pasangan-pasangan yang termasuk sehadap, berseberangan, sepihak, dan bertolak belakang.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Rian berkata: &ldquo;Semua sudut yang terbentuk dari dua garis sejajar dan transversal pasti sama besar, karena garisnya sejajar.&rdquo;</div>
+      <div class="tanya">Apakah pernyataan Rian benar? Perhatikan sudut dalam sepihak pada gambar &mdash; apakah keduanya sama besar, atau ada hubungan lain di antara keduanya?</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Geometri &middot; Pertemuan 1 &middot; Register B &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Geometri &middot; Pertemuan 1 dari 4</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menerapkan <b>keempat jenis hubungan sudut</b> pada transversal untuk menyelesaikan satu set sudut lengkap &mdash; latihan penalaran sudut.</div>
+
+    <div class="soal-utama"><span class="no">Soal 2.</span> Dua pagar sekolah sejajar dipotong jalan setapak (transversal) yang miring, membentuk sudut 75&deg; pada salah satu titik potong. (a) Tentukan besar sudut dalam berseberangannya. (b) Tentukan besar sudut dalam sepihak dengan sudut 75&deg; tersebut. (c) Tentukan besar sudut bertolak belakang dengan 75&deg;.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="angle-wrap"><svg width="220" height="130" viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg"><line x1="10" y1="35" x2="210" y2="35" stroke="#0F2A4E" stroke-width="1.6"/><line x1="10" y1="95" x2="210" y2="95" stroke="#0F2A4E" stroke-width="1.6"/><line x1="55" y1="10" x2="165" y2="120" stroke="#B08420" stroke-width="1.6"/><text x="4" y="30" font-size="7" fill="#5A6272">k</text><text x="4" y="90" font-size="7" fill="#5A6272">l</text><text x="70" y="25" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">75&deg;</text><text x="100" y="25" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">105&deg;</text><text x="70" y="48" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">105&deg;</text><text x="100" y="48" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">75&deg;</text><text x="122" y="85" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">75&deg;</text><text x="152" y="85" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">105&deg;</text><text x="122" y="108" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">105&deg;</text><text x="152" y="108" font-size="7.6" fill="#0F2A4E" font-weight="800" text-anchor="middle">75&deg;</text></svg><div class="numline-cap">Tangga eskalator sekolah & pagar sejajar</div></div>
+        <span class="cap">Gambar &middot; Garis Sejajar &amp; Transversal</span>
+      </div>
+    </div>
+    
+
+    <div class="equation-block">$$\angle3=\angle6=105^\circ \quad \angle3+\angle5=105^\circ+75^\circ=180^\circ\ (\text{sepihak})$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: tentukan dahulu apakah sudut yang dicari sama besar (sehadap/berseberangan/bertolak belakang) atau berjumlah $180^\circ$ (sepihak), lalu langsung terapkan hubungannya tanpa menghitung sudut lain terlebih dahulu. <i>(Guru meminta siswa membandingkan dengan menghitung seluruh 8 sudut satu per satu &mdash; Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Dua garis sejajar dipotong transversal, salah satu sudut 130&deg;.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Sudut dalam sepihaknya = <span class="isian-inline" style="min-width:34px;"></span>&deg; &nbsp;&nbsp; Sudut bertolak belakangnya = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;"><div>1. Sudut sehadap dengan 95&deg; adalah <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>2. Sudut berseberangan dengan 62&deg; adalah <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>3. Sudut sepihak dengan 100&deg; adalah <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>4. Sudut bertolak belakang dengan 48&deg; adalah <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>5. Jika sudut sepihak adalah 85&deg; dan x, maka x = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>6. Sudut dalam berseberangan selalu terletak <span class="isian-inline" style="min-width:60px;"></span> dua garis sejajar</div></div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Postulat garis sejajar Euclid (&plusmn;300 SM) menjadi fondasi hampir seluruh geometri yang dipelajari di sekolah hingga kini.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Cara paling cepat bagiku menentukan hubungan antar sudut transversal adalah</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol><li>Dua garis sejajar dipotong transversal, salah satu sudut 72&deg;. Tentukan ketujuh sudut lainnya.</li><li>Jelaskan perbedaan sudut sehadap dan sudut dalam berseberangan dengan kata-katamu sendiri.</li><li>Foto/gambar 1 contoh transversal di sekitarmu (rel, tangga, pagar), tandai sudut-sudutnya.</li></ol>
+    </div>
+    
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Geometri &middot; Pertemuan 1 &middot; Register B &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Geometri &middot; Pertemuan 2 dari 4</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Awsath</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menentukan sudut ketiga sebuah segitiga, menerapkan teorema sudut luar, dan mengklasifikasikan segitiga menurut jenis sudutnya.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 3.</span> Papan penunjuk arah sekolah berbentuk segitiga dengan dua sudut diketahui 65&deg; dan 55&deg;. Tentukan besar sudut ketiga papan tersebut.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#128207;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div class="angle-wrap"><svg width="150" height="110" viewBox="0 0 150 110" xmlns="http://www.w3.org/2000/svg"><polygon points="20,95 130,95 80,15" fill="#E7EDFC" stroke="#0F2A4E" stroke-width="1.6"/><text x="30" y="88" font-size="8" fill="#0F2A4E" font-weight="800">65&deg;</text><text x="105" y="88" font-size="8" fill="#0F2A4E" font-weight="800">55&deg;</text><text x="75" y="30" font-size="8" fill="#0F2A4E" font-weight="800">?</text><line x1="130" y1="95" x2="150" y2="95" stroke="#B08420" stroke-width="1.6" stroke-dasharray="3,2"/><text x="138" y="88" font-size="7" fill="#B08420" font-weight="800">luar</text></svg></div>
+        <span class="cap">Gambar &middot; Sudut Segitiga</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$65^\circ+55^\circ+x=180^\circ \Rightarrow x=60^\circ$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Teorema Sudut Luar Segitiga (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;"><b>Jumlah sudut dalam segitiga selalu $180^\circ$.</b> Jika salah satu sisi segitiga diperpanjang, terbentuk <b>sudut luar</b> yang menurut <b>teorema sudut luar</b> selalu sama dengan <b>jumlah dua sudut dalam yang tidak berdekatan</b> dengannya. Segitiga juga diklasifikasikan menurut sudut: <b>lancip</b> (semua sudut &lt;90&deg;), <b>siku-siku</b> (satu sudut $=90^\circ$), <b>tumpul</b> (satu sudut &gt;90&deg;).</div>
+    
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;"><div>a) Segitiga sudut 50&deg; dan 70&deg;, sudut ketiga = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>b) Segitiga sudut 90&deg; dan 40&deg;, sudut ketiga = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>c) Sudut luar segitiga = jumlah 2 sudut dalam <span class="isian-inline" style="min-width:60px;"></span></div><div>d) Segitiga sudut dalam 40&deg; dan 60&deg;, sudut luar di sudut ketiga = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>e) Segitiga sama sisi, setiap sudutnya = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>f) Segitiga siku-siku, salah satu sudut lancip 35&deg;, sudut lancip lain = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div></div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Conjecturing</span><span class="twm-tag">Generalising</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Conjecturing &mdash; ajukan dugaan</span>Hitung sudut luar untuk segitiga dengan sudut dalam 50&deg; dan 70&deg; (sudut luar di sudut ketiga). Ajukan dugaan: apa hubungan antara sudut luar itu dengan kedua sudut dalam yang tidak berdekatan dengannya?</div><div class="reason-item"><span class="lbl">Generalising &mdash; rumuskan teorema</span>Dari beberapa contoh, rumuskan teorema sudut luar segitiga dalam satu kalimat, lalu jelaskan mengapa teorema ini konsisten dengan fakta jumlah sudut dalam segitiga $=180^\circ$.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Fikri berkata: &ldquo;Segitiga dengan sudut 95&deg;, 50&deg;, dan 35&deg; adalah segitiga siku-siku karena salah satu sudutnya besar.&rdquo;</div>
+      <div class="tanya">Apakah Fikri benar? Ingat definisi segitiga siku-siku (salah satu sudut <i>tepat</i> $90^\circ$) dan segitiga tumpul (salah satu sudut <i>lebih dari</i> $90^\circ$). Segitiga pada soal termasuk jenis yang mana?</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Geometri &middot; Pertemuan 2 &middot; Register B &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Geometri &middot; Pertemuan 2 dari 4</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>jumlah sudut dalam segitiga</b> dan <b>teorema sudut luar</b> dalam satu soal terbalik &mdash; menentukan sudut dalam dari sudut luar.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Rangka atap gudang sekolah berbentuk segitiga. Sebuah sudut luar (dari perpanjangan salah satu sisi) besarnya 120&deg;, dan salah satu sudut dalam yang tidak berdekatan dengannya adalah 72&deg;. (a) Tentukan sudut dalam kedua (yang juga tidak berdekatan dengan sudut luar). (b) Tentukan sudut dalam ketiga (yang berdekatan dengan sudut luar).</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="angle-wrap"><svg width="160" height="110" viewBox="0 0 160 110" xmlns="http://www.w3.org/2000/svg"><polygon points="20,95 140,95 90,15" fill="#FCF6E5" stroke="#0F2A4E" stroke-width="1.6"/><text x="28" y="88" font-size="8" fill="#0F2A4E" font-weight="800">48&deg;</text><text x="115" y="88" font-size="8" fill="#0F2A4E" font-weight="800">?</text><text x="82" y="30" font-size="8" fill="#0F2A4E" font-weight="800">72&deg;</text><line x1="20" y1="95" x2="0" y2="95" stroke="#B08420" stroke-width="1.6" stroke-dasharray="3,2"/><text x="2" y="88" font-size="7" fill="#B08420" font-weight="800">120&deg;</text></svg></div>
+        <span class="cap">Gambar &middot; Sudut Luar Diketahui</span>
+      </div>
+    </div>
+    
+
+    <div class="equation-block">$$\text{sudut luar}=120^\circ=72^\circ+x \Rightarrow x=48^\circ$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: gunakan teorema sudut luar langsung (sudut luar = jumlah 2 sudut dalam tak berdekatan) untuk mencari sudut dalam kedua, lalu cari sudut dalam ketiga dari $180^\circ-\text{sudut luar}$ (karena keduanya berpelurus). <i>(Guru meminta siswa membandingkan dengan menjumlahkan ketiga sudut dalam dari awal &mdash; Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Segitiga dengan sudut luar 110&deg; dan salah satu sudut dalam tak berdekatan 60&deg;.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Sudut dalam tak berdekatan lainnya = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;"><div>1. Segitiga sudut 42&deg; dan 88&deg;, sudut ketiga = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>2. Segitiga sudut 90&deg; dan 35&deg;, sudut ketiga = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>3. Sudut luar dari sudut dalam 55&deg; dan 65&deg; adalah <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>4. Segitiga sama sisi, jumlah sudutnya = <span class="isian-inline" style="min-width:46px;"></span>&deg;</div><div>5. Segitiga sudut 30&deg;, 60&deg;, 90&deg; termasuk jenis <span class="isian-inline" style="min-width:60px;"></span></div><div>6. Segitiga sudut 100&deg;, 40&deg;, 40&deg; termasuk jenis <span class="isian-inline" style="min-width:60px;"></span></div></div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Jumlah sudut dalam segitiga selalu $180^\circ$ hanya berlaku pada geometri datar &mdash; pada permukaan bola, jumlah sudut segitiga besar bisa lebih dari $180^\circ$.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Teorema sudut luar membantuku menyelesaikan soal segitiga karena</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol><li>Segitiga dengan sudut 38&deg; dan 77&deg;. Tentukan sudut ketiga dan jenis segitiganya menurut sudut.</li><li>Sudut luar segitiga 95&deg;, salah satu sudut dalam tak berdekatan 50&deg;. Tentukan sudut dalam tak berdekatan lainnya.</li><li>Jelaskan dengan kata-katamu sendiri mengapa teorema sudut luar segitiga masuk akal, dikaitkan dengan jumlah sudut dalam $180^\circ$.</li></ol>
+    </div>
+    
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Geometri &middot; Pertemuan 2 &middot; Register B &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Geometri &middot; Pertemuan 3 dari 4</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Awsath</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menentukan sudut-sudut segi empat menggunakan sifat masing-masing bentuk (jajar genjang, layang-layang, trapesium, belah ketupat).</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 5.</span> Papan reklame sekolah berbentuk jajar genjang dengan tiga sudut diketahui: A=85&deg;, B=95&deg;, C=85&deg;. Tentukan besar sudut D menggunakan sifat jajar genjang (sudut berhadapan sama besar).</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#128209;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <table class="freq-table"><tr><th>Sudut</th><th>Besar</th></tr><tr><td>A</td><td>85&deg;</td></tr><tr><td>B</td><td>95&deg;</td></tr><tr><td>C</td><td>85&deg;</td></tr><tr><td>D</td><td>?</td></tr></table>
+        <span class="cap">Gambar &middot; Sudut Jajar Genjang</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$85+95+85+D=360 \Rightarrow D=95^\circ$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Sifat Sudut Tiap Jenis Segiempat (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Setiap jenis segiempat punya sifat sudut khas: <b>Jajar genjang</b> &mdash; sudut berhadapan sama besar, sudut berdekatan berjumlah $180^\circ$. <b>Belah ketupat</b> &mdash; sama seperti jajar genjang (karena belah ketupat adalah jajar genjang istimewa). <b>Layang-layang</b> &mdash; sepasang sudut yang diapit sisi tak sama panjang adalah sama besar. <b>Trapesium sama kaki</b> &mdash; sudut-sudut pada alas yang sama sama besar.</div>
+    
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;"><div>a) Persegi panjang, semua sudutnya = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>b) Jajar genjang, sudut berhadapan selalu <span class="isian-inline" style="min-width:60px;"></span></div><div>c) Layang-layang, jumlah 2 sudut yang tak sama besar = <span class="isian-inline" style="min-width:90px;"></span></div><div>d) Trapesium sama kaki, sudut alas selalu <span class="isian-inline" style="min-width:60px;"></span></div><div>e) Belah ketupat sudut A=70&deg;, sudut berhadapannya (C) = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>f) Jajar genjang sudut A=110&deg;, sudut berdekatan (B) = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div></div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Specialising</span><span class="twm-tag">Convincing</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Specialising &mdash; coba kasus khusus</span>Persegi adalah jajar genjang istimewa dengan semua sudut $90^\circ$. Periksa apakah sifat &ldquo;sudut berhadapan sama besar&rdquo; dan &ldquo;sudut berdekatan berjumlah $180^\circ$&rdquo; tetap berlaku pada persegi.</div><div class="reason-item"><span class="lbl">Convincing &mdash; yakinkan dengan bukti</span>Yakinkan temanmu bahwa pada jajar genjang dengan sudut A=85&deg; dan B=95&deg;, kedua sudut itu memang berjumlah $180^\circ$ karena keduanya berdekatan (bukan kebetulan).</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Dinda berkata: &ldquo;Pada semua segiempat, sudut yang berhadapan pasti sama besar, sama seperti jajar genjang.&rdquo;</div>
+      <div class="tanya">Apakah pernyataan Dinda berlaku untuk semua jenis segiempat? Coba periksa pada trapesium sembarang (bukan trapesium sama kaki) &mdash; apakah sudut berhadapannya selalu sama besar?</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Geometri &middot; Pertemuan 3 &middot; Register B &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Geometri &middot; Pertemuan 3 dari 4</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menerapkan <b>sifat sudut layang-layang</b> dan <b>sudut trapesium</b> dalam satu soal desain hiasan sekolah.</div>
+
+    <div class="soal-utama"><span class="no">Soal 6.</span> Layang-layang hiasan mading memiliki sudut puncak 80&deg; dan sudut bawah 120&deg;. Karena sudut kiri dan kanan layang-layang selalu sama besar, dan jumlah seluruh sudut segiempat $=360^\circ$, tentukan besar sudut kiri dan kanan.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <table class="freq-table"><tr><th>Sudut</th><th>Besar</th></tr><tr><td>Puncak</td><td>80&deg;</td></tr><tr><td>Bawah</td><td>120&deg;</td></tr><tr><td>Kiri=Kanan</td><td>?</td></tr></table>
+        <span class="cap">Gambar &middot; Sudut Layang-layang</span>
+      </div>
+    </div>
+    
+
+    <div class="equation-block">$$360-80-120=160 \Rightarrow \text{kiri}=\text{kanan}=80^\circ$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: jumlahkan dua sudut yang diketahui, kurangkan dari $360^\circ$, lalu bagi dua sisanya (karena sudut kiri=kanan) &mdash; tanpa perlu menyusun persamaan aljabar formal. <i>(Guru meminta siswa membandingkan dengan menyusun PLSV terlebih dahulu &mdash; Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Trapesium sama kaki dengan sudut alas 70&deg; dan sudut atas sama besar.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Besar tiap sudut atas = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;"><div>1. Jajar genjang sudut A=100&deg;, sudut C (berhadapan) = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>2. Jajar genjang sudut A=100&deg;, sudut B (berdekatan) = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>3. Layang-layang sudut puncak 70&deg;, sudut bawah 130&deg;, sudut kiri=kanan = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>4. Trapesium sama kaki sudut alas 65&deg;, sudut atas (sama besar keduanya) = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>5. Belah ketupat sudut A=55&deg;, sudut B (berdekatan) = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>6. Persegi panjang, jumlah semua sudutnya = <span class="isian-inline" style="min-width:46px;"></span>&deg;</div><div>7. Jajar genjang dua sudut berdekatan selalu berjumlah <span class="isian-inline" style="min-width:46px;"></span>&deg;</div><div>8. Ukur sudut 1 benda segiempat di sekitarmu (buku, jendela, dsb.), tentukan jenis segiempatnya berdasarkan sudutnya.</div></div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Layang-layang sebagai bangun geometri mendapat namanya dari mainan layang-layang yang bentuknya menyerupai bangun ini &mdash; berbeda dengan belah ketupat yang semua sisinya sama panjang, layang-layang hanya punya dua pasang sisi berdekatan yang sama panjang.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Sifat sudut segiempat yang paling membantuku mengingat adalah</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol><li>Jajar genjang sudut A=115&deg;. Tentukan sudut B, C, dan D.</li><li>Layang-layang sudut puncak 90&deg;, sudut bawah 100&deg;. Tentukan sudut kiri dan kanan.</li><li>Gambar 1 segiempat pilihanmu, ukur/perkirakan sudutnya, dan periksa apakah jumlahnya $360^\circ$.</li></ol>
+    </div>
+    
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Geometri &middot; Pertemuan 3 &middot; Register B &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Geometri &middot; Pertemuan 4 dari 4</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Awsath</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat membuktikan jumlah sudut segiempat selalu 360&deg; dengan membaginya menjadi dua segitiga menggunakan diagonal.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 7.</span> Buktikan bahwa jumlah keempat sudut bangun segiempat apa pun (bukan hanya jajar genjang atau persegi) selalu $360^\circ$, dengan menggambar satu diagonal yang membagi segiempat itu menjadi dua segitiga.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div style="position:relative;width:130px;height:100px;">
+          <svg width="130" height="100" viewBox="0 0 130 100" xmlns="http://www.w3.org/2000/svg"><polygon points="15,85 115,85 100,15 30,15" fill="#E7EDFC" stroke="#0F2A4E" stroke-width="1.6"/><line x1="15" y1="85" x2="100" y2="15" stroke="#B08420" stroke-width="1.6" stroke-dasharray="3,2"/></svg>
+        </div>
+        <span class="cap">Gambar &middot; Diagonal Membagi 2 Segitiga</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$180^\circ+180^\circ=360^\circ\ \text{(2 segitiga menyusun 1 segiempat)}$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Strategi Pembuktian dengan Membagi Bangun (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Strategi <b>membagi bangun menjadi segitiga-segitiga</b> menggunakan diagonal adalah cara umum untuk membuktikan jumlah sudut poligon mana pun: segiempat $\to$ 2 segitiga ($2\times180^\circ=360^\circ$), segilima $\to$ 3 segitiga ($3\times180^\circ=540^\circ$), segienam $\to$ 4 segitiga ($4\times180^\circ=720^\circ$). Polanya: <b>banyak segitiga $=$ banyak sisi $-2$</b>.</div>
+    
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;"><div>a) Diagonal membagi segiempat menjadi <span class="isian-inline" style="min-width:34px;"></span> segitiga</div><div>b) Jumlah sudut dalam 1 segitiga = <span class="isian-inline" style="min-width:46px;"></span>&deg;</div><div>c) Jumlah sudut dalam segiempat = 2 &times; <span class="isian-inline" style="min-width:34px;"></span>&deg; = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>d) Segilima dibagi diagonal dari 1 titik sudut menjadi <span class="isian-inline" style="min-width:34px;"></span> segitiga</div><div>e) Jumlah sudut dalam segilima = <span class="isian-inline" style="min-width:34px;"></span> &times; 180&deg; = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>f) Strategi membuktikan jumlah sudut poligon adalah dengan membaginya menjadi <span class="isian-inline" style="min-width:60px;"></span></div></div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Critiquing</span><span class="twm-tag">Improving</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Critiquing &mdash; nilai kekuatan strategi pembuktian</span>Nilai apakah strategi &ldquo;membagi menjadi segitiga&rdquo; ini lebih kuat (berlaku untuk segiempat apa pun, bukan hanya jajar genjang) dibanding sekadar mengukur sudut satu contoh segiempat dengan busur derajat? Jelaskan.</div><div class="reason-item"><span class="lbl">Improving &mdash; perbaiki &amp; perluas strategi</span>Perluas strategi pembuktian ini untuk menentukan jumlah sudut dalam segienam (6 sisi). Berapa segitiga yang terbentuk, dan berapa jumlah sudutnya?</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Yoga berkata: &ldquo;Bukti jumlah sudut segiempat 360&deg; ini hanya berlaku untuk persegi dan persegi panjang, karena mereka simetris.&rdquo;</div>
+      <div class="tanya">Apakah Yoga benar? Perhatikan bahwa bukti dengan diagonal tidak menggunakan sifat simetri apa pun. Coba terapkan strategi yang sama pada segiempat sembarang (tidak simetris) untuk menunjukkan buktinya tetap berlaku.</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Geometri &middot; Pertemuan 4 &middot; Register B &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Geometri &middot; Pertemuan 4 dari 4</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>pembuktian jumlah sudut segiempat</b> dan <b>perluasannya ke segilima</b> &mdash; sintesis penutup Bidang Geometri H-3.</div>
+
+    <div class="soal-utama"><span class="no">Soal 8.</span> Logo OSIS berbentuk segilima (5 sisi). Dengan menarik 2 diagonal dari satu titik sudut, segilima terbagi menjadi 3 segitiga. (a) Buktikan jumlah sudut dalam segilima adalah $540^\circ$. (b) Jika 4 sudut segilima itu diketahui berjumlah $430^\circ$, berapa besar sudut kelima?</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <svg width="140" height="110" viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg"><polygon points="20,95 120,95 130,45 70,15 15,45" fill="#FCF6E5" stroke="#0F2A4E" stroke-width="1.6"/><line x1="20" y1="95" x2="70" y2="15" stroke="#B08420" stroke-width="1.4" stroke-dasharray="3,2"/><line x1="20" y1="95" x2="130" y2="45" stroke="#B08420" stroke-width="1.4" stroke-dasharray="3,2"/></svg>
+        <span class="cap">Gambar &middot; Segilima Dibagi 3 Segitiga</span>
+      </div>
+    </div>
+    
+
+    <div class="equation-block">$$3\times180^\circ=540^\circ\ \text{(jumlah sudut segilima)}$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: gunakan pola umum (banyak sisi $-2$) $\times180^\circ$ untuk poligon apa pun tanpa perlu menggambar ulang pembagian segitiganya setiap kali. <i>(Guru meminta siswa membandingkan dengan menggambar dan menghitung manual setiap kali &mdash; Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Segienam (6 sisi) dibagi menjadi beberapa segitiga dari satu titik sudut.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Banyak segitiga = <span class="isian-inline" style="min-width:34px;"></span> &nbsp;&nbsp; Jumlah sudut dalam segienam = <span class="isian-inline" style="min-width:40px;"></span>&deg;</div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;"><div>1. Jumlah sudut segiempat = <span class="isian-inline" style="min-width:46px;"></span>&deg;</div><div>2. Jumlah sudut segilima = <span class="isian-inline" style="min-width:46px;"></span>&deg;</div><div>3. Jumlah sudut segienam = <span class="isian-inline" style="min-width:46px;"></span>&deg;</div><div>4. Segiempat 3 sudut diketahui 90&deg;,100&deg;,85&deg;, sudut ke-4 = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>5. Segilima 4 sudut diketahui berjumlah 400&deg;, sudut ke-5 = <span class="isian-inline" style="min-width:34px;"></span>&deg;</div><div>6. Banyak segitiga dari diagonal 1 titik pada segitujuh (7 sisi) = <span class="isian-inline" style="min-width:34px;"></span></div><div>7. Jumlah sudut segitujuh = <span class="isian-inline" style="min-width:46px;"></span>&deg;</div><div>8. Gambar 1 poligon pilihanmu (5 atau 6 sisi), bagi dengan diagonal menjadi segitiga, hitung jumlah sudutnya.</div></div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Pola &ldquo;(banyak sisi $-2)\times180^\circ$&rdquo; untuk jumlah sudut poligon berlaku untuk <b>semua</b> poligon cembung (convex) dengan sisi berapa pun &mdash; ini adalah salah satu hasil paling elegan dalam geometri dasar yang menghubungkan bentuk segitiga dengan seluruh keluarga bangun datar bersisi banyak.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Strategi membagi bangun menjadi segitiga mengajarkanku bahwa</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol><li>Buktikan jumlah sudut segienam $=720^\circ$ dengan menggambar dan membagi menjadi segitiga.</li><li>Segiempat 3 sudut diketahui 95&deg;, 80&deg;, 110&deg;. Tentukan sudut ke-4.</li><li>Jelaskan dengan kata-katamu sendiri pola rumus jumlah sudut poligon $(n-2)\times180^\circ$, dan buktikan untuk $n=4$ (segiempat).</li></ol>
+    </div>
+    
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Geometri &middot; Pertemuan 4 &middot; Register B &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Data &middot; Pertemuan 1 dari 3</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Awsath</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menghitung mean, median, modus, dan jangkauan dari sekumpulan data, serta menilai keterwakilan tiap ukuran.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 1.</span> Nilai ulangan matematika 7 siswa: 6, 7, 7, 8, 9, 7, 10. Hitung mean (rata-rata), median (nilai tengah), modus (nilai tersering), dan jangkauan (selisih terbesar-terkecil) dari data ini.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#128202;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div style="font-size:8.4pt;font-weight:700;color:#0F2A4E;">Data: 6, 7, 7, 8, 9, 7, 10</div>
+        <span class="cap">Gambar &middot; Data Nilai Ulangan</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$\text{mean}=\frac{54}{7}\approx7{,}7 \quad \text{median}=7 \quad \text{modus}=7 \quad \text{jangkauan}=10-6=4$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Median untuk Banyak Data Genap (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;">Untuk data dengan <b>banyak data genap</b>, median dihitung sebagai <b>rata-rata dua nilai tengah</b> setelah data diurutkan. Contoh: data 4,6,7,9 (sudah terurut, 4 data), median $=\frac{6+7}{2}=6{,}5$. Untuk banyak data ganjil, median langsung nilai tengah setelah diurutkan (seperti pada soal utama).</div>
+    
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;"><div>a) Data 4,5,6,7,8: mean = <span class="isian-inline" style="min-width:34px;"></span></div><div>b) Data 4,5,6,7,8: median = <span class="isian-inline" style="min-width:34px;"></span></div><div>c) Data 3,5,5,7,9: modus = <span class="isian-inline" style="min-width:34px;"></span></div><div>d) Data 3,5,5,7,9: jangkauan = <span class="isian-inline" style="min-width:34px;"></span></div><div>e) Data 2,4,6,8: median (genap banyak data) = <span class="isian-inline" style="min-width:34px;"></span></div><div>f) Data dengan semua nilai berbeda, modusnya adalah <span class="isian-inline" style="min-width:60px;"></span></div></div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Characterising</span><span class="twm-tag">Classifying</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Characterising &mdash; kenali ciri tiap ukuran pemusatan</span>Apa ciri yang membedakan mean, median, dan modus sebagai ukuran &ldquo;pusat&rdquo; data? Kapan salah satu ukuran lebih tepat mewakili data dibanding yang lain (misalnya saat ada nilai ekstrem)?</div><div class="reason-item"><span class="lbl">Classifying &mdash; kelompokkan data berdasar modus</span>Kelompokkan data berikut berdasarkan jumlah modusnya (tidak ada modus / 1 modus / lebih dari 1 modus): {2,4,6,8}, {3,3,5,7}, {1,1,4,4,6}.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Salsa mengurutkan data 6,7,7,8,9,7,10 lalu langsung mengambil angka tengah tanpa mengurutkan dahulu: median $=8$ (posisi tengah data asli).</div>
+      <div class="tanya">Apakah langkah Salsa benar? Ingat bahwa median harus dihitung <i>setelah</i> data diurutkan dari kecil ke besar. Urutkan data itu terlebih dahulu, lalu tentukan median yang tepat.</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Data &middot; Pertemuan 1 &middot; Register B &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Data &middot; Pertemuan 1 dari 3</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menerapkan <b>mean, median, modus, dan jangkauan</b> untuk menilai data yang memiliki nilai ekstrem (outlier) &mdash; aplikasi analisis data tinggi badan.</div>
+
+    <div class="soal-utama"><span class="no">Soal 2.</span> Data tinggi badan 5 siswa (cm): 150, 155, 158, 160, 210 (data ke-5 tercatat salah input, seharusnya sekitar 170 tapi jadi outlier). (a) Hitung mean dan median dari data ini. (b) Manakah yang lebih tepat mewakili &ldquo;tinggi badan tipikal&rdquo; kelompok ini, mean atau median? Jelaskan.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div style="font-size:8.4pt;font-weight:700;color:#0F2A4E;">Tinggi badan (cm): 150, 155, 158, 160, 210</div>
+        <span class="cap">Gambar &middot; Data dengan Nilai Ekstrem</span>
+      </div>
+    </div>
+    
+
+    <div class="equation-block">$$\text{mean}=166{,}6 \quad \text{median}=158 \quad \text{(median lebih mewakili data)}$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: bandingkan langsung mean dan median &mdash; jika keduanya jauh berbeda, itu tanda ada nilai ekstrem (outlier) yang menarik mean menjauh dari &ldquo;pusat&rdquo; data yang sebenarnya, sehingga median lebih mewakili. <i>(Guru meminta siswa membandingkan dengan menghapus outlier dan menghitung ulang &mdash; Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Data pengeluaran jajan mingguan 5 siswa (ribu rupiah): 20, 22, 25, 23, 90.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Mean = <span class="isian-inline" style="min-width:40px;"></span> &nbsp;&nbsp; Median = <span class="isian-inline" style="min-width:40px;"></span> &nbsp;&nbsp; Mana yang lebih mewakili? <span class="isian-inline" style="min-width:50px;"></span></div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;"><div>1. Data 5,6,7,8,9: mean = <span class="isian-inline" style="min-width:34px;"></span></div><div>2. Data 5,6,7,8,9: median = <span class="isian-inline" style="min-width:34px;"></span></div><div>3. Data 2,3,3,3,5: modus = <span class="isian-inline" style="min-width:34px;"></span></div><div>4. Data 10,15,20,25: jangkauan = <span class="isian-inline" style="min-width:34px;"></span></div><div>5. Data 1,3,5,7: median (genap banyak data) = <span class="isian-inline" style="min-width:34px;"></span></div><div>6. Data dengan nilai ekstrem, ukuran yang lebih tepat mewakili adalah <span class="isian-inline" style="min-width:60px;"></span></div><div>7. Data 4,4,5,6,6,6: modus = <span class="isian-inline" style="min-width:34px;"></span></div><div>8. Kumpulkan 1 set data sederhana (nilai/usia/tinggi 5 orang di rumahmu), hitung mean, median, modus, dan jangkauannya.</div></div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Median sering dipakai untuk melaporkan data pendapatan atau harga rumah (bukan mean), karena data semacam ini biasanya memiliki beberapa nilai sangat tinggi (outlier) yang bisa membuat mean menyesatkan sebagai gambaran &ldquo;tipikal&rdquo;.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Memilih ukuran pemusatan yang tepat (mean/median/modus) penting karena</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol><li>Data 6 nilai: 70, 75, 80, 78, 72, 95. Hitung mean dan median, lalu bandingkan.</li><li>Data 8,8,9,10,12: tentukan modus dan jangkauannya.</li><li>Kumpulkan data sederhana dari rumah/kelasmu (minimal 6 data), hitung keempat ukuran (mean, median, modus, jangkauan).</li></ol>
+    </div>
+    
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Data &middot; Pertemuan 1 &middot; Register B &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Data &middot; Pertemuan 2 dari 3</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Awsath</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menghitung peluang empirik (frekuensi relatif) dari hasil percobaan berulang dan menilai keandalannya.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 3.</span> Klub sains melempar dadu sebanyak 60 kali sebagai percobaan, dan mata dadu 6 muncul sebanyak 18 kali. Hitung peluang empirik munculnya mata dadu 6 dari percobaan tersebut.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#127922;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <table class="freq-table"><tr><th>Mata Dadu</th><th>Muncul</th></tr><tr><td>6</td><td>18 dari 60</td></tr></table>
+        <span class="cap">Gambar &middot; Frekuensi Percobaan</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$P_{\text{empirik}}(6)=\frac{18}{60}=0{,}3=30\%$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Menilai Keandalan Peluang Empirik (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;"><b>Peluang empirik</b> $=\frac{\text{banyak kejadian muncul}}{\text{banyak percobaan}}$, dihitung dari data hasil percobaan <i>nyata</i> (bukan teori). Semakin <b>banyak percobaan</b> yang dilakukan, peluang empirik biasanya semakin <b>stabil dan mendekati</b> nilai peluang sebenarnya (peluang teoretik) &mdash; percobaan dengan sedikit ulangan (misalnya hanya 5 kali) cenderung memberikan hasil yang kurang mewakili.</div>
+    
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;"><div>a) Koin dilempar 50 kali, muncul angka 28 kali. Peluang empirik angka = <span class="isian-inline" style="min-width:46px;"></span></div><div>b) Dadu dilempar 40 kali, mata 3 muncul 8 kali. Peluang empirik mata 3 = <span class="isian-inline" style="min-width:46px;"></span></div><div>c) Peluang empirik selalu antara <span class="isian-inline" style="min-width:34px;"></span> dan <span class="isian-inline" style="min-width:34px;"></span></div><div>d) 100 percobaan, kejadian A muncul 35 kali, peluang empirik A = <span class="isian-inline" style="min-width:46px;"></span></div><div>e) Semakin banyak percobaan, peluang empirik biasanya semakin <span class="isian-inline" style="min-width:60px;"></span></div><div>f) Peluang empirik dihitung dari <span class="isian-inline" style="min-width:90px;"></span></div></div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Conjecturing</span><span class="twm-tag">Specialising</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Conjecturing &mdash; ajukan dugaan</span>Jika sebuah koin dilempar hanya 4 kali dan semuanya muncul angka, ajukan dugaan: apakah ini berarti peluang muncul angka pada koin itu benar-benar 100%? Mengapa hasil percobaan sedikit bisa menyesatkan?</div><div class="reason-item"><span class="lbl">Specialising &mdash; coba kasus percobaan sedikit vs banyak</span>Bandingkan peluang empirik dari 10 lemparan koin (6 angka) dengan 1.000 lemparan koin (512 angka). Peluang empirik mana yang lebih bisa dipercaya mendekati peluang sebenarnya? Jelaskan.</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Yusuf melempar koin 5 kali dan mendapat 5 kali angka berturut-turut, lalu menyimpulkan: &ldquo;Peluang muncul angka pada koin ini pasti 100%.&rdquo;</div>
+      <div class="tanya">Apakah kesimpulan Yusuf tepat? Pikirkan: dengan hanya 5 percobaan, apakah cukup untuk menyimpulkan peluang sebenarnya? Apa yang seharusnya dilakukan Yusuf untuk mendapat kesimpulan yang lebih dapat diandalkan?</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Data &middot; Pertemuan 2 &middot; Register B &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Data &middot; Pertemuan 2 dari 3</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menerapkan <b>peluang empirik</b> pada percobaan pengambilan bola berulang dengan pengembalian &mdash; aplikasi eksperimen kelas.</div>
+
+    <div class="soal-utama"><span class="no">Soal 4.</span> Klub sains melakukan percobaan mengambil bola dari kotak berisi bola merah dan biru (dengan pengembalian) sebanyak 80 kali: bola merah terambil 24 kali, bola biru 56 kali. (a) Hitung peluang empirik terambilnya bola merah. (b) Jika percobaan diulang menjadi 800 kali dengan proporsi serupa, perkirakan berapa kali bola merah akan terambil.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <table class="freq-table"><tr><th>Warna Bola</th><th>Terambil</th></tr><tr><td>Merah</td><td>24 dari 80</td></tr><tr><td>Biru</td><td>56 dari 80</td></tr></table>
+        <span class="cap">Gambar &middot; Percobaan Pengambilan Bola</span>
+      </div>
+    </div>
+    
+
+    <div class="equation-block">$$P_{\text{empirik}}(\text{merah})=\frac{24}{80}=0{,}3=30\%$$</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: gunakan peluang empirik sebagai perkiraan proporsi untuk percobaan yang lebih besar &mdash; kalikan peluang empirik dengan banyak percobaan baru, tanpa perlu mengulang percobaan sungguhan. <i>(Guru meminta siswa membandingkan dengan asumsi lain seperti proporsi tetap sama persis &mdash; Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Percobaan memutar spinner 50 kali: warna hijau muncul 15 kali.</div>
+    <div style="font-size:8.6pt;font-weight:600;">Peluang empirik hijau = <span class="isian-inline" style="min-width:46px;"></span></div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;"><div>1. Koin dilempar 60 kali, angka muncul 33 kali. Peluang empirik angka = <span class="isian-inline" style="min-width:46px;"></span></div><div>2. Dadu dilempar 90 kali, mata genap muncul 48 kali. Peluang empirik mata genap = <span class="isian-inline" style="min-width:46px;"></span></div><div>3. 120 percobaan, kejadian B muncul 45 kali, peluang empirik B = <span class="isian-inline" style="min-width:46px;"></span></div><div>4. Jika peluang empirik suatu kejadian 0,25 dari 200 percobaan, banyak kejadian muncul = <span class="isian-inline" style="min-width:46px;"></span></div><div>5. Semakin sedikit percobaan, hasil peluang empirik semakin <span class="isian-inline" style="min-width:60px;"></span> dipercaya</div><div>6. Peluang empirik selalu berupa bilangan antara <span class="isian-inline" style="min-width:34px;"></span> dan <span class="isian-inline" style="min-width:34px;"></span></div><div>7. 200 percobaan, 200 kejadian muncul, peluang empiriknya = <span class="isian-inline" style="min-width:34px;"></span></div><div>8. Lakukan percobaan sederhana sendiri (lempar koin/dadu 20 kali), catat hasilnya, hitung peluang empiriknya.</div></div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Konsep peluang empirik (frekuensi relatif) menjadi dasar bidang statistik inferensial modern &mdash; semakin banyak data yang dikumpulkan, semakin mendekati &ldquo;hukum bilangan besar&rdquo; (law of large numbers) yang pertama kali dirumuskan matematikawan Swiss Jacob Bernoulli pada awal abad ke-18.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Hal yang membuatku yakin suatu peluang empirik dapat dipercaya adalah</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol><li>Dadu dilempar 100 kali, mata 1 muncul 19 kali. Hitung peluang empiriknya.</li><li>Jelaskan mengapa 1.000 lemparan koin memberi peluang empirik yang lebih dapat dipercaya dibanding 10 lemparan.</li><li>Lakukan percobaan sederhana (lempar koin 30 kali), catat hasil, dan hitung peluang empirik munculnya masing-masing sisi.</li></ol>
+    </div>
+    
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Data &middot; Pertemuan 2 &middot; Register B &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Data &middot; Pertemuan 3 dari 3</span>
+      </div>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Awsath</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="content">
+    <div style="font-size:7.7pt;color:#5A6272;margin-bottom:6px;"><b style="color:var(--navy);">Tujuan Pembelajaran:</b> Siswa dapat menentukan ruang sampel dan peluang teoretik suatu kejadian, serta membandingkannya dengan peluang empirik.</div>
+
+    <div class="block-title"><span class="name">Blok Konsep</span><span class="mnr">MNR Langkah 1&ndash;2 &middot; CPA</span></div>
+    <div class="cpa-trail">Konkret &rarr; <b>Gambar</b> &rarr; Lambang</div>
+
+    <div class="eyebrow" style="margin-top:2px;">MNR 1 &middot; Masalah Nyata</div>
+    <div class="soal-utama"><span class="no">Soal 5.</span> Dalam permainan ular tangga, satu dadu dilempar. Tentukan ruang sampel (semua kemungkinan hasil) pelemparan dadu, lalu hitung peluang teoretik munculnya mata dadu genap.</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <div class="icon-row" style="max-width:96px;"><div class="icon-plain">&#127922;</div></div>
+        <span class="cap">Konkret</span>
+      </div>
+      <div class="cpa-arrow">&rarr;</div>
+      <div class="stage-block">
+        <div style="font-size:8.4pt;font-weight:700;color:#0F2A4E;">S = {1,2,3,4,5,6}</div>
+        <span class="cap">Gambar &middot; Ruang Sampel Dadu</span>
+      </div>
+    </div>
+
+    <div class="equation-block">$$P_{\text{teoretik}}(\text{genap})=\frac{n(\text{genap})}{n(S)}=\frac{3}{6}=0{,}5$$</div>
+
+    <div class="eyebrow" style="margin-top:4px;">MNR 2 &middot; Membandingkan Peluang Teoretik dan Empirik (Guru Memandu)</div>
+    <div style="font-size:8.6pt;margin-bottom:5px;"><b>Ruang sampel</b> ($S$) adalah himpunan semua kemungkinan hasil suatu percobaan. <b>Peluang teoretik</b> $=\frac{n(\text{kejadian})}{n(S)}$, dihitung berdasarkan <i>logika/kemungkinan</i> (bukan percobaan nyata). Berbeda dari peluang <i>empirik</i> yang dihitung dari hasil percobaan sungguhan, peluang teoretik selalu sama nilainya untuk kondisi yang sama (misalnya dadu adil), dan <b>peluang empirik cenderung mendekati peluang teoretik</b> jika jumlah percobaan sangat banyak.</div>
+    
+    <div class="eyebrow">Coba Bersama &middot; Guru Mendampingi</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px;font-size:8.4pt;font-weight:600;margin-bottom:2px;"><div>a) Ruang sampel pelemparan koin = <span class="isian-inline" style="min-width:70px;"></span></div><div>b) n(S) untuk pelemparan 1 dadu = <span class="isian-inline" style="min-width:34px;"></span></div><div>c) Peluang teoretik muncul mata dadu &gt;4 (yaitu 5,6) = <span class="isian-inline" style="min-width:46px;"></span></div><div>d) Peluang teoretik muncul angka pada koin = <span class="isian-inline" style="min-width:46px;"></span></div><div>e) Peluang teoretik kejadian mustahil = <span class="isian-inline" style="min-width:34px;"></span></div><div>f) Peluang teoretik kejadian pasti = <span class="isian-inline" style="min-width:34px;"></span></div></div>
+
+    <div class="block-sep" style="margin:6px 0 4px;"></div>
+
+    <div class="block-title"><span class="name">Blok Nalar</span><span class="mnr">MNR Langkah 3 &middot; TWM</span></div>
+    <div style="margin:3px 0 8px;">
+      <span class="twm-tag">Convincing</span><span class="twm-tag">Generalising</span>
+      <span style="font-size:7.6pt;color:#8A91A0;font-weight:600;">&mdash; guru wajib menyebut kedua istilah ini secara eksplisit selama diskusi</span>
+    </div>
+
+    <div class="reason-item"><span class="lbl">Convincing &mdash; yakinkan dengan perbandingan</span>Bandingkan hasil peluang empirik mata dadu 6 dari percobaan pertemuan sebelumnya (30%) dengan peluang teoretiknya ($\frac16\approx16{,}7\%$). Yakinkan temanmu mengapa keduanya bisa berbeda meski dadu yang sama.</div><div class="reason-item"><span class="lbl">Generalising &mdash; rumuskan hubungan umum</span>Rumuskan hubungan umum antara peluang empirik dan peluang teoretik: apa yang akan terjadi pada peluang empirik jika jumlah percobaan ditambah menjadi sangat banyak (misalnya 10.000 kali)?</div>
+
+    <div class="kesalahan-box">
+      <span class="tag">Cermati Kesalahan Ini &mdash; Dianalisis Bersama</span>
+      <div class="salah">Ardi berkata: &ldquo;Karena peluang teoretik muncul mata dadu 6 adalah $\frac16$, maka dari 6 kali lemparan pasti akan muncul mata dadu 6 tepat 1 kali.&rdquo;</div>
+      <div class="tanya">Apakah pernyataan Ardi tepat? Peluang teoretik menyatakan kemungkinan <i>jangka panjang</i>, bukan jaminan hasil pasti pada percobaan singkat. Jelaskan mengapa hasil 6 lemparan bisa saja tidak memunculkan mata dadu 6 sama sekali, atau muncul lebih dari 1 kali.</div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Data &middot; Pertemuan 3 &middot; Register B &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="level-strip">
+      <div class="chips-row">
+        <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+        <span class="thabaqah-label">TAHLIL &middot; analisis</span>
+        <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+        <span class="chip chip-bidang">Data &middot; Pertemuan 3 dari 3</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block-title"><span class="name">Blok Pemecahan Masalah</span><span class="mnr">MNR Langkah 4&ndash;5</span></div>
+    <div style="font-size:7.5pt;color:#8A91A0;margin-bottom:4px;">Menggabungkan <b>peluang teoretik</b>, <b>peluang empirik</b>, dan <b>ruang sampel</b> &mdash; sintesis penutup Bidang Data H-3.</div>
+
+    <div class="soal-utama"><span class="no">Soal 6.</span> Data hasil percobaan dadu (Pertemuan 2) menunjukkan peluang empirik mata dadu 6 sebesar 30% dari 60 lemparan, sedangkan peluang teoretiknya $\frac16\approx16{,}7\%$. (a) Jelaskan mengapa kedua nilai peluang ini berbeda meski memakai dadu yang sama. (b) Apa yang akan terjadi pada peluang empirik jika percobaan diperbanyak hingga 6.000 kali?</div>
+
+    <div class="illustration-row">
+      <div class="stage-block">
+        <table class="freq-table"><tr><th>Sumber</th><th>Peluang muncul 6</th></tr><tr><td>Teoretik</td><td>16,7%</td></tr><tr><td>Empirik (60x)</td><td>30%</td></tr></table>
+        <span class="cap">Gambar &middot; Perbandingan Peluang</span>
+      </div>
+    </div>
+    
+
+    <div class="word-block">Selisih besar antara peluang empirik (30%) dan teoretik (16,7%) pada 60 percobaan wajar terjadi karena jumlah percobaan masih relatif sedikit.</div>
+
+    <div style="font-size:8.5pt;font-weight:600;color:#3A4252;margin-bottom:3px;">Cara lebih cepat: ingat prinsip umum &mdash; peluang empirik dari percobaan sedikit wajar menyimpang dari peluang teoretik, tetapi semakin banyak percobaan, keduanya akan semakin mendekat (hukum bilangan besar). <i>(Guru meminta siswa membandingkan dengan asumsi bahwa penyimpangan berarti dadu curang &mdash; Critiquing &amp; Improving.)</i></div>
+
+    <div class="eyebrow" style="margin-top:3px;">Sekarang Giliranmu</div>
+    <div style="font-size:8.6pt;font-weight:600;margin-bottom:1px;">Ruang sampel pengambilan kartu dari 4 kartu bernomor 1,2,3,4.</div>
+    <div style="font-size:8.6pt;font-weight:600;">n(S) = <span class="isian-inline" style="min-width:34px;"></span> &nbsp;&nbsp; Peluang teoretik terambil kartu bernomor genap = <span class="isian-inline" style="min-width:46px;"></span></div>
+
+    <div class="eyebrow" style="margin-top:6px;">Latihan Mandiri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:8.3pt;font-weight:600;"><div>1. Ruang sampel pelemparan 1 koin = <span class="isian-inline" style="min-width:70px;"></span></div><div>2. n(S) untuk pengambilan 1 kartu dari 10 kartu bernomor = <span class="isian-inline" style="min-width:34px;"></span></div><div>3. Peluang teoretik muncul mata dadu &lt;3 (yaitu 1,2) = <span class="isian-inline" style="min-width:46px;"></span></div><div>4. Jika n(S)=8 dan n(kejadian)=2, peluang teoretiknya = <span class="isian-inline" style="min-width:46px;"></span></div><div>5. Semakin banyak percobaan, peluang empirik semakin mendekati peluang <span class="isian-inline" style="min-width:60px;"></span></div><div>6. Peluang teoretik dihitung dari <span class="isian-inline" style="min-width:90px;"></span></div></div>
+
+    <div class="fun-fact-box">
+      <span class="tag">Tahukah Kamu?</span>
+      <p>Hubungan peluang empirik dan teoretik dikenal sebagai <i>hukum bilangan besar</i>, mendasari mengapa kasino dan asuransi bisa memprediksi keuntungan jangka panjang.</p>
+    </div>
+
+    <div class="block-sep"></div>
+
+    <div class="block-title"><span class="name">Penutup</span><span class="mnr">MNR Langkah 6</span></div>
+
+    <div class="eyebrow" style="margin-top:2px;">Refleksi Singkat</div>
+    <div class="reflect-row">
+      <span>Perbedaan peluang empirik dan teoretik menjadi jelas bagiku setelah</span><span class="line" style="border-bottom:1px solid #99A1B3;flex:1;min-width:120px;height:12px;"></span>
+    </div>
+
+    <div class="pr-box">
+      <span class="tag">Pekerjaan Rumah</span>
+      <ol><li>Tentukan ruang sampel dan peluang teoretik munculnya kartu bergambar dari setumpuk 20 kartu (5 bergambar, 15 tidak).</li><li>Jelaskan dengan kata-katamu sendiri mengapa peluang empirik dari sedikit percobaan bisa jauh berbeda dari peluang teoretik.</li><li>Bandingkan hasil percobaanmu sendiri (PR pertemuan sebelumnya) dengan peluang teoretik yang sesuai, tuliskan kesimpulanmu.</li></ol>
+    </div>
+    <div class="catatan-teal"><b>Catatan Guru &mdash; Penutup Marhalah H-3:</b> Seluruh 5 Bidang Marhalah H-3 telah selesai. Langkah berikutnya: siswa mengerjakan <b>Latihan Soal</b> (25 butir campuran), lalu <b>TAM</b> untuk naik ke Marhalah H-4.</div>
+
+    <div class="checklist-row">
+      <span class="ck"><span class="box"></span>Refleksi selesai</span>
+      <span class="ck"><span class="box"></span>PR dicatat siswa</span>
+      <span class="ck"><span class="box"></span>Doa penutup</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Data &middot; Pertemuan 3 &middot; Register B &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="scope-strip">
+      <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+      <span class="chip chip-bidang">Latihan Soal &middot; Sebelum TAM</span>
+      <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+      <span class="scope-count">25 butir campuran &middot; 5 Bidang &middot; Kumulatif Pertemuan 1&ndash;13 &middot; Hal. 1/2</span>
+    </div>
+  </div>
+  <div class="student-bar">
+    <div>Nama: <span>&nbsp;</span></div>
+    <div>Kelompok: <span>Awsath</span></div>
+    <div>Tanggal: <span>&nbsp;</span></div>
+  </div>
+  <div class="content">
+<div class="ls-bagian-label"><span>Bagian 1 &middot; Bilangan</span><span class="src">Pertemuan 1 &middot; 3 butir</span></div><div class="ls-item"><span class="no">1.</span><div class="body">Hitung: $3\frac14+2{,}6$.</div></div><div class="ls-item"><span class="no">2.</span><div class="body">Keliling segitiga dengan sisi 2,5 m; $3\frac12$ m; 1,8 m. Hitung kelilingnya.</div></div><div class="ls-item"><span class="no">3.</span><div class="body">Rata-rata dari 6,4; $7\frac12$; dan 8,1. Hitung rata-ratanya.<span class="ls-nalar-tag">NALAR</span><div class="scratch-area"></div></div></div><div class="ls-bagian-label"><span>Bagian 2 &middot; Aljabar</span><span class="src">Pertemuan 1 &middot; 2 butir</span></div><div class="ls-item"><span class="no">4.</span><div class="body">Keliling persegi panjang $2p+2(9)=40$. Tentukan $p$.</div></div><div class="ls-item"><span class="no">5.</span><div class="body">Rata-rata 4 data adalah 70, tiga diantaranya berjumlah 195. Tentukan data ke-4.<span class="ls-nalar-tag">NALAR</span><div class="scratch-area"></div></div></div><div class="ls-bagian-label"><span>Bagian 3 &middot; Pengukuran</span><span class="src">Pertemuan 1&ndash;4 &middot; 8 butir</span></div><div class="ls-item"><span class="no">6.</span><div class="body">Segitiga siku-siku kaki 9 dan 12. Hitung sisi miring, keliling, dan luas.</div></div><div class="ls-item"><span class="no">7.</span><div class="body">Jajar genjang alas 14, tinggi 8. Hitung luasnya.</div></div><div class="ls-item"><span class="no">8.</span><div class="body">Trapesium sisi sejajar 10 dan 16, tinggi 6. Hitung luasnya.</div></div><div class="ls-item"><span class="no">9.</span><div class="body">Belah ketupat diagonal 12 dan 9. Hitung luasnya.</div></div><div class="ls-item"><span class="no">10.</span><div class="body">Balok 7&times;5&times;4. Hitung luas permukaannya.</div></div><div class="ls-item"><span class="no">11.</span><div class="body">Kubus sisi 6. Hitung luas permukaan dan volumenya.</div></div><div class="ls-item"><span class="no">12.</span><div class="body">Limas alas luas 30, tinggi 9. Hitung volumenya.<span class="ls-nalar-tag">NALAR</span><div class="scratch-area"></div></div></div><div class="ls-item"><span class="no">13.</span><div class="body">Jelaskan mengapa rumus volume limas adalah $\frac13$ dari rumus volume prisma dengan alas dan tinggi sama.<span class="ls-nalar-tag">NALAR</span><div class="scratch-area"></div></div></div></div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Latihan Soal Sebelum TAM &middot; Register B &middot; Hal. 1/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Modul Konsep</div>
+        <div class="brand-tagline">Sistem Belajar Berbasis Penguasaan</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="scope-strip">
+      <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+      <span class="chip chip-bidang">Latihan Soal &middot; Sebelum TAM</span>
+      <span class="chip chip-register">Register B &middot; 10&ndash;12 th</span>
+      <span class="scope-count">25 butir campuran &middot; 5 Bidang &middot; Kumulatif Pertemuan 1&ndash;13 &middot; Hal. 2/2</span>
+    </div>
+  </div>
+  <div class="content">
+<div class="ls-bagian-label"><span>Bagian 4 &middot; Geometri</span><span class="src">Pertemuan 1&ndash;4 &middot; 7 butir</span></div><div class="ls-item"><span class="no">14.</span><div class="body">Dua garis sejajar dipotong transversal, salah satu sudut 105&deg;. Tentukan sudut sehadap dan sudut dalam berseberangannya.</div></div><div class="ls-item"><span class="no">15.</span><div class="body">Segitiga dengan sudut 48&deg; dan 65&deg;. Tentukan sudut ketiga dan jenis segitiganya menurut sudut.</div></div><div class="ls-item"><span class="no">16.</span><div class="body">Sudut luar segitiga 125&deg;, salah satu sudut dalam tak berdekatan 70&deg;. Tentukan sudut dalam tak berdekatan lainnya.<span class="ls-nalar-tag">NALAR</span><div class="scratch-area"></div></div></div><div class="ls-item"><span class="no">17.</span><div class="body">Jajar genjang sudut A=95&deg;. Tentukan sudut B, C, dan D.</div></div><div class="ls-item"><span class="no">18.</span><div class="body">Layang-layang sudut puncak 75&deg;, sudut bawah 115&deg;. Tentukan sudut kiri dan kanan.</div></div><div class="ls-item"><span class="no">19.</span><div class="body">Buktikan jumlah sudut segienam (6 sisi) $=720^\circ$ menggunakan strategi pembagian segitiga.<span class="ls-nalar-tag">NALAR</span><div class="scratch-area"></div></div></div><div class="ls-item"><span class="no">20.</span><div class="body">Segiempat 3 sudut diketahui 100&deg;, 85&deg;, 90&deg;. Tentukan sudut ke-4.</div></div><div class="ls-bagian-label"><span>Bagian 5 &middot; Data</span><span class="src">Pertemuan 1&ndash;3 &middot; 3 butir</span></div><div class="ls-item"><span class="no">21.</span><div class="body">Data 7 nilai: 65, 70, 75, 80, 72, 78, 90. Hitung mean, median, modus (jika ada), dan jangkauan.</div></div><div class="ls-item"><span class="no">22.</span><div class="body">Dadu dilempar 50 kali, mata 4 muncul 12 kali. Hitung peluang empirik dan peluang teoretik mata 4, lalu bandingkan.<span class="ls-nalar-tag">NALAR</span><div class="scratch-area"></div></div></div><div class="ls-item"><span class="no">23.</span><div class="body">Tentukan ruang sampel dan peluang teoretik terambilnya kartu bernomor ganjil dari 10 kartu bernomor 1&ndash;10.</div></div><div class="ls-bagian-label"><span>Bagian 6 &middot; Campuran</span><span class="src">Lintas Bidang &middot; 2 butir</span></div><div class="ls-item"><span class="no">24.</span><div class="body">Taman berbentuk segitiga siku-siku kaki $3x$ dan $4x$, dengan keliling $3x+4x+5x=48$. Tentukan $x$, lalu hitung luas taman.<span class="ls-nalar-tag">NALAR</span><div class="scratch-area"></div></div></div><div class="ls-item"><span class="no">25.</span><div class="body">Data nilai 5 kelompok: 70, 75, $x$, 80, 85 memiliki mean 78. Tentukan $x$, lalu tentukan median dari kelima data tersebut.<span class="ls-nalar-tag">NALAR</span><div class="scratch-area"></div></div></div></div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dilarang menyebarluaskan tanpa izin.</span>
+    <span>Marhalah H-3 &middot; Latihan Soal Sebelum TAM &middot; Register B &middot; Hal. 2/2</span>
+  </div>
+</section>
+<section class="page">
+  <div class="page-header">
+    <div class="warn-bar">Dokumen Guru &middot; Bukan Untuk Siswa</div>
+    <div class="brand-bar"></div>
+    <div class="header-inner">
+      <div class="brand-left">
+        <div class="brand-name">Kunci Jawaban</div>
+        <div class="brand-tagline">Latihan Soal Sebelum TAM &middot; Marhalah H-3</div>
+      </div>
+      <img class="brand-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6DOIPPrx0xZNCHunQq0u3JckHkKoZ9zvvYa97utTlK6K2lxEs4g3B-AA3su9rqunOJX2AZuUmTKN7FE5OLFb928IuVS8v9mArViUfNmYPdjcf8tca0yPkXAtlZL_pXzWc3qWeHJsf1xaBABJk4Z8Mz626t16RQB8_ykpoHTdrWayr76biVUw3pZSr26Db/s4644/LOGO%20BIS.png" alt="Logo Bimbel Insan Sejahtera" />
+    </div>
+    <div class="scope-strip">
+      <span class="chip chip-marhalah" style="background:#2F6FED">H-3</span>
+      <span class="chip chip-bidang">25 Butir &middot; 5 Bidang &middot; Register B</span>
+      <span class="scope-count">Simpan terpisah dari lembar siswa</span>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="kunci-grid">
+<div class="kunci-bagian-label">Bagian 1 &middot; Bilangan</div><div class="kunci-item"><span class="no">1.</span><span class="ans"><b>$3{,}25+2{,}6=5{,}85$</b></span></div><div class="kunci-item"><span class="no">2.</span><span class="ans"><b>$2{,}5+3{,}5+1{,}8=7{,}8$ m</b></span></div><div class="kunci-item"><span class="no">3.</span><span class="ans"><b>$\frac{6{,}4+7{,}5+8{,}1}{3}=7{,}33$</b></span></div><div class="kunci-bagian-label">Bagian 2 &middot; Aljabar</div><div class="kunci-item"><span class="no">4.</span><span class="ans"><b>$2p+18=40 \Rightarrow p=11$</b></span></div><div class="kunci-item"><span class="no">5.</span><span class="ans"><b>$70\times4=280;\ 280-195=85$</b></span></div><div class="kunci-bagian-label">Bagian 3 &middot; Pengukuran</div><div class="kunci-item"><span class="no">6.</span><span class="ans"><b>sisi miring$=15$; keliling$=36$; luas$=54$</b></span></div><div class="kunci-item"><span class="no">7.</span><span class="ans"><b>$14\times8=112$</b></span></div><div class="kunci-item"><span class="no">8.</span><span class="ans"><b>$\frac12(10+16)\times6=78$</b></span></div><div class="kunci-item"><span class="no">9.</span><span class="ans"><b>$\frac12\times12\times9=54$</b></span></div><div class="kunci-item"><span class="no">10.</span><span class="ans"><b>$2(35+28+20)=166$</b></span></div><div class="kunci-item"><span class="no">11.</span><span class="ans"><b>luas permukaan$=216$; volume$=216$</b></span></div><div class="kunci-item"><span class="no">12.</span><span class="ans"><b>$\frac13\times30\times9=90$</b></span></div><div class="kunci-item"><span class="no">13.</span><span class="ans"><b>3 limas kongruen bisa disusun membentuk 1 prisma dengan alas &amp; tinggi sama, sehingga volume limas $=\frac13$ prisma</b></span></div><div class="kunci-bagian-label">Bagian 4 &middot; Geometri</div><div class="kunci-item"><span class="no">14.</span><span class="ans"><b>sehadap$=105^{\circ}$; berseberangan$=75^{\circ}$</b></span></div><div class="kunci-item"><span class="no">15.</span><span class="ans"><b>sudut ketiga$=67^{\circ}$; segitiga lancip</b></span></div><div class="kunci-item"><span class="no">16.</span><span class="ans"><b>$125-70=55^{\circ}$</b></span></div><div class="kunci-item"><span class="no">17.</span><span class="ans"><b>B$=85^{\circ}$; C$=95^{\circ}$; D$=85^{\circ}$</b></span></div><div class="kunci-item"><span class="no">18.</span><span class="ans"><b>$360-75-115=170;$ kiri$=$kanan$=85^{\circ}$</b></span></div><div class="kunci-item"><span class="no">19.</span><span class="ans"><b>segienam dibagi diagonal dari 1 titik $=4$ segitiga; $4\times180^{\circ}=720^{\circ}$</b></span></div><div class="kunci-item"><span class="no">20.</span><span class="ans"><b>$360-100-85-90=85^{\circ}$</b></span></div><div class="kunci-bagian-label">Bagian 5 &middot; Data</div><div class="kunci-item"><span class="no">21.</span><span class="ans"><b>mean$\approx75{,}7$; median$=75$; tidak ada modus (semua beda); jangkauan$=25$</b></span></div><div class="kunci-item"><span class="no">22.</span><span class="ans"><b>empirik$=\frac{12}{50}=24\%$; teoretik$=\frac16\approx16{,}7\%$; berbeda karena percobaan relatif sedikit</b></span></div><div class="kunci-item"><span class="no">23.</span><span class="ans"><b>n(S)$=10$; ganjil$=\{1,3,5,7,9\}$; peluang$=\frac{5}{10}=0{,}5$</b></span></div><div class="kunci-bagian-label">Bagian 6 &middot; Campuran</div><div class="kunci-item"><span class="no">24.</span><span class="ans"><b>$12x=48 \Rightarrow x=4$; kaki$=12$ dan $16$; luas$=\frac12\times12\times16=96$</b></span></div><div class="kunci-item"><span class="no">25.</span><span class="ans"><b>$70+75+x+80+85=390 \Rightarrow x=80$; data terurut 70,75,80,80,85; median$=80$</b></span></div>
+    </div>
+
+    <div class="catatan-navy"><b>Catatan Koreksi (porsi nalar):</b> Untuk butir NALAR (No. 3, 5, 12, 13, 16, 19, 22, 24, 25), nilai bukan hanya jawaban akhir tetapi juga alasan yang ditulis siswa di <i>scratch-area</i>. Jawaban benar tanpa penjelasan yang masuk akal dianggap penguasaan parsial.</div>
+
+    <div class="catatan-gold"><b>Panduan Skor:</b> 16 butir non-nalar @ 3,75 poin = 60 poin. 9 butir NALAR @ &asymp;4,4 poin (mencakup proses &amp; alasan) = 40 poin. Total 100 poin. Ambang kelulusan menuju TAM Marhalah H-3: <b>85%</b> (85 poin), dengan syarat tambahan minimal 6 dari 9 butir NALAR terjawab dengan alasan yang benar.</div>
+  </div>
+  <div class="page-footer">
+    <span>&copy; 2026 Bimbel Insan Sejahtera &mdash; Dokumen guru, dilarang disebarluaskan ke siswa.</span>
+    <span>Kunci Jawaban &middot; Marhalah H-3 &middot; Latihan Soal Sebelum TAM &middot; Register B</span>
+  </div>
+</section>
+</div>
+</body>
+</html>
