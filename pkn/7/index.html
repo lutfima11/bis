@@ -170,6 +170,9 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); colo
 .logo-sub { font-size: 11px; color: var(--text2); }
 .header-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
 
+.fs-btn { width: 32px; height: 32px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface2); color: var(--text2); font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; flex-shrink: 0; }
+.fs-btn:hover { background: var(--blue-bg); border-color: var(--blue-border); color: var(--blue); }
+
 .packet-badge { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--purple-bg); border: 1px solid var(--purple-border); color: var(--purple); letter-spacing: 0.5px; text-transform: uppercase; }
 
 .timer-wrap { display: flex; align-items: center; gap: 6px; background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 5px 14px; }
@@ -417,10 +420,9 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); colo
   <div class="modal-box">
     <div class="modal-icon">📋</div>
     <div class="modal-title amber">Selesaikan Ulangan?</div>
-    <p class="modal-msg">Pastikan semua jawabanmu (termasuk esai) sudah benar sebelum mengakhiri ulangan. <strong>Jawaban tidak bisa diubah setelah selesai.</strong></p>
-    <div class="confirm-stats">
-      <div class="cs-box"><div class="cs-val cs-green" id="csBengar">0</div><div class="cs-lbl">✓ Poin Benar</div></div>
-      <div class="cs-box"><div class="cs-val cs-red" id="csSalah">0</div><div class="cs-lbl">✗ Poin Salah</div></div>
+    <p class="modal-msg">Pastikan semua jawabanmu (termasuk esai) sudah benar sebelum mengakhiri ulangan. <strong>Jawaban tidak bisa diubah setelah selesai.</strong> Nilai baru akan muncul setelah kamu menekan "Ya, Selesaikan".</p>
+    <div class="confirm-stats" style="grid-template-columns:repeat(2,1fr)">
+      <div class="cs-box"><div class="cs-val cs-green" id="csTerjawab">0</div><div class="cs-lbl">📝 Terjawab</div></div>
       <div class="cs-box"><div class="cs-val cs-amber" id="csSkip">0</div><div class="cs-lbl">— Belum Dijawab</div></div>
     </div>
     <div class="unanswered-list" id="unansweredWarning" style="display:none"></div>
@@ -443,11 +445,12 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); colo
       </div>
       <div class="header-right">
         <div class="packet-badge" id="headerPacket">PAKET —</div>
+        <button class="fs-btn" id="fsBtn" onclick="toggleFullscreen()" title="Mode Layar Penuh">⛶</button>
         <div class="timer-wrap">
           <span class="timer-icon">⏱</span>
           <span class="timer-val" id="timerVal">45:00</span>
         </div>
-        <div class="header-stats">
+        <div class="header-stats" id="headerStats" style="display:none">
           <div class="hstat"><div class="hstat-dot" style="background:var(--green)"></div><span class="hstat-val" id="hCorrect">0</span></div>
           <span style="color:var(--border2)">|</span>
           <div class="hstat"><div class="hstat-dot" style="background:var(--red)"></div><span class="hstat-val" id="hWrong">0</span></div>
@@ -584,8 +587,38 @@ function startExam() {
   document.getElementById('identityScreen').style.display = 'none';
   document.getElementById('examScreen').style.display     = 'block';
   window.scrollTo(0,0);
+  enterFullscreen();
   startTimer();
 }
+
+// ──────────────────────────────────────────────────────────────
+// FULLSCREEN (tampilan penuh browser, sembunyikan bar tab/alamat)
+// ──────────────────────────────────────────────────────────────
+function enterFullscreen() {
+  const el  = document.documentElement;
+  const req = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+  if (req) { try { req.call(el); } catch(e) {} }
+}
+
+function toggleFullscreen() {
+  const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+  if (isFs) {
+    if (document.exitFullscreen)        document.exitFullscreen();
+    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+  } else {
+    enterFullscreen();
+  }
+}
+
+function updateFsBtn() {
+  const btn = document.getElementById('fsBtn');
+  if (!btn) return;
+  const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+  btn.textContent = isFs ? '⤢' : '⛶';
+  btn.title = isFs ? 'Keluar Layar Penuh' : 'Masuk Layar Penuh';
+}
+document.addEventListener('fullscreenchange', updateFsBtn);
+document.addEventListener('webkitfullscreenchange', updateFsBtn);
 
 // ──────────────────────────────────────────────────────────────
 // RENDER
@@ -746,6 +779,7 @@ function startTimer() {
 
 function forceSubmit() {
   document.getElementById('timeModal').classList.remove('show');
+  gradeAllAnswers();
   showResult();
 }
 
@@ -780,14 +814,11 @@ function showExplanation(qNum, cls, label, text) {
 // ──────────────────────────────────────────────────────────────
 function answerPG(qNum, opt) {
   if (state.map[qNum]) return;
-  const q = findQuestion(qNum);
-  const isCorrect = opt === q.correct;
 
   state.map[qNum] = { type:'pg', opt: opt };
   state.answeredQ++;
-  if (isCorrect) state.pointsEarned += 1; else state.pointsWrong += 1;
 
-  setQNumState(qNum, isCorrect ? 'answered-correct' : 'answered-wrong', isCorrect ? '✓' : '✗');
+  setQNumState(qNum, 'answered-neutral', '✓');
 
   const card   = document.getElementById('qc' + qNum);
   const opts   = card.querySelectorAll('.option');
@@ -795,11 +826,9 @@ function answerPG(qNum, opt) {
   opts.forEach((el, i) => {
     el.onclick = null;
     el.classList.add('locked');
-    if (labels[i] === opt && !isCorrect) el.classList.add('wrong');
-    if (labels[i] === q.correct)         el.classList.add(isCorrect ? 'correct' : 'show-correct');
+    if (labels[i] === opt) el.classList.add('selected');
   });
 
-  showExplanation(qNum, isCorrect ? 'correct' : 'wrong', isCorrect ? '✓ Benar!' : '✗ Kurang tepat.', q.exp);
   afterAnswerUpdate();
 }
 
@@ -819,40 +848,22 @@ function togglePGK(qNum, lbl) {
 
 function submitPGK(qNum) {
   if (state.map[qNum]) return;
-  const q = findQuestion(qNum);
   const selected = pgkSelections[qNum] ? Array.from(pgkSelections[qNum]).sort() : [];
   if (selected.length === 0) return; // minta pilih dulu
 
-  const correctSorted = [...q.correct].sort();
-  const isFullyCorrect = selected.length === correctSorted.length &&
-                          selected.every((v,i) => v === correctSorted[i]);
-
   state.map[qNum] = { type:'pgk', opts: selected };
   state.answeredQ++;
-  if (isFullyCorrect) state.pointsEarned += 1; else state.pointsWrong += 1;
 
-  setQNumState(qNum, isFullyCorrect ? 'answered-correct' : 'answered-wrong', isFullyCorrect ? '✓' : '✗');
+  setQNumState(qNum, 'answered-neutral', '✓');
 
   const card = document.getElementById('qc' + qNum);
   const opts = card.querySelectorAll('.option');
-  const labels = ['A','B','C','D','E'];
-  opts.forEach((el, i) => {
+  opts.forEach((el) => {
     el.onclick = null;
     el.classList.add('locked');
-    const lbl = labels[i];
-    if (!q.opts[i]) return;
-    const wasSelected  = selected.includes(lbl);
-    const shouldBeSel  = correctSorted.includes(lbl);
-    if (wasSelected && shouldBeSel)      el.classList.add('correct');
-    else if (wasSelected && !shouldBeSel) el.classList.add('wrong');
-    else if (!wasSelected && shouldBeSel) el.classList.add('show-correct');
   });
   const btn = document.getElementById('btnjawab' + qNum);
   if (btn) { btn.disabled = true; btn.textContent = 'Terkunci'; }
-
-  showExplanation(qNum, isFullyCorrect ? 'correct' : 'wrong',
-    isFullyCorrect ? '✓ Benar Semua!' : '✗ Belum tepat.',
-    q.exp + ' <em>(Jawaban benar: ' + correctSorted.join(', ') + ')</em>');
 
   afterAnswerUpdate();
 }
@@ -866,40 +877,132 @@ function answerKat(qNum, idx, lbl) {
   const rec = state.map[qNum];
   if (rec.answers[idx] !== undefined) return; // pernyataan ini sudah dijawab
 
-  const stmt = q.statements[idx];
-  const isCorrect = lbl === stmt.correct;
   rec.answers[idx] = lbl;
-
-  if (isCorrect) state.pointsEarned += 1; else state.pointsWrong += 1;
 
   const safe = (s) => s.replace(/\s+/g,'');
   q.labels.forEach(l => {
     const el = document.getElementById('katbtn' + qNum + '_' + idx + '_' + safe(l));
     el.onclick = null;
     el.classList.add('locked');
-    if (l === lbl && !isCorrect) el.classList.add('wrong');
-    if (l === stmt.correct)      el.classList.add(isCorrect ? 'correct' : 'show-correct');
+    if (l === lbl) el.classList.add('selected');
   });
 
-  // Jika semua pernyataan pada soal ini sudah dijawab, tandai soal selesai + tampilkan status
+  // Jika semua pernyataan pada soal ini sudah dijawab, tandai soal selesai (netral, belum dinilai)
   const totalStmt = q.statements.length;
   const answeredStmt = Object.keys(rec.answers).length;
   if (answeredStmt === totalStmt) {
     state.answeredQ++;
-    let correctCount = 0;
-    q.statements.forEach((s, i) => { if (rec.answers[i] === s.correct) correctCount++; });
-    let cls, label;
-    if (correctCount === totalStmt)      { cls='answered-correct'; label='✓'; }
-    else if (correctCount === 0)         { cls='answered-wrong';   label='✗'; }
-    else                                  { cls='answered-partial'; label=correctCount+'/'+totalStmt; }
-    setQNumState(qNum, cls, label);
-
-    const expCls = correctCount===totalStmt ? 'correct' : (correctCount===0 ? 'wrong' : 'partial');
-    const expLbl = correctCount===totalStmt ? '✓ Semua Benar!' : (correctCount===0 ? '✗ Semua Kurang Tepat.' : '± Sebagian Benar (' + correctCount + '/' + totalStmt + ').');
-    showExplanation(qNum, expCls, expLbl, 'Setiap pernyataan bernilai 1 poin.');
-
+    setQNumState(qNum, 'answered-neutral', '✓');
     afterAnswerUpdate();
   }
+}
+
+// ──────────────────────────────────────────────────────────────
+// KOREKSI — dijalankan sekali saat submit, mengungkap semua kunci
+// jawaban + skor sekaligus (tidak lagi per-klik)
+// ──────────────────────────────────────────────────────────────
+function gradeAllAnswers() {
+  const pk = currentPacketData;
+  const safe = (s) => s.replace(/\s+/g,'');
+
+  pk.sections.forEach(sec => {
+    sec.pg.forEach(q => {
+      const rec    = state.map[q.n];
+      const card   = document.getElementById('qc' + q.n);
+      const opts   = card.querySelectorAll('.option');
+      const labels = ['A','B','C','D'];
+
+      if (rec) {
+        const isCorrect = rec.opt === q.correct;
+        if (isCorrect) state.pointsEarned += 1; else state.pointsWrong += 1;
+        setQNumState(q.n, isCorrect ? 'answered-correct' : 'answered-wrong', isCorrect ? '✓' : '✗');
+        opts.forEach((el, i) => {
+          if (labels[i] === rec.opt && !isCorrect) el.classList.add('wrong');
+          if (labels[i] === q.correct)              el.classList.add(isCorrect ? 'correct' : 'show-correct');
+        });
+        showExplanation(q.n, isCorrect ? 'correct' : 'wrong', isCorrect ? '✓ Benar!' : '✗ Kurang tepat.', q.exp);
+      } else {
+        setQNumState(q.n, 'answered-wrong', '✗');
+        opts.forEach((el, i) => { if (labels[i] === q.correct) el.classList.add('show-correct'); });
+        showExplanation(q.n, 'wrong', '✗ Belum dijawab.', q.exp);
+      }
+    });
+
+    sec.pgk.forEach(q => {
+      const rec          = state.map[q.n];
+      const card         = document.getElementById('qc' + q.n);
+      const opts         = card.querySelectorAll('.option');
+      const labels       = ['A','B','C','D','E'];
+      const correctSorted = [...q.correct].sort();
+
+      if (rec) {
+        const selected = rec.opts;
+        const isFullyCorrect = selected.length === correctSorted.length &&
+                                selected.every((v,i) => v === correctSorted[i]);
+        if (isFullyCorrect) state.pointsEarned += 1; else state.pointsWrong += 1;
+        setQNumState(q.n, isFullyCorrect ? 'answered-correct' : 'answered-wrong', isFullyCorrect ? '✓' : '✗');
+        opts.forEach((el, i) => {
+          const lbl = labels[i];
+          if (!q.opts[i]) return;
+          const wasSelected = selected.includes(lbl);
+          const shouldBeSel = correctSorted.includes(lbl);
+          if (wasSelected && shouldBeSel)       el.classList.add('correct');
+          else if (wasSelected && !shouldBeSel) el.classList.add('wrong');
+          else if (!wasSelected && shouldBeSel) el.classList.add('show-correct');
+        });
+        showExplanation(q.n, isFullyCorrect ? 'correct' : 'wrong',
+          isFullyCorrect ? '✓ Benar Semua!' : '✗ Belum tepat.',
+          q.exp + ' <em>(Jawaban benar: ' + correctSorted.join(', ') + ')</em>');
+      } else {
+        setQNumState(q.n, 'answered-wrong', '✗');
+        opts.forEach((el, i) => { if (correctSorted.includes(labels[i])) el.classList.add('show-correct'); });
+        showExplanation(q.n, 'wrong', '✗ Belum dijawab.',
+          q.exp + ' <em>(Jawaban benar: ' + correctSorted.join(', ') + ')</em>');
+      }
+    });
+
+    sec.kat.forEach(q => {
+      if (!state.map[q.n]) state.map[q.n] = { type:'kat', answers:{} };
+      const rec = state.map[q.n];
+      const totalStmt = q.statements.length;
+      let correctCount = 0, answeredCount = 0;
+
+      q.statements.forEach((s, i) => {
+        const chosen   = rec.answers[i];
+        const answered = chosen !== undefined;
+        if (answered) {
+          answeredCount++;
+          const isCorrect = chosen === s.correct;
+          if (isCorrect) { correctCount++; state.pointsEarned += 1; } else { state.pointsWrong += 1; }
+          q.labels.forEach(l => {
+            const el = document.getElementById('katbtn' + q.n + '_' + i + '_' + safe(l));
+            if (l === chosen && !isCorrect) el.classList.add('wrong');
+            if (l === s.correct)            el.classList.add(isCorrect ? 'correct' : 'show-correct');
+          });
+        } else {
+          q.labels.forEach(l => {
+            const el = document.getElementById('katbtn' + q.n + '_' + i + '_' + safe(l));
+            if (l === s.correct) el.classList.add('show-correct');
+          });
+        }
+      });
+
+      let cls, label;
+      if (answeredCount === 0)                  { cls='answered-wrong';   label='✗'; }
+      else if (correctCount === totalStmt)      { cls='answered-correct'; label='✓'; }
+      else if (correctCount === 0)              { cls='answered-wrong';   label='✗'; }
+      else                                        { cls='answered-partial'; label=correctCount+'/'+totalStmt; }
+      setQNumState(q.n, cls, label);
+
+      const expCls = correctCount===totalStmt ? 'correct' : (correctCount===0 ? 'wrong' : 'partial');
+      const expLbl = correctCount===totalStmt ? '✓ Semua Benar!' : (correctCount===0 ? '✗ Semua Kurang Tepat.' : '± Sebagian Benar (' + correctCount + '/' + totalStmt + ').');
+      showExplanation(q.n, expCls, expLbl, 'Setiap pernyataan bernilai 1 poin.');
+    });
+  });
+
+  document.getElementById('headerStats').style.display = 'flex';
+  document.getElementById('hCorrect').textContent = state.pointsEarned;
+  document.getElementById('hWrong').textContent   = state.pointsWrong;
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -982,9 +1085,8 @@ function showConfirmModal() {
   });
   unansweredLabels.sort((a,b)=>a-b);
 
-  document.getElementById('csBengar').textContent = state.pointsEarned;
-  document.getElementById('csSalah').textContent  = state.pointsWrong;
-  document.getElementById('csSkip').textContent   = unansweredLabels.length;
+  document.getElementById('csTerjawab').textContent = state.answeredQ;
+  document.getElementById('csSkip').textContent      = unansweredLabels.length;
 
   const warnEl = document.getElementById('unansweredWarning');
   if (unansweredLabels.length > 0) {
@@ -1004,6 +1106,7 @@ function closeConfirmModal() {
 
 function confirmSubmit() {
   document.getElementById('confirmModal').classList.remove('show');
+  gradeAllAnswers();
   showResult();
 }
 
