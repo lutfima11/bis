@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ulangan Online — PKN Kelas VII · SMP IT Insan Sejahtera</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f0efe9;
+  --border: #e2e0d8;
+  --border2: #c9c7bc;
+  --text: #1a1916;
+  --text2: #6b6962;
+  --text3: #9e9b94;
+  --blue: #2563eb;
+  --blue-bg: #eff6ff;
+  --blue-border: #bfdbfe;
+  --green: #16a34a;
+  --green-bg: #f0fdf4;
+  --green-border: #bbf7d0;
+  --red: #dc2626;
+  --red-bg: #fef2f2;
+  --red-border: #fecaca;
+  --amber: #d97706;
+  --amber-bg: #fffbeb;
+  --amber-border: #fde68a;
+  --purple: #7c3aed;
+  --purple-bg: #f5f3ff;
+  --purple-border: #ddd6fe;
+  --teal: #0d9488;
+  --teal-bg: #f0fdfa;
+  --teal-border: #99f6e4;
+  --hots: #be185d;
+  --hots-bg: #fdf2f8;
+  --hots-border: #fbcfe8;
+  --slate: #475569;
+  --slate-bg: #f1f5f9;
+  --slate-border: #cbd5e1;
+}
+
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+/* ── IDENTITY SCREEN ── */
+#identityScreen {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  background: var(--bg);
+  position: relative; overflow: hidden;
+}
+#identityScreen::before {
+  content: ''; position: absolute; top: -120px; right: -120px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, #bfdbfe 0%, transparent 70%);
+  pointer-events: none;
+}
+#identityScreen::after {
+  content: ''; position: absolute; bottom: -80px; left: -80px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, #bbf7d0 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.identity-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 24px; padding: 48px 40px;
+  width: 100%; max-width: 520px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  position: relative; z-index: 1;
+  animation: slideUp 0.5s cubic-bezier(.4,0,.2,1);
+}
+@keyframes slideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+.school-badge { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+.school-logo { width: 52px; height: 52px; border-radius: 12px; background: var(--blue-bg); border: 1px solid var(--blue-border); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+.school-info h1 { font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.3; }
+.school-info p { font-size: 12px; color: var(--text2); margin-top: 2px; }
+
+.form-title { font-size: 26px; font-weight: 800; color: var(--text); line-height: 1.2; margin-bottom: 6px; }
+.form-subtitle { font-size: 13px; color: var(--text2); margin-bottom: 28px; line-height: 1.5; }
+
+.packet-selector { margin-bottom: 22px; }
+.packet-label { display: block; font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px; }
+.packet-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.packet-opt {
+  border: 2px solid var(--border); border-radius: 12px;
+  padding: 14px 10px; text-align: center; cursor: pointer;
+  background: var(--surface2); transition: all 0.15s;
+  user-select: none;
+}
+.packet-opt:hover { border-color: var(--blue); background: var(--blue-bg); }
+.packet-opt.active { border-color: var(--blue); background: var(--blue-bg); box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
+.packet-opt .pkt-letter { font-size: 22px; font-weight: 800; color: var(--blue); display: block; line-height: 1; margin-bottom: 4px; }
+.packet-opt .pkt-name { font-size: 11px; font-weight: 600; color: var(--text2); }
+.packet-opt.active .pkt-name { color: var(--blue); }
+
+.form-group { margin-bottom: 18px; }
+.form-label { display: block; font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+.form-input { width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: var(--text); background: var(--surface2); transition: all 0.15s; outline: none; }
+.form-input:focus { border-color: var(--blue); background: var(--surface); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+.form-input::placeholder { color: var(--text3); }
+.form-select { width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: var(--text); background: var(--surface2); transition: all 0.15s; outline: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6962' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; cursor: pointer; }
+.form-select:focus { border-color: var(--blue); background-color: var(--surface); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+
+.exam-info-box { background: var(--blue-bg); border: 1px solid var(--blue-border); border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; display: flex; gap: 10px; align-items: flex-start; }
+.exam-info-box .icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.exam-info-box p { font-size: 12px; color: var(--blue); line-height: 1.6; }
+.exam-info-box strong { font-weight: 700; }
+
+.legend-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; margin-bottom: 12px; }
+.legend-box p { font-size: 11.5px; color: var(--text2); line-height: 1.8; }
+.legend-box strong { color: var(--text); }
+
+.warn-box { background: var(--red-bg); border: 1px solid var(--red-border); border-radius: 10px; padding: 12px 16px; margin-bottom: 24px; display: flex; gap: 10px; align-items: flex-start; }
+.warn-box p { font-size: 12px; color: var(--red); line-height: 1.6; }
+
+.btn-start { width: 100%; padding: 14px; background: var(--blue); color: #fff; border: none; border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.15s; letter-spacing: 0.2px; }
+.btn-start:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,99,235,0.35); }
+.btn-start:active { transform: translateY(0); }
+.form-error { font-size: 12px; color: var(--red); margin-top: 5px; display: none; }
+
+/* ── INVALID SCREEN ── */
+#invalidScreen { display: none; min-height: 100vh; align-items: center; justify-content: center; padding: 24px; background: var(--bg); }
+.invalid-card { background: var(--surface); border: 1px solid var(--red-border); border-radius: 24px; padding: 56px 40px; max-width: 440px; width: 100%; text-align: center; box-shadow: 0 8px 40px rgba(220,38,38,0.1); animation: slideUp 0.4s ease; }
+.invalid-icon { font-size: 56px; margin-bottom: 16px; }
+.invalid-title { font-size: 22px; font-weight: 800; color: var(--red); margin-bottom: 10px; }
+.invalid-msg { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+/* ── MODAL OVERLAY ── */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(4px); z-index: 500; display: none; align-items: center; justify-content: center; }
+.modal-overlay.show { display: flex; }
+.modal-box { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 44px 36px; max-width: 420px; width: 90%; text-align: center; box-shadow: 0 24px 60px rgba(0,0,0,0.2); animation: slideUp .35s ease; max-height: 86vh; overflow-y: auto; }
+.modal-icon { font-size: 48px; margin-bottom: 14px; }
+.modal-title { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+.modal-title.red { color: var(--red); }
+.modal-title.amber { color: var(--amber); }
+.modal-msg { font-size: 13px; color: var(--text2); margin-bottom: 24px; line-height: 1.6; text-align: left; }
+.modal-msg strong { color: var(--text); font-weight: 700; }
+
+.confirm-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 20px; }
+.cs-box { background: var(--surface2); border-radius: 10px; padding: 12px 8px; }
+.cs-val { font-size: 22px; font-weight: 800; }
+.cs-lbl { font-size: 11px; color: var(--text2); margin-top: 2px; }
+.cs-green { color: var(--green); }
+.cs-red   { color: var(--red); }
+.cs-amber { color: var(--amber); }
+
+.modal-btns { display: flex; gap: 10px; justify-content: center; }
+.btn-modal { padding: 12px 24px; border-radius: 10px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.15s; border: none; }
+.btn-modal-primary { background: var(--green); color: #fff; }
+.btn-modal-primary:hover { background: #15803d; }
+.btn-modal-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border2); }
+.btn-modal-secondary:hover { background: var(--surface); }
+.btn-modal-danger { background: var(--blue); color: #fff; }
+.btn-modal-danger:hover { background: #1d4ed8; }
+
+/* ── EXAM SCREEN ── */
+#examScreen { display: none; }
+
+.site-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 24px; position: sticky; top: 0; z-index: 100; }
+.header-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 16px; flex-wrap: wrap; }
+.site-logo { display: flex; align-items: center; gap: 10px; }
+.logo-text { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.2; }
+.logo-sub { font-size: 11px; color: var(--text2); }
+.header-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
+
+.packet-badge { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--purple-bg); border: 1px solid var(--purple-border); color: var(--purple); letter-spacing: 0.5px; text-transform: uppercase; }
+
+.timer-wrap { display: flex; align-items: center; gap: 6px; background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 5px 14px; }
+.timer-icon { font-size: 14px; }
+.timer-val { font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500; color: var(--text); min-width: 48px; text-align: center; transition: color .3s; }
+.timer-val.warn { color: var(--amber); }
+.timer-val.danger { color: var(--red); animation: blink 1s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+.student-chip { display: flex; align-items: center; gap: 8px; background: var(--blue-bg); border: 1px solid var(--blue-border); border-radius: 999px; padding: 4px 12px 4px 6px; font-size: 12px; color: var(--blue); font-weight: 600; }
+.student-chip-avatar { width: 24px; height: 24px; background: var(--blue); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+
+.header-stats { display: flex; gap: 8px; align-items: center; font-size: 13px; }
+.hstat { display: flex; align-items: center; gap: 4px; }
+.hstat-dot { width: 8px; height: 8px; border-radius: 50%; }
+.hstat-val { font-weight: 600; }
+
+.progress-wrap { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 24px 10px; position: sticky; top: 56px; z-index: 99; }
+.progress-inner { max-width: 960px; margin: 0 auto; }
+.progress-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--text2); margin-bottom: 6px; margin-top: 8px; }
+.progress-track { height: 6px; background: var(--surface2); border-radius: 999px; overflow: hidden; border: 1px solid var(--border); }
+.progress-fill { height: 100%; background: var(--blue); border-radius: 999px; transition: width 0.4s cubic-bezier(.4,0,.2,1); }
+
+.main { max-width: 960px; margin: 0 auto; padding: 24px 24px 100px; }
+
+.section-header { display: flex; align-items: center; gap: 10px; margin: 32px 0 16px; }
+.section-header:first-child { margin-top: 0; }
+.section-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; flex-shrink: 0; }
+.section-info h2 { font-size: 16px; font-weight: 700; }
+.section-info p { font-size: 12px; color: var(--text2); margin-top: 1px; }
+
+.subgroup-header { display: flex; align-items: center; gap: 8px; margin: 26px 0 12px; padding-bottom: 8px; border-bottom: 1px dashed var(--border2); }
+.subgroup-badge { font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 999px; letter-spacing: 0.5px; text-transform: uppercase; }
+.subgroup-badge.pg   { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+.subgroup-badge.pgk  { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.subgroup-badge.kat  { background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-border); }
+.subgroup-badge.esai { background: var(--slate-bg); color: var(--slate); border: 1px solid var(--slate-border); }
+.subgroup-desc { font-size: 12px; color: var(--text2); }
+
+.q-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 12px; transition: box-shadow 0.15s; }
+.q-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.q-card.hots-card { border-color: var(--hots-border); }
+.q-card.hots-card:hover { box-shadow: 0 2px 12px rgba(190,24,93,0.08); }
+
+.q-top { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; }
+.q-num { min-width: 28px; height: 28px; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--text2); flex-shrink: 0; margin-top: 1px; transition: all 0.2s; }
+.q-num.answered-correct { background: var(--green-bg); border-color: var(--green-border); color: var(--green); }
+.q-num.answered-wrong { background: var(--red-bg); border-color: var(--red-border); color: var(--red); }
+.q-num.answered-partial { background: var(--amber-bg); border-color: var(--amber-border); color: var(--amber); }
+.q-num.answered-neutral { background: var(--slate-bg); border-color: var(--slate-border); color: var(--slate); }
+
+.q-text { font-size: 14px; line-height: 1.65; color: var(--text); flex: 1; }
+
+.options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+@media (max-width: 480px) { .options { grid-template-columns: 1fr; } }
+
+.option { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; cursor: pointer; background: var(--surface2); transition: all 0.12s; font-size: 13px; user-select: none; }
+.option:hover { background: var(--blue-bg); border-color: var(--blue-border); }
+.option.selected { background: var(--blue-bg); border-color: var(--blue); }
+.option.correct { background: var(--green-bg); border-color: var(--green); color: var(--green); }
+.option.wrong { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+.option.show-correct { background: var(--green-bg); border-color: var(--green-border); color: var(--green); }
+.option.locked { cursor: default; }
+
+.opt-label { width: 24px; height: 24px; border-radius: 6px; border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; background: var(--surface); color: var(--text2); transition: all 0.12s; }
+.option.selected .opt-label { background: var(--blue); border-color: var(--blue); color: #fff; }
+.option.correct .opt-label { background: var(--green); border-color: var(--green); color: #fff; }
+.option.wrong .opt-label { background: var(--red); border-color: var(--red); color: #fff; }
+.option.show-correct .opt-label { background: var(--green); border-color: var(--green); color: #fff; }
+
+.opt-text { font-size: 13px; }
+
+/* PGK checkbox style */
+.opt-label.pgk-box { border-radius: 5px; }
+
+.pgk-actions { margin-top: 12px; display: flex; justify-content: flex-end; }
+.btn-jawab { padding: 9px 18px; background: var(--blue); color: #fff; border: none; border-radius: 9px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12.5px; font-weight: 700; cursor: pointer; transition: all 0.15s; }
+.btn-jawab:hover { background: #1d4ed8; }
+.btn-jawab:disabled { background: var(--border2); cursor: not-allowed; }
+
+/* Kategori (Benar/Salah) table style */
+.kat-statement { border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; background: var(--surface2); }
+.kat-statement-text { font-size: 13px; line-height: 1.55; margin-bottom: 10px; }
+.kat-toggle { display: flex; gap: 8px; }
+.kat-btn { flex: 1; text-align: center; padding: 8px 10px; border: 1px solid var(--border2); border-radius: 8px; background: var(--surface); font-size: 12.5px; font-weight: 700; cursor: pointer; color: var(--text2); transition: all 0.12s; }
+.kat-btn:hover { border-color: var(--blue); color: var(--blue); }
+.kat-btn.selected { background: var(--blue-bg); border-color: var(--blue); color: var(--blue); }
+.kat-btn.correct { background: var(--green-bg); border-color: var(--green); color: var(--green); }
+.kat-btn.wrong { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+.kat-btn.show-correct { background: var(--green-bg); border-color: var(--green-border); color: var(--green); }
+.kat-btn.locked { cursor: default; }
+
+/* Esai style */
+.essay-textarea { width: 100%; min-height: 110px; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13.5px; color: var(--text); background: var(--surface2); resize: vertical; outline: none; transition: all 0.15s; line-height: 1.6; }
+.essay-textarea:focus { border-color: var(--blue); background: var(--surface); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+.essay-note { font-size: 11.5px; color: var(--text2); margin-top: 6px; display: flex; align-items: center; gap: 5px; }
+
+.explanation { margin-top: 12px; padding: 10px 14px; border-radius: 8px; font-size: 13px; line-height: 1.6; display: none; }
+.explanation.show { display: block; }
+.explanation.correct { background: var(--green-bg); border: 1px solid var(--green-border); color: var(--green); }
+.explanation.wrong { background: var(--red-bg); border: 1px solid var(--red-border); color: var(--red); }
+.explanation.partial { background: var(--amber-bg); border: 1px solid var(--amber-border); color: var(--amber); }
+.exp-label { font-weight: 700; margin-right: 4px; }
+
+.topic-tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-bottom: 8px; letter-spacing: 0.5px; text-transform: uppercase; }
+.hots-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--hots-bg); border: 1px solid var(--hots-border); color: var(--hots); letter-spacing: 0.5px; text-transform: uppercase; margin-left: 6px; vertical-align: middle; }
+
+/* ── RESULT PANEL ── */
+.result-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 44px 32px; text-align: center; margin-top: 32px; display: none; }
+.result-panel.show { display: block; animation: slideUp 0.5s ease; }
+.result-emoji { font-size: 60px; margin-bottom: 16px; }
+.result-score { font-size: 56px; font-weight: 800; color: var(--text); line-height: 1; margin-bottom: 6px; }
+.result-label { font-size: 14px; color: var(--text2); margin-bottom: 8px; }
+.result-note { font-size: 12px; color: var(--amber); background: var(--amber-bg); border: 1px solid var(--amber-border); border-radius: 10px; padding: 10px 14px; margin: 0 auto 20px; max-width: 460px; line-height: 1.6; }
+.student-result-info { display: inline-flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 6px 16px; font-size: 13px; color: var(--text2); margin-bottom: 8px; font-weight: 600; }
+.packet-result-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--purple-bg); border: 1px solid var(--purple-border); border-radius: 999px; padding: 6px 14px; font-size: 12px; color: var(--purple); font-weight: 700; margin-bottom: 8px; }
+.duration-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--amber-bg); border: 1px solid var(--amber-border); border-radius: 999px; padding: 6px 14px; font-size: 12px; color: var(--amber); font-weight: 600; margin-bottom: 24px; }
+.result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+.r-stat { background: var(--surface2); border-radius: 12px; padding: 16px 12px; }
+.r-stat-val { font-size: 28px; font-weight: 800; }
+.r-stat-lbl { font-size: 12px; color: var(--text2); margin-top: 4px; }
+.green-val { color: var(--green); }
+.red-val { color: var(--red); }
+.blue-val { color: var(--blue); }
+
+.wa-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; background: #25d366; color: #fff; border: none; border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; text-decoration: none; transition: all 0.15s; margin-bottom: 12px; }
+.wa-btn:hover { background: #1ebe5c; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,211,102,0.35); }
+.wa-icon { width: 22px; height: 22px; flex-shrink: 0; }
+
+.btn-secondary { padding: 10px 20px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 10px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--text); transition: all 0.15s; display: inline-block; }
+.btn-secondary:hover { background: var(--surface); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+.result-actions { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.sent-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--green-bg); border: 1px solid var(--green-border); border-radius: 999px; padding: 6px 14px; font-size: 12px; color: var(--green); font-weight: 600; }
+
+/* ── BOTTOM NAV ── */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-top: 1px solid var(--border); padding: 12px 24px; z-index: 200; }
+.bottom-nav-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.nav-info { font-size: 12px; color: var(--text2); }
+.nav-info strong { color: var(--text); }
+.btn-row { display: flex; gap: 10px; align-items: center; }
+.btn { padding: 10px 20px; border-radius: 10px; border: 1px solid var(--border2); background: var(--surface2); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--text); transition: all 0.15s; }
+.btn:hover { background: var(--surface); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.btn-primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+.btn-primary:hover { background: #1d4ed8; box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
+
+/* ── SECTION COLORS ── */
+.s1 .section-icon { background: var(--blue-bg); color: var(--blue); }
+
+.tag-s1 { background: var(--blue-bg); color: var(--blue); }
+.tag-hots { background: var(--hots-bg); color: var(--hots); }
+
+.unanswered-list { background: var(--amber-bg); border: 1px solid var(--amber-border); border-radius: 10px; padding: 10px 14px; margin-bottom: 16px; font-size: 12px; color: var(--amber); text-align: left; line-height: 1.7; }
+.unanswered-list strong { font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════ IDENTITY SCREEN -->
+<div id="identityScreen">
+  <div class="identity-card">
+    <div class="school-badge">
+      <div class="school-logo">🇮🇩</div>
+      <div class="school-info">
+        <h1>SMP IT Insan Sejahtera</h1>
+        <p>Mata Pelajaran Pendidikan Pancasila &amp; Kewarganegaraan (PKN)</p>
+      </div>
+    </div>
+    <h2 class="form-title">Ulangan Harian<br>PKN Kelas VII</h2>
+    <p class="form-subtitle">Bab: Sejarah Kelahiran Pancasila. Isi identitasmu dan pilih paket soal yang ditentukan gurumu. Pastikan semua data sudah benar sebelum memulai.</p>
+    <div class="exam-info-box">
+      <span class="icon">📋</span>
+      <p><strong>19 soal</strong>: 8 Pilihan Ganda + 4 Pilihan Ganda Kompleks + 4 Soal Berkategori (Benar/Salah) + 3 Esai · <strong>3 Paket Soal</strong> (A / B / C) · Waktu: <strong>45 menit</strong> · Hasil dikirim ke guru via WhatsApp.</p>
+    </div>
+    <div class="legend-box">
+      <p>
+        <strong>Nilai yang tampil di layar</strong> hanya dihitung dari soal Pilihan Ganda, Pilihan Ganda Kompleks, dan Berkategori (Benar/Salah).<br>
+        <strong>Soal Esai</strong> tidak dinilai otomatis — jawabanmu akan dikirim ke guru untuk diperiksa dan dinilai secara manual.
+      </p>
+    </div>
+    <div class="warn-box">
+      <span class="icon">⚠️</span>
+      <p>Jika kamu me-<strong>refresh</strong> atau menutup halaman setelah ujian dimulai, ujianmu akan dinyatakan <strong>TIDAK VALID</strong>.</p>
+    </div>
+    <div class="packet-selector">
+      <span class="packet-label">Pilih Paket Soal</span>
+      <div class="packet-options">
+        <div class="packet-opt" id="pktA" onclick="selectPacket('A')">
+          <span class="pkt-letter">A</span>
+          <span class="pkt-name">Paket A</span>
+        </div>
+        <div class="packet-opt" id="pktB" onclick="selectPacket('B')">
+          <span class="pkt-letter">B</span>
+          <span class="pkt-name">Paket B</span>
+        </div>
+        <div class="packet-opt" id="pktC" onclick="selectPacket('C')">
+          <span class="pkt-letter">C</span>
+          <span class="pkt-name">Paket C</span>
+        </div>
+      </div>
+      <div class="form-error" id="errPaket">Paket soal harus dipilih.</div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="inputNama">Nama Lengkap</label>
+      <input type="text" id="inputNama" class="form-input" placeholder="Contoh: Ahmad Fauzan" autocomplete="off">
+      <div class="form-error" id="errNama">Nama tidak boleh kosong.</div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="inputKelas">Kelas</label>
+      <select id="inputKelas" class="form-select">
+        <option value="">— Pilih Kelas —</option>
+        <option value="7A">7A</option>
+        <option value="7B">7B</option>
+        <option value="7C">7C</option>
+      </select>
+      <div class="form-error" id="errKelas">Kelas harus dipilih.</div>
+    </div>
+    <button class="btn-start" onclick="startExam()">Mulai Ulangan →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ INVALID SCREEN -->
+<div id="invalidScreen">
+  <div class="invalid-card">
+    <div class="invalid-icon">🚫</div>
+    <div class="invalid-title">Ujian Tidak Valid</div>
+    <p class="invalid-msg">Halaman di-refresh atau dibuka ulang setelah ujian dimulai.<br><br>Ujianmu <strong style="color:var(--red)">dinyatakan tidak valid</strong> dan tidak dapat dilanjutkan.<br><br>Hubungi gurumu untuk mendapatkan sesi ujian baru.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ MODAL: WAKTU HABIS -->
+<div class="modal-overlay" id="timeModal">
+  <div class="modal-box">
+    <div class="modal-icon">⏰</div>
+    <div class="modal-title red">Waktu Habis!</div>
+    <p class="modal-msg" style="text-align:center">Waktu 45 menit telah habis. Hasil ulanganmu akan dihitung otomatis dari jawaban yang sudah masuk.</p>
+    <div class="modal-btns">
+      <button class="btn-modal btn-modal-danger" onclick="forceSubmit()">Lihat Hasil Saya →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ MODAL: KONFIRMASI SUBMIT -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box">
+    <div class="modal-icon">📋</div>
+    <div class="modal-title amber">Selesaikan Ulangan?</div>
+    <p class="modal-msg">Pastikan semua jawabanmu (termasuk esai) sudah benar sebelum mengakhiri ulangan. <strong>Jawaban tidak bisa diubah setelah selesai.</strong></p>
+    <div class="confirm-stats">
+      <div class="cs-box"><div class="cs-val cs-green" id="csBengar">0</div><div class="cs-lbl">✓ Poin Benar</div></div>
+      <div class="cs-box"><div class="cs-val cs-red" id="csSalah">0</div><div class="cs-lbl">✗ Poin Salah</div></div>
+      <div class="cs-box"><div class="cs-val cs-amber" id="csSkip">0</div><div class="cs-lbl">— Belum Dijawab</div></div>
+    </div>
+    <div class="unanswered-list" id="unansweredWarning" style="display:none"></div>
+    <div class="modal-btns">
+      <button class="btn-modal btn-modal-secondary" onclick="closeConfirmModal()">Kembali ke Soal</button>
+      <button class="btn-modal btn-modal-primary" onclick="confirmSubmit()">Ya, Selesaikan →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ EXAM SCREEN -->
+<div id="examScreen">
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-logo">
+        <div>
+          <div class="logo-text">SMP IT Insan Sejahtera</div>
+          <div class="logo-sub" id="headerSub">Ulangan PKN — Sejarah Kelahiran Pancasila</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="packet-badge" id="headerPacket">PAKET —</div>
+        <div class="timer-wrap">
+          <span class="timer-icon">⏱</span>
+          <span class="timer-val" id="timerVal">45:00</span>
+        </div>
+        <div class="header-stats">
+          <div class="hstat"><div class="hstat-dot" style="background:var(--green)"></div><span class="hstat-val" id="hCorrect">0</span></div>
+          <span style="color:var(--border2)">|</span>
+          <div class="hstat"><div class="hstat-dot" style="background:var(--red)"></div><span class="hstat-val" id="hWrong">0</span></div>
+        </div>
+        <div class="student-chip">
+          <div class="student-chip-avatar" id="avatarInitial">?</div>
+          <span id="chipName">Siswa</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-inner">
+      <div class="progress-meta">
+        <span id="progLabel">0 dari 19 soal dijawab</span>
+        <span id="progPct">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <main class="main" id="mainContent">
+    <div class="result-panel" id="resultPanel">
+      <div class="result-emoji" id="resultEmoji">🎉</div>
+      <div class="result-score" id="resultScore">0/24</div>
+      <div class="result-label" id="resultLabel">Ulangan selesai!</div>
+      <div class="result-note">📝 Nilai di atas hanya dari PG + PGK + Berkategori. <strong id="essayCountNote">3 jawaban esai</strong> akan diperiksa dan dinilai langsung oleh gurumu.</div>
+      <div class="student-result-info" id="studentResultInfo">👤 Nama · Kelas</div>
+      <div class="packet-result-badge" id="packetResultBadge">📦 Paket —</div>
+      <div class="duration-badge" id="durationBadge">⏱ Durasi: — menit</div>
+      <div class="result-grid">
+        <div class="r-stat"><div class="r-stat-val green-val" id="rCorrect">0</div><div class="r-stat-lbl">✓ Poin Benar</div></div>
+        <div class="r-stat"><div class="r-stat-val red-val" id="rWrong">0</div><div class="r-stat-lbl">✗ Poin Salah</div></div>
+        <div class="r-stat"><div class="r-stat-val blue-val" id="rPct">0%</div><div class="r-stat-lbl">Nilai Sementara</div></div>
+      </div>
+      <div class="result-actions">
+        <a id="waBtn" href="#" class="wa-btn" target="_blank" onclick="markSent()">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.108.549 4.084 1.504 5.806L.058 23.5a.5.5 0 0 0 .615.611l5.796-1.517A11.955 11.955 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.52-5.158-1.422l-.369-.222-3.838 1.005 1.023-3.74-.242-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          Kirim Hasil ke Guru via WhatsApp
+        </a>
+        <div id="sentBadge" style="display:none"><span class="sent-badge">✅ Hasil sudah dikirim ke guru!</span></div>
+        <button class="btn-secondary" onclick="location.reload()">Ulangi dari Awal</button>
+      </div>
+    </div>
+  </main>
+
+  <div class="bottom-nav">
+    <div class="bottom-nav-inner">
+      <div class="nav-info">Dijawab: <strong id="navAnswered">0</strong>/19</div>
+      <div class="btn-row">
+        <button class="btn" onclick="scrollToNext()">Soal berikutnya ↓</button>
+        <button class="btn btn-primary" onclick="showConfirmModal()" id="finishBtn" style="display:none">Lihat Hasil &amp; Kirim →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const GURU_WA  = '6282218966476';
+const DURATION = 45 * 60;
+const EXAM_TITLE_JS = 'PKN Kelas VII — Sejarah Kelahiran Pancasila';
+
+// ══════════════════════════════════════════════════════════════
+// BANK SOAL — akan disisipkan di sini (placeholder diganti skrip build)
+// ══════════════════════════════════════════════════════════════
+const PACKETS = {"A": {"sections": [{"title": "Sejarah Kelahiran Pancasila", "desc": "BPUPK, Panitia Sembilan, Piagam Jakarta, sidang PPKI, dan nilai-nilai Pancasila", "icon": "🎌", "cls": "s1", "pg": [{"n": 1, "tag": "Pembentukan BPUPK", "hots": false, "text": "Badan Penyelidik Usaha-Usaha Persiapan Kemerdekaan (BPUPK) dibentuk oleh Jepang dengan tujuan utama untuk...", "opts": ["Membantu Jepang memenangkan Perang Dunia II", "Menyelidiki hal-hal penting terkait persiapan kemerdekaan Indonesia", "Membentuk pasukan cadangan bagi tentara Jepang", "Menyusun anggaran belanja pemerintahan pendudukan Jepang"], "correct": "B", "exp": "BPUPK dibentuk untuk menyelidiki dan mempersiapkan hal-hal penting mengenai tata pemerintahan Indonesia merdeka, termasuk merumuskan dasar negara.", "type": "pg", "tagCls": "tag-s1"}, {"n": 2, "tag": "Latar Belakang Pembentukan", "hots": false, "text": "Pembentukan BPUPK tidak lepas dari posisi Jepang yang semakin terdesak dalam Perang Dunia II. Janji kemerdekaan yang diberikan Jepang kepada Indonesia dikenal dengan istilah...", "opts": ["Janji Koiso", "Piagam Atlantik", "Deklarasi Kaigun", "Sumpah Pemuda"], "correct": "A", "exp": "Perdana Menteri Jepang, Kuniaki Koiso, pada 7 September 1944 menjanjikan kemerdekaan bagi Indonesia di kemudian hari. Janji ini dikenal sebagai Janji Koiso.", "type": "pg", "tagCls": "tag-s1"}, {"n": 3, "tag": "Sidang Pertama BPUPK", "hots": false, "text": "Dalam pidato pembukaan sidang pertama BPUPK, Radjiman Wedyodiningrat mengajukan sebuah pertanyaan penting kepada para anggota, yaitu...", "opts": ["Kapan Indonesia akan merdeka?", "Apa dasar negara Indonesia yang akan dibentuk?", "Siapa yang akan menjadi presiden pertama Indonesia?", "Bagaimana bentuk pemerintahan Indonesia merdeka?"], "correct": "B", "exp": "Radjiman Wedyodiningrat menanyakan calon dasar negara Indonesia merdeka, yang kemudian dijawab oleh Moh. Yamin, Soepomo, dan Ir. Soekarno melalui pidato masing-masing.", "type": "pg", "tagCls": "tag-s1"}, {"n": 4, "tag": "Usulan Dasar Negara", "hots": false, "text": "Tokoh yang mengusulkan istilah 'Pancasila' sebagai nama dasar negara pada sidang BPUPK tanggal 1 Juni 1945 adalah...", "opts": ["Moh. Yamin", "Soepomo", "Ir. Soekarno", "Radjiman Wedyodiningrat"], "correct": "C", "exp": "Ir. Soekarno dalam pidatonya tanggal 1 Juni 1945 mengusulkan lima dasar negara dan menamainya Pancasila, atas saran seorang teman ahli bahasa.", "type": "pg", "tagCls": "tag-s1"}, {"n": 5, "tag": "Panitia Sembilan", "hots": false, "text": "Panitia Sembilan dibentuk oleh BPUPK dengan tugas utama...", "opts": ["Menyusun teks proklamasi kemerdekaan", "Merumuskan naskah dasar negara berdasarkan usulan-usulan dalam sidang", "Menyusun struktur pemerintahan daerah", "Menentukan lagu kebangsaan Indonesia"], "correct": "B", "exp": "Panitia Sembilan dibentuk untuk merumuskan naskah dasar negara berdasarkan berbagai usulan yang berkembang dalam sidang BPUPK, yang hasilnya dikenal sebagai Piagam Jakarta.", "type": "pg", "tagCls": "tag-s1"}, {"n": 6, "tag": "Piagam Jakarta", "hots": true, "text": "Rumusan sila pertama dalam Piagam Jakarta sebelum diubah oleh PPKI berbunyi 'Ketuhanan dengan kewajiban menjalankan syariat Islam bagi pemeluk-pemeluknya'. Perubahan rumusan ini dilakukan atas dasar...", "opts": ["Perintah langsung dari pemerintah Jepang", "Keberatan dari tokoh-tokoh yang mewakili rakyat Indonesia bagian timur", "Usulan Panitia Sembilan yang baru dibentuk", "Hasil pemungutan suara seluruh anggota BPUPK"], "correct": "B", "exp": "Beberapa tokoh yang mewakili wilayah Indonesia Timur berkeberatan dengan rumusan tersebut, sehingga Mohammad Hatta mengadakan rapat singkat untuk mengubahnya menjadi 'Ketuhanan Yang Maha Esa' sebelum disahkan PPKI.", "type": "pg", "tagCls": "tag-s1"}, {"n": 7, "tag": "Sidang PPKI", "hots": false, "text": "Pada sidang PPKI tanggal 18 Agustus 1945, salah satu hasil penting yang disahkan adalah...", "opts": ["Undang-Undang Dasar 1945 beserta Pancasila sebagai dasar negara", "Pembentukan tentara nasional Indonesia", "Pembagian wilayah Indonesia menjadi provinsi", "Penetapan hari kemerdekaan Indonesia"], "correct": "A", "exp": "Sidang PPKI pertama pada 18 Agustus 1945 mengesahkan Undang-Undang Dasar 1945, yang di dalamnya memuat Pancasila sebagai dasar negara Indonesia.", "type": "pg", "tagCls": "tag-s1"}, {"n": 8, "tag": "Nilai Pancasila", "hots": false, "text": "Sikap Andi yang selalu bermusyawarah dengan teman sekelas sebelum mengambil keputusan bersama merupakan cerminan pengamalan sila...", "opts": ["Ketuhanan Yang Maha Esa", "Kemanusiaan yang Adil dan Beradab", "Persatuan Indonesia", "Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan"], "correct": "D", "exp": "Mengutamakan musyawarah untuk mencapai keputusan bersama adalah pengamalan sila keempat Pancasila.", "type": "pg", "tagCls": "tag-s1"}], "pgk": [{"n": 9, "tag": "Peristiwa Menjelang Proklamasi", "hots": false, "text": "Berikut ini merupakan peristiwa-peristiwa yang terjadi pada selang waktu antara dibentuknya PPKI hingga sidang pertama PPKI. Pilihlah jawaban yang benar (jawaban lebih dari satu)!", "opts": ["Jepang menyerah tanpa syarat kepada Sekutu", "'Penculikan' Sukarno dan Mohammad Hatta ke Rengasdengklok oleh golongan muda", "Perumusan naskah proklamasi di rumah Laksamana Maeda", "Pemilihan umum anggota parlemen pertama Indonesia"], "correct": ["A", "B", "C"], "exp": "Menyerahnya Jepang kepada Sekutu, peristiwa Rengasdengklok, dan perumusan naskah proklamasi di rumah Laksamana Maeda semuanya terjadi menjelang proklamasi. Pemilu pertama Indonesia baru dilaksanakan tahun 1955, jauh setelah kemerdekaan.", "type": "pgk", "tagCls": "tag-s1"}, {"n": 10, "tag": "Tugas BPUPK", "hots": false, "text": "Manakah pernyataan berikut yang tepat mengenai BPUPK? Pilihlah jawaban yang benar (jawaban lebih dari satu)!", "opts": ["BPUPK diketuai oleh Radjiman Wedyodiningrat", "BPUPK bertugas menyusun dan mengesahkan dasar negara secara final", "BPUPK mengadakan dua kali masa sidang resmi", "BPUPK dibubarkan setelah tugasnya selesai, kemudian dibentuk PPKI"], "correct": ["A", "C", "D"], "exp": "BPUPK diketuai Radjiman Wedyodiningrat, mengadakan dua kali sidang resmi (29 Mei-1 Juni dan 10-17 Juli 1945), lalu dibubarkan dan digantikan PPKI. Pengesahan dasar negara secara final dilakukan oleh PPKI, bukan BPUPK.", "type": "pgk", "tagCls": "tag-s1"}, {"n": 11, "tag": "Isi Pidato 1 Juni 1945", "hots": true, "text": "Ir. Soekarno dalam pidatonya tanggal 1 Juni 1945 mengusulkan lima sila. Manakah di antara berikut ini yang termasuk dalam rumusan awal Pancasila menurut Ir. Soekarno? Pilihlah jawaban yang benar (jawaban lebih dari satu)!", "opts": ["Kebangsaan Indonesia", "Internasionalisme atau Peri Kemanusiaan", "Mufakat atau Demokrasi", "Persatuan Nasional Berdasarkan Agama"], "correct": ["A", "B", "C"], "exp": "Lima usulan Ir. Soekarno adalah Kebangsaan Indonesia, Internasionalisme/Peri Kemanusiaan, Mufakat/Demokrasi, Kesejahteraan Sosial, dan Ketuhanan Yang Berkebudayaan. 'Persatuan Nasional Berdasarkan Agama' bukan salah satu dari kelima usulan tersebut.", "type": "pgk", "tagCls": "tag-s1"}, {"n": 12, "tag": "Sikap Sesuai Nilai Pancasila", "hots": false, "text": "Manakah sikap-sikap berikut yang mencerminkan pengamalan nilai-nilai Pancasila dalam kehidupan sehari-hari di sekolah? Pilihlah jawaban yang benar (jawaban lebih dari satu)!", "opts": ["Menghormati teman yang berbeda agama saat beribadah", "Memaksakan pendapat pribadi agar diikuti seluruh kelas", "Ikut membantu teman yang sedang mengalami musibah", "Menerima hasil musyawarah kelas dengan lapang dada"], "correct": ["A", "C", "D"], "exp": "Menghormati perbedaan agama, membantu teman yang kesulitan, dan menerima hasil musyawarah adalah pengamalan nilai Pancasila. Memaksakan pendapat pribadi bertentangan dengan sila keempat.", "type": "pgk", "tagCls": "tag-s1"}], "kat": [{"n": 13, "tag": "Tentang BPUPK", "hots": false, "text": "Tentukan Benar atau Salah untuk setiap pernyataan berikut terkait BPUPK.", "labels": ["Benar", "Salah"], "statements": [{"text": "BPUPK dibentuk pada 1 Maret 1945 dan diresmikan pada 29 April 1945.", "correct": "Benar"}, {"text": "Seluruh anggota BPUPK berasal dari perwakilan pemerintah pendudukan Jepang.", "correct": "Salah"}, {"text": "Sidang pertama BPUPK membahas rumusan dasar negara Indonesia merdeka.", "correct": "Benar"}], "type": "kat", "tagCls": "tag-s1"}, {"n": 14, "tag": "Tentang Panitia Sembilan", "hots": false, "text": "Tentukan Sesuai atau Tidak Sesuai untuk setiap pernyataan berikut terkait Panitia Sembilan.", "labels": ["Sesuai", "Tidak Sesuai"], "statements": [{"text": "Panitia Sembilan diketuai oleh Ir. Soekarno.", "correct": "Sesuai"}, {"text": "Hasil kerja Panitia Sembilan dikenal dengan sebutan Piagam Jakarta.", "correct": "Sesuai"}, {"text": "Panitia Sembilan bertugas menyusun teks proklamasi kemerdekaan.", "correct": "Tidak Sesuai"}], "type": "kat", "tagCls": "tag-s1"}, {"n": 15, "tag": "Tentang Perubahan Piagam Jakarta", "hots": false, "text": "Tentukan Benar atau Salah untuk setiap pernyataan berikut terkait perubahan rumusan sila pertama.", "labels": ["Benar", "Salah"], "statements": [{"text": "Perubahan rumusan sila pertama dilakukan sebelum sidang PPKI dimulai.", "correct": "Benar"}, {"text": "Perubahan tersebut diprakarsai oleh Mohammad Hatta.", "correct": "Benar"}, {"text": "Rumusan akhir sila pertama setelah diubah adalah 'Ketuhanan dengan berkebudayaan'.", "correct": "Salah"}], "type": "kat", "tagCls": "tag-s1"}, {"n": 16, "tag": "Tentang Sidang PPKI", "hots": true, "text": "Tentukan Sesuai atau Tidak Sesuai untuk setiap pernyataan berikut terkait sidang PPKI.", "labels": ["Sesuai", "Tidak Sesuai"], "statements": [{"text": "Sidang PPKI pertama dilaksanakan pada 18 Agustus 1945.", "correct": "Sesuai"}, {"text": "Sidang PPKI pertama menghasilkan pengesahan UUD 1945.", "correct": "Sesuai"}, {"text": "PPKI dibentuk oleh golongan muda tanpa sepengetahuan Jepang.", "correct": "Tidak Sesuai"}], "type": "kat", "tagCls": "tag-s1"}], "esai": [{"n": 17, "tag": "Panitia Sembilan", "text": "Pada pertemuan Panitia Kecil, Sukarno berinisiatif membentuk Panitia Sembilan. Jelaskan hasil kerja Panitia Sembilan tersebut!", "type": "esai", "tagCls": "tag-s1"}, {"n": 18, "tag": "Perbedaan Pandangan Dasar Negara", "text": "Pada sidang BPUPK, para anggota memberikan pandangannya terhadap dasar negara. Jelaskan perbedaan pandangan antara Moh. Yamin dan Soepomo mengenai bentuk dan dasar negara Indonesia!", "type": "esai", "tagCls": "tag-s1"}, {"n": 19, "tag": "Nilai Pancasila", "text": "Pancasila menjadi pedoman hidup bagi seluruh warga negara Indonesia. Berikanlah dua contoh penerapan nilai Pancasila dalam kehidupan sehari-harimu di lingkungan sekolah!", "type": "esai", "tagCls": "tag-s1"}]}]}, "B": {"sections": [{"title": "Sejarah Kelahiran Pancasila", "desc": "BPUPK, Panitia Sembilan, Piagam Jakarta, sidang PPKI, dan nilai-nilai Pancasila", "icon": "🎌", "cls": "s1", "pg": [{"n": 1, "tag": "Pembentukan BPUPK", "hots": false, "text": "BPUPK dibentuk oleh Jepang pada masa akhir Perang Dunia II. Tanggal peresmian BPUPK adalah...", "opts": ["1 Maret 1945", "29 April 1945", "29 Mei 1945", "7 Agustus 1945"], "correct": "B", "exp": "BPUPK diumumkan pembentukannya pada 1 Maret 1945, kemudian diresmikan secara resmi pada 29 April 1945.", "type": "pg", "tagCls": "tag-s1"}, {"n": 2, "tag": "Latar Belakang Pembentukan", "hots": false, "text": "Alasan utama Jepang membentuk BPUPK dan menjanjikan kemerdekaan bagi Indonesia adalah...", "opts": ["Jepang tulus ingin memerdekakan Indonesia", "Jepang semakin terdesak dalam Perang Dunia II dan membutuhkan dukungan rakyat Indonesia", "Jepang ingin segera meninggalkan wilayah Indonesia", "Perintah dari negara Sekutu kepada Jepang"], "correct": "B", "exp": "Posisi Jepang yang semakin terdesak membuatnya berusaha menarik dukungan rakyat Indonesia dengan menjanjikan kemerdekaan di kemudian hari.", "type": "pg", "tagCls": "tag-s1"}, {"n": 3, "tag": "Sidang Pertama BPUPK", "hots": false, "text": "Sidang pertama BPUPK berlangsung pada tanggal...", "opts": ["29 Mei - 1 Juni 1945", "10 - 17 Juli 1945", "7 - 9 Agustus 1945", "18 - 22 Agustus 1945"], "correct": "A", "exp": "Sidang pertama BPUPK berlangsung dari tanggal 29 Mei hingga 1 Juni 1945, membahas rumusan dasar negara Indonesia merdeka.", "type": "pg", "tagCls": "tag-s1"}, {"n": 4, "tag": "Usulan Dasar Negara", "hots": false, "text": "Tokoh yang mengusulkan rumusan dasar negara dengan nama 'Dasar Negara Kebangsaan Republik Indonesia' pada tanggal 29 Mei 1945 adalah...", "opts": ["Moh. Yamin", "Soepomo", "Ir. Soekarno", "Ahmad Soebardjo"], "correct": "A", "exp": "Moh. Yamin menyampaikan pidatonya pada 29 Mei 1945 dengan mengusulkan rumusan dasar negara yang salah satunya diberi judul 'Dasar Negara Kebangsaan Republik Indonesia'.", "type": "pg", "tagCls": "tag-s1"}, {"n": 5, "tag": "Panitia Sembilan", "hots": false, "text": "Ketua Panitia Sembilan yang dibentuk untuk merumuskan naskah dasar negara adalah...", "opts": ["Mohammad Hatta", "Ir. Soekarno", "Radjiman Wedyodiningrat", "Ahmad Soebardjo"], "correct": "B", "exp": "Panitia Sembilan diketuai oleh Ir. Soekarno, dengan anggota antara lain Mohammad Hatta, Moh. Yamin, Ahmad Soebardjo, dan tokoh lainnya.", "type": "pg", "tagCls": "tag-s1"}, {"n": 6, "tag": "Piagam Jakarta", "hots": true, "text": "Setelah kemerdekaan diproklamasikan, terdapat keberatan dari tokoh-tokoh Indonesia Timur terhadap salah satu rumusan dalam Piagam Jakarta. Rumusan yang dimaksud adalah bagian dari sila...", "opts": ["Kesatu", "Kedua", "Ketiga", "Kelima"], "correct": "A", "exp": "Rumusan sila pertama dalam Piagam Jakarta, yaitu 'Ketuhanan dengan kewajiban menjalankan syariat Islam bagi pemeluk-pemeluknya', mendapat keberatan dari tokoh Indonesia Timur karena dianggap kurang mencerminkan keberagaman bangsa.", "type": "pg", "tagCls": "tag-s1"}, {"n": 7, "tag": "Sidang PPKI", "hots": false, "text": "Selain mengesahkan UUD 1945, sidang PPKI pertama pada 18 Agustus 1945 juga memilih...", "opts": ["Ketua dan wakil ketua BPUPK", "Presiden dan wakil presiden Republik Indonesia", "Anggota Panitia Sembilan", "Gubernur untuk setiap provinsi"], "correct": "B", "exp": "Pada sidang PPKI 18 Agustus 1945, selain mengesahkan UUD 1945, PPKI juga memilih Ir. Soekarno sebagai presiden dan Mohammad Hatta sebagai wakil presiden pertama Republik Indonesia.", "type": "pg", "tagCls": "tag-s1"}, {"n": 8, "tag": "Nilai Pancasila", "hots": false, "text": "Sikap Rani yang selalu menghargai pendapat teman-temannya sekalipun berbeda dengan pendapatnya sendiri merupakan cerminan pengamalan sila...", "opts": ["Ketuhanan Yang Maha Esa", "Kemanusiaan yang Adil dan Beradab", "Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan", "Keadilan Sosial bagi Seluruh Rakyat Indonesia"], "correct": "C", "exp": "Menghargai pendapat orang lain meski berbeda adalah salah satu wujud pengamalan sila keempat Pancasila.", "type": "pg", "tagCls": "tag-s1"}], "pgk": [{"n": 9, "tag": "Peristiwa Menjelang Proklamasi", "hots": false, "text": "Berikut ini adalah beberapa peristiwa penting menjelang proklamasi kemerdekaan Indonesia. Pilihlah peristiwa yang terjadi SEBELUM naskah proklamasi dibacakan (jawaban lebih dari satu)!", "opts": ["Peristiwa Rengasdengklok", "Perumusan naskah proklamasi di rumah Laksamana Maeda", "Pembentukan Komite Nasional Indonesia Pusat (KNIP)", "Jepang menyerah tanpa syarat kepada Sekutu"], "correct": ["A", "B", "D"], "exp": "Rengasdengklok, perumusan naskah proklamasi, dan menyerahnya Jepang kepada Sekutu semuanya terjadi sebelum proklamasi dibacakan pada 17 Agustus 1945. KNIP baru dibentuk setelah kemerdekaan, tepatnya akhir Agustus 1945.", "type": "pgk", "tagCls": "tag-s1"}, {"n": 10, "tag": "Tugas dan Keanggotaan BPUPK", "hots": false, "text": "Manakah pernyataan berikut yang tepat mengenai keanggotaan dan sidang BPUPK? Pilihlah jawaban yang benar (jawaban lebih dari satu)!", "opts": ["Anggota BPUPK berasal dari berbagai lapisan masyarakat Indonesia", "BPUPK beranggotakan pejabat pemerintah pendudukan Jepang saja", "BPUPK membahas rancangan Undang-Undang Dasar pada sidang kedua", "BPUPK bertugas mengesahkan dasar negara secara final dan mengikat"], "correct": ["A", "C"], "exp": "Anggota BPUPK berasal dari berbagai lapisan masyarakat Indonesia dan membahas rancangan UUD pada sidang kedua (10-17 Juli 1945). Pengesahan dasar negara secara final dilakukan oleh PPKI, bukan BPUPK, dan bukan hanya diisi pejabat Jepang.", "type": "pgk", "tagCls": "tag-s1"}, {"n": 11, "tag": "Isi Pidato Soepomo", "hots": true, "text": "Soepomo dalam pidatonya pada sidang BPUPK mengemukakan gagasan tentang negara integralistik. Manakah pandangan berikut yang sesuai dengan gagasan Soepomo? Pilihlah jawaban yang benar (jawaban lebih dari satu)!", "opts": ["Negara harus mengutamakan persatuan dan kesatuan seluruh rakyat", "Negara tidak boleh mengurusi kehidupan beragama warganya sama sekali", "Negara adalah satu kesatuan yang tidak memisahkan antara pemimpin dan rakyat", "Negara harus mengikuti bentuk pemerintahan liberal Barat"], "correct": ["A", "C"], "exp": "Gagasan negara integralistik Soepomo menekankan persatuan negara dan rakyat sebagai satu kesatuan yang utuh, bukan mengikuti paham liberal individualisme Barat.", "type": "pgk", "tagCls": "tag-s1"}, {"n": 12, "tag": "Sikap Sesuai Nilai Pancasila", "hots": false, "text": "Manakah sikap berikut yang mencerminkan pengamalan nilai Pancasila di lingkungan masyarakat? Pilihlah jawaban yang benar (jawaban lebih dari satu)!", "opts": ["Ikut serta dalam kegiatan gotong royong membersihkan lingkungan", "Membeda-bedakan pergaulan berdasarkan suku dan agama", "Bersikap adil terhadap tetangga tanpa memandang status sosial", "Mengambil keputusan penting warga tanpa melibatkan musyawarah"], "correct": ["A", "C"], "exp": "Gotong royong dan bersikap adil tanpa memandang status sosial adalah pengamalan nilai Pancasila. Membeda-bedakan pergaulan dan mengambil keputusan tanpa musyawarah bertentangan dengan nilai Pancasila.", "type": "pgk", "tagCls": "tag-s1"}], "kat": [{"n": 13, "tag": "Tentang Sidang BPUPK", "hots": false, "text": "Tentukan Benar atau Salah untuk setiap pernyataan berikut terkait sidang BPUPK.", "labels": ["Benar", "Salah"], "statements": [{"text": "Sidang kedua BPUPK membahas rancangan Undang-Undang Dasar.", "correct": "Benar"}, {"text": "BPUPK hanya mengadakan satu kali sidang resmi.", "correct": "Salah"}, {"text": "Radjiman Wedyodiningrat menjabat sebagai ketua BPUPK.", "correct": "Benar"}], "type": "kat", "tagCls": "tag-s1"}, {"n": 14, "tag": "Tentang Piagam Jakarta", "hots": false, "text": "Tentukan Sesuai atau Tidak Sesuai untuk setiap pernyataan berikut terkait Piagam Jakarta.", "labels": ["Sesuai", "Tidak Sesuai"], "statements": [{"text": "Piagam Jakarta merupakan hasil kerja Panitia Sembilan.", "correct": "Sesuai"}, {"text": "Piagam Jakarta memuat rumusan awal dasar negara sebelum disempurnakan PPKI.", "correct": "Sesuai"}, {"text": "Piagam Jakarta ditetapkan sebagai konstitusi final Indonesia.", "correct": "Tidak Sesuai"}], "type": "kat", "tagCls": "tag-s1"}, {"n": 15, "tag": "Tentang Perubahan Sila Pertama", "hots": true, "text": "Tentukan Benar atau Salah untuk setiap pernyataan berikut terkait perubahan rumusan sila pertama.", "labels": ["Benar", "Salah"], "statements": [{"text": "Perubahan rumusan sila pertama disetujui secara bulat oleh PPKI.", "correct": "Benar"}, {"text": "Perubahan tersebut dilakukan setelah proklamasi kemerdekaan dibacakan.", "correct": "Salah"}, {"text": "Perubahan tersebut bertujuan menjaga persatuan seluruh wilayah Indonesia.", "correct": "Benar"}], "type": "kat", "tagCls": "tag-s1"}, {"n": 16, "tag": "Tentang Sidang PPKI", "hots": false, "text": "Tentukan Sesuai atau Tidak Sesuai untuk setiap pernyataan berikut terkait sidang PPKI.", "labels": ["Sesuai", "Tidak Sesuai"], "statements": [{"text": "PPKI dibentuk untuk melanjutkan tugas BPUPK yang telah dibubarkan.", "correct": "Sesuai"}, {"text": "Sidang PPKI pertama memilih presiden dan wakil presiden RI.", "correct": "Sesuai"}, {"text": "Sidang PPKI pertama diadakan sebelum proklamasi kemerdekaan.", "correct": "Tidak Sesuai"}], "type": "kat", "tagCls": "tag-s1"}], "esai": [{"n": 17, "tag": "Panitia Sembilan", "text": "Jelaskan mengapa Panitia Sembilan dibentuk dan sebutkan hasil kerja panitia tersebut!", "type": "esai", "tagCls": "tag-s1"}, {"n": 18, "tag": "Pandangan Dasar Negara", "text": "Jelaskan perbedaan pandangan antara Soepomo dan Ir. Soekarno mengenai dasar negara yang diusulkan pada sidang BPUPK!", "type": "esai", "tagCls": "tag-s1"}, {"n": 19, "tag": "Nilai Pancasila", "text": "Berikanlah dua contoh sikap yang mencerminkan nilai Pancasila yang bisa kamu terapkan dalam kehidupan sehari-hari di rumah!", "type": "esai", "tagCls": "tag-s1"}]}]}, "C": {"sections": [{"title": "Sejarah Kelahiran Pancasila", "desc": "BPUPK, Panitia Sembilan, Piagam Jakarta, sidang PPKI, dan nilai-nilai Pancasila", "icon": "🎌", "cls": "s1", "pg": [{"n": 1, "tag": "Pembentukan BPUPK", "hots": false, "text": "Nama BPUPK dalam bahasa Jepang dikenal dengan sebutan...", "opts": ["Dokuritsu Junbi Cosakai", "Dokuritsu Junbi Inkai", "Panitia Sembilan", "Chuo Sangi In"], "correct": "A", "exp": "BPUPK dikenal dalam bahasa Jepang sebagai Dokuritsu Junbi Cosakai, sedangkan PPKI dikenal sebagai Dokuritsu Junbi Inkai.", "type": "pg", "tagCls": "tag-s1"}, {"n": 2, "tag": "Latar Belakang Pembentukan", "hots": false, "text": "Propaganda Jepang yang dikenal dengan Gerakan 3A (Nippon Cahaya Asia, Nippon Pelindung Asia, Nippon Pemimpin Asia) bertujuan untuk...", "opts": ["Memberikan kemerdekaan penuh kepada bangsa-bangsa Asia", "Menarik simpati rakyat Indonesia agar mendukung Jepang", "Membangun industri berat di kawasan Asia Tenggara", "Menghapus seluruh budaya asli bangsa Indonesia"], "correct": "B", "exp": "Gerakan 3A merupakan propaganda Jepang untuk menarik simpati rakyat Indonesia agar mau mendukung dan membantu Jepang dalam Perang Asia Timur Raya.", "type": "pg", "tagCls": "tag-s1"}, {"n": 3, "tag": "Sidang Pertama BPUPK", "hots": false, "text": "Saat menutup pidato pelantikan BPUPK, Radjiman Wedyodiningrat mengemukakan pandangan bahwa untuk dapat menyatukan bangsa Indonesia, masyarakat harus...", "opts": ["Mengutamakan kepentingan pribadi di atas kepentingan bersama", "Bersikap tolong-menolong dan bergotong royong", "Bergantung sepenuhnya kepada bantuan asing", "Menolak segala bentuk perbedaan pendapat"], "correct": "B", "exp": "Radjiman menekankan pentingnya sikap tolong-menolong dan gotong royong serta melenyapkan kepentingan pribadi demi persatuan bangsa Indonesia.", "type": "pg", "tagCls": "tag-s1"}, {"n": 4, "tag": "Usulan Dasar Negara", "hots": false, "text": "Rumusan dasar negara yang diusulkan Ir. Soekarno dapat diperas menjadi Trisila, dan dapat diperas lagi menjadi satu sila yang disebut...", "opts": ["Eka sila (Gotong Royong)", "Dwi sila", "Panca sila", "Sapta sila"], "correct": "A", "exp": "Ir. Soekarno menjelaskan bahwa lima sila dapat diperas menjadi Trisila (Sosio-nasionalisme, Sosio-demokrasi, Ketuhanan) dan bila diperas lagi menjadi Eka Sila, yaitu Gotong Royong.", "type": "pg", "tagCls": "tag-s1"}, {"n": 5, "tag": "Panitia Sembilan", "hots": false, "text": "Salah satu anggota Panitia Sembilan yang juga merupakan tokoh dari kalangan Islam adalah...", "opts": ["Mohammad Hatta", "K.H. Wahid Hasyim", "Ahmad Soebardjo", "A.A. Maramis"], "correct": "B", "exp": "K.H. Wahid Hasyim adalah salah satu anggota Panitia Sembilan yang mewakili kalangan Islam dalam perumusan Piagam Jakarta.", "type": "pg", "tagCls": "tag-s1"}, {"n": 6, "tag": "Piagam Jakarta", "hots": false, "text": "Piagam Jakarta yang dirumuskan oleh Panitia Sembilan pada akhirnya dijadikan sebagai...", "opts": ["Konstitusi final negara Indonesia", "Naskah pembukaan Undang-Undang Dasar 1945 setelah disempurnakan", "Teks proklamasi kemerdekaan Indonesia", "Dasar pembentukan tentara nasional Indonesia"], "correct": "B", "exp": "Piagam Jakarta menjadi cikal bakal naskah Pembukaan UUD 1945, setelah beberapa bagiannya disempurnakan, terutama pada rumusan sila pertama.", "type": "pg", "tagCls": "tag-s1"}, {"n": 7, "tag": "Sidang PPKI", "hots": false, "text": "Sebelum sidang PPKI dimulai pada 18 Agustus 1945, Mohammad Hatta mengadakan rapat singkat bersama beberapa tokoh untuk membahas...", "opts": ["Susunan kabinet pemerintahan Indonesia", "Perubahan redaksi sila pertama dalam Piagam Jakarta", "Pembentukan provinsi-provinsi baru", "Penentuan bendera dan lagu kebangsaan"], "correct": "B", "exp": "Mohammad Hatta mengadakan rapat singkat untuk mengakomodasi keberatan tokoh Indonesia Timur dengan mengubah rumusan sila pertama menjadi 'Ketuhanan Yang Maha Esa'.", "type": "pg", "tagCls": "tag-s1"}, {"n": 8, "tag": "Nilai Pancasila", "hots": false, "text": "Sikap Bima yang tetap bersikap sopan dan tidak mengejek temannya yang berasal dari suku dan agama berbeda merupakan cerminan pengamalan sila...", "opts": ["Ketuhanan Yang Maha Esa", "Persatuan Indonesia", "Kemanusiaan yang Adil dan Beradab", "Keadilan Sosial bagi Seluruh Rakyat Indonesia"], "correct": "C", "exp": "Menghormati dan tidak mengejek perbedaan suku maupun agama adalah wujud pengamalan sila kedua, Kemanusiaan yang Adil dan Beradab.", "type": "pg", "tagCls": "tag-s1"}], "pgk": [{"n": 9, "tag": "Peristiwa Menjelang Proklamasi", "hots": false, "text": "Berikut adalah beberapa peristiwa penting dalam sejarah kemerdekaan Indonesia. Pilihlah peristiwa yang berkaitan langsung dengan desakan golongan muda kepada Sukarno-Hatta (jawaban lebih dari satu)!", "opts": ["Pertemuan Soetan Sjahrir dengan Sukarno dan Mohammad Hatta", "Rapat golongan muda di gedung Lembaga Bakteriologi, Pegangsaan Timur", "Sidang BPUPK membahas rancangan UUD", "Peristiwa Rengasdengklok"], "correct": ["A", "B", "D"], "exp": "Pertemuan Sjahrir dengan Sukarno-Hatta, rapat golongan muda di Pegangsaan Timur, dan peristiwa Rengasdengklok semuanya merupakan bagian dari desakan golongan muda agar proklamasi segera dilaksanakan. Sidang BPUPK terjadi jauh sebelum peristiwa-peristiwa tersebut.", "type": "pgk", "tagCls": "tag-s1"}, {"n": 10, "tag": "Tugas dan Struktur BPUPK", "hots": true, "text": "Manakah pernyataan berikut yang tepat mengenai BPUPK? Pilihlah jawaban yang benar (jawaban lebih dari satu)!", "opts": ["BPUPK diketuai oleh Radjiman Wedyodiningrat dengan dua orang wakil ketua", "BPUPK bertugas menyelidiki hal-hal penting terkait persiapan kemerdekaan", "BPUPK menetapkan Pancasila sebagai dasar negara secara final dan sah", "BPUPK dibubarkan setelah sidang kedua dan digantikan oleh PPKI"], "correct": ["A", "B", "D"], "exp": "BPUPK diketuai Radjiman dengan wakil ketua, bertugas menyelidiki persiapan kemerdekaan, lalu dibubarkan setelah sidang kedua dan digantikan PPKI. Penetapan Pancasila secara final dan sah dilakukan oleh PPKI, bukan BPUPK.", "type": "pgk", "tagCls": "tag-s1"}, {"n": 11, "tag": "Isi Pidato Moh. Yamin", "hots": false, "text": "Moh. Yamin dalam pidatonya pada 29 Mei 1945 mengusulkan beberapa asas dasar negara. Manakah di antara berikut yang termasuk usulan Moh. Yamin? Pilihlah jawaban yang benar (jawaban lebih dari satu)!", "opts": ["Peri Kebangsaan", "Peri Kemanusiaan", "Kesejahteraan Rakyat", "Gotong Royong sebagai sila tunggal"], "correct": ["A", "B", "C"], "exp": "Moh. Yamin mengusulkan lima asas: Peri Kebangsaan, Peri Kemanusiaan, Peri Ketuhanan, Peri Kerakyatan, dan Kesejahteraan Rakyat. 'Gotong Royong sebagai sila tunggal' adalah gagasan Eka Sila dari Ir. Soekarno, bukan Moh. Yamin.", "type": "pgk", "tagCls": "tag-s1"}, {"n": 12, "tag": "Sikap Sesuai Nilai Pancasila", "hots": false, "text": "Manakah sikap berikut yang mencerminkan pengamalan nilai Pancasila dalam kehidupan berbangsa dan bernegara? Pilihlah jawaban yang benar (jawaban lebih dari satu)!", "opts": ["Menjunjung tinggi persatuan meskipun berbeda suku dan budaya", "Menuntut hak tanpa mau melaksanakan kewajiban", "Bersikap adil kepada semua orang tanpa membeda-bedakan", "Ikut serta menjaga keamanan dan ketertiban lingkungan"], "correct": ["A", "C", "D"], "exp": "Menjunjung persatuan, bersikap adil, dan menjaga keamanan lingkungan adalah pengamalan nilai Pancasila. Menuntut hak tanpa melaksanakan kewajiban bertentangan dengan semangat keseimbangan hak dan kewajiban dalam Pancasila.", "type": "pgk", "tagCls": "tag-s1"}], "kat": [{"n": 13, "tag": "Tentang BPUPK", "hots": false, "text": "Tentukan Benar atau Salah untuk setiap pernyataan berikut terkait BPUPK.", "labels": ["Benar", "Salah"], "statements": [{"text": "BPUPK dalam bahasa Jepang disebut Dokuritsu Junbi Cosakai.", "correct": "Benar"}, {"text": "BPUPK bertugas mengesahkan UUD 1945 secara resmi.", "correct": "Salah"}, {"text": "Sidang pertama BPUPK menghasilkan rumusan dasar negara dari tiga tokoh.", "correct": "Benar"}], "type": "kat", "tagCls": "tag-s1"}, {"n": 14, "tag": "Tentang Usulan Dasar Negara", "hots": true, "text": "Tentukan Sesuai atau Tidak Sesuai untuk setiap pernyataan berikut terkait usulan dasar negara.", "labels": ["Sesuai", "Tidak Sesuai"], "statements": [{"text": "Moh. Yamin menyampaikan pidatonya pada 29 Mei 1945.", "correct": "Sesuai"}, {"text": "Soepomo mengusulkan konsep negara integralistik.", "correct": "Sesuai"}, {"text": "Ir. Soekarno menyampaikan pidatonya pada 17 Juli 1945.", "correct": "Tidak Sesuai"}], "type": "kat", "tagCls": "tag-s1"}, {"n": 15, "tag": "Tentang Piagam Jakarta", "hots": false, "text": "Tentukan Benar atau Salah untuk setiap pernyataan berikut terkait Piagam Jakarta.", "labels": ["Benar", "Salah"], "statements": [{"text": "Piagam Jakarta dirumuskan oleh Panitia Sembilan pada 22 Juni 1945.", "correct": "Benar"}, {"text": "Piagam Jakarta menjadi cikal bakal Pembukaan UUD 1945.", "correct": "Benar"}, {"text": "Seluruh rumusan Piagam Jakarta tidak mengalami perubahan sebelum disahkan PPKI.", "correct": "Salah"}], "type": "kat", "tagCls": "tag-s1"}, {"n": 16, "tag": "Tentang Sidang PPKI", "hots": false, "text": "Tentukan Sesuai atau Tidak Sesuai untuk setiap pernyataan berikut terkait sidang PPKI.", "labels": ["Sesuai", "Tidak Sesuai"], "statements": [{"text": "Sidang PPKI pertama mengesahkan Pancasila sebagai dasar negara dalam UUD 1945.", "correct": "Sesuai"}, {"text": "PPKI beranggotakan perwakilan dari seluruh wilayah Indonesia.", "correct": "Sesuai"}, {"text": "PPKI dibentuk sebelum BPUPK dibubarkan.", "correct": "Tidak Sesuai"}], "type": "kat", "tagCls": "tag-s1"}], "esai": [{"n": 17, "tag": "Panitia Sembilan", "text": "Jelaskan latar belakang dibentuknya Panitia Sembilan dan sebutkan hasil kerjanya!", "type": "esai", "tagCls": "tag-s1"}, {"n": 18, "tag": "Pandangan Dasar Negara", "text": "Jelaskan perbedaan pandangan antara Moh. Yamin dan Ir. Soekarno mengenai dasar negara yang diusulkan pada sidang BPUPK!", "type": "esai", "tagCls": "tag-s1"}, {"n": 19, "tag": "Nilai Pancasila", "text": "Berikanlah satu contoh nilai Pancasila yang terdapat dalam diri Sukarno dan Mohammad Hatta yang bisa menjadi teladan dalam kehidupan sehari-harimu!", "type": "esai", "tagCls": "tag-s1"}]}]}};
+
+// ══════════════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════════════
+// state.map menyimpan status jawaban tiap soal (per nomor n):
+//   pg   -> { type:'pg', opt:'A' }
+//   pgk  -> { type:'pgk', opts:['A','C'] }
+//   kat  -> { type:'kat', answers:{0:'Benar',1:'Salah',...} }  (indeks pernyataan)
+//   esai -> { type:'esai', text:'...' }  (tidak memengaruhi skor)
+const state = { pointsEarned:0, pointsWrong:0, totalPoints:0, answeredQ:0, totalQ:0, map:{} };
+let studentName='', studentKelas='', selectedPacket='';
+let startTime=null, timerInterval=null, secondsLeft=DURATION;
+let examDone=false;
+let currentPacketData=null;
+
+const SS_STARTED = 'pkn_examv1_started';
+const SS_DONE    = 'pkn_examv1_done';
+
+window.addEventListener('load', () => {
+  if (sessionStorage.getItem(SS_STARTED)==='1' && sessionStorage.getItem(SS_DONE)!=='1') {
+    document.getElementById('identityScreen').style.display = 'none';
+    document.getElementById('invalidScreen').style.display  = 'flex';
+  }
+});
+
+window.addEventListener('beforeunload', e => {
+  if (startTime && !examDone) { e.preventDefault(); e.returnValue=''; }
+});
+
+function selectPacket(p) {
+  selectedPacket = p;
+  ['A','B','C'].forEach(x => {
+    document.getElementById('pkt'+x).classList.toggle('active', x===p);
+  });
+}
+
+function startExam() {
+  const nama  = document.getElementById('inputNama').value.trim();
+  const kelas = document.getElementById('inputKelas').value;
+  let valid = true;
+
+  if (!selectedPacket) { document.getElementById('errPaket').style.display='block'; valid=false; }
+  else                   document.getElementById('errPaket').style.display='none';
+  if (!nama)  { document.getElementById('errNama').style.display='block'; valid=false; }
+  else          document.getElementById('errNama').style.display='none';
+  if (!kelas) { document.getElementById('errKelas').style.display='block'; valid=false; }
+  else          document.getElementById('errKelas').style.display='none';
+  if (!valid) return;
+
+  studentName  = nama;
+  studentKelas = kelas;
+  startTime    = new Date();
+  currentPacketData = PACKETS[selectedPacket];
+
+  sessionStorage.setItem(SS_STARTED, '1');
+  sessionStorage.removeItem(SS_DONE);
+
+  document.getElementById('chipName').textContent        = nama.split(' ')[0] + ' · ' + kelas;
+  document.getElementById('avatarInitial').textContent   = nama.charAt(0).toUpperCase();
+  document.getElementById('headerPacket').textContent    = 'PAKET ' + selectedPacket;
+  document.getElementById('headerSub').textContent       = EXAM_TITLE_JS + ' · Paket ' + selectedPacket;
+
+  renderQuestions();
+
+  document.getElementById('identityScreen').style.display = 'none';
+  document.getElementById('examScreen').style.display     = 'block';
+  window.scrollTo(0,0);
+  startTimer();
+}
+
+// ──────────────────────────────────────────────────────────────
+// RENDER
+// ──────────────────────────────────────────────────────────────
+function computeTotalPoints(sec) {
+  let t = sec.pg.length + sec.pgk.length;
+  sec.kat.forEach(q => t += q.statements.length);
+  return t;
+}
+function computeTotalQuestions(sec) {
+  return sec.pg.length + sec.pgk.length + sec.kat.length + sec.esai.length;
+}
+
+function renderQuestions() {
+  const main   = document.getElementById('mainContent');
+  const result = document.getElementById('resultPanel');
+  main.innerHTML = '';
+  main.appendChild(result);
+
+  const pk = currentPacketData;
+  state.totalPoints = 0;
+  state.totalQ = 0;
+
+  pk.sections.forEach(sec => {
+    state.totalPoints += computeTotalPoints(sec);
+    state.totalQ += computeTotalQuestions(sec);
+
+    const sh = document.createElement('div');
+    sh.className = 'section-header ' + sec.cls;
+    sh.innerHTML = `<div class="section-icon">${sec.icon}</div><div class="section-info"><h2>${sec.title}</h2><p>${sec.desc}</p></div>`;
+    main.insertBefore(sh, result);
+
+    // ── Bagian A: Pilihan Ganda ──
+    if (sec.pg.length) {
+      const gh = document.createElement('div');
+      gh.className = 'subgroup-header';
+      gh.innerHTML = `<span class="subgroup-badge pg">Bagian A · PG</span><span class="subgroup-desc">Pilihlah satu jawaban yang paling tepat.</span>`;
+      main.insertBefore(gh, result);
+      sec.pg.forEach(q => main.insertBefore(renderPG(q), result));
+    }
+
+    // ── Bagian B: Pilihan Ganda Kompleks ──
+    if (sec.pgk.length) {
+      const gh = document.createElement('div');
+      gh.className = 'subgroup-header';
+      gh.innerHTML = `<span class="subgroup-badge pgk">Bagian B · PGK</span><span class="subgroup-desc">Pilihlah jawaban yang benar, boleh lebih dari satu, lalu klik "Jawab".</span>`;
+      main.insertBefore(gh, result);
+      sec.pgk.forEach(q => main.insertBefore(renderPGK(q), result));
+    }
+
+    // ── Bagian C: Soal Berkategori ──
+    if (sec.kat.length) {
+      const gh = document.createElement('div');
+      gh.className = 'subgroup-header';
+      gh.innerHTML = `<span class="subgroup-badge kat">Bagian C · Berkategori</span><span class="subgroup-desc">Tentukan kategori yang tepat untuk setiap pernyataan.</span>`;
+      main.insertBefore(gh, result);
+      sec.kat.forEach(q => main.insertBefore(renderKat(q), result));
+    }
+
+    // ── Bagian D: Esai ──
+    if (sec.esai.length) {
+      const gh = document.createElement('div');
+      gh.className = 'subgroup-header';
+      gh.innerHTML = `<span class="subgroup-badge esai">Bagian D · Esai</span><span class="subgroup-desc">Jawablah dengan kalimatmu sendiri. Bagian ini diperiksa langsung oleh guru.</span>`;
+      main.insertBefore(gh, result);
+      sec.esai.forEach(q => main.insertBefore(renderEsai(q), result));
+    }
+  });
+
+  updateStats();
+}
+
+function qHeaderHtml(q) {
+  const hotsBadge = q.hots ? '<span class="hots-badge">🔥 HOTS</span>' : '';
+  return `
+    <div class="q-top">
+      <div class="q-num" id="qn${q.n}">${q.n}</div>
+      <div class="q-text">
+        <span class="topic-tag ${q.tagCls}">${q.tag}</span>${hotsBadge}<br>
+        ${q.text}
+      </div>
+    </div>`;
+}
+
+function renderPG(q) {
+  const card = document.createElement('div');
+  card.className = 'q-card' + (q.hots ? ' hots-card' : '');
+  card.id = 'qc' + q.n;
+  const optsHtml = q.opts.map((o, i) => {
+    const lbl = ['A','B','C','D'][i];
+    return `<div class="option" onclick="answerPG(${q.n},'${lbl}')"><span class="opt-label">${lbl}</span><span class="opt-text">${o}</span></div>`;
+  }).join('');
+  card.innerHTML = qHeaderHtml(q) + `<div class="options">${optsHtml}</div><div class="explanation" id="exp${q.n}"></div>`;
+  return card;
+}
+
+function renderPGK(q) {
+  const card = document.createElement('div');
+  card.className = 'q-card' + (q.hots ? ' hots-card' : '');
+  card.id = 'qc' + q.n;
+  const optsHtml = q.opts.map((o, i) => {
+    const lbl = ['A','B','C','D','E'][i];
+    return `<div class="option" id="pgkopt${q.n}_${lbl}" onclick="togglePGK(${q.n},'${lbl}')"><span class="opt-label pgk-box">${lbl}</span><span class="opt-text">${o}</span></div>`;
+  }).join('');
+  card.innerHTML = qHeaderHtml(q) +
+    `<div class="options">${optsHtml}</div>
+     <div class="pgk-actions"><button class="btn-jawab" id="btnjawab${q.n}" onclick="submitPGK(${q.n})">Jawab</button></div>
+     <div class="explanation" id="exp${q.n}"></div>`;
+  return card;
+}
+
+function renderKat(q) {
+  const card = document.createElement('div');
+  card.className = 'q-card' + (q.hots ? ' hots-card' : '');
+  card.id = 'qc' + q.n;
+  const stmtHtml = q.statements.map((s, i) => {
+    const btns = q.labels.map(lbl =>
+      `<div class="kat-btn" id="katbtn${q.n}_${i}_${lbl.replace(/\\s+/g,'')}" onclick="answerKat(${q.n},${i},'${lbl}')">${lbl}</div>`
+    ).join('');
+    return `<div class="kat-statement" id="katstmt${q.n}_${i}">
+              <div class="kat-statement-text"><strong>${i+1}.</strong> ${s.text}</div>
+              <div class="kat-toggle">${btns}</div>
+            </div>`;
+  }).join('');
+  card.innerHTML = qHeaderHtml(q) + `<div class="kat-list">${stmtHtml}</div><div class="explanation" id="exp${q.n}"></div>`;
+  return card;
+}
+
+function renderEsai(q) {
+  const card = document.createElement('div');
+  card.className = 'q-card';
+  card.id = 'qc' + q.n;
+  card.innerHTML = qHeaderHtml(q) +
+    `<textarea class="essay-textarea" id="essay${q.n}" placeholder="Tulis jawabanmu di sini..." oninput="onEssayInput(${q.n})"></textarea>
+     <div class="essay-note">✍️ Jawaban esai ini akan diperiksa dan dinilai langsung oleh gurumu, bukan otomatis.</div>`;
+  return card;
+}
+
+// ──────────────────────────────────────────────────────────────
+// TIMER
+// ──────────────────────────────────────────────────────────────
+function startTimer() {
+  timerInterval = setInterval(() => {
+    secondsLeft--;
+    const m = String(Math.floor(secondsLeft/60)).padStart(2,'0');
+    const s = String(secondsLeft%60).padStart(2,'0');
+    const el = document.getElementById('timerVal');
+    el.textContent = m + ':' + s;
+    if      (secondsLeft <= 60)  el.className = 'timer-val danger';
+    else if (secondsLeft <= 300) el.className = 'timer-val warn';
+    else                          el.className = 'timer-val';
+    if (secondsLeft <= 0) {
+      clearInterval(timerInterval);
+      if (!examDone) document.getElementById('timeModal').classList.add('show');
+    }
+  }, 1000);
+}
+
+function forceSubmit() {
+  document.getElementById('timeModal').classList.remove('show');
+  showResult();
+}
+
+// ──────────────────────────────────────────────────────────────
+// HELPERS
+// ──────────────────────────────────────────────────────────────
+function findQuestion(qNum) {
+  for (const sec of currentPacketData.sections) {
+    for (const q of sec.pg)   if (q.n === qNum) return q;
+    for (const q of sec.pgk)  if (q.n === qNum) return q;
+    for (const q of sec.kat)  if (q.n === qNum) return q;
+    for (const q of sec.esai) if (q.n === qNum) return q;
+  }
+  return null;
+}
+
+function setQNumState(qNum, cls, label) {
+  const numEl = document.getElementById('qn' + qNum);
+  numEl.classList.remove('answered-correct','answered-wrong','answered-partial','answered-neutral');
+  numEl.classList.add(cls);
+  numEl.textContent = label;
+}
+
+function showExplanation(qNum, cls, label, text) {
+  const exp = document.getElementById('exp' + qNum);
+  exp.className = 'explanation show ' + cls;
+  exp.innerHTML = '<span class="exp-label">' + label + '</span>' + text;
+}
+
+// ──────────────────────────────────────────────────────────────
+// ANSWER: PG
+// ──────────────────────────────────────────────────────────────
+function answerPG(qNum, opt) {
+  if (state.map[qNum]) return;
+  const q = findQuestion(qNum);
+  const isCorrect = opt === q.correct;
+
+  state.map[qNum] = { type:'pg', opt: opt };
+  state.answeredQ++;
+  if (isCorrect) state.pointsEarned += 1; else state.pointsWrong += 1;
+
+  setQNumState(qNum, isCorrect ? 'answered-correct' : 'answered-wrong', isCorrect ? '✓' : '✗');
+
+  const card   = document.getElementById('qc' + qNum);
+  const opts   = card.querySelectorAll('.option');
+  const labels = ['A','B','C','D'];
+  opts.forEach((el, i) => {
+    el.onclick = null;
+    el.classList.add('locked');
+    if (labels[i] === opt && !isCorrect) el.classList.add('wrong');
+    if (labels[i] === q.correct)         el.classList.add(isCorrect ? 'correct' : 'show-correct');
+  });
+
+  showExplanation(qNum, isCorrect ? 'correct' : 'wrong', isCorrect ? '✓ Benar!' : '✗ Kurang tepat.', q.exp);
+  afterAnswerUpdate();
+}
+
+// ──────────────────────────────────────────────────────────────
+// ANSWER: PGK (checkbox, konfirmasi via tombol Jawab)
+// ──────────────────────────────────────────────────────────────
+const pgkSelections = {};
+
+function togglePGK(qNum, lbl) {
+  if (state.map[qNum]) return; // sudah dikunci
+  if (!pgkSelections[qNum]) pgkSelections[qNum] = new Set();
+  const set = pgkSelections[qNum];
+  const el = document.getElementById('pgkopt' + qNum + '_' + lbl);
+  if (set.has(lbl)) { set.delete(lbl); el.classList.remove('selected'); }
+  else              { set.add(lbl);    el.classList.add('selected'); }
+}
+
+function submitPGK(qNum) {
+  if (state.map[qNum]) return;
+  const q = findQuestion(qNum);
+  const selected = pgkSelections[qNum] ? Array.from(pgkSelections[qNum]).sort() : [];
+  if (selected.length === 0) return; // minta pilih dulu
+
+  const correctSorted = [...q.correct].sort();
+  const isFullyCorrect = selected.length === correctSorted.length &&
+                          selected.every((v,i) => v === correctSorted[i]);
+
+  state.map[qNum] = { type:'pgk', opts: selected };
+  state.answeredQ++;
+  if (isFullyCorrect) state.pointsEarned += 1; else state.pointsWrong += 1;
+
+  setQNumState(qNum, isFullyCorrect ? 'answered-correct' : 'answered-wrong', isFullyCorrect ? '✓' : '✗');
+
+  const card = document.getElementById('qc' + qNum);
+  const opts = card.querySelectorAll('.option');
+  const labels = ['A','B','C','D','E'];
+  opts.forEach((el, i) => {
+    el.onclick = null;
+    el.classList.add('locked');
+    const lbl = labels[i];
+    if (!q.opts[i]) return;
+    const wasSelected  = selected.includes(lbl);
+    const shouldBeSel  = correctSorted.includes(lbl);
+    if (wasSelected && shouldBeSel)      el.classList.add('correct');
+    else if (wasSelected && !shouldBeSel) el.classList.add('wrong');
+    else if (!wasSelected && shouldBeSel) el.classList.add('show-correct');
+  });
+  const btn = document.getElementById('btnjawab' + qNum);
+  if (btn) { btn.disabled = true; btn.textContent = 'Terkunci'; }
+
+  showExplanation(qNum, isFullyCorrect ? 'correct' : 'wrong',
+    isFullyCorrect ? '✓ Benar Semua!' : '✗ Belum tepat.',
+    q.exp + ' <em>(Jawaban benar: ' + correctSorted.join(', ') + ')</em>');
+
+  afterAnswerUpdate();
+}
+
+// ──────────────────────────────────────────────────────────────
+// ANSWER: KATEGORI (Benar/Salah per pernyataan)
+// ──────────────────────────────────────────────────────────────
+function answerKat(qNum, idx, lbl) {
+  const q = findQuestion(qNum);
+  if (!state.map[qNum]) state.map[qNum] = { type:'kat', answers:{} };
+  const rec = state.map[qNum];
+  if (rec.answers[idx] !== undefined) return; // pernyataan ini sudah dijawab
+
+  const stmt = q.statements[idx];
+  const isCorrect = lbl === stmt.correct;
+  rec.answers[idx] = lbl;
+
+  if (isCorrect) state.pointsEarned += 1; else state.pointsWrong += 1;
+
+  const safe = (s) => s.replace(/\s+/g,'');
+  q.labels.forEach(l => {
+    const el = document.getElementById('katbtn' + qNum + '_' + idx + '_' + safe(l));
+    el.onclick = null;
+    el.classList.add('locked');
+    if (l === lbl && !isCorrect) el.classList.add('wrong');
+    if (l === stmt.correct)      el.classList.add(isCorrect ? 'correct' : 'show-correct');
+  });
+
+  // Jika semua pernyataan pada soal ini sudah dijawab, tandai soal selesai + tampilkan status
+  const totalStmt = q.statements.length;
+  const answeredStmt = Object.keys(rec.answers).length;
+  if (answeredStmt === totalStmt) {
+    state.answeredQ++;
+    let correctCount = 0;
+    q.statements.forEach((s, i) => { if (rec.answers[i] === s.correct) correctCount++; });
+    let cls, label;
+    if (correctCount === totalStmt)      { cls='answered-correct'; label='✓'; }
+    else if (correctCount === 0)         { cls='answered-wrong';   label='✗'; }
+    else                                  { cls='answered-partial'; label=correctCount+'/'+totalStmt; }
+    setQNumState(qNum, cls, label);
+
+    const expCls = correctCount===totalStmt ? 'correct' : (correctCount===0 ? 'wrong' : 'partial');
+    const expLbl = correctCount===totalStmt ? '✓ Semua Benar!' : (correctCount===0 ? '✗ Semua Kurang Tepat.' : '± Sebagian Benar (' + correctCount + '/' + totalStmt + ').');
+    showExplanation(qNum, expCls, expLbl, 'Setiap pernyataan bernilai 1 poin.');
+
+    afterAnswerUpdate();
+  }
+}
+
+// ──────────────────────────────────────────────────────────────
+// ESAI (tidak memengaruhi skor, hanya disimpan)
+// ──────────────────────────────────────────────────────────────
+function onEssayInput(qNum) {
+  const val = document.getElementById('essay' + qNum).value;
+  const wasAnswered = !!(state.map[qNum] && state.map[qNum].text && state.map[qNum].text.trim());
+  state.map[qNum] = { type:'esai', text: val };
+  const isAnsweredNow = !!val.trim();
+  if (!wasAnswered && isAnsweredNow) {
+    state.answeredQ++;
+    setQNumState(qNum, 'answered-neutral', '✍️');
+  } else if (wasAnswered && !isAnsweredNow) {
+    state.answeredQ--;
+    const numEl = document.getElementById('qn' + qNum);
+    numEl.classList.remove('answered-neutral');
+    numEl.textContent = qNum;
+  }
+  updateStats();
+}
+
+// ──────────────────────────────────────────────────────────────
+// STATS & NAVIGASI
+// ──────────────────────────────────────────────────────────────
+function afterAnswerUpdate() {
+  updateStats();
+  if (state.answeredQ === state.totalQ) {
+    document.getElementById('finishBtn').style.display = 'inline-block';
+  }
+}
+
+function updateStats() {
+  document.getElementById('hCorrect').textContent    = state.pointsEarned;
+  document.getElementById('hWrong').textContent      = state.pointsWrong;
+  document.getElementById('navAnswered').textContent = state.answeredQ;
+  const pct = state.totalQ ? Math.round(state.answeredQ / state.totalQ * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progLabel').textContent    = state.answeredQ + ' dari ' + state.totalQ + ' soal dijawab';
+  document.getElementById('progPct').textContent      = pct + '%';
+  if (state.answeredQ === state.totalQ) {
+    document.getElementById('finishBtn').style.display = 'inline-block';
+  }
+}
+
+function scrollToNext() {
+  const pk = currentPacketData;
+  for (const sec of pk.sections) {
+    const all = [...sec.pg, ...sec.pgk, ...sec.kat, ...sec.esai].sort((a,b)=>a.n-b.n);
+    for (const q of all) {
+      const done = q.type === undefined ? false : isQuestionDone(q);
+      if (!done) {
+        const el = document.getElementById('qc' + q.n);
+        if (el) { el.scrollIntoView({ behavior:'smooth', block:'center' }); return; }
+      }
+    }
+  }
+}
+
+function isQuestionDone(q) {
+  const rec = state.map[q.n];
+  if (!rec) return false;
+  if (rec.type === 'kat') {
+    return Object.keys(rec.answers).length === q.statements.length;
+  }
+  if (rec.type === 'esai') return !!(rec.text && rec.text.trim());
+  return true;
+}
+
+// ──────────────────────────────────────────────────────────────
+// MODAL KONFIRMASI SUBMIT
+// ──────────────────────────────────────────────────────────────
+function showConfirmModal() {
+  const pk = currentPacketData;
+  const unansweredLabels = [];
+  pk.sections.forEach(sec => {
+    [...sec.pg, ...sec.pgk, ...sec.kat, ...sec.esai].forEach(q => {
+      if (!isQuestionDone(q)) unansweredLabels.push(q.n);
+    });
+  });
+  unansweredLabels.sort((a,b)=>a-b);
+
+  document.getElementById('csBengar').textContent = state.pointsEarned;
+  document.getElementById('csSalah').textContent  = state.pointsWrong;
+  document.getElementById('csSkip').textContent   = unansweredLabels.length;
+
+  const warnEl = document.getElementById('unansweredWarning');
+  if (unansweredLabels.length > 0) {
+    const listStr = unansweredLabels.slice(0, 15).join(', ') + (unansweredLabels.length > 15 ? ', ...' : '');
+    warnEl.innerHTML = `<strong>⚠ Soal belum lengkap dijawab (${unansweredLabels.length} soal):</strong> No. ${listStr}`;
+    warnEl.style.display = 'block';
+  } else {
+    warnEl.style.display = 'none';
+  }
+
+  document.getElementById('confirmModal').classList.add('show');
+}
+
+function closeConfirmModal() {
+  document.getElementById('confirmModal').classList.remove('show');
+}
+
+function confirmSubmit() {
+  document.getElementById('confirmModal').classList.remove('show');
+  showResult();
+}
+
+// ──────────────────────────────────────────────────────────────
+// RESULT
+// ──────────────────────────────────────────────────────────────
+function showResult() {
+  if (examDone) return;
+  examDone = true;
+  clearInterval(timerInterval);
+  sessionStorage.setItem(SS_DONE, '1');
+
+  const endTime  = new Date();
+  const duration = Math.round((endTime - startTime) / 60000);
+  const pct      = state.totalPoints ? Math.round(state.pointsEarned / state.totalPoints * 100) : 0;
+
+  document.getElementById('rCorrect').textContent      = state.pointsEarned;
+  document.getElementById('rWrong').textContent        = state.pointsWrong;
+  document.getElementById('rPct').textContent          = pct + '%';
+  document.getElementById('resultScore').textContent   = state.pointsEarned + '/' + state.totalPoints;
+  document.getElementById('studentResultInfo').textContent = '👤 ' + studentName + ' · Kelas ' + studentKelas;
+  document.getElementById('packetResultBadge').textContent = '📦 Paket ' + selectedPacket;
+  document.getElementById('durationBadge').textContent = '⏱ Durasi: ' + duration + ' menit';
+  document.getElementById('finishBtn').style.display   = 'none';
+
+  const pk = currentPacketData;
+  let essayTotal = 0, essayFilled = 0;
+  pk.sections.forEach(sec => sec.esai.forEach(q => {
+    essayTotal++;
+    const rec = state.map[q.n];
+    if (rec && rec.text && rec.text.trim()) essayFilled++;
+  }));
+  document.getElementById('essayCountNote').textContent = essayFilled + ' dari ' + essayTotal + ' jawaban esai';
+
+  let emoji='😊', label='';
+  if (pct>=90)      { emoji='🏆'; label='Luar biasa! Nilai sempurna!'; }
+  else if (pct>=75) { emoji='🎉'; label='Bagus sekali! Pertahankan prestasimu!'; }
+  else if (pct>=60) { emoji='👍'; label='Cukup baik, terus berlatih!'; }
+  else              { emoji='💪'; label='Jangan menyerah! Yuk pelajari lagi!'; }
+
+  document.getElementById('resultEmoji').textContent = emoji;
+  document.getElementById('resultLabel').textContent  = label;
+
+  // Susun rincian untuk WhatsApp
+  let pgDetail = '', pgkDetail = '', katDetail = '';
+  pk.sections.forEach(sec => {
+    sec.pg.forEach(q => {
+      const rec = state.map[q.n];
+      const jwb = rec ? rec.opt : '—';
+      const ok  = rec && rec.opt === q.correct;
+      pgDetail += `\n  No.${q.n}: Jawab ${jwb}${ok ? ' ✓' : ' ✗ (Kunci: ' + q.correct + ')'}`;
+    });
+    sec.pgk.forEach(q => {
+      const rec = state.map[q.n];
+      const jwb = rec ? rec.opts.join(',') : '—';
+      const ok  = rec && rec.opts.length === q.correct.length && [...q.correct].sort().every((v,i)=>v===[...rec.opts].sort()[i]);
+      pgkDetail += `\n  No.${q.n}: Jawab ${jwb}${ok ? ' ✓' : ' ✗ (Kunci: ' + [...q.correct].sort().join(',') + ')'}`;
+    });
+    sec.kat.forEach(q => {
+      const rec = state.map[q.n];
+      let correctCount = 0;
+      if (rec) q.statements.forEach((s,i) => { if (rec.answers[i] === s.correct) correctCount++; });
+      katDetail += `\n  No.${q.n}: ${correctCount}/${q.statements.length} pernyataan benar`;
+    });
+  });
+
+  let essayDetail = '';
+  pk.sections.forEach(sec => sec.esai.forEach(q => {
+    const rec = state.map[q.n];
+    const jwb = rec && rec.text && rec.text.trim() ? rec.text.trim() : '(tidak dijawab)';
+    essayDetail += `\n\n*No.${q.n} — ${q.tag}*\n${q.text}\n📝 Jawaban: ${jwb}`;
+  }));
+
+  const tanggal = endTime.toLocaleDateString('id-ID', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  const jam     = endTime.toLocaleTimeString('id-ID', { hour:'2-digit', minute:'2-digit' });
+
+  let msg = `📊 *HASIL ULANGAN PKN KELAS VII*\n`;
+  msg += `🏫 SMP IT Insan Sejahtera\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `👤 *Nama:* ${studentName}\n`;
+  msg += `🏫 *Kelas:* ${studentKelas}\n`;
+  msg += `📦 *Paket Soal:* Paket ${selectedPacket}\n`;
+  msg += `📅 *Tanggal:* ${tanggal}\n`;
+  msg += `⏰ *Jam:* ${jam} (durasi ${duration} menit)\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `✅ *Poin Benar:* ${state.pointsEarned}\n`;
+  msg += `❌ *Poin Salah:* ${state.pointsWrong}\n`;
+  msg += `📝 *Dijawab:* ${state.answeredQ}/${state.totalQ} soal\n`;
+  msg += `🎯 *Nilai Sementara (PG+PGK+Berkategori):* *${pct}%* ${emoji}\n`;
+  msg += `_(Belum termasuk nilai esai — mohon diperiksa manual)_\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `*Rincian Pilihan Ganda:*${pgDetail}\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `*Rincian Pilihan Ganda Kompleks:*${pgkDetail}\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `*Rincian Soal Berkategori:*${katDetail}\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `📝 *JAWABAN ESAI (mohon diperiksa manual):*${essayDetail}\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `_Dikirim otomatis dari Ulangan Online ${EXAM_TITLE_JS} — Paket ${selectedPacket}_`;
+
+  document.getElementById('waBtn').href = 'https://wa.me/' + GURU_WA + '?text=' + encodeURIComponent(msg);
+
+  const panel = document.getElementById('resultPanel');
+  panel.classList.add('show');
+  setTimeout(() => panel.scrollIntoView({ behavior:'smooth', block:'start' }), 200);
+}
+
+function markSent() {
+  setTimeout(() => { document.getElementById('sentBadge').style.display = 'block'; }, 1000);
+}
+</script>
+</body>
+</html>
