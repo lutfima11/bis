@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Tarik Tambang Pancasila</title>
-<meta name="description" content="Game kuis Pendidikan Pancasila untuk Papan Interaktif Digital: dua kelompok bertanding tarik tambang, jawaban benar menarik tambang ke arah kelompok yang menang.">
+<title>Tarik Tambang: Penerapan Nilai-Nilai Pancasila</title>
+<meta name="description" content="Game kuis PPKn Kelas VII Bab 2 — Penerapan Nilai-Nilai Pancasila — untuk Papan Interaktif Digital: dua kelompok bertanding tarik tambang, jawaban benar menarik tambang ke arah kelompok yang menang.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%A2%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -663,9 +663,9 @@
 <div class="shell">
 
   <div class="masthead">
-    <span class="eyebrow">Pendidikan Pancasila &middot; Kuis Kelompok</span>
-    <h1>Tarik Tambang Pancasila</h1>
-    <p>Dua kelompok bertanding menjawab soal Pendidikan Pancasila. Setiap jawaban benar menarik tambang ke arah kelompokmu — kelompok pertama yang menarik tambang sampai ke ujung, menang!</p>
+    <span class="eyebrow">PPKn Kelas VII &middot; Bab 2: Penerapan Nilai-Nilai Pancasila</span>
+    <h1>Tarik Tambang: Penerapan Nilai Pancasila</h1>
+    <p>Dua kelompok bertanding menjawab soal seputar nilai, makna sila, lambang, dan contoh pengamalan Pancasila dalam kehidupan sehari-hari. Setiap jawaban benar menarik tambang ke arah kelompokmu — kelompok pertama yang menarik tambang sampai ke ujung, menang!</p>
   </div>
 
   <!-- SETUP SCREEN -->
@@ -741,7 +741,7 @@
       </div>
     </div>
 
-    <p class="hint-strip">Butir soal diacak dari bank soal Pendidikan Pancasila &mdash; simbol sila, bunyi sila, sejarah lahirnya Pancasila, hingga contoh pengamalan sehari-hari.</p>
+    <p class="hint-strip">Butir soal diacak dari bank soal Bab 2 &mdash; pengertian dan klasifikasi nilai, sifat nilai Pancasila, tiga tataran nilai, makna tiap sila, lambang dan contoh perilaku, hingga studi kasus penerapan nilai Pancasila sehari-hari.</p>
   </div>
 
 </div>
@@ -776,41 +776,43 @@
 
   /* ---------------- question bank ---------------- */
   var QUESTIONS = [
-    { q:"Pancasila berasal dari kata 'panca' dan 'sila'. Apa arti 'panca'?", o:["Lima","Satu","Dasar","Aturan"], a:0 },
-    { q:"Apa arti kata 'sila' dalam Pancasila?", o:["Nama wilayah","Asas atau dasar","Nama seorang raja","Jenis upacara"], a:1 },
-    { q:"Pancasila resmi disahkan sebagai dasar negara pada tanggal berapa?", o:["1 Juni 1945","17 Agustus 1945","18 Agustus 1945","22 Juni 1945"], a:2 },
-    { q:"Tanggal 1 Juni diperingati setiap tahun sebagai Hari...", o:["Kemerdekaan Indonesia","Lahir Pancasila","Sumpah Pemuda","Pendidikan Nasional"], a:1 },
-    { q:"Siapakah yang menyampaikan pidato lahirnya Pancasila dalam sidang BPUPKI?", o:["Moh. Hatta","Soepomo","Ir. Soekarno","Moh. Yamin"], a:2 },
-    { q:"Lambang untuk sila pertama Pancasila adalah...", o:["Bintang","Rantai","Pohon beringin","Kepala banteng"], a:0 },
-    { q:"Lambang untuk sila kedua Pancasila adalah...", o:["Bintang","Rantai","Padi dan kapas","Kepala banteng"], a:1 },
-    { q:"Lambang untuk sila ketiga Pancasila adalah...", o:["Rantai","Kepala banteng","Pohon beringin","Padi dan kapas"], a:2 },
-    { q:"Lambang untuk sila keempat Pancasila adalah...", o:["Bintang","Kepala banteng","Pohon beringin","Rantai"], a:1 },
-    { q:"Lambang untuk sila kelima Pancasila adalah...", o:["Padi dan kapas","Bintang","Rantai","Pohon beringin"], a:0 },
-    { q:"Bunyi sila pertama Pancasila adalah...", o:["Persatuan Indonesia","Ketuhanan Yang Maha Esa","Keadilan sosial bagi seluruh rakyat Indonesia","Kemanusiaan yang adil dan beradab"], a:1 },
-    { q:"Bunyi sila kedua Pancasila adalah...", o:["Kemanusiaan yang adil dan beradab","Ketuhanan Yang Maha Esa","Persatuan Indonesia","Kerakyatan yang dipimpin oleh hikmat kebijaksanaan"], a:0 },
-    { q:"Bunyi sila ketiga Pancasila adalah...", o:["Keadilan sosial bagi seluruh rakyat Indonesia","Kemanusiaan yang adil dan beradab","Persatuan Indonesia","Ketuhanan Yang Maha Esa"], a:2 },
-    { q:"Bunyi sila keempat Pancasila adalah...", o:["Persatuan Indonesia","Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan","Ketuhanan Yang Maha Esa","Keadilan sosial bagi seluruh rakyat Indonesia"], a:1 },
-    { q:"Bunyi sila kelima Pancasila adalah...", o:["Kemanusiaan yang adil dan beradab","Persatuan Indonesia","Keadilan sosial bagi seluruh rakyat Indonesia","Ketuhanan Yang Maha Esa"], a:2 },
-    { q:"Beribadah dengan taat sesuai agama masing-masing adalah pengamalan sila ke...", o:["Satu","Dua","Tiga","Empat"], a:0 },
-    { q:"Menolong teman tanpa membeda-bedakan suku atau agama adalah pengamalan sila ke...", o:["Satu","Dua","Empat","Lima"], a:1 },
-    { q:"Rajin belajar demi menjaga nama baik dan persatuan bangsa adalah pengamalan sila ke...", o:["Dua","Tiga","Empat","Lima"], a:1 },
-    { q:"Mengutamakan musyawarah untuk mencapai mufakat adalah pengamalan sila ke...", o:["Dua","Tiga","Empat","Lima"], a:2 },
-    { q:"Bersikap adil dan tidak pilih kasih kepada semua teman adalah pengamalan sila ke...", o:["Satu","Tiga","Empat","Lima"], a:3 },
-    { q:"Apa semboyan negara Indonesia yang tertulis pada pita yang dicengkeram burung Garuda?", o:["Merdeka atau Mati","Bhinneka Tunggal Ika","Tut Wuri Handayani","Rawe-Rawe Rantas"], a:1 },
-    { q:"Apa arti semboyan 'Bhinneka Tunggal Ika'?", o:["Bersatu kita teguh","Berbeda-beda tetapi tetap satu jua","Satu nusa satu bangsa","Dari rakyat untuk rakyat"], a:1 },
-    { q:"Apa nama lambang negara Republik Indonesia?", o:["Garuda Pancasila","Elang Jawa","Merpati Perdamaian","Rajawali Nusantara"], a:0 },
-    { q:"Ada berapa jumlah bulu pada masing-masing sayap burung Garuda Pancasila?", o:["8","17","19","45"], a:1 },
-    { q:"Ada berapa jumlah bulu pada ekor burung Garuda Pancasila?", o:["8","17","19","45"], a:0 },
-    { q:"Jumlah bulu di bawah perisai (leher) Garuda Pancasila melambangkan tahun kemerdekaan, yaitu berjumlah...", o:["17","8","19","45"], a:3 },
-    { q:"Ada berapa lambang sila yang terdapat pada perisai burung Garuda Pancasila?", o:["4","5","6","7"], a:1 },
-    { q:"Badan yang menyelidiki dan merancang dasar negara sebelum kemerdekaan Indonesia bernama...", o:["PPKI","BPUPKI","KNIP","MPR"], a:1 },
-    { q:"Lembaga yang mengesahkan Pancasila dan UUD 1945 setelah kemerdekaan bernama...", o:["BPUPKI","PPKI","Panitia Sembilan","Komite Nasional"], a:1 },
-    { q:"Rumusan dasar negara yang disusun oleh Panitia Sembilan sebelum disahkan dikenal dengan sebutan...", o:["Piagam Jakarta","Dekrit Presiden","Sumpah Pemuda","Maklumat Politik"], a:0 },
-    { q:"Pancasila sebagai dasar negara tercantum dalam Pembukaan UUD 1945 pada alinea ke...", o:["Satu","Dua","Tiga","Empat"], a:3 },
-    { q:"Sikap kerja bakti membersihkan lingkungan bersama-sama mencerminkan pengamalan sila ke...", o:["Dua","Tiga","Empat","Lima"], a:1 },
-    { q:"Menghormati teman yang berbeda agama saat sedang beribadah adalah pengamalan sila ke...", o:["Satu","Dua","Tiga","Lima"], a:0 },
-    { q:"Pancasila berkedudukan sebagai dasar negara sekaligus disebut juga sebagai...", o:["Pandangan hidup bangsa","Lagu kebangsaan","Bahasa persatuan","Bendera negara"], a:0 },
-    { q:"Tidak memaksakan suatu agama atau kepercayaan kepada orang lain adalah pengamalan sila ke...", o:["Satu","Dua","Empat","Lima"], a:0 }
+    { q:"Nilai adalah sifat atau kualitas dari sesuatu yang bermanfaat bagi kehidupan manusia, baik...", o:["Hanya untuk kalangan tertentu","Materiel semata","Lahir maupun batin","Bersifat sementara"], a:2 },
+    { q:"Menurut Notonagoro, nilai yang bermanfaat bagi jasmani manusia disebut...", o:["Nilai Vital","Nilai Kerohanian","Nilai Religius","Nilai Materiel"], a:3 },
+    { q:"Nilai yang bermanfaat agar manusia dapat beraktivitas disebut...", o:["Nilai Materiel","Nilai Vital","Nilai Kerohanian","Nilai Estetis"], a:1 },
+    { q:"Nilai kerohanian dibagi menjadi empat, KECUALI...", o:["Nilai kebenaran","Nilai ekonomi","Nilai keindahan","Nilai kebaikan moral"], a:1 },
+    { q:"Nilai keindahan dalam nilai kerohanian berkaitan dengan unsur...", o:["Akal","Rasa/estetis","Kehendak","Kepercayaan"], a:1 },
+    { q:"Nilai kebenaran dalam nilai kerohanian bersumber dari unsur...", o:["Rasa","Akal","Karsa","Religius"], a:1 },
+    { q:"Sifat nilai Pancasila yang menyatakan sila-sila saling terkait dan bertingkat seperti piramida disebut...", o:["Objektif","Subjektif","Hierarkis piramidal","Instrumental"], a:2 },
+    { q:"Dalam sifat hierarkis piramidal, sila pertama berfungsi...", o:["Berdiri sendiri terpisah dari sila lain","Tidak berkaitan dengan sila lain","Hanya berlaku di lingkungan sekolah","Mendasari dan menjiwai sila ke-2, 3, 4, dan 5"], a:3 },
+    { q:"Sifat nilai Pancasila yang bersifat universal dan abstrak, serta berlaku sepanjang masa, disebut...", o:["Subjektif","Objektif","Praksis","Instrumental"], a:1 },
+    { q:"Sifat nilai Pancasila yang lahir dari bangsa Indonesia sendiri dan mencerminkan filsafat hidup bangsa disebut...", o:["Objektif","Absolut","Subjektif","Instrumental"], a:2 },
+    { q:"Nilai Pancasila tidak akan berubah sepanjang waktu karena berasal dari adat istiadat dan agama yang mengakar di Nusantara — sifat ini disebut...", o:["Subjektif","Instrumental","Praksis","Absolut/mutlak"], a:3 },
+    { q:"Menurut Moerdiono, sila-sila Pancasila itu sendiri termasuk tataran...", o:["Nilai instrumental","Nilai dasar","Nilai praksis","Nilai materiel"], a:1 },
+    { q:"UUD 1945 dan peraturan perundang-undangan merupakan penjabaran nilai dasar sesuai zaman, termasuk tataran...", o:["Nilai instrumental","Nilai dasar","Nilai praksis","Nilai vital"], a:0 },
+    { q:"Gotong royong, toleransi, dan musyawarah dalam kehidupan sehari-hari adalah contoh tataran...", o:["Nilai dasar","Nilai instrumental","Nilai praksis","Nilai materiel"], a:2 },
+    { q:"Tataran nilai yang paling penting karena menentukan apakah Pancasila benar-benar hidup di masyarakat adalah...", o:["Nilai dasar","Nilai instrumental","Nilai vital","Nilai praksis"], a:3 },
+    { q:"Sila pertama Pancasila menjamin kebebasan beragama sesuai dengan...", o:["Pasal 33 UUD 1945","Pasal 27 UUD 1945","Pasal 29 Ayat 1 dan 2 UUD 1945","Pasal 31 UUD 1945"], a:2 },
+    { q:"Sikap 'adil' pada sila kedua berarti...", o:["Selalu memihak kelompok mayoritas","Tidak berat sebelah","Mengutamakan kepentingan pribadi","Membeda-bedakan suku"], a:1 },
+    { q:"Kata 'persatuan' berasal dari kata 'satu' yang berarti...", o:["Banyak dan beragam","Sendiri-sendiri","Utuh dan tidak terpecah-pecah","Terbagi rata"], a:2 },
+    { q:"Perbedaan suku, agama, dan ras menurut sila ketiga seharusnya...", o:["Dihapuskan","Dijadikan alasan konflik","Diabaikan begitu saja","Disatukan dalam Bhinneka Tunggal Ika"], a:3 },
+    { q:"Tiga unsur utama sila keempat adalah kerakyatan, kedaulatan rakyat, dan...", o:["Keadilan distributif","Nilai religius","Permusyawaratan/perwakilan","Gotong royong"], a:2 },
+    { q:"'Hikmat kebijaksanaan' pada sila keempat berarti keputusan diambil berdasarkan...", o:["Keputusan sepihak pemimpin","Nilai etika musyawarah yang rasional dan manusiawi","Suara terbanyak tanpa diskusi","Kesepakatan kelompok tertentu saja"], a:1 },
+    { q:"Keadilan sosial pada sila kelima merupakan tujuan dari...", o:["Hanya sila pertama","Hanya sila keempat","Keempat sila lainnya","Peraturan pemerintah saja"], a:2 },
+    { q:"Keadilan yang berarti negara membagi secara merata disebut keadilan...", o:["Keadilan legal","Keadilan distributif","Keadilan komutatif","Keadilan sosial"], a:1 },
+    { q:"Keadilan yang berarti warga taat pada peraturan negara disebut keadilan...", o:["Keadilan legal","Keadilan distributif","Keadilan komutatif","Keadilan praksis"], a:0 },
+    { q:"Keadilan yang berarti hubungan timbal balik yang adil antarwarga disebut keadilan...", o:["Keadilan objektif","Keadilan legal","Keadilan komutatif","Keadilan distributif"], a:2 },
+    { q:"Lambang sila pertama adalah bintang, dengan contoh perilaku...", o:["Ikut upacara bendera","Bermusyawarah untuk mufakat","Beribadah sesuai agama dan menghormati agama lain","Bekerja keras dan tidak boros"], a:2 },
+    { q:"Lambang sila kedua adalah rantai, dengan contoh perilaku...", o:["Memakai produk dalam negeri","Membantu sesama dan menghargai HAM","Menghormati hasil musyawarah","Menaati hukum yang berlaku"], a:1 },
+    { q:"Lambang sila ketiga adalah pohon beringin, dengan contoh perilaku...", o:["Beribadah sesuai agama","Tidak memaksakan kehendak kepada orang lain","Bergotong royong dan memakai produk dalam negeri","Membantu yang lemah"], a:2 },
+    { q:"Lambang sila keempat adalah kepala banteng, dengan contoh perilaku...", o:["Menjaga kerukunan antarumat beragama","Musyawarah mufakat dan menghargai perbedaan pendapat","Kerja keras dan tidak boros","Menghargai HAM"], a:1 },
+    { q:"Lambang sila kelima adalah padi dan kapas, dengan contoh perilaku...", o:["Musyawarah untuk mufakat","Ikut upacara bendera","Menghormati agama lain","Kerja keras, tidak boros, dan membantu yang lemah"], a:3 },
+    { q:"Toleransi antarteman berbeda agama saat tiba waktu salat Zuhur di sekolah adalah contoh penerapan sila ke...", o:["Sila ke-2","Sila ke-1","Sila ke-3","Sila ke-4"], a:1 },
+    { q:"Teman-teman membantu siswa yang tertinggal pelajaran karena baru sembuh dari sakit adalah contoh penerapan sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-5"], a:1 },
+    { q:"Gotong royong seluruh siswa membersihkan lingkungan sekolah menjelang 17 Agustus adalah contoh penerapan sila ke...", o:["Sila ke-2","Sila ke-4","Sila ke-3","Sila ke-5"], a:2 },
+    { q:"Musyawarah kelas untuk memilih ketua kelas yang baru adalah contoh penerapan sila ke...", o:["Sila ke-3","Sila ke-2","Sila ke-5","Sila ke-4"], a:3 },
+    { q:"Ketua kelas membagi jadwal piket kebersihan secara adil dan merata adalah contoh penerapan sila ke...", o:["Sila ke-4","Sila ke-3","Sila ke-1","Sila ke-5"], a:3 },
+    { q:"Dalam proyek penerapan nilai Pancasila, siswa dibagi menjadi lima kelompok yang masing-masing mewakili...", o:["Satu mata pelajaran","Satu wilayah asal","Satu sila Pancasila","Satu kelas paralel"], a:2 },
+    { q:"Dalam rumus skor akhir penilaian proyek, nilai psikomotorik (unjuk kerja studi kasus dan proyek) memiliki bobot...", o:["30%","50%","20%","70%"], a:1 }
   ];
 
   /* ---------------- state ---------------- */
