@@ -116,6 +116,31 @@
   }
   h1,h2,h3{ font-family: var(--font-display); text-wrap: balance; margin:0; }
 
+  /* ---------- panggung 16:9 untuk Papan Interaktif Digital ---------- */
+  #stage{ display:contents; }
+  @media (min-width: 900px){
+    body{
+      margin:0;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: var(--wood-dark);
+    }
+    #stage{
+      display:block;
+      position:relative;
+      width: min(100vw, calc(100vh * 16 / 9));
+      height: min(100vh, calc(100vw * 9 / 16));
+      background: var(--paper);
+      overflow-y:auto;
+      overflow-x:hidden;
+      box-shadow: 0 24px 70px rgba(0,0,0,.45);
+    }
+    #stage::-webkit-scrollbar{ width:10px; }
+    #stage::-webkit-scrollbar-thumb{ background: var(--line); border-radius:999px; }
+  }
+
   button{ font-family: inherit; }
   button:focus-visible, input:focus-visible, [tabindex]:focus-visible{
     outline: 3px solid var(--gold);
@@ -883,6 +908,8 @@
 </head>
 <body>
 
+<div id="stage">
+
 <div class="bunting" id="bunting" aria-hidden="true"></div>
 
 <div class="shell">
@@ -1014,6 +1041,8 @@
   </div>
 
 </div>
+
+</div><!-- /#stage -->
 
 <!-- WIN OVERLAY -->
 <div class="overlay" id="overlay" hidden>
