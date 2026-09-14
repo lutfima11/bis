@@ -140,7 +140,9 @@
     }
     #stageContent{
       width: 100%;
-      flex: 0 0 auto;
+      height: 100%;
+      display:flex;
+      flex-direction:column;
     }
 
     /* --- kompensasi konten agar mengisi penuh bingkai 16:9, tanpa ruang kosong --- */
@@ -149,39 +151,85 @@
     .shell{
       max-width: none;
       width: 100%;
+      flex: 1 1 auto;
+      min-height: 0;
+      display:flex;
+      flex-direction:column;
       padding: 0 clamp(16px, 2.2vw, 40px) 12px;
     }
 
-    .masthead{ padding: 10px 0 10px; }
+    .masthead{ flex: 0 0 auto; padding: 10px 0 10px; }
     .masthead p{ display:none; }
     .masthead .eyebrow{ margin-bottom:6px; }
     .masthead h1{ font-size: clamp(1.3rem, 2.4vw, 2rem); }
 
-    .scoreboard{ margin-bottom: 10px; gap: clamp(10px,1.6vw,20px); }
-    .team-card{ padding: 10px 16px; gap:4px; }
-    .team-card .score-row{ margin-top:6px; }
-    .team-card .score-num{ font-size: clamp(1.6rem, 2.8vw, 2.2rem); }
-    .team-card input[type="text"]{ font-size: clamp(.95rem, 1.5vw, 1.15rem); padding:2px 2px 4px; }
-    .vs-badge{ width:clamp(40px,3.6vw,56px); height:clamp(40px,3.6vw,56px); font-size:clamp(.75rem,1.1vw,.9rem); }
+    .setup-card{
+      flex: 1 1 auto;
+      min-height: 0;
+      justify-content:center;
+      padding: clamp(18px,2.2vw,28px);
+      gap:14px;
+    }
+    .pack-grid{ grid-template-columns: repeat(4, 1fr); }
 
-    .field-wrap{ padding: 10px 18px 14px; margin-bottom: 10px; }
+    /* ---- layar permainan: panel kiri (Merah) | tengah (tarik tambang+soal) | panel kanan (Biru) ---- */
+    #app{
+      flex: 1 1 auto;
+      min-height: 0;
+      display:flex;
+      flex-direction:column;
+    }
+    .game-grid{
+      flex: 1 1 auto;
+      min-height: 0;
+      grid-template-columns: minmax(160px, 15%) 1fr minmax(160px, 15%);
+      grid-template-areas: "panelA center panelB";
+      gap: clamp(10px, 1.4vw, 20px);
+      margin-bottom: 0;
+    }
+    .team-card{
+      height: 100%;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+    }
+    .team-card .tag{ margin: 0 auto; }
+    .team-card input[type="text"]{ text-align:center; font-size: clamp(.95rem, 1.3vw, 1.15rem); padding:2px 2px 4px; }
+    .team-card .score-row{
+      flex-direction:column;
+      align-items:center;
+      gap:6px;
+      margin-top:14px;
+    }
+    .team-card .score-num{ font-size: clamp(2.1rem, 4.4vw, 3.4rem); }
+
+    .game-center{
+      height: 100%;
+      min-height: 0;
+      gap: clamp(8px, 1.4vw, 16px);
+    }
+    .field-wrap{ flex: 0 0 auto; padding: 10px 18px 14px; }
     .turn-banner{ margin-bottom:8px; }
-    .field{ height: clamp(90px, 11vw, 130px); }
+    .field{ height: clamp(90px, 15vw, 150px); }
 
-    .question-card{ padding: 14px 20px 16px; }
-    .turn-flag{ margin-bottom:8px; padding:6px 14px; font-size:.85rem; }
-    .q-timer-row{ margin:2px 0 8px; }
-    .question-card h2{ font-size: clamp(1rem, 1.7vw, 1.3rem); margin-bottom:10px; line-height:1.28; }
-    .options{ gap: 8px; }
-    .opt-btn{ min-height:44px; padding:10px 14px 10px 12px; font-size: clamp(.85rem,1.2vw,1rem); }
-    .opt-btn .letter{ width:24px; height:24px; font-size:.75rem; }
-    .card-footer{ margin-top:10px; }
+    .question-card{
+      flex: 1 1 auto;
+      min-height: 0;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      padding: 14px 20px 16px;
+    }
+    .turn-flag{ margin-bottom:8px; padding:6px 14px; font-size:.85rem; flex: 0 0 auto; }
+    .q-timer-row{ margin:2px 0 8px; flex: 0 0 auto; }
+    .question-card h2{ font-size: clamp(1.05rem, 1.9vw, 1.5rem); margin-bottom:12px; line-height:1.3; flex: 0 0 auto; }
+    .options{ gap: 10px; flex: 0 0 auto; }
+    .opt-btn{ min-height:48px; padding:11px 16px 11px 13px; font-size: clamp(.9rem,1.3vw,1.08rem); }
+    .opt-btn .letter{ width:26px; height:26px; font-size:.78rem; }
+    .card-footer{ margin-top:12px; flex: 0 0 auto; }
     .card-footer .btn{ padding:9px 18px; font-size:.85rem; }
 
     .hint-strip{ display:none; }
-
-    .setup-card{ padding: clamp(18px,2.2vw,28px); gap:14px; }
-    .pack-grid{ grid-template-columns: repeat(4, 1fr); }
   }
 
   button{ font-family: inherit; }
@@ -256,12 +304,23 @@
   }
 
   /* ---------- scoreboard ---------- */
-  .scoreboard{
+  .game-grid{
     display:grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "panelA panelB"
+      "center center";
     gap: clamp(10px, 2vw, 22px);
-    align-items:stretch;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
+  }
+  .team-card.team-a{ grid-area: panelA; }
+  .team-card.team-b{ grid-area: panelB; }
+  .game-center{
+    grid-area: center;
+    display:flex;
+    flex-direction:column;
+    gap: clamp(10px, 2vw, 20px);
+    min-width:0;
   }
   .team-card{
     background: var(--card);
@@ -360,7 +419,6 @@
     border: 2px solid var(--line);
     border-radius: var(--radius-lg);
     padding: clamp(14px, 2.4vw, 26px);
-    margin-bottom: 20px;
   }
   .turn-banner{
     display:grid;
@@ -777,7 +835,8 @@
     border: 2px solid var(--line);
     border-radius: var(--radius-lg);
     padding: clamp(20px, 3.4vw, 36px);
-    display:grid;
+    display:flex;
+    flex-direction:column;
     gap: 22px;
   }
   .setup-teams{
@@ -1017,7 +1076,7 @@
   <!-- GAME SCREEN -->
   <div class="app" id="app" hidden>
 
-    <div class="scoreboard">
+    <div class="game-grid">
       <div class="team-card team-a">
         <span class="tag" id="labelA">Kelompok Merah</span>
         <input type="text" id="displayNameA" disabled>
@@ -1026,7 +1085,53 @@
           <span class="score-label">Jawaban benar</span>
         </div>
       </div>
-      <div class="vs-badge">VS</div>
+
+      <div class="game-center">
+        <div class="field-wrap">
+          <div class="turn-banner">
+            <span class="turn-pill" id="turnPill">Giliran: —</span>
+            <span class="match-timer" id="matchTimer">02:30</span>
+            <span class="q-counter" id="qCounter">Soal ke-1</span>
+          </div>
+          <div class="field">
+            <div class="stripe"></div>
+            <div class="tuft" style="left:6%;"></div>
+            <div class="tuft" style="left:23%; opacity:.35;"></div>
+            <div class="tuft" style="left:47%;"></div>
+            <div class="tuft" style="left:68%; opacity:.4;"></div>
+            <div class="tuft" style="left:89%;"></div>
+            <div class="leaf leaf-1"></div>
+            <div class="leaf leaf-2"></div>
+            <div class="leaf leaf-3"></div>
+            <div class="butterfly"></div>
+            <div class="win-zone left"></div>
+            <div class="win-zone right"></div>
+            <div class="center-line"></div>
+            <div class="mini-flag left"></div>
+            <div class="mini-flag right"></div>
+            <div class="rope"></div>
+            <div class="knot" id="knot"><span class="ribbon"></span></div>
+            <div class="team-figures team-a" id="figuresA"></div>
+            <div class="team-figures team-b" id="figuresB"></div>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <span class="turn-flag" id="turnFlag">Giliran: —</span>
+          <div class="q-timer-row">
+            <div class="q-timer-track"><div class="q-timer-fill" id="qTimerFill"></div></div>
+            <span class="q-timer-num" id="qTimerNum">6</span>
+          </div>
+          <h2 id="questionText">Memuat soal…</h2>
+          <div class="options" id="options"></div>
+          <div class="card-footer">
+            <button class="btn btn-ghost" id="skipBtn">Lewati soal ⤼</button>
+            <button class="btn btn-gold" id="nextBtn" disabled>Lanjut ke soal berikutnya ➜</button>
+            <button class="btn btn-ghost" id="resetBtn">Ulangi permainan</button>
+          </div>
+        </div>
+      </div>
+
       <div class="team-card team-b">
         <span class="tag" id="labelB">Kelompok Biru</span>
         <input type="text" id="displayNameB" disabled>
@@ -1034,50 +1139,6 @@
           <span class="score-num" id="scoreB">0</span>
           <span class="score-label">Jawaban benar</span>
         </div>
-      </div>
-    </div>
-
-    <div class="field-wrap">
-      <div class="turn-banner">
-        <span class="turn-pill" id="turnPill">Giliran: —</span>
-        <span class="match-timer" id="matchTimer">02:30</span>
-        <span class="q-counter" id="qCounter">Soal ke-1</span>
-      </div>
-      <div class="field">
-        <div class="stripe"></div>
-        <div class="tuft" style="left:6%;"></div>
-        <div class="tuft" style="left:23%; opacity:.35;"></div>
-        <div class="tuft" style="left:47%;"></div>
-        <div class="tuft" style="left:68%; opacity:.4;"></div>
-        <div class="tuft" style="left:89%;"></div>
-        <div class="leaf leaf-1"></div>
-        <div class="leaf leaf-2"></div>
-        <div class="leaf leaf-3"></div>
-        <div class="butterfly"></div>
-        <div class="win-zone left"></div>
-        <div class="win-zone right"></div>
-        <div class="center-line"></div>
-        <div class="mini-flag left"></div>
-        <div class="mini-flag right"></div>
-        <div class="rope"></div>
-        <div class="knot" id="knot"><span class="ribbon"></span></div>
-        <div class="team-figures team-a" id="figuresA"></div>
-        <div class="team-figures team-b" id="figuresB"></div>
-      </div>
-    </div>
-
-    <div class="question-card">
-      <span class="turn-flag" id="turnFlag">Giliran: —</span>
-      <div class="q-timer-row">
-        <div class="q-timer-track"><div class="q-timer-fill" id="qTimerFill"></div></div>
-        <span class="q-timer-num" id="qTimerNum">6</span>
-      </div>
-      <h2 id="questionText">Memuat soal…</h2>
-      <div class="options" id="options"></div>
-      <div class="card-footer">
-        <button class="btn btn-ghost" id="skipBtn">Lewati soal ⤼</button>
-        <button class="btn btn-gold" id="nextBtn" disabled>Lanjut ke soal berikutnya ➜</button>
-        <button class="btn btn-ghost" id="resetBtn">Ulangi permainan</button>
       </div>
     </div>
 
