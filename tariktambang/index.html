@@ -142,6 +142,46 @@
       width: 100%;
       flex: 0 0 auto;
     }
+
+    /* --- kompensasi konten agar mengisi penuh bingkai 16:9, tanpa ruang kosong --- */
+    #bunting{ display:none; }
+
+    .shell{
+      max-width: none;
+      width: 100%;
+      padding: 0 clamp(16px, 2.2vw, 40px) 12px;
+    }
+
+    .masthead{ padding: 10px 0 10px; }
+    .masthead p{ display:none; }
+    .masthead .eyebrow{ margin-bottom:6px; }
+    .masthead h1{ font-size: clamp(1.3rem, 2.4vw, 2rem); }
+
+    .scoreboard{ margin-bottom: 10px; gap: clamp(10px,1.6vw,20px); }
+    .team-card{ padding: 10px 16px; gap:4px; }
+    .team-card .score-row{ margin-top:6px; }
+    .team-card .score-num{ font-size: clamp(1.6rem, 2.8vw, 2.2rem); }
+    .team-card input[type="text"]{ font-size: clamp(.95rem, 1.5vw, 1.15rem); padding:2px 2px 4px; }
+    .vs-badge{ width:clamp(40px,3.6vw,56px); height:clamp(40px,3.6vw,56px); font-size:clamp(.75rem,1.1vw,.9rem); }
+
+    .field-wrap{ padding: 10px 18px 14px; margin-bottom: 10px; }
+    .turn-banner{ margin-bottom:8px; }
+    .field{ height: clamp(90px, 11vw, 130px); }
+
+    .question-card{ padding: 14px 20px 16px; }
+    .turn-flag{ margin-bottom:8px; padding:6px 14px; font-size:.85rem; }
+    .q-timer-row{ margin:2px 0 8px; }
+    .question-card h2{ font-size: clamp(1rem, 1.7vw, 1.3rem); margin-bottom:10px; line-height:1.28; }
+    .options{ gap: 8px; }
+    .opt-btn{ min-height:44px; padding:10px 14px 10px 12px; font-size: clamp(.85rem,1.2vw,1rem); }
+    .opt-btn .letter{ width:24px; height:24px; font-size:.75rem; }
+    .card-footer{ margin-top:10px; }
+    .card-footer .btn{ padding:9px 18px; font-size:.85rem; }
+
+    .hint-strip{ display:none; }
+
+    .setup-card{ padding: clamp(18px,2.2vw,28px); gap:14px; }
+    .pack-grid{ grid-template-columns: repeat(4, 1fr); }
   }
 
   button{ font-family: inherit; }
