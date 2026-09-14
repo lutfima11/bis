@@ -1,0 +1,1208 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Tarik Tambang Pancasila</title>
+<meta name="description" content="Game kuis Pendidikan Pancasila untuk Papan Interaktif Digital: dua kelompok bertanding tarik tambang, jawaban benar menarik tambang ke arah kelompok yang menang.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%A2%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF3E7;
+    --paper-alt:#F1E3CD;
+    --ink:#241F1B;
+    --ink-soft:#6b5f52;
+    --card:#FFFDF8;
+    --line: rgba(36,31,27,0.14);
+    --shadow: rgba(36,31,27,0.22);
+
+    --red:#BF3628;
+    --red-soft:#EFC9C0;
+    --red-ink:#5c1c14;
+    --blue:#2B5F82;
+    --blue-soft:#C4DBE6;
+    --blue-ink:#12303f;
+
+    --grass:#5C7A4A;
+    --grass-dark:#3F5A34;
+    --wood:#8a5a34;
+    --wood-dark:#5c3b21;
+
+    --gold:#D9A441;
+    --gold-soft:#F3DDA6;
+    --success:#3F7A45;
+    --success-soft:#CFE3C7;
+    --danger:#B0402F;
+    --danger-soft:#F1CDC2;
+
+    --radius-lg: 22px;
+    --radius-md: 14px;
+    --font-display: "Baloo 2", "Segoe UI", system-ui, sans-serif;
+    --font-body: "Nunito", "Segoe UI", system-ui, sans-serif;
+    --font-mono: "Space Mono", "Courier New", monospace;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#1C1712;
+      --paper-alt:#241E17;
+      --ink:#F3EAD9;
+      --ink-soft:#C7B9A4;
+      --card:#241E17;
+      --line: rgba(243,234,217,0.14);
+      --shadow: rgba(0,0,0,0.55);
+
+      --red:#E2604C;
+      --red-soft:#4a2620;
+      --red-ink:#f6d3ca;
+      --blue:#78BEE0;
+      --blue-soft:#1c3542;
+      --blue-ink:#d2ecf7;
+
+      --grass:#6d8f5a;
+      --grass-dark:#33461f;
+      --wood:#7a5030;
+      --wood-dark:#40290f;
+
+      --gold:#E7BB63;
+      --gold-soft:#4a3b1d;
+      --success:#8fce88;
+      --success-soft:#274022;
+      --danger:#e2604c;
+      --danger-soft:#4a2620;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#1C1712;
+    --paper-alt:#241E17;
+    --ink:#F3EAD9;
+    --ink-soft:#C7B9A4;
+    --card:#241E17;
+    --line: rgba(243,234,217,0.14);
+    --shadow: rgba(0,0,0,0.55);
+
+    --red:#E2604C;
+    --red-soft:#4a2620;
+    --red-ink:#f6d3ca;
+    --blue:#78BEE0;
+    --blue-soft:#1c3542;
+    --blue-ink:#d2ecf7;
+
+    --grass:#6d8f5a;
+    --grass-dark:#33461f;
+    --wood:#7a5030;
+    --wood-dark:#40290f;
+
+    --gold:#E7BB63;
+    --gold-soft:#4a3b1d;
+    --success:#8fce88;
+    --success-soft:#274022;
+    --danger:#e2604c;
+    --danger-soft:#4a2620;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{ font-family: var(--font-display); text-wrap: balance; margin:0; }
+
+  button{ font-family: inherit; }
+  button:focus-visible, input:focus-visible, [tabindex]:focus-visible{
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  /* ---------- bunting strip ---------- */
+  .bunting{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    width:100%;
+    height:26px;
+    padding:0 3vw;
+    position:relative;
+    overflow:hidden;
+  }
+  .bunting::before{
+    content:"";
+    position:absolute;
+    left:0; right:0; top:6px;
+    height:2px;
+    background: var(--ink-soft);
+    opacity:.35;
+  }
+  .bunting .flag{
+    width: 22px; height: 22px;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    flex: 0 0 auto;
+    opacity:.9;
+  }
+
+  /* ---------- shell ---------- */
+  .shell{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 clamp(14px, 3vw, 36px) 40px;
+  }
+
+  .masthead{
+    text-align:center;
+    padding: 10px 0 22px;
+  }
+  .masthead .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family: var(--font-body);
+    font-weight:800;
+    font-size: clamp(.7rem, 1.4vw, .85rem);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--red);
+    background: var(--red-soft);
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .masthead h1{
+    font-size: clamp(1.8rem, 4.4vw, 3rem);
+    font-weight: 800;
+    color: var(--ink);
+  }
+  .masthead p{
+    margin: 8px auto 0;
+    max-width: 56ch;
+    color: var(--ink-soft);
+    font-size: clamp(.95rem, 1.6vw, 1.1rem);
+    font-weight:600;
+  }
+
+  /* ---------- scoreboard ---------- */
+  .scoreboard{
+    display:grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: clamp(10px, 2vw, 22px);
+    align-items:stretch;
+    margin-bottom: 22px;
+  }
+  .team-card{
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--line);
+    padding: clamp(14px,2vw,22px);
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    box-shadow: 0 6px 0 var(--shadow-hard, transparent);
+    position:relative;
+    min-width:0;
+  }
+  .team-card.team-a{ border-color: color-mix(in srgb, var(--red) 55%, var(--line)); }
+  .team-card.team-b{ border-color: color-mix(in srgb, var(--blue) 55%, var(--line)); }
+
+  .team-card .tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-weight:800;
+    font-size: .78rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding: 4px 10px;
+    border-radius:999px;
+    width:fit-content;
+  }
+  .team-a .tag{ background: var(--red-soft); color: var(--red-ink); }
+  .team-b .tag{ background: var(--blue-soft); color: var(--blue-ink); }
+  .team-a .tag::before{ content:"🚩"; }
+  .team-b .tag::before{ content:"🚩"; }
+
+  .team-card input[type="text"]{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.05rem, 2vw, 1.4rem);
+    background: transparent;
+    border: none;
+    border-bottom: 2px dashed var(--line);
+    color: var(--ink);
+    padding: 4px 2px 6px;
+    width: 100%;
+    min-width:0;
+  }
+  .team-card input[type="text"]:disabled{
+    border-bottom-color: transparent;
+    opacity: 1;
+    -webkit-text-fill-color: var(--ink);
+    color: var(--ink);
+  }
+
+  .team-card .score-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-top:auto;
+  }
+  .team-card .score-num{
+    font-family: var(--font-mono);
+    font-size: clamp(2.1rem, 5vw, 3rem);
+    font-weight:700;
+    line-height:1;
+  }
+  .team-a .score-num{ color: var(--red); }
+  .team-b .score-num{ color: var(--blue); }
+  .team-card .score-label{
+    font-size:.75rem;
+    font-weight:700;
+    color: var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+  }
+
+  .vs-badge{
+    align-self:center;
+    justify-self:center;
+    width: clamp(52px, 7vw, 74px);
+    height: clamp(52px, 7vw, 74px);
+    border-radius:50%;
+    background: radial-gradient(circle at 32% 28%, var(--gold-soft), var(--gold) 70%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family: var(--font-display);
+    font-weight:800;
+    color: var(--red-ink);
+    font-size: clamp(.85rem, 1.6vw, 1.1rem);
+    box-shadow: 0 4px 0 rgba(0,0,0,.18), 0 0 0 4px var(--card);
+    text-align:center;
+  }
+
+  /* ---------- field / tug of war ---------- */
+  .field-wrap{
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(14px, 2.4vw, 26px);
+    margin-bottom: 20px;
+  }
+  .turn-banner{
+    display:grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items:center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .turn-banner .turn-pill{
+    justify-self:start;
+    font-weight:800;
+    font-size: clamp(.85rem, 1.6vw, 1.05rem);
+    padding: 8px 18px;
+    border-radius:999px;
+    transition: background .35s ease, color .35s ease;
+  }
+  .turn-pill.for-a{ background: var(--red-soft); color: var(--red-ink); }
+  .turn-pill.for-b{ background: var(--blue-soft); color: var(--blue-ink); }
+  .q-counter{
+    justify-self:end;
+    font-family: var(--font-mono);
+    font-weight:700;
+    font-size: .85rem;
+    color: var(--ink-soft);
+    background: var(--paper-alt);
+    padding: 8px 14px;
+    border-radius: 999px;
+  }
+  .match-timer{
+    justify-self:center;
+    font-family: var(--font-mono);
+    font-weight:700;
+    font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+    color: var(--ink);
+    background: var(--gold-soft);
+    padding: 6px 20px;
+    border-radius: 999px;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: .02em;
+  }
+  .match-timer.low{
+    color: #fff;
+    background: var(--danger);
+    animation: timerPulse 1s ease-in-out infinite;
+  }
+  @keyframes timerPulse{
+    0%,100%{ transform: scale(1); }
+    50%{ transform: scale(1.08); }
+  }
+  @media (max-width: 560px){
+    .turn-banner{ grid-template-columns: 1fr; justify-items:center; text-align:center; }
+    .turn-banner .turn-pill, .q-counter{ justify-self:center; }
+  }
+
+  .field{
+    position:relative;
+    height: clamp(150px, 22vw, 210px);
+    border-radius: 16px;
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 2px, transparent 2px 26px),
+      linear-gradient(180deg, var(--grass) 0%, var(--grass-dark) 100%);
+    overflow:hidden;
+    box-shadow: inset 0 0 0 2px rgba(0,0,0,.08), inset 0 -14px 30px rgba(0,0,0,.18);
+  }
+  .field .stripe{
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 40px, transparent 40px 80px);
+  }
+  .field .center-line{
+    position:absolute;
+    left:50%; top:0; bottom:0;
+    width:0;
+    border-left: 3px dashed rgba(255,255,255,.5);
+    transform: translateX(-1.5px);
+  }
+  .win-zone{
+    position:absolute;
+    top:0; bottom:0;
+    width: 15%;
+    background: linear-gradient(90deg, rgba(0,0,0,.14), transparent);
+  }
+  .win-zone.left{ left:0; }
+  .win-zone.right{ right:0; transform: scaleX(-1); }
+
+  .mini-flag{
+    position:absolute;
+    top: 8%;
+    width: 3px;
+    height: 30%;
+    background: var(--wood-dark);
+    border-radius: 2px;
+  }
+  .mini-flag::after{
+    content:"";
+    position:absolute;
+    top:0; left:100%;
+    width: 16px; height: 11px;
+    transform-origin: 0 50%;
+    animation: wave 2.2s ease-in-out infinite;
+    border-radius: 0 3px 3px 0;
+  }
+  .mini-flag.left{ left: 2%; }
+  .mini-flag.right{ right: 2%; }
+  .mini-flag.left::after{ background: var(--red); }
+  .mini-flag.right::after{ background: var(--blue); }
+  @keyframes wave{
+    0%,100%{ transform: rotateY(0deg) skewY(0deg); }
+    50%{ transform: rotateY(18deg) skewY(3deg); }
+  }
+
+  /* ---------- team figures (tug-of-war players) ---------- */
+  .team-figures{
+    position:absolute;
+    bottom: 4%;
+    display:flex;
+    align-items:flex-end;
+    z-index:1;
+  }
+  .team-figures.team-a{ left: 5%; }
+  .team-figures.team-b{ right: 5%; flex-direction: row-reverse; }
+  .team-figures svg{
+    display:block;
+    overflow:visible;
+    margin: 0 -8px;
+  }
+  .team-figures svg.figure-back{
+    height: clamp(44px, 6.6vw, 64px);
+    opacity: .92;
+  }
+  .team-figures svg.figure-front{
+    height: clamp(56px, 8.4vw, 78px);
+    position:relative;
+    z-index:1;
+  }
+
+  .rope{
+    position:absolute;
+    top:50%;
+    left: 8%;
+    right: 8%;
+    height: 13px;
+    transform: translateY(-50%);
+    border-radius: 8px;
+    background: repeating-linear-gradient(65deg, #caa15a 0 7px, #a8763a 7px 14px);
+    box-shadow: 0 2px 4px rgba(0,0,0,.25);
+  }
+  .knot{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width: clamp(30px, 4.5vw, 42px);
+    height: clamp(30px, 4.5vw, 42px);
+    transform: translate(-50%,-50%);
+    border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, #f0d9a0, var(--gold) 65%, #a8762c 100%);
+    box-shadow: 0 3px 6px rgba(0,0,0,.35), inset 0 0 0 3px rgba(255,255,255,.25);
+    transition: left 900ms cubic-bezier(.34,1.56,.64,1);
+    z-index:2;
+  }
+  .knot::after{
+    content:"";
+    position:absolute;
+    left:50%; top:-16px;
+    width: 3px; height: 16px;
+    background: var(--ink-soft);
+    transform: translateX(-50%);
+    opacity:.6;
+  }
+  .knot .ribbon{
+    position:absolute;
+    left:50%; top:-30px;
+    width: 18px; height: 14px;
+    background: var(--card);
+    border: 2px solid var(--ink-soft);
+    transform: translateX(-50%);
+    border-radius: 0 3px 3px 0;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .mini-flag::after{ animation: none; }
+    .knot{ transition: left 200ms linear; }
+    .match-timer.low{ animation: none; }
+  }
+
+  /* ---------- question card ---------- */
+  .question-card{
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(16px, 2.6vw, 28px);
+  }
+  .question-card h2{
+    font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+    line-height:1.35;
+    margin-bottom: 18px;
+    color: var(--ink);
+  }
+  .options{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(10px, 1.6vw, 16px);
+  }
+  @media (max-width: 620px){
+    .options{ grid-template-columns: 1fr; }
+  }
+  .opt-btn{
+    position:relative;
+    text-align:left;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background: var(--paper-alt);
+    border: 2px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 16px 18px 16px 16px;
+    font-weight:700;
+    font-size: clamp(.95rem, 1.7vw, 1.12rem);
+    color: var(--ink);
+    cursor:pointer;
+    min-height: 64px;
+    transition: transform .12s ease, background .2s ease, border-color .2s ease;
+  }
+  .opt-btn:hover:not(:disabled){ transform: translateY(-2px); border-color: var(--gold); }
+  .opt-btn:active:not(:disabled){ transform: translateY(0); }
+  .opt-btn:disabled{ cursor:default; }
+  .opt-btn .letter{
+    flex: 0 0 auto;
+    width: 30px; height:30px;
+    border-radius:50%;
+    background: var(--card);
+    border: 2px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-mono);
+    font-weight:700;
+    font-size:.85rem;
+  }
+  .opt-btn.correct{
+    background: var(--success-soft);
+    border-color: var(--success);
+  }
+  .opt-btn.correct .letter{ background: var(--success); border-color: var(--success); color:#fff; }
+  .opt-btn.wrong{
+    background: var(--danger-soft);
+    border-color: var(--danger);
+  }
+  .opt-btn.wrong .letter{ background: var(--danger); border-color: var(--danger); color:#fff; }
+
+  .card-footer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top: 20px;
+  }
+
+  .btn{
+    font-family: var(--font-body);
+    font-weight:800;
+    font-size: .95rem;
+    padding: 12px 22px;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    cursor:pointer;
+    transition: transform .12s ease, filter .15s ease;
+  }
+  .btn:hover{ filter:brightness(1.05); }
+  .btn:active{ transform: translateY(1px); }
+  .btn:disabled{ opacity:.45; cursor:not-allowed; }
+  .btn-primary{ background: var(--red); color:#fff; }
+  .btn-ghost{ background: transparent; color: var(--ink-soft); border-color: var(--line); }
+  .btn-gold{ background: var(--gold); color: var(--red-ink); }
+
+  /* ---------- setup screen ---------- */
+  .setup-card{
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(20px, 3.4vw, 36px);
+    display:grid;
+    gap: 22px;
+  }
+  .setup-teams{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 560px){ .setup-teams{ grid-template-columns: 1fr; } }
+  .setup-team{
+    border-radius: var(--radius-md);
+    padding: 16px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .setup-team.a{ background: var(--red-soft); }
+  .setup-team.b{ background: var(--blue-soft); }
+  .setup-team label{
+    font-weight:800;
+    font-size:.78rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+  }
+  .setup-team.a label{ color: var(--red-ink); }
+  .setup-team.b label{ color: var(--blue-ink); }
+  .setup-team input{
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight:700;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 2px solid var(--line);
+    background: var(--card);
+    color: var(--ink);
+  }
+  .setup-rules{
+    font-size:.92rem;
+    color: var(--ink-soft);
+    line-height:1.6;
+    background: var(--paper-alt);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+  }
+  .setup-rules b{ color: var(--ink); }
+
+  /* ---------- win overlay ---------- */
+  .overlay{
+    position:fixed; inset:0;
+    background: rgba(20,16,12,.72);
+    display:flex; align-items:center; justify-content:center;
+    padding: 20px;
+    z-index: 50;
+  }
+  .overlay[hidden]{ display:none; }
+  .win-card{
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    padding: clamp(24px,4vw,44px);
+    max-width: 480px;
+    width:100%;
+    text-align:center;
+    box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    position:relative;
+    overflow:hidden;
+  }
+  .win-card .trophy{ font-size: clamp(2.6rem, 7vw, 3.6rem); }
+  .win-card h2{ font-size: clamp(1.4rem, 3.6vw, 2rem); margin: 10px 0 6px; }
+  .win-card p{ color: var(--ink-soft); font-weight:600; margin-bottom: 18px; }
+  #fireworks{
+    position:absolute; inset:0;
+    pointer-events:none;
+  }
+
+  .app[hidden], .setup-card[hidden]{ display:none; }
+
+  .hint-strip{
+    text-align:center;
+    margin-top: 18px;
+    font-size:.82rem;
+    color: var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+
+<div class="bunting" id="bunting" aria-hidden="true"></div>
+
+<div class="shell">
+
+  <div class="masthead">
+    <span class="eyebrow">Pendidikan Pancasila &middot; Kuis Kelompok</span>
+    <h1>Tarik Tambang Pancasila</h1>
+    <p>Dua kelompok bertanding menjawab soal Pendidikan Pancasila. Setiap jawaban benar menarik tambang ke arah kelompokmu — kelompok pertama yang menarik tambang sampai ke ujung, menang!</p>
+  </div>
+
+  <!-- SETUP SCREEN -->
+  <div class="setup-card" id="setupScreen">
+    <div class="setup-teams">
+      <div class="setup-team a">
+        <label for="nameA">Kelompok Merah</label>
+        <input type="text" id="nameA" maxlength="24" value="Kelompok Merah" autocomplete="off">
+      </div>
+      <div class="setup-team b">
+        <label for="nameB">Kelompok Biru</label>
+        <input type="text" id="nameB" maxlength="24" value="Kelompok Biru" autocomplete="off">
+      </div>
+    </div>
+    <div class="setup-rules">
+      <b>Cara main:</b> Guru menampilkan layar ini di Papan Interaktif Digital. Soal muncul bergantian untuk tiap kelompok. Diskusikan jawaban bersama kelompok, lalu wakil kelompok menyentuh salah satu pilihan. Jawaban <b>benar</b> menarik tambang satu langkah ke arah kelompok tersebut. Kelompok yang berhasil menarik simpul tambang sampai ke ujung lebih dulu adalah <b>pemenangnya</b>.
+    </div>
+    <div>
+      <button class="btn btn-primary" id="startBtn" style="width:100%; padding:16px; font-size:1.05rem;">Mulai Permainan 🪢</button>
+    </div>
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div class="app" id="app" hidden>
+
+    <div class="scoreboard">
+      <div class="team-card team-a">
+        <span class="tag" id="labelA">Kelompok Merah</span>
+        <input type="text" id="displayNameA" disabled>
+        <div class="score-row">
+          <span class="score-num" id="scoreA">0</span>
+          <span class="score-label">Jawaban benar</span>
+        </div>
+      </div>
+      <div class="vs-badge">VS</div>
+      <div class="team-card team-b">
+        <span class="tag" id="labelB">Kelompok Biru</span>
+        <input type="text" id="displayNameB" disabled>
+        <div class="score-row">
+          <span class="score-num" id="scoreB">0</span>
+          <span class="score-label">Jawaban benar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-wrap">
+      <div class="turn-banner">
+        <span class="turn-pill" id="turnPill">Giliran: —</span>
+        <span class="match-timer" id="matchTimer">02:00</span>
+        <span class="q-counter" id="qCounter">Soal ke-1</span>
+      </div>
+      <div class="field">
+        <div class="stripe"></div>
+        <div class="win-zone left"></div>
+        <div class="win-zone right"></div>
+        <div class="center-line"></div>
+        <div class="mini-flag left"></div>
+        <div class="mini-flag right"></div>
+        <div class="rope"></div>
+        <div class="knot" id="knot"><span class="ribbon"></span></div>
+        <div class="team-figures team-a" id="figuresA"></div>
+        <div class="team-figures team-b" id="figuresB"></div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <h2 id="questionText">Memuat soal…</h2>
+      <div class="options" id="options"></div>
+      <div class="card-footer">
+        <button class="btn btn-ghost" id="skipBtn">Lewati soal ⤼</button>
+        <button class="btn btn-gold" id="nextBtn" disabled>Lanjut ke soal berikutnya ➜</button>
+        <button class="btn btn-ghost" id="resetBtn">Ulangi permainan</button>
+      </div>
+    </div>
+
+    <p class="hint-strip">Butir soal diacak dari bank soal Pendidikan Pancasila &mdash; simbol sila, bunyi sila, sejarah lahirnya Pancasila, hingga contoh pengamalan sehari-hari.</p>
+  </div>
+
+</div>
+
+<!-- WIN OVERLAY -->
+<div class="overlay" id="overlay" hidden>
+  <div class="win-card">
+    <canvas id="fireworks"></canvas>
+    <div style="position:relative;">
+      <div class="trophy" id="trophyIcon">🏆</div>
+      <h2 id="winTitle">Kelompok Merah Menang!</h2>
+      <p id="winSub">Tambang berhasil ditarik sampai ke ujung.</p>
+      <button class="btn btn-primary" id="playAgainBtn" style="padding:14px 26px; font-size:1rem;">Main Lagi</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- bunting ---------------- */
+  var buntingColors = ["#BF3628", "#FFFDF8", "#2B5F82"];
+  var bunting = document.getElementById("bunting");
+  var flagCount = 26;
+  for (var i = 0; i < flagCount; i++){
+    var f = document.createElement("span");
+    f.className = "flag";
+    f.style.background = buntingColors[i % buntingColors.length];
+    bunting.appendChild(f);
+  }
+
+  /* ---------------- question bank ---------------- */
+  var QUESTIONS = [
+    { q:"Pancasila berasal dari kata 'panca' dan 'sila'. Apa arti 'panca'?", o:["Lima","Satu","Dasar","Aturan"], a:0 },
+    { q:"Apa arti kata 'sila' dalam Pancasila?", o:["Nama wilayah","Asas atau dasar","Nama seorang raja","Jenis upacara"], a:1 },
+    { q:"Pancasila resmi disahkan sebagai dasar negara pada tanggal berapa?", o:["1 Juni 1945","17 Agustus 1945","18 Agustus 1945","22 Juni 1945"], a:2 },
+    { q:"Tanggal 1 Juni diperingati setiap tahun sebagai Hari...", o:["Kemerdekaan Indonesia","Lahir Pancasila","Sumpah Pemuda","Pendidikan Nasional"], a:1 },
+    { q:"Siapakah yang menyampaikan pidato lahirnya Pancasila dalam sidang BPUPKI?", o:["Moh. Hatta","Soepomo","Ir. Soekarno","Moh. Yamin"], a:2 },
+    { q:"Lambang untuk sila pertama Pancasila adalah...", o:["Bintang","Rantai","Pohon beringin","Kepala banteng"], a:0 },
+    { q:"Lambang untuk sila kedua Pancasila adalah...", o:["Bintang","Rantai","Padi dan kapas","Kepala banteng"], a:1 },
+    { q:"Lambang untuk sila ketiga Pancasila adalah...", o:["Rantai","Kepala banteng","Pohon beringin","Padi dan kapas"], a:2 },
+    { q:"Lambang untuk sila keempat Pancasila adalah...", o:["Bintang","Kepala banteng","Pohon beringin","Rantai"], a:1 },
+    { q:"Lambang untuk sila kelima Pancasila adalah...", o:["Padi dan kapas","Bintang","Rantai","Pohon beringin"], a:0 },
+    { q:"Bunyi sila pertama Pancasila adalah...", o:["Persatuan Indonesia","Ketuhanan Yang Maha Esa","Keadilan sosial bagi seluruh rakyat Indonesia","Kemanusiaan yang adil dan beradab"], a:1 },
+    { q:"Bunyi sila kedua Pancasila adalah...", o:["Kemanusiaan yang adil dan beradab","Ketuhanan Yang Maha Esa","Persatuan Indonesia","Kerakyatan yang dipimpin oleh hikmat kebijaksanaan"], a:0 },
+    { q:"Bunyi sila ketiga Pancasila adalah...", o:["Keadilan sosial bagi seluruh rakyat Indonesia","Kemanusiaan yang adil dan beradab","Persatuan Indonesia","Ketuhanan Yang Maha Esa"], a:2 },
+    { q:"Bunyi sila keempat Pancasila adalah...", o:["Persatuan Indonesia","Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan","Ketuhanan Yang Maha Esa","Keadilan sosial bagi seluruh rakyat Indonesia"], a:1 },
+    { q:"Bunyi sila kelima Pancasila adalah...", o:["Kemanusiaan yang adil dan beradab","Persatuan Indonesia","Keadilan sosial bagi seluruh rakyat Indonesia","Ketuhanan Yang Maha Esa"], a:2 },
+    { q:"Beribadah dengan taat sesuai agama masing-masing adalah pengamalan sila ke...", o:["Satu","Dua","Tiga","Empat"], a:0 },
+    { q:"Menolong teman tanpa membeda-bedakan suku atau agama adalah pengamalan sila ke...", o:["Satu","Dua","Empat","Lima"], a:1 },
+    { q:"Rajin belajar demi menjaga nama baik dan persatuan bangsa adalah pengamalan sila ke...", o:["Dua","Tiga","Empat","Lima"], a:1 },
+    { q:"Mengutamakan musyawarah untuk mencapai mufakat adalah pengamalan sila ke...", o:["Dua","Tiga","Empat","Lima"], a:2 },
+    { q:"Bersikap adil dan tidak pilih kasih kepada semua teman adalah pengamalan sila ke...", o:["Satu","Tiga","Empat","Lima"], a:3 },
+    { q:"Apa semboyan negara Indonesia yang tertulis pada pita yang dicengkeram burung Garuda?", o:["Merdeka atau Mati","Bhinneka Tunggal Ika","Tut Wuri Handayani","Rawe-Rawe Rantas"], a:1 },
+    { q:"Apa arti semboyan 'Bhinneka Tunggal Ika'?", o:["Bersatu kita teguh","Berbeda-beda tetapi tetap satu jua","Satu nusa satu bangsa","Dari rakyat untuk rakyat"], a:1 },
+    { q:"Apa nama lambang negara Republik Indonesia?", o:["Garuda Pancasila","Elang Jawa","Merpati Perdamaian","Rajawali Nusantara"], a:0 },
+    { q:"Ada berapa jumlah bulu pada masing-masing sayap burung Garuda Pancasila?", o:["8","17","19","45"], a:1 },
+    { q:"Ada berapa jumlah bulu pada ekor burung Garuda Pancasila?", o:["8","17","19","45"], a:0 },
+    { q:"Jumlah bulu di bawah perisai (leher) Garuda Pancasila melambangkan tahun kemerdekaan, yaitu berjumlah...", o:["17","8","19","45"], a:3 },
+    { q:"Ada berapa lambang sila yang terdapat pada perisai burung Garuda Pancasila?", o:["4","5","6","7"], a:1 },
+    { q:"Badan yang menyelidiki dan merancang dasar negara sebelum kemerdekaan Indonesia bernama...", o:["PPKI","BPUPKI","KNIP","MPR"], a:1 },
+    { q:"Lembaga yang mengesahkan Pancasila dan UUD 1945 setelah kemerdekaan bernama...", o:["BPUPKI","PPKI","Panitia Sembilan","Komite Nasional"], a:1 },
+    { q:"Rumusan dasar negara yang disusun oleh Panitia Sembilan sebelum disahkan dikenal dengan sebutan...", o:["Piagam Jakarta","Dekrit Presiden","Sumpah Pemuda","Maklumat Politik"], a:0 },
+    { q:"Pancasila sebagai dasar negara tercantum dalam Pembukaan UUD 1945 pada alinea ke...", o:["Satu","Dua","Tiga","Empat"], a:3 },
+    { q:"Sikap kerja bakti membersihkan lingkungan bersama-sama mencerminkan pengamalan sila ke...", o:["Dua","Tiga","Empat","Lima"], a:1 },
+    { q:"Menghormati teman yang berbeda agama saat sedang beribadah adalah pengamalan sila ke...", o:["Satu","Dua","Tiga","Lima"], a:0 },
+    { q:"Pancasila berkedudukan sebagai dasar negara sekaligus disebut juga sebagai...", o:["Pandangan hidup bangsa","Lagu kebangsaan","Bahasa persatuan","Bendera negara"], a:0 },
+    { q:"Tidak memaksakan suatu agama atau kepercayaan kepada orang lain adalah pengamalan sila ke...", o:["Satu","Dua","Empat","Lima"], a:0 }
+  ];
+
+  /* ---------------- state ---------------- */
+  var STEP = 7;          // percent per correct answer
+  var WIN_STEPS = 5;      // steps to reach the edge
+  var MATCH_SECONDS = 120; // 2 minutes per game
+  var state = {
+    teamA: { name: "Kelompok Merah", score: 0 },
+    teamB: { name: "Kelompok Biru", score: 0 },
+    position: 0,          // -WIN_STEPS .. +WIN_STEPS  (negative = toward A/left)
+    turn: "A",
+    qIndex: 0,
+    queue: [],
+    used: [],
+    current: null,
+    locked: false,
+    over: false,
+    timeLeft: MATCH_SECONDS,
+    timerId: null
+  };
+
+  /* ---------------- player avatars (SVG) ---------------- */
+  var FIGURE_VARIANTS = [
+    { skin: "#E8B084", hair: "#2b2118", hairStyle: "fringe" },
+    { skin: "#C48454", hijab: true, hijabColor: "#F4EAD9" },
+    { skin: "#8C5A34", hair: "#170F0A", hairStyle: "curly" }
+  ];
+  var FIGURE_PANTS = "#33465F";
+  var FIGURE_SHOE = "#2A2A28";
+
+  function svgFigure(dir, cls, v, shirtVar){
+    var hairMarkup;
+    if (v.hijab){
+      hairMarkup =
+        '<path d="M22 6 Q34 -4 46 6 L47 33 Q40 23 34 23 Q28 23 21 33 Z" fill="' + v.hijabColor + '"/>' +
+        '<circle cx="34" cy="14" r="8" fill="' + v.skin + '"/>';
+    } else if (v.hairStyle === "curly"){
+      hairMarkup =
+        '<circle cx="34" cy="14" r="8" fill="' + v.skin + '"/>' +
+        '<circle cx="26" cy="9" r="4.2" fill="' + v.hair + '"/><circle cx="34" cy="5.5" r="4.6" fill="' + v.hair + '"/><circle cx="42" cy="9" r="4.2" fill="' + v.hair + '"/>';
+    } else {
+      hairMarkup =
+        '<circle cx="34" cy="14" r="8" fill="' + v.skin + '"/>' +
+        '<path d="M25 10 Q34 -2 43 10 L43 14 Q34 7 25 14 Z" fill="' + v.hair + '"/>';
+    }
+    var eyes = '<circle cx="31.4" cy="13" r="1.1" fill="#241F1B"/><circle cx="37.4" cy="13" r="1.1" fill="#241F1B"/>';
+
+    var markup =
+        '<line x1="27" y1="54" x2="16" y2="72" stroke="' + FIGURE_PANTS + '" stroke-width="10" stroke-linecap="round"/>' +
+        '<line x1="16" y1="72" x2="8" y2="90" stroke="' + FIGURE_PANTS + '" stroke-width="10" stroke-linecap="round"/>' +
+        '<line x1="27" y1="54" x2="36" y2="74" stroke="' + FIGURE_PANTS + '" stroke-width="10" stroke-linecap="round"/>' +
+        '<line x1="36" y1="74" x2="44" y2="90" stroke="' + FIGURE_PANTS + '" stroke-width="10" stroke-linecap="round"/>' +
+        '<ellipse cx="8" cy="91" rx="7" ry="4" fill="' + FIGURE_SHOE + '"/>' +
+        '<ellipse cx="44" cy="91" rx="7" ry="4" fill="' + FIGURE_SHOE + '"/>' +
+        '<line x1="31" y1="27" x2="57" y2="41" stroke="' + v.skin + '" stroke-width="7" stroke-linecap="round"/>' +
+        '<line x1="33" y1="25" x2="55" y2="47" stroke="' + v.skin + '" stroke-width="7" stroke-linecap="round"/>' +
+        '<line x1="27" y1="54" x2="33" y2="23" stroke="' + shirtVar + '" stroke-width="15" stroke-linecap="round"/>' +
+        '<circle cx="33" cy="24" r="7" fill="' + shirtVar + '"/>' +
+        hairMarkup + eyes;
+
+    var g = dir === -1 ? '<g transform="translate(60,0) scale(-1,1)">' + markup + '</g>' : '<g>' + markup + '</g>';
+    return '<svg viewBox="0 0 60 96" class="' + cls + '" aria-hidden="true">' + g + '</svg>';
+  }
+
+  function renderFigures(){
+    var orderA = shuffle(FIGURE_VARIANTS);
+    var orderB = shuffle(FIGURE_VARIANTS);
+    figuresA.innerHTML =
+      svgFigure(1, "figure-back", orderA[0], "var(--red)") +
+      svgFigure(1, "figure-back", orderA[1], "var(--red)") +
+      svgFigure(1, "figure-front", orderA[2], "var(--red)");
+    figuresB.innerHTML =
+      svgFigure(-1, "figure-back", orderB[0], "var(--blue)") +
+      svgFigure(-1, "figure-back", orderB[1], "var(--blue)") +
+      svgFigure(-1, "figure-front", orderB[2], "var(--blue)");
+  }
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function refillQueue(){
+    var pool = shuffle(QUESTIONS.map(function(_, i){ return i; }));
+    // avoid immediate repeat of the very last question shown
+    if (state.used.length){
+      var last = state.used[state.used.length - 1];
+      if (pool[0] === last && pool.length > 1){
+        var tmp = pool[0]; pool[0] = pool[1]; pool[1] = tmp;
+      }
+    }
+    state.queue = pool;
+  }
+
+  function nextQuestionData(){
+    if (!state.queue.length) refillQueue();
+    var idx = state.queue.shift();
+    state.used.push(idx);
+    return QUESTIONS[idx];
+  }
+
+  /* ---------------- DOM refs ---------------- */
+  var setupScreen = document.getElementById("setupScreen");
+  var app = document.getElementById("app");
+  var startBtn = document.getElementById("startBtn");
+  var nameAInput = document.getElementById("nameA");
+  var nameBInput = document.getElementById("nameB");
+
+  var labelA = document.getElementById("labelA");
+  var labelB = document.getElementById("labelB");
+  var displayNameA = document.getElementById("displayNameA");
+  var displayNameB = document.getElementById("displayNameB");
+  var scoreA = document.getElementById("scoreA");
+  var scoreB = document.getElementById("scoreB");
+  var turnPill = document.getElementById("turnPill");
+  var qCounter = document.getElementById("qCounter");
+  var matchTimerEl = document.getElementById("matchTimer");
+  var knot = document.getElementById("knot");
+  var figuresA = document.getElementById("figuresA");
+  var figuresB = document.getElementById("figuresB");
+  var trophyIcon = document.getElementById("trophyIcon");
+  var questionText = document.getElementById("questionText");
+  var optionsWrap = document.getElementById("options");
+  var skipBtn = document.getElementById("skipBtn");
+  var nextBtn = document.getElementById("nextBtn");
+  var resetBtn = document.getElementById("resetBtn");
+  var overlay = document.getElementById("overlay");
+  var winTitle = document.getElementById("winTitle");
+  var winSub = document.getElementById("winSub");
+  var playAgainBtn = document.getElementById("playAgainBtn");
+
+  /* ---------------- setup -> start ---------------- */
+  startBtn.addEventListener("click", function(){
+    var a = nameAInput.value.trim() || "Kelompok Merah";
+    var b = nameBInput.value.trim() || "Kelompok Biru";
+    state.teamA.name = a;
+    state.teamB.name = b;
+    state.teamA.score = 0;
+    state.teamB.score = 0;
+    state.position = 0;
+    state.turn = "A";
+    state.qIndex = 0;
+    state.used = [];
+    state.queue = [];
+    state.over = false;
+
+    labelA.textContent = a;
+    labelB.textContent = b;
+    displayNameA.value = a;
+    displayNameB.value = b;
+    scoreA.textContent = "0";
+    scoreB.textContent = "0";
+
+    setupScreen.hidden = true;
+    app.hidden = false;
+
+    renderFigures();
+    updateRope();
+    loadQuestion();
+    startTimer();
+  });
+
+  /* ---------------- gameplay ---------------- */
+  function currentTeam(){ return state.turn === "A" ? state.teamA : state.teamB; }
+
+  function updateTurnPill(){
+    var t = currentTeam();
+    turnPill.textContent = "Giliran: " + t.name;
+    turnPill.className = "turn-pill " + (state.turn === "A" ? "for-a" : "for-b");
+  }
+
+  function loadQuestion(){
+    state.locked = false;
+    state.qIndex++;
+    state.current = nextQuestionData();
+    qCounter.textContent = "Soal ke-" + state.qIndex;
+    questionText.textContent = state.current.q;
+    updateTurnPill();
+
+    optionsWrap.innerHTML = "";
+    var letters = ["A", "B", "C", "D"];
+    state.current.o.forEach(function(text, idx){
+      var btn = document.createElement("button");
+      btn.className = "opt-btn";
+      btn.type = "button";
+      btn.innerHTML = '<span class="letter">' + letters[idx] + '</span><span>' + text + '</span>';
+      btn.addEventListener("click", function(){ selectAnswer(idx, btn); });
+      optionsWrap.appendChild(btn);
+    });
+
+    nextBtn.disabled = true;
+    skipBtn.disabled = false;
+  }
+
+  function lockOptions(){
+    Array.prototype.forEach.call(optionsWrap.children, function(b){ b.disabled = true; });
+  }
+
+  function selectAnswer(idx, btn){
+    if (state.locked || state.over) return;
+    state.locked = true;
+    lockOptions();
+    skipBtn.disabled = true;
+
+    var correctIdx = state.current.a;
+    var team = currentTeam();
+
+    if (idx === correctIdx){
+      btn.classList.add("correct");
+      team.score += 1;
+      if (state.turn === "A"){ scoreA.textContent = team.score; state.position -= 1; }
+      else { scoreB.textContent = team.score; state.position += 1; }
+      updateRope();
+    } else {
+      btn.classList.add("wrong");
+      optionsWrap.children[correctIdx].classList.add("correct");
+    }
+
+    if (checkWin()) return;
+    nextBtn.disabled = false;
+  }
+
+  skipBtn.addEventListener("click", function(){
+    if (state.over) return;
+    state.turn = state.turn === "A" ? "B" : "A";
+    loadQuestion();
+  });
+
+  nextBtn.addEventListener("click", function(){
+    if (state.over) return;
+    state.turn = state.turn === "A" ? "B" : "A";
+    loadQuestion();
+  });
+
+  resetBtn.addEventListener("click", function(){
+    if (!confirm("Ulangi permainan dari awal? Skor akan direset.")) return;
+    stopTimer();
+    app.hidden = true;
+    setupScreen.hidden = false;
+  });
+
+  playAgainBtn.addEventListener("click", function(){
+    stopTimer();
+    overlay.hidden = true;
+    app.hidden = true;
+    setupScreen.hidden = false;
+  });
+
+  /* ---------------- match timer (2 minutes) ---------------- */
+  function renderTimer(){
+    var m = Math.floor(state.timeLeft / 60);
+    var s = state.timeLeft % 60;
+    matchTimerEl.textContent = (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+    matchTimerEl.classList.toggle("low", state.timeLeft <= 20 && state.timeLeft > 0);
+  }
+
+  function startTimer(){
+    stopTimer();
+    state.timeLeft = MATCH_SECONDS;
+    renderTimer();
+    state.timerId = setInterval(function(){
+      state.timeLeft -= 1;
+      renderTimer();
+      if (state.timeLeft <= 0){
+        stopTimer();
+        timeUp();
+      }
+    }, 1000);
+  }
+
+  function stopTimer(){
+    if (state.timerId){
+      clearInterval(state.timerId);
+      state.timerId = null;
+    }
+  }
+
+  function timeUp(){
+    if (state.over) return;
+    state.over = true;
+    lockOptions();
+    skipBtn.disabled = true;
+    nextBtn.disabled = true;
+
+    if (state.position < 0){
+      trophyIcon.textContent = "🏆";
+      winTitle.textContent = state.teamA.name + " Menang! ⏱️";
+      winSub.textContent = "Waktu 2 menit habis — " + state.teamA.name + " unggul menarik tambang lebih jauh.";
+      overlay.hidden = false;
+      launchFireworks();
+    } else if (state.position > 0){
+      trophyIcon.textContent = "🏆";
+      winTitle.textContent = state.teamB.name + " Menang! ⏱️";
+      winSub.textContent = "Waktu 2 menit habis — " + state.teamB.name + " unggul menarik tambang lebih jauh.";
+      overlay.hidden = false;
+      launchFireworks();
+    } else {
+      trophyIcon.textContent = "🤝";
+      winTitle.textContent = "Seri!";
+      winSub.textContent = "Waktu 2 menit habis dengan tambang tepat di tengah. Pertandingan sangat ketat — main lagi?";
+      overlay.hidden = false;
+    }
+  }
+
+  function updateRope(){
+    var clamped = Math.max(-WIN_STEPS, Math.min(WIN_STEPS, state.position));
+    var pct = 50 + clamped * STEP;
+    knot.style.left = pct + "%";
+  }
+
+  function checkWin(){
+    if (state.position <= -WIN_STEPS){
+      endGame(state.teamA);
+      return true;
+    }
+    if (state.position >= WIN_STEPS){
+      endGame(state.teamB);
+      return true;
+    }
+    return false;
+  }
+
+  function endGame(winner){
+    state.over = true;
+    stopTimer();
+    nextBtn.disabled = true;
+    skipBtn.disabled = true;
+    trophyIcon.textContent = "🏆";
+    winTitle.textContent = winner.name + " Menang! 🎉";
+    winSub.textContent = "Tambang berhasil ditarik sampai ke ujung dengan " + winner.score + " jawaban benar.";
+    overlay.hidden = false;
+    launchFireworks();
+  }
+
+  /* ---------------- fireworks ---------------- */
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function launchFireworks(){
+    if (reduceMotion) return;
+    var canvas = document.getElementById("fireworks");
+    var winCard = canvas.parentElement;
+    var w = winCard.clientWidth, h = winCard.clientHeight;
+    canvas.width = w; canvas.height = h;
+    var ctx = canvas.getContext("2d");
+    var colors = ["#BF3628", "#D9A441", "#2B5F82", "#3F7A45"];
+    var particles = [];
+
+    function burst(x, y){
+      for (var i = 0; i < 26; i++){
+        var angle = (Math.PI * 2 * i) / 26;
+        var speed = 1.5 + Math.random() * 2.5;
+        particles.push({
+          x: x, y: y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: 60 + Math.random() * 20,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+    }
+
+    burst(w * 0.3, h * 0.35);
+    setTimeout(function(){ burst(w * 0.7, h * 0.3); }, 350);
+    setTimeout(function(){ burst(w * 0.5, h * 0.45); }, 700);
+
+    var frame = 0;
+    function tick(){
+      frame++;
+      ctx.clearRect(0, 0, w, h);
+      particles.forEach(function(p){
+        p.x += p.vx; p.y += p.vy; p.vy += 0.04; p.life -= 1;
+        ctx.globalAlpha = Math.max(p.life / 80, 0);
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2.6, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+      particles = particles.filter(function(p){ return p.life > 0; });
+      if (frame < 260 && !overlay.hidden){
+        requestAnimationFrame(tick);
+      } else {
+        ctx.clearRect(0, 0, w, h);
+      }
+    }
+    tick();
+  }
+
+})();
+</script>
+</body>
+</html>
