@@ -562,6 +562,40 @@
   }
 
   /* ---------- question card ---------- */
+  .q-timer-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin: 4px 0 14px;
+  }
+  .q-timer-track{
+    flex:1;
+    height:10px;
+    border-radius:999px;
+    background: var(--paper-alt);
+    overflow:hidden;
+  }
+  .q-timer-fill{
+    height:100%;
+    width:100%;
+    border-radius:999px;
+    background: var(--gold);
+    transition: width 1s linear, background .25s ease;
+  }
+  .q-timer-fill.low{ background: var(--danger); }
+  .q-timer-num{
+    font-family: var(--font-mono);
+    font-weight:800;
+    font-size: .95rem;
+    min-width: 26px;
+    text-align:center;
+    color: var(--ink);
+    transition: color .25s ease;
+  }
+  .q-timer-num.low{
+    color: var(--danger);
+    animation: timerPulse .6s ease-in-out infinite;
+  }
   .question-card{
     background: var(--card);
     border: 2px solid var(--line);
@@ -935,7 +969,7 @@
     <div class="field-wrap">
       <div class="turn-banner">
         <span class="turn-pill" id="turnPill">Giliran: —</span>
-        <span class="match-timer" id="matchTimer">02:00</span>
+        <span class="match-timer" id="matchTimer">02:30</span>
         <span class="q-counter" id="qCounter">Soal ke-1</span>
       </div>
       <div class="field">
@@ -963,6 +997,10 @@
 
     <div class="question-card">
       <span class="turn-flag" id="turnFlag">Giliran: —</span>
+      <div class="q-timer-row">
+        <div class="q-timer-track"><div class="q-timer-fill" id="qTimerFill"></div></div>
+        <span class="q-timer-num" id="qTimerNum">6</span>
+      </div>
       <h2 id="questionText">Memuat soal…</h2>
       <div class="options" id="options"></div>
       <div class="card-footer">
@@ -972,7 +1010,7 @@
       </div>
     </div>
 
-    <p class="hint-strip">Butir soal diacak dari bank soal Bab 2 &mdash; pengertian dan klasifikasi nilai, sifat nilai Pancasila, tiga tataran nilai, makna tiap sila, lambang dan contoh perilaku, hingga studi kasus penerapan nilai Pancasila sehari-hari.</p>
+    <p class="hint-strip">Butir soal diacak dari bank soal Bab 2 &mdash; bunyi dan lambang sila, makna tiap sila, hingga studi kasus penerapan nilai Pancasila sehari-hari. Setiap giliran punya waktu 10 detik untuk menjawab.</p>
   </div>
 
 </div>
@@ -1008,132 +1046,132 @@
   /* ---------------- question bank ---------------- */
   var QUESTION_PACKS = {
     paket1: [
-      { q:"Nilai adalah sifat atau kualitas dari sesuatu yang bermanfaat bagi kehidupan manusia, baik...", o:["Materiel saja","Lahir maupun batin","Sosial saja","Ekonomi saja"], a:1 },
-      { q:"Nilai kerohanian adalah nilai yang bermanfaat bagi...", o:["Jasmani manusia","Aktivitas manusia","Rohani manusia","Kepentingan ekonomi"], a:2 },
-      { q:"Nilai kebaikan moral dalam nilai kerohanian bersumber dari unsur...", o:["Akal","Rasa/estetis","Kehendak/karsa","Kepercayaan dan penghayatan"], a:2 },
-      { q:"Pancasila termasuk nilai kerohanian yang di dalamnya juga memuat nilai materiel dan vital secara...", o:["Terpisah dan bertentangan","Lengkap dan harmonis","Sebagian saja","Tidak seimbang"], a:1 },
-      { q:"Menurut bahan bacaan modul, sila-sila Pancasila saling terkait dan bertingkat seperti piramida — sifat ini disebut...", o:["Objektif","Subjektif","Hierarkis piramidal","Absolut/mutlak"], a:2 },
-      { q:"Dalam sifat hierarkis piramidal, sila kelima...", o:["Berdiri sendiri tanpa kaitan","Dijiwai dan didasari oleh sila ke-1, 2, 3, dan 4","Mendahului sila pertama","Tidak memiliki hubungan dengan sila lain"], a:1 },
-      { q:"'Tidak dapat diubah oleh siapa pun' adalah ciri sifat nilai Pancasila yang...", o:["Subjektif","Absolut/mutlak","Objektif","Hierarkis piramidal"], a:2 },
-      { q:"'Mengandung nilai kerohanian bangsa' adalah ciri sifat nilai Pancasila yang...", o:["Objektif","Subjektif","Absolut/mutlak","Hierarkis piramidal"], a:1 },
-      { q:"Nilai Pancasila tidak akan berubah sepanjang waktu karena berasal dari adat istiadat, kebudayaan, kepercayaan, dan agama yang telah mengakar di Nusantara sejak ratusan tahun lalu — sifat ini disebut...", o:["Objektif","Subjektif","Hierarkis piramidal","Absolut/mutlak"], a:3 },
-      { q:"Menurut bahan bacaan modul, ada berapa sifat utama nilai Pancasila yang dibahas?", o:["Dua sifat","Tiga sifat","Empat sifat","Lima sifat"], a:1 },
-      { q:"Menurut Moerdiono, sila-sila Pancasila itu sendiri termasuk tataran...", o:["Nilai instrumental","Nilai dasar","Nilai praksis","Nilai materiel"], a:1 },
-      { q:"UUD 1945, undang-undang, dan peraturan merupakan contoh dari tataran...", o:["Nilai dasar","Nilai instrumental","Nilai praksis","Nilai vital"], a:1 },
-      { q:"Gotong royong, toleransi, dan musyawarah dalam kehidupan sehari-hari adalah contoh tataran...", o:["Nilai dasar","Nilai instrumental","Nilai praksis","Nilai materiel"], a:2 },
-      { q:"Tataran nilai yang paling penting karena menentukan apakah Pancasila benar-benar hidup di masyarakat adalah...", o:["Nilai dasar","Nilai instrumental","Nilai vital","Nilai praksis"], a:3 },
-      { q:"Sila pertama Pancasila menjamin kebebasan beragama sesuai dengan...", o:["Pasal 33 UUD 1945","Pasal 27 UUD 1945","Pasal 29 Ayat 1 dan 2 UUD 1945","Pasal 31 UUD 1945"], a:2 },
-      { q:"Sila kedua mengakui persamaan derajat, hak, dan kewajiban semua manusia tanpa membedakan...", o:["Suku, ras, agama, dan status sosial","Usia saja","Jenis kelamin saja","Tempat tinggal saja"], a:0 },
-      { q:"Perbedaan suku, agama, dan ras menurut sila ketiga seharusnya...", o:["Dihapuskan","Dijadikan alasan konflik","Diabaikan begitu saja","Disatukan dalam Bhinneka Tunggal Ika"], a:3 },
-      { q:"Tiga unsur utama sila keempat adalah kerakyatan, permusyawaratan/perwakilan, dan...", o:["Keadilan distributif","Nilai religius","Kedaulatan rakyat","Gotong royong"], a:2 },
-      { q:"Keadilan sosial pada sila kelima merupakan tujuan dari...", o:["Hanya sila pertama","Hanya sila keempat","Keempat sila lainnya","Peraturan pemerintah saja"], a:2 },
-      { q:"Beribadah sesuai agama, menghormati agama lain, dan menjaga kerukunan antarumat merupakan contoh perilaku pengamalan sila dengan lambang...", o:["Rantai","Bintang","Pohon beringin","Kepala banteng"], a:1 },
-      { q:"Membantu sesama, tidak semena-mena, menghargai HAM, dan tenggang rasa merupakan contoh perilaku pengamalan sila dengan lambang...", o:["Bintang","Rantai","Pohon beringin","Kepala banteng"], a:1 },
-      { q:"Memakai produk dalam negeri, ikut upacara bendera, dan bergotong royong merupakan contoh perilaku pengamalan sila dengan lambang...", o:["Rantai","Kepala banteng","Pohon beringin","Padi dan kapas"], a:2 },
-      { q:"Musyawarah mufakat, tidak memaksakan kehendak, dan menghargai perbedaan pendapat merupakan contoh perilaku pengamalan sila dengan lambang...", o:["Pohon beringin","Kepala banteng","Padi dan kapas","Bintang"], a:1 },
-      { q:"Kerja keras, tidak boros, menaati hukum, dan membantu yang lemah merupakan contoh perilaku pengamalan sila dengan lambang...", o:["Kepala banteng","Bintang","Rantai","Padi dan kapas"], a:3 },
-      { q:"Keadilan yang berarti negara membagi secara merata disebut keadilan...", o:["Keadilan legal","Keadilan distributif","Keadilan komutatif","Keadilan sosial"], a:1 },
-      { q:"Keadilan yang berarti warga taat pada peraturan negara disebut keadilan...", o:["Keadilan legal","Keadilan distributif","Keadilan komutatif","Keadilan praksis"], a:0 },
-      { q:"Sesuai Muatan SIT dalam modul, QS. Al-Ma'idah ayat 8 berisi perintah untuk berlaku adil dan jujur, yang dikaitkan dengan nilai keadilan pada sila...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:3 },
+      { q:"Lambang sila keempat Pancasila adalah...", o:["Padi dan kapas","Pohon beringin","Bintang","Kepala banteng"], a:3 },
       { q:"Skenario 'toleransi antarteman berbeda agama saat tiba waktu salat Zuhur di sekolah' pada LKPD Proyek mewakili sila dengan nama...", o:["Kemanusiaan yang Adil dan Beradab","Ketuhanan Yang Maha Esa","Persatuan Indonesia","Keadilan Sosial bagi Seluruh Rakyat Indonesia"], a:1 },
-      { q:"Skenario 'gotong royong seluruh siswa membersihkan lingkungan sekolah menjelang 17 Agustus' pada LKPD Proyek mewakili sila dengan nama...", o:["Ketuhanan Yang Maha Esa","Kemanusiaan yang Adil dan Beradab","Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan"], a:2 },
-      { q:"Skenario 'ketua kelas membagi jadwal piket kebersihan secara adil dan merata' pada LKPD Proyek mewakili sila dengan nama...", o:["Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan","Keadilan Sosial bagi Seluruh Rakyat Indonesia","Ketuhanan Yang Maha Esa"], a:2 }
+      { q:"Sila kelima Pancasila berbunyi...", o:["Persatuan Indonesia","Kemanusiaan yang Adil dan Beradab","Keadilan Sosial bagi Seluruh Rakyat Indonesia","Ketuhanan Yang Maha Esa"], a:2 },
+      { q:"Pengurus OSIS mengadakan rapat untuk mendengar pendapat seluruh anggota sebelum memutuskan program kerja sekolah. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-1","Sila ke-3","Sila ke-4","Sila ke-5"], a:2 },
+      { q:"Contoh sikap di rumah yang mencerminkan pengamalan sila pertama adalah...", o:["Mengingatkan anggota keluarga untuk beribadah tepat waktu","Mengabaikan waktu ibadah","Memaksakan keyakinan pada orang lain","Meremehkan ibadah agama lain"], a:0 },
+      { q:"Kepala desa memastikan bantuan sembako dibagikan secara merata kepada seluruh warga yang membutuhkan. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-1","Sila ke-3","Sila ke-4","Sila ke-5"], a:3 },
+      { q:"Skenario 'teman-teman membantu siswa yang tertinggal pelajaran karena baru sembuh sakit' pada LKPD Proyek termasuk studi kasus sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-5"], a:1 },
+      { q:"Andi mengingatkan adiknya untuk salat tepat waktu dan mengucapkan salam setiap masuk rumah. Sikap Andi mencerminkan pengamalan sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-4"], a:0 },
+      { q:"Urutan sila Pancasila dari sila pertama hingga kelima yang benar adalah...", o:["Ketuhanan, Kemanusiaan, Persatuan, Kerakyatan, Keadilan","Kemanusiaan, Ketuhanan, Kerakyatan, Persatuan, Keadilan","Persatuan, Ketuhanan, Kemanusiaan, Keadilan, Kerakyatan","Keadilan, Kerakyatan, Persatuan, Kemanusiaan, Ketuhanan"], a:0 },
+      { q:"Skenario 'teman-teman membantu siswa yang tertinggal pelajaran karena baru sembuh sakit' pada LKPD Proyek mewakili sila dengan nama...", o:["Ketuhanan Yang Maha Esa","Kemanusiaan yang Adil dan Beradab","Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan"], a:1 },
+      { q:"Sila keempat Pancasila berbunyi...", o:["Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan","Ketuhanan Yang Maha Esa","Kemanusiaan yang Adil dan Beradab"], a:1 },
+      { q:"Skenario 'ketua kelas membagi jadwal piket kebersihan secara adil dan merata' pada LKPD Proyek termasuk studi kasus sila ke...", o:["Sila ke-4","Sila ke-3","Sila ke-1","Sila ke-5"], a:3 },
+      { q:"Skenario 'musyawarah kelas untuk memilih ketua kelas yang baru' pada LKPD Proyek mewakili sila dengan nama...", o:["Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan","Ketuhanan Yang Maha Esa","Keadilan Sosial bagi Seluruh Rakyat Indonesia"], a:1 },
+      { q:"Kebebasan menjalankan ibadah sesuai agama masing-masing yang dijamin Pasal 29 Ayat 1 dan 2 UUD 1945 merupakan wujud penerapan sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-4"], a:0 },
+      { q:"Siswa mengumpulkan sumbangan untuk korban bencana alam tanpa memandang suku dan agama korban. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-2","Sila ke-1","Sila ke-4","Sila ke-5"], a:0 },
+      { q:"Warga kampung bergotong royong mengantarkan tetangga yang sakit ke rumah sakit tanpa membedakan latar belakangnya. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-3","Sila ke-2","Sila ke-4","Sila ke-5"], a:1 },
+      { q:"Sikap menerima dan menjalankan hasil keputusan bersama meskipun berbeda dari pendapat pribadi merupakan wujud penerapan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:2 },
+      { q:"Kepala desa membagikan bantuan sosial secara merata kepada seluruh warga tanpa membeda-bedakan. Tindakan ini merupakan penerapan keadilan...", o:["Keadilan legal","Keadilan distributif","Keadilan komutatif","Keadilan sosial"], a:1 },
+      { q:"Cinta tanah air dan bangga menggunakan produk buatan bangsa sendiri merupakan pengamalan sila dengan lambang...", o:["Bintang","Rantai","Pohon beringin","Kepala banteng"], a:2 },
+      { q:"Sikap menghormati hak dan martabat orang lain tanpa membeda-bedakan suku maupun status sosial merupakan wujud penerapan sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-4"], a:1 },
+      { q:"Contoh sikap di masyarakat yang mencerminkan pengamalan sila ketiga adalah...", o:["Ikut kerja bakti membersihkan lingkungan bersama warga","Enggan berbaur dengan tetangga berbeda suku","Mementingkan kelompoknya sendiri","Menolak ikut kegiatan bersama warga"], a:0 },
+      { q:"Sila yang menjamin kebebasan setiap warga negara untuk memeluk dan menjalankan agamanya adalah sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-4"], a:0 },
+      { q:"Ayah selalu mengajarkan untuk tidak membeda-bedakan teman berdasarkan status ekonomi keluarganya. Nilai yang diajarkan ayah mencerminkan pengamalan sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-4"], a:1 },
+      { q:"Kerja keras, tidak boros, menaati hukum, dan membantu yang lemah merupakan contoh perilaku pengamalan sila dengan lambang...", o:["Kepala banteng","Bintang","Rantai","Padi dan kapas"], a:3 },
+      { q:"Sila yang mengajarkan untuk memperlakukan semua orang secara adil tanpa membeda-bedakan adalah sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-4"], a:1 },
+      { q:"Kegiatan gotong royong membersihkan lingkungan sekolah sebagai bagian dari program Adiwiyata merupakan wujud pengamalan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:1 },
+      { q:"Contoh sikap di rumah yang mencerminkan pengamalan sila keempat adalah...", o:["Memutuskan sendiri tanpa bertanya pendapat anggota keluarga","Bermusyawarah menentukan kegiatan keluarga bersama","Memaksakan kehendak kepada adik","Mengabaikan pendapat orang tua"], a:1 },
+      { q:"Membantu sesama, tidak semena-mena, menghargai HAM, dan tenggang rasa merupakan contoh perilaku pengamalan sila dengan lambang...", o:["Bintang","Rantai","Pohon beringin","Kepala banteng"], a:1 },
+      { q:"Menghargai perbedaan pendapat dan tidak memaksakan kehendak merupakan pengamalan sila dengan lambang...", o:["Rantai","Padi dan kapas","Kepala banteng","Pohon beringin"], a:2 },
+      { q:"Ikut upacara bendera dan bergotong royong merupakan pengamalan sila dengan lambang...", o:["Kepala banteng","Pohon beringin","Bintang","Rantai"], a:1 }
     ],
     paket2: [
-      { q:"Nilai menjadi landasan, alasan, atau motivasi manusia dalam...", o:["Bersikap dan bertingkah laku","Mencari keuntungan pribadi","Menentukan cuaca","Menetapkan hukum negara"], a:0 },
-      { q:"Nilai materiel adalah nilai yang bermanfaat bagi...", o:["Rohani manusia","Jasmani manusia","Aktivitas manusia semata","Kepentingan politik"], a:1 },
-      { q:"Nilai vital adalah nilai yang bermanfaat agar manusia dapat...", o:["Beribadah","Beraktivitas","Menilai keindahan","Membuat hukum"], a:1 },
-      { q:"Nilai kerohanian dibagi menjadi empat, salah satunya nilai keindahan yang bersumber dari unsur...", o:["Akal","Rasa/estetis","Kehendak/karsa","Kepercayaan dan penghayatan"], a:1 },
-      { q:"Nilai religius dalam nilai kerohanian bersumber dari unsur...", o:["Akal","Rasa","Kehendak/karsa","Kepercayaan dan penghayatan"], a:3 },
-      { q:"Sifat nilai Pancasila yang menyatakan bahwa setiap sila tidak bisa berdiri sendiri atau dipisahkan dari sila lainnya termasuk sifat...", o:["Objektif","Subjektif","Hierarkis piramidal","Absolut/mutlak"], a:2 },
-      { q:"Sifat nilai Pancasila yang menyatakan nilai Pancasila bersifat universal dan abstrak, serta berlaku sepanjang masa, disebut...", o:["Subjektif","Objektif","Absolut/mutlak","Hierarkis piramidal"], a:1 },
-      { q:"Nilai Pancasila lahir dari bangsa Indonesia sendiri dan mencerminkan filsafat hidup bangsa Indonesia — ciri ini menunjukkan sifat...", o:["Hierarkis piramidal","Objektif","Absolut/mutlak","Subjektif"], a:3 },
-      { q:"Sifat absolut/mutlak menjelaskan bahwa nilai Pancasila berasal dari adat istiadat, kebudayaan, kepercayaan, dan agama yang telah mengakar di Nusantara sejak...", o:["Puluhan tahun lalu","Ratusan tahun lalu","Baru satu abad","Masa penjajahan saja"], a:1 },
-      { q:"Nilai instrumental adalah penjabaran nilai dasar sesuai...", o:["Selera pemimpin","Adat istiadat daerah","Zaman","Kepentingan partai"], a:2 },
-      { q:"Nilai dasar bersifat abstrak, tetap, dan...", o:["Berubah setiap tahun","Tidak terpengaruh waktu","Hanya berlaku sementara","Tergantung kebijakan pemerintah"], a:1 },
-      { q:"Fokus utama kegiatan studi kasus dan proyek pada pembelajaran ini adalah penerapan tataran...", o:["Nilai dasar","Nilai instrumental","Nilai praksis","Nilai materiel"], a:2 },
-      { q:"Sila pertama TIDAK berarti bahwa negara...", o:["Menjamin kebebasan beragama","Berdasarkan pada satu agama tertentu","Menghormati pluralisme agama","Berlandaskan nilai ketuhanan"], a:1 },
-      { q:"Sikap 'adil' pada sila kedua berarti...", o:["Selalu memihak mayoritas","Tidak berat sebelah","Mengutamakan kepentingan pribadi","Membeda-bedakan suku"], a:1 },
-      { q:"Sikap 'beradab' pada sila kedua berarti...", o:["Berbudi bahasa baik","Tidak peduli sesama","Mengabaikan aturan","Mementingkan diri sendiri"], a:0 },
-      { q:"Kata 'persatuan' pada sila ketiga berasal dari kata 'satu' yang berarti...", o:["Banyak dan beragam","Sendiri-sendiri","Utuh dan tidak terpecah-pecah","Terbagi rata"], a:2 },
-      { q:"Menurut bahan bacaan modul, demokrasi adalah sarana menuju...", o:["Kekuasaan pribadi","Kesejahteraan rakyat","Keuntungan kelompok tertentu","Persaingan antarwarga"], a:1 },
-      { q:"'Hikmat kebijaksanaan' pada sila keempat berarti keputusan diambil berdasarkan...", o:["Keputusan sepihak pemimpin","Nilai etika musyawarah yang rasional dan manusiawi","Suara terbanyak tanpa diskusi","Kesepakatan kelompok tertentu saja"], a:1 },
-      { q:"Menjunjung tinggi harkat dan martabat manusia sebagai makhluk Tuhan adalah makna dari sila...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-4"], a:1 },
-      { q:"Menghormati agama lain dan menjaga kerukunan antarumat merupakan pengamalan sila dengan lambang...", o:["Rantai","Bintang","Pohon beringin","Kepala banteng"], a:1 },
-      { q:"Tenggang rasa dan menghargai HAM merupakan pengamalan sila dengan lambang...", o:["Bintang","Kepala banteng","Rantai","Padi dan kapas"], a:2 },
-      { q:"Ikut upacara bendera dan bergotong royong merupakan pengamalan sila dengan lambang...", o:["Kepala banteng","Pohon beringin","Bintang","Rantai"], a:1 },
-      { q:"Menghargai perbedaan pendapat dan tidak memaksakan kehendak merupakan pengamalan sila dengan lambang...", o:["Rantai","Padi dan kapas","Kepala banteng","Pohon beringin"], a:2 },
+      { q:"Kelima sila Pancasila saling berkaitan dan tidak dapat dipisahkan satu sama lain karena Pancasila merupakan...", o:["Lima aturan yang terpisah","Satu kesatuan yang utuh","Pilihan yang boleh dipilih sebagian","Kumpulan aturan luar negeri"], a:1 },
+      { q:"Keluarga ikut memasang bendera merah putih dan mengikuti upacara bersama warga sekitar saat perayaan Hari Kemerdekaan. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-4"], a:2 },
+      { q:"Siswa yang meminjam alat tulis temannya mengembalikannya tepat waktu sesuai janji. Sikap ini merupakan contoh keadilan...", o:["Keadilan distributif","Keadilan komutatif","Keadilan legal","Keadilan praksis"], a:1 },
+      { q:"Orang tua membagi uang jajan kepada anak-anaknya secara adil sesuai kebutuhan masing-masing. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:3 },
+      { q:"Sila yang mengajarkan pentingnya menjaga persatuan bangsa meski berbeda suku, agama, dan budaya adalah sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:1 },
       { q:"Tidak boros dan membantu yang lemah merupakan pengamalan sila dengan lambang...", o:["Pohon beringin","Kepala banteng","Padi dan kapas","Bintang"], a:2 },
-      { q:"Keadilan yang berarti hubungan timbal balik yang adil antarwarga disebut keadilan...", o:["Keadilan legal","Keadilan distributif","Keadilan komutatif","Keadilan sosial"], a:2 },
-      { q:"Sesuai Muatan Adiwiyata dalam modul, pengamalan nilai gotong royong menjaga kebersihan lingkungan sekolah diintegrasikan pada studi kasus sila...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-5"], a:2 },
-      { q:"Skenario 'teman-teman membantu siswa yang tertinggal pelajaran karena baru sembuh sakit' pada LKPD Proyek mewakili sila dengan nama...", o:["Ketuhanan Yang Maha Esa","Kemanusiaan yang Adil dan Beradab","Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan"], a:1 },
-      { q:"Skenario 'musyawarah kelas untuk memilih ketua kelas yang baru' pada LKPD Proyek mewakili sila dengan nama...", o:["Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan","Ketuhanan Yang Maha Esa","Keadilan Sosial bagi Seluruh Rakyat Indonesia"], a:1 },
-      { q:"Dalam proyek penerapan nilai Pancasila, siswa dibagi menjadi lima kelompok yang masing-masing mewakili...", o:["Satu mata pelajaran","Satu wilayah asal","Satu sila Pancasila","Satu kelas paralel"], a:2 },
-      { q:"Musyawarah kelas untuk memilih ketua kelas yang baru adalah contoh penerapan sila ke...", o:["Sila ke-3","Sila ke-2","Sila ke-5","Sila ke-4"], a:3 }
+      { q:"Skenario 'ketua kelas membagi jadwal piket kebersihan secara adil dan merata' pada LKPD Proyek mewakili sila dengan nama...", o:["Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan","Keadilan Sosial bagi Seluruh Rakyat Indonesia","Ketuhanan Yang Maha Esa"], a:2 },
+      { q:"Lambang sila pertama Pancasila adalah...", o:["Rantai","Bintang","Pohon beringin","Kepala banteng"], a:1 },
+      { q:"Pancasila berkedudukan sebagai dasar negara dan pedoman hidup bangsa Indonesia dalam...", o:["Kehidupan berbangsa dan bernegara","Kegiatan olahraga saja","Urusan pribadi semata","Hubungan luar negeri saja"], a:0 },
+      { q:"Lambang sila kelima Pancasila adalah...", o:["Kepala banteng","Padi dan kapas","Rantai","Bintang"], a:1 },
+      { q:"Salah satu bentuk pengamalan sila kelima yang dapat dilakukan siswa di sekolah adalah...", o:["Membagi tugas piket secara adil dan merata","Memaksakan pendapat pribadi","Membeda-bedakan teman berdasarkan status ekonomi","Tidak mematuhi aturan sekolah"], a:0 },
+      { q:"Memakai produk dalam negeri, ikut upacara bendera, dan bergotong royong merupakan contoh perilaku pengamalan sila dengan lambang...", o:["Rantai","Kepala banteng","Pohon beringin","Padi dan kapas"], a:2 },
+      { q:"Siswa dari berbagai daerah di sekolah saling belajar bahasa daerah masing-masing dan tetap kompak dalam setiap kegiatan sekolah. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:1 },
+      { q:"Musyawarah mufakat, tidak memaksakan kehendak, dan menghargai perbedaan pendapat merupakan contoh perilaku pengamalan sila dengan lambang...", o:["Pohon beringin","Kepala banteng","Padi dan kapas","Bintang"], a:1 },
+      { q:"Kegiatan tadarus dan tilawah QS. Al-Ma'idah ayat 8 tentang perintah berlaku adil dan jujur, yang dikaitkan dengan pengamalan nilai keadilan, menguatkan penerapan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:3 },
+      { q:"Tidak memaksakan agama kepada orang lain dan menjaga toleransi antarumat merupakan pengamalan sila dengan lambang...", o:["Rantai","Bintang","Kepala banteng","Padi dan kapas"], a:1 },
+      { q:"Skenario 'toleransi antarteman berbeda agama saat tiba waktu salat Zuhur di sekolah' pada LKPD Proyek termasuk studi kasus sila ke...", o:["Sila ke-2","Sila ke-1","Sila ke-3","Sila ke-4"], a:1 },
+      { q:"Menghormati agama lain dan menjaga kerukunan antarumat merupakan pengamalan sila dengan lambang...", o:["Rantai","Bintang","Pohon beringin","Kepala banteng"], a:1 },
+      { q:"Contoh sikap di sekolah yang mencerminkan pengamalan sila kedua adalah...", o:["Mengabaikan teman yang sedang sakit","Menjenguk dan membantu teman yang sedang sakit","Membeda-bedakan teman berdasarkan suku","Bersikap acuh terhadap sesama"], a:1 },
+      { q:"Sila yang mengajarkan pentingnya berbuat adil dan berbagi dengan sesama adalah sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:3 },
+      { q:"Saat teman sekelas merayakan hari besar agamanya, siswa lain ikut menjaga suasana tenang dan tidak mengganggu. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-2","Sila ke-1","Sila ke-3","Sila ke-5"], a:1 },
+      { q:"Sikap mengutamakan kepentingan bersama demi keutuhan bangsa di atas kepentingan pribadi atau golongan merupakan wujud penerapan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:1 },
+      { q:"Warga desa dari berbagai suku bergotong royong membangun jembatan penghubung antarkampung. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:1 },
+      { q:"Produk proyek kreatif kelompok yang menampilkan sikap gotong royong menjaga kebersihan lingkungan sekolah termasuk pengamalan sila dengan lambang...", o:["Bintang","Rantai","Pohon beringin","Kepala banteng"], a:2 },
+      { q:"Tenggang rasa dan menghargai HAM merupakan pengamalan sila dengan lambang...", o:["Bintang","Kepala banteng","Rantai","Padi dan kapas"], a:2 },
+      { q:"Beribadah sesuai agama, menghormati agama lain, dan menjaga kerukunan antarumat merupakan contoh perilaku pengamalan sila dengan lambang...", o:["Rantai","Bintang","Pohon beringin","Kepala banteng"], a:1 },
+      { q:"Dua pedagang menepati kesepakatan jual-beli sesuai harga yang telah disetujui bersama. Hal ini mencerminkan keadilan...", o:["Keadilan distributif","Keadilan legal","Keadilan komutatif","Keadilan sosial"], a:2 },
+      { q:"Menerima hasil keputusan bersama meski berbeda pendapat merupakan pengamalan sila dengan lambang...", o:["Padi dan kapas","Rantai","Kepala banteng","Bintang"], a:2 },
+      { q:"Keluarga bermusyawarah untuk menentukan rencana liburan agar seluruh anggota keluarga setuju. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:2 },
+      { q:"Sikap tidak hidup boros serta mau berbagi dengan orang yang membutuhkan merupakan wujud penerapan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:3 }
     ],
     paket3: [
-      { q:"Nilai adalah sifat atau kualitas dari sesuatu yang bermanfaat bagi kehidupan manusia. Nilai berfungsi sebagai landasan, alasan, atau motivasi manusia dalam...", o:["Menentukan cuaca","Bersikap dan bertingkah laku","Menetapkan hukum negara","Mencari keuntungan pribadi"], a:1 },
-      { q:"Nilai kerohanian dibagi menjadi empat, salah satunya nilai kebenaran yang bersumber dari unsur...", o:["Rasa/estetis","Akal","Kehendak/karsa","Kepercayaan dan penghayatan"], a:1 },
-      { q:"Pancasila termasuk nilai kerohanian, namun di dalamnya juga memuat nilai...", o:["Hanya nilai kebenaran","Materiel dan vital secara lengkap dan harmonis","Hanya nilai religius","Nilai ekonomi dan politik"], a:1 },
-      { q:"Sila pertama mendasari dan menjiwai sila ke-2, 3, 4, dan 5 — hal ini merupakan penjelasan dari sifat...", o:["Objektif","Subjektif","Hierarkis piramidal","Absolut/mutlak"], a:2 },
-      { q:"'Berlaku sepanjang masa' merupakan ciri sifat nilai Pancasila yang...", o:["Subjektif","Absolut/mutlak","Hierarkis piramidal","Objektif"], a:3 },
-      { q:"Nilai Pancasila mengandung nilai kerohanian bangsa dan mencerminkan filsafat hidup bangsa Indonesia — ciri ini menunjukkan sifat...", o:["Objektif","Hierarkis piramidal","Subjektif","Absolut/mutlak"], a:2 },
-      { q:"Menurut bahan bacaan modul, sifat absolut/mutlak menjelaskan bahwa nilai Pancasila berasal dari adat istiadat, kebudayaan, kepercayaan, dan...", o:["Pendidikan formal","Agama yang mengakar di Nusantara","Peraturan pemerintah","Kesepakatan internasional"], a:1 },
-      { q:"Sifat nilai Pancasila yang bersifat universal, abstrak, berlaku sepanjang masa, dan tidak dapat diubah oleh siapa pun disebut sifat...", o:["Subjektif","Absolut/mutlak","Objektif","Hierarkis piramidal"], a:2 },
-      { q:"Bahan bacaan modul membahas tiga sifat utama nilai Pancasila, yaitu hierarkis piramidal, objektif dan subjektif, serta...", o:["Instrumental","Praksis","Absolut/mutlak","Materiel"], a:2 },
-      { q:"Nilai instrumental merupakan penjabaran nilai dasar sesuai zaman, contohnya adalah...", o:["Sila-sila Pancasila","UUD 1945, undang-undang, dan peraturan","Gotong royong","Sikap toleransi"], a:1 },
-      { q:"Nilai praksis adalah tindakan nyata dalam kehidupan sehari-hari, misalnya...", o:["Sila-sila Pancasila","UUD 1945","Gotong royong, toleransi, dan musyawarah","Peraturan daerah"], a:2 },
-      { q:"Nilai dasar bersifat abstrak dan tetap, contohnya adalah...", o:["UUD 1945","Sila-sila Pancasila itu sendiri","Peraturan pemerintah","Kebiasaan gotong royong"], a:1 },
-      { q:"Kehidupan berbangsa dan bernegara harus berlandaskan nilai ketuhanan — hal ini merupakan makna dari sila...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-4"], a:0 },
-      { q:"Adil berarti tidak berat sebelah, sedangkan beradab berarti...", o:["Selalu menang sendiri","Berbudi bahasa baik","Mengikuti mayoritas","Mengabaikan aturan"], a:1 },
-      { q:"Perbedaan suku, agama, dan ras bukan untuk dipermasalahkan, melainkan disatukan dalam Bhinneka Tunggal Ika sebagai syarat mutlak untuk...", o:["Mencari keuntungan pribadi","Mencapai tujuan bersama","Memenangkan persaingan","Membentuk kelompok tertentu"], a:1 },
-      { q:"Tiga unsur utama sila keempat adalah...", o:["Kerakyatan, keadilan, dan gotong royong","Kerakyatan, permusyawaratan/perwakilan, dan kedaulatan rakyat","Kedaulatan rakyat, religius, dan toleransi","Permusyawaratan, keadilan sosial, dan persatuan"], a:1 },
-      { q:"Keadilan sosial pada sila kelima meliputi tiga jenis keadilan, yaitu keadilan distributif, keadilan legal, dan...", o:["Keadilan praksis","Keadilan komutatif","Keadilan instrumental","Keadilan absolut"], a:1 },
-      { q:"Beribadah sesuai agama dan menghormati agama lain merupakan pengamalan sila dengan lambang...", o:["Rantai","Bintang","Pohon beringin","Kepala banteng"], a:1 },
-      { q:"Membantu sesama dan menghargai HAM merupakan pengamalan sila dengan lambang...", o:["Kepala banteng","Rantai","Padi dan kapas","Pohon beringin"], a:1 },
-      { q:"Memakai produk dalam negeri merupakan pengamalan sila dengan lambang...", o:["Bintang","Rantai","Pohon beringin","Kepala banteng"], a:2 },
-      { q:"Menghargai perbedaan pendapat merupakan pengamalan sila dengan lambang...", o:["Padi dan kapas","Bintang","Kepala banteng","Rantai"], a:2 },
-      { q:"Menaati hukum dan membantu yang lemah merupakan pengamalan sila dengan lambang...", o:["Kepala banteng","Rantai","Pohon beringin","Padi dan kapas"], a:3 },
-      { q:"Keadilan yang berarti negara membagi secara merata kepada seluruh rakyat disebut keadilan...", o:["Keadilan komutatif","Keadilan distributif","Keadilan legal","Keadilan sosial"], a:1 },
-      { q:"Sesuai Muatan SIT dalam modul, sila kelima dikaitkan dengan QS. Al-Ma'idah ayat 8 yang berisi perintah untuk berlaku...", o:["Sabar dan ikhlas","Adil dan jujur","Tolong-menolong","Rendah hati"], a:1 },
-      { q:"Warga yang taat pada peraturan negara mencerminkan keadilan...", o:["Keadilan legal","Keadilan distributif","Keadilan komutatif","Keadilan sosial"], a:0 },
-      { q:"Skenario 'toleransi antarteman berbeda agama saat tiba waktu salat Zuhur di sekolah' pada LKPD Proyek termasuk studi kasus sila ke...", o:["Sila ke-2","Sila ke-1","Sila ke-3","Sila ke-4"], a:1 },
+      { q:"Musyawarah kelas untuk memilih ketua kelas yang baru adalah contoh penerapan sila ke...", o:["Sila ke-3","Sila ke-2","Sila ke-5","Sila ke-4"], a:3 },
+      { q:"Membagi tugas kelompok secara adil dan merata merupakan pengamalan sila dengan lambang...", o:["Kepala banteng","Bintang","Rantai","Padi dan kapas"], a:3 },
+      { q:"Sikap menerima dan menjalankan hasil keputusan bersama meskipun berbeda dari pendapat pribadi merupakan wujud penerapan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:2 },
+      { q:"Sikap menghormati hak dan martabat orang lain tanpa membeda-bedakan suku maupun status sosial merupakan wujud penerapan sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-4"], a:1 },
+      { q:"Warga kampung bergiliran menjaga ketertiban saat tetangga yang berbeda agama sedang beribadah, tanpa memaksa siapa pun untuk ikut serta. Sikap tersebut mencerminkan pengamalan sila ke...", o:["Sila ke-1","Sila ke-3","Sila ke-4","Sila ke-5"], a:0 },
+      { q:"Kepala desa memastikan bantuan sembako dibagikan secara merata kepada seluruh warga yang membutuhkan. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-1","Sila ke-3","Sila ke-4","Sila ke-5"], a:3 },
+      { q:"Menjenguk teman yang sedang sakit merupakan pengamalan sila dengan lambang...", o:["Bintang","Rantai","Kepala banteng","Padi dan kapas"], a:1 },
+      { q:"Skenario 'gotong royong seluruh siswa membersihkan lingkungan sekolah menjelang 17 Agustus' pada LKPD Proyek mewakili sila dengan nama...", o:["Ketuhanan Yang Maha Esa","Kemanusiaan yang Adil dan Beradab","Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan"], a:2 },
+      { q:"Nilai adalah sesuatu yang bermanfaat bagi kehidupan manusia, baik secara...", o:["Materiel saja","Lahir maupun batin","Sosial saja","Ekonomi saja"], a:1 },
+      { q:"Contoh sikap di masyarakat yang mencerminkan pengamalan sila ketiga adalah...", o:["Ikut kerja bakti membersihkan lingkungan bersama warga","Enggan berbaur dengan tetangga berbeda suku","Mementingkan kelompoknya sendiri","Menolak ikut kegiatan bersama warga"], a:0 },
+      { q:"Skenario 'teman-teman membantu siswa yang tertinggal pelajaran karena baru sembuh sakit' pada LKPD Proyek mewakili sila dengan nama...", o:["Ketuhanan Yang Maha Esa","Kemanusiaan yang Adil dan Beradab","Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan"], a:1 },
+      { q:"Lambang sila kedua Pancasila adalah...", o:["Bintang","Rantai","Padi dan kapas","Kepala banteng"], a:1 },
+      { q:"Skenario 'ketua kelas membagi jadwal piket kebersihan secara adil dan merata' pada LKPD Proyek termasuk studi kasus sila ke...", o:["Sila ke-4","Sila ke-3","Sila ke-1","Sila ke-5"], a:3 },
       { q:"Skenario 'teman-teman membantu siswa yang tertinggal pelajaran karena baru sembuh sakit' pada LKPD Proyek termasuk studi kasus sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-5"], a:1 },
+      { q:"Warga RT mengadakan rembuk warga sebelum menetapkan jadwal ronda malam agar semua sepakat. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:2 },
+      { q:"Sila yang mengajarkan pentingnya musyawarah untuk mencapai mufakat adalah sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:2 },
+      { q:"Sila pertama Pancasila berbunyi...", o:["Persatuan Indonesia","Ketuhanan Yang Maha Esa","Kemanusiaan yang Adil dan Beradab","Keadilan Sosial bagi Seluruh Rakyat Indonesia"], a:1 },
+      { q:"Guru membagi anggota kelompok tugas secara merata agar semua siswa mendapat peran yang seimbang. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:3 },
       { q:"Skenario 'gotong royong seluruh siswa membersihkan lingkungan sekolah menjelang 17 Agustus' pada LKPD Proyek termasuk studi kasus sila ke...", o:["Sila ke-2","Sila ke-4","Sila ke-3","Sila ke-5"], a:2 },
-      { q:"Skenario 'musyawarah kelas untuk memilih ketua kelas yang baru' pada LKPD Proyek mewakili sila dengan nama...", o:["Persatuan Indonesia","Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan","Ketuhanan Yang Maha Esa","Keadilan sosial bagi seluruh rakyat Indonesia"], a:1 },
-      { q:"Skenario 'ketua kelas membagi jadwal piket kebersihan secara adil dan merata' pada LKPD Proyek termasuk studi kasus sila ke...", o:["Sila ke-4","Sila ke-3","Sila ke-1","Sila ke-5"], a:3 }
+      { q:"Seluruh siswa wajib mengikuti tata tertib sekolah tanpa terkecuali. Sikap menaati aturan tersebut merupakan contoh keadilan...", o:["Keadilan legal","Keadilan distributif","Keadilan komutatif","Keadilan praksis"], a:0 },
+      { q:"Andi mengingatkan adiknya untuk salat tepat waktu dan mengucapkan salam setiap masuk rumah. Sikap Andi mencerminkan pengamalan sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-4"], a:0 },
+      { q:"Skenario 'musyawarah kelas untuk memilih ketua kelas yang baru' pada LKPD Proyek mewakili sila dengan nama...", o:["Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan","Ketuhanan Yang Maha Esa","Keadilan Sosial bagi Seluruh Rakyat Indonesia"], a:1 },
+      { q:"Pemerintah menetapkan program subsidi pendidikan agar anak-anak dari berbagai daerah tetap bisa bersekolah. Ini merupakan contoh keadilan...", o:["Keadilan komutatif","Keadilan legal","Keadilan distributif","Keadilan sosial"], a:2 },
+      { q:"Sila kedua Pancasila berbunyi...", o:["Ketuhanan Yang Maha Esa","Persatuan Indonesia","Kemanusiaan yang Adil dan Beradab","Keadilan Sosial bagi Seluruh Rakyat Indonesia"], a:2 },
+      { q:"Menghargai perbedaan pendapat dan tidak memaksakan kehendak merupakan pengamalan sila dengan lambang...", o:["Rantai","Padi dan kapas","Kepala banteng","Pohon beringin"], a:2 },
+      { q:"Setiap pengendara mematuhi rambu lalu lintas dan aturan yang berlaku di jalan raya. Sikap ini mencerminkan keadilan...", o:["Keadilan legal","Keadilan distributif","Keadilan komutatif","Keadilan praksis"], a:0 },
+      { q:"Kebebasan menjalankan ibadah sesuai agama masing-masing yang dijamin Pasal 29 Ayat 1 dan 2 UUD 1945 merupakan wujud penerapan sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-4"], a:0 },
+      { q:"Kepala desa membagikan bantuan sosial secara merata kepada seluruh warga tanpa membeda-bedakan. Tindakan ini merupakan penerapan keadilan...", o:["Keadilan legal","Keadilan distributif","Keadilan komutatif","Keadilan sosial"], a:1 },
+      { q:"Lambang sila ketiga Pancasila adalah...", o:["Rantai","Kepala banteng","Pohon beringin","Padi dan kapas"], a:2 },
+      { q:"Skenario 'toleransi antarteman berbeda agama saat tiba waktu salat Zuhur di sekolah' pada LKPD Proyek mewakili sila dengan nama...", o:["Kemanusiaan yang Adil dan Beradab","Ketuhanan Yang Maha Esa","Persatuan Indonesia","Keadilan Sosial bagi Seluruh Rakyat Indonesia"], a:1 }
     ],
     paket4: [
-      { q:"Sifat atau kualitas dari sesuatu yang bermanfaat bagi kehidupan manusia baik lahir maupun batin disebut...", o:["Norma","Moral","Nilai","Etika"], a:2 },
-      { q:"Nilai kerohanian dibagi menjadi empat macam, KECUALI...", o:["Nilai kebenaran","Nilai ekonomi","Nilai keindahan","Nilai kebaikan moral"], a:1 },
-      { q:"Nilai yang bermanfaat agar manusia dapat beraktivitas disebut...", o:["Nilai Materiel","Nilai Vital","Nilai Kerohanian","Nilai Religius"], a:1 },
-      { q:"Sifat objektif nilai Pancasila menyatakan bahwa nilai Pancasila bersifat...", o:["Khusus dan berubah-ubah","Universal dan abstrak","Hanya berlaku bagi sebagian rakyat","Buatan bangsa lain"], a:1 },
-      { q:"Sifat subjektif nilai Pancasila menyatakan bahwa nilai Pancasila...", o:["Lahir dari bangsa Indonesia sendiri","Diciptakan oleh bangsa lain","Tidak berkaitan dengan budaya bangsa","Hanya berlaku bagi pejabat negara"], a:0 },
-      { q:"Dalam sifat hierarkis piramidal, sila pertama berfungsi...", o:["Berdiri sendiri terpisah dari sila lain","Tidak berkaitan dengan sila lain","Hanya berlaku di lingkungan sekolah","Mendasari dan menjiwai sila ke-2, 3, 4, dan 5"], a:3 },
-      { q:"Ada berapa sifat utama nilai Pancasila yang dibahas dalam bahan bacaan modul ini?", o:["Dua sifat","Tiga sifat","Empat sifat","Lima sifat"], a:1 },
-      { q:"Nilai instrumental bersifat lebih khusus karena merupakan penjabaran nilai dasar sesuai...", o:["Selera masyarakat","Zaman","Adat istiadat semata","Kepentingan golongan"], a:1 },
-      { q:"Contoh nilai instrumental menurut bahan bacaan modul adalah...", o:["Sila-sila Pancasila","UUD 1945, undang-undang, peraturan","Gotong royong","Toleransi antarwarga"], a:1 },
-      { q:"Gotong royong, toleransi, dan musyawarah dalam kehidupan sehari-hari adalah contoh tataran...", o:["Nilai dasar","Nilai instrumental","Nilai praksis","Nilai materiel"], a:2 },
-      { q:"Nilai praksis dianggap paling penting karena...", o:["Paling mudah dihafal","Menentukan apakah Pancasila benar-benar hidup di masyarakat","Tidak dapat diamalkan","Hanya berlaku bagi pejabat"], a:1 },
-      { q:"Bukan berarti negara berdasarkan satu agama tertentu, tetapi menghormati pluralisme agama — pernyataan ini merupakan makna dari sila...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-4"], a:0 },
-      { q:"Menjunjung tinggi harkat dan martabat manusia sebagai makhluk Tuhan merupakan makna sila...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-5"], a:1 },
-      { q:"Bhinneka Tunggal Ika menjadi syarat mutlak untuk mencapai...", o:["Keuntungan pribadi","Tujuan bersama","Kemenangan kelompok","Status sosial tinggi"], a:1 },
-      { q:"Demokrasi adalah sarana menuju kesejahteraan rakyat — pernyataan ini terkait dengan makna sila...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:2 },
-      { q:"Keadilan sosial pada sila kelima merupakan tujuan dari...", o:["Hanya sila pertama","Hanya sila keempat","Keempat sila lainnya","Peraturan pemerintah saja"], a:2 },
-      { q:"Lambang sila pertama adalah bintang, dengan contoh perilaku...", o:["Ikut upacara bendera","Bermusyawarah untuk mufakat","Beribadah sesuai agama dan menghormati agama lain","Bekerja keras dan tidak boros"], a:2 },
-      { q:"Lambang sila kelima adalah padi dan kapas, dengan contoh perilaku...", o:["Musyawarah untuk mufakat","Ikut upacara bendera","Menghormati agama lain","Kerja keras, tidak boros, dan membantu yang lemah"], a:3 },
-      { q:"Perilaku 'memakai produk dalam negeri' merupakan pengamalan sila dengan lambang...", o:["Bintang","Rantai","Pohon beringin","Kepala banteng"], a:2 },
-      { q:"Perilaku 'tidak memaksakan kehendak' merupakan pengamalan sila dengan lambang...", o:["Bintang","Rantai","Kepala banteng","Padi dan kapas"], a:2 },
-      { q:"Perilaku 'tidak semena-mena' merupakan pengamalan sila dengan lambang...", o:["Pohon beringin","Rantai","Kepala banteng","Padi dan kapas"], a:1 },
-      { q:"Keadilan yang berarti hubungan timbal balik yang adil antarwarga disebut keadilan...", o:["Keadilan distributif","Keadilan legal","Keadilan komutatif","Keadilan praksis"], a:2 },
-      { q:"Keadilan yang berarti negara membagi secara merata disebut keadilan...", o:["Keadilan legal","Keadilan distributif","Keadilan komutatif","Keadilan sosial"], a:1 },
-      { q:"Keadilan yang berarti warga taat pada peraturan negara disebut keadilan...", o:["Keadilan legal","Keadilan komutatif","Keadilan distributif","Keadilan sosial"], a:0 },
-      { q:"Sesuai Muatan Adiwiyata dalam modul, pengamalan nilai apa yang diintegrasikan pada studi kasus sila ketiga?", o:["Toleransi beragama","Gotong royong menjaga kebersihan lingkungan sekolah","Musyawarah mufakat","Kerja keras dan hemat"], a:1 },
-      { q:"Gotong royong seluruh siswa membersihkan lingkungan sekolah menjelang 17 Agustus adalah contoh penerapan sila ke...", o:["Sila ke-2","Sila ke-4","Sila ke-3","Sila ke-5"], a:2 },
-      { q:"Skenario 'gotong royong membersihkan lingkungan sekolah' pada LKPD Proyek mewakili sila dengan nama...", o:["Kemanusiaan yang Adil dan Beradab","Persatuan Indonesia","Ketuhanan Yang Maha Esa","Keadilan Sosial bagi Seluruh Rakyat Indonesia"], a:1 },
-      { q:"Skenario 'teman-teman membantu siswa yang tertinggal pelajaran karena baru sembuh sakit' pada LKPD Proyek mewakili sila dengan nama...", o:["Ketuhanan Yang Maha Esa","Kemanusiaan yang Adil dan Beradab","Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan"], a:1 },
-      { q:"Skenario 'musyawarah kelas untuk memilih ketua kelas yang baru' pada LKPD Proyek termasuk studi kasus sila ke...", o:["Sila ke-3","Sila ke-2","Sila ke-5","Sila ke-4"], a:3 },
-      { q:"Dalam proyek penerapan nilai Pancasila, siswa dibagi menjadi lima kelompok yang masing-masing mewakili...", o:["Satu mata pelajaran","Satu wilayah asal","Satu sila Pancasila","Satu kelas paralel"], a:2 }
+      { q:"Urutan sila Pancasila dari sila pertama hingga kelima yang benar adalah...", o:["Ketuhanan, Kemanusiaan, Persatuan, Kerakyatan, Keadilan","Kemanusiaan, Ketuhanan, Kerakyatan, Persatuan, Keadilan","Persatuan, Ketuhanan, Kemanusiaan, Keadilan, Kerakyatan","Keadilan, Kerakyatan, Persatuan, Kemanusiaan, Ketuhanan"], a:0 },
+      { q:"Siswa mengumpulkan sumbangan untuk korban bencana alam tanpa memandang suku dan agama korban. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-2","Sila ke-1","Sila ke-4","Sila ke-5"], a:0 },
+      { q:"Ayah selalu mengajarkan untuk tidak membeda-bedakan teman berdasarkan status ekonomi keluarganya. Nilai yang diajarkan ayah mencerminkan pengamalan sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-4"], a:1 },
+      { q:"Kegiatan tadarus dan tilawah QS. Al-Ma'idah ayat 8 tentang perintah berlaku adil dan jujur, yang dikaitkan dengan pengamalan nilai keadilan, menguatkan penerapan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:3 },
+      { q:"Ikut upacara bendera dan bergotong royong merupakan pengamalan sila dengan lambang...", o:["Kepala banteng","Pohon beringin","Bintang","Rantai"], a:1 },
+      { q:"Pengurus OSIS mengadakan rapat untuk mendengar pendapat seluruh anggota sebelum memutuskan program kerja sekolah. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-1","Sila ke-3","Sila ke-4","Sila ke-5"], a:2 },
+      { q:"Sikap tidak hidup boros serta mau berbagi dengan orang yang membutuhkan merupakan wujud penerapan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:3 },
+      { q:"Saat teman sekelas merayakan hari besar agamanya, siswa lain ikut menjaga suasana tenang dan tidak mengganggu. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-2","Sila ke-1","Sila ke-3","Sila ke-5"], a:1 },
+      { q:"Skenario 'toleransi antarteman berbeda agama saat tiba waktu salat Zuhur di sekolah' pada LKPD Proyek termasuk studi kasus sila ke...", o:["Sila ke-2","Sila ke-1","Sila ke-3","Sila ke-4"], a:1 },
+      { q:"Cinta tanah air dan bangga menggunakan produk buatan bangsa sendiri merupakan pengamalan sila dengan lambang...", o:["Bintang","Rantai","Pohon beringin","Kepala banteng"], a:2 },
+      { q:"Sila ketiga Pancasila berbunyi...", o:["Kemanusiaan yang Adil dan Beradab","Keadilan Sosial bagi Seluruh Rakyat Indonesia","Ketuhanan Yang Maha Esa","Persatuan Indonesia"], a:3 },
+      { q:"Warga kampung bergotong royong mengantarkan tetangga yang sakit ke rumah sakit tanpa membedakan latar belakangnya. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-3","Sila ke-2","Sila ke-4","Sila ke-5"], a:1 },
+      { q:"Kegiatan gotong royong membersihkan lingkungan sekolah sebagai bagian dari program Adiwiyata merupakan wujud pengamalan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:1 },
+      { q:"Dua pedagang menepati kesepakatan jual-beli sesuai harga yang telah disetujui bersama. Hal ini mencerminkan keadilan...", o:["Keadilan distributif","Keadilan legal","Keadilan komutatif","Keadilan sosial"], a:2 },
+      { q:"Warga desa dari berbagai suku bergotong royong membangun jembatan penghubung antarkampung. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:1 },
+      { q:"Pancasila sebagai dasar negara Indonesia terdiri dari berapa sila?", o:["Empat sila","Lima sila","Enam sila","Tujuh sila"], a:1 },
+      { q:"Keluarga ikut memasang bendera merah putih dan mengikuti upacara bersama warga sekitar saat perayaan Hari Kemerdekaan. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-4"], a:2 },
+      { q:"Contoh sikap di rumah yang mencerminkan pengamalan sila pertama adalah...", o:["Mengingatkan anggota keluarga untuk beribadah tepat waktu","Mengabaikan waktu ibadah","Memaksakan keyakinan pada orang lain","Meremehkan ibadah agama lain"], a:0 },
+      { q:"Sila yang mengajarkan untuk memperlakukan semua orang secara adil tanpa membeda-bedakan adalah sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-4"], a:1 },
+      { q:"Kerja keras, tidak boros, menaati hukum, dan membantu yang lemah merupakan contoh perilaku pengamalan sila dengan lambang...", o:["Kepala banteng","Bintang","Rantai","Padi dan kapas"], a:3 },
+      { q:"Contoh sikap di sekolah yang mencerminkan pengamalan sila kedua adalah...", o:["Mengabaikan teman yang sedang sakit","Menjenguk dan membantu teman yang sedang sakit","Membeda-bedakan teman berdasarkan suku","Bersikap acuh terhadap sesama"], a:1 },
+      { q:"Produk proyek kreatif kelompok yang menampilkan sikap gotong royong menjaga kebersihan lingkungan sekolah termasuk pengamalan sila dengan lambang...", o:["Bintang","Rantai","Pohon beringin","Kepala banteng"], a:2 },
+      { q:"Skenario 'ketua kelas membagi jadwal piket kebersihan secara adil dan merata' pada LKPD Proyek mewakili sila dengan nama...", o:["Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan","Keadilan Sosial bagi Seluruh Rakyat Indonesia","Ketuhanan Yang Maha Esa"], a:2 },
+      { q:"Membantu sesama, tidak semena-mena, menghargai HAM, dan tenggang rasa merupakan contoh perilaku pengamalan sila dengan lambang...", o:["Bintang","Rantai","Pohon beringin","Kepala banteng"], a:1 },
+      { q:"Musyawarah mufakat, tidak memaksakan kehendak, dan menghargai perbedaan pendapat merupakan contoh perilaku pengamalan sila dengan lambang...", o:["Pohon beringin","Kepala banteng","Padi dan kapas","Bintang"], a:1 },
+      { q:"Sila kelima Pancasila berbunyi...", o:["Persatuan Indonesia","Kemanusiaan yang Adil dan Beradab","Keadilan Sosial bagi Seluruh Rakyat Indonesia","Ketuhanan Yang Maha Esa"], a:2 },
+      { q:"Keluarga bermusyawarah untuk menentukan rencana liburan agar seluruh anggota keluarga setuju. Sikap ini mencerminkan pengamalan sila ke...", o:["Sila ke-2","Sila ke-3","Sila ke-4","Sila ke-5"], a:2 },
+      { q:"Sila keempat Pancasila berbunyi...", o:["Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan","Ketuhanan Yang Maha Esa","Kemanusiaan yang Adil dan Beradab"], a:1 },
+      { q:"Memakai produk dalam negeri, ikut upacara bendera, dan bergotong royong merupakan contoh perilaku pengamalan sila dengan lambang...", o:["Rantai","Kepala banteng","Pohon beringin","Padi dan kapas"], a:2 },
+      { q:"Contoh sikap di rumah yang mencerminkan pengamalan sila keempat adalah...", o:["Memutuskan sendiri tanpa bertanya pendapat anggota keluarga","Bermusyawarah menentukan kegiatan keluarga bersama","Memaksakan kehendak kepada adik","Mengabaikan pendapat orang tua"], a:1 }
     ]
   };
 
@@ -1144,7 +1182,8 @@
   /* ---------------- state ---------------- */
   var STEP = 7;          // percent per correct answer
   var WIN_STEPS = 5;      // steps to reach the edge
-  var MATCH_SECONDS = 120; // 2 minutes per game
+  var MATCH_SECONDS = 150; // 2.5 menit per game
+  var QUESTION_SECONDS = 10; // waktu menjawab per giliran
   var state = {
     teamA: { name: "Kelompok Merah", score: 0 },
     teamB: { name: "Kelompok Biru", score: 0 },
@@ -1157,7 +1196,9 @@
     locked: false,
     over: false,
     timeLeft: MATCH_SECONDS,
-    timerId: null
+    timerId: null,
+    qTimeLeft: QUESTION_SECONDS,
+    qTimerId: null
   };
 
   /* ---------------- player avatars (SVG) ---------------- */
@@ -1294,6 +1335,8 @@
   var optionsWrap = document.getElementById("options");
   var skipBtn = document.getElementById("skipBtn");
   var nextBtn = document.getElementById("nextBtn");
+  var qTimerFill = document.getElementById("qTimerFill");
+  var qTimerNum = document.getElementById("qTimerNum");
   var resetBtn = document.getElementById("resetBtn");
   var overlay = document.getElementById("overlay");
   var winTitle = document.getElementById("winTitle");
@@ -1343,6 +1386,7 @@
   }
 
   function loadQuestion(){
+    stopQuestionTimer();
     state.locked = false;
     state.qIndex++;
     state.current = nextQuestionData();
@@ -1363,15 +1407,68 @@
 
     nextBtn.disabled = true;
     skipBtn.disabled = false;
+    startQuestionTimer();
   }
 
   function lockOptions(){
     Array.prototype.forEach.call(optionsWrap.children, function(b){ b.disabled = true; });
   }
 
+  /* ---------------- per-question timer (6 detik per giliran) ---------------- */
+  function renderQTimer(){
+    qTimerNum.textContent = Math.max(state.qTimeLeft, 0);
+    var pct = Math.max(state.qTimeLeft, 0) / QUESTION_SECONDS * 100;
+    qTimerFill.style.width = pct + "%";
+    var isLow = state.qTimeLeft <= 3 && state.qTimeLeft > 0;
+    qTimerFill.classList.toggle("low", isLow);
+    qTimerNum.classList.toggle("low", isLow);
+  }
+
+  function startQuestionTimer(){
+    stopQuestionTimer();
+    state.qTimeLeft = QUESTION_SECONDS;
+    qTimerFill.style.transition = "none";
+    renderQTimer();
+    void qTimerFill.offsetWidth; // reflow supaya transition berikutnya mulus
+    qTimerFill.style.transition = "";
+    state.qTimerId = setInterval(function(){
+      state.qTimeLeft -= 1;
+      renderQTimer();
+      if (state.qTimeLeft <= 0){
+        questionTimeUp();
+      }
+    }, 1000);
+  }
+
+  function stopQuestionTimer(){
+    if (state.qTimerId){
+      clearInterval(state.qTimerId);
+      state.qTimerId = null;
+    }
+  }
+
+  function questionTimeUp(){
+    stopQuestionTimer();
+    if (state.locked || state.over) return;
+    state.locked = true;
+    lockOptions();
+    skipBtn.disabled = true;
+    nextBtn.disabled = true;
+
+    var correctIdx = state.current.a;
+    if (optionsWrap.children[correctIdx]) optionsWrap.children[correctIdx].classList.add("correct");
+
+    setTimeout(function(){
+      if (state.over) return;
+      state.turn = state.turn === "A" ? "B" : "A";
+      loadQuestion();
+    }, 900);
+  }
+
   function selectAnswer(idx, btn){
     if (state.locked || state.over) return;
     state.locked = true;
+    stopQuestionTimer();
     lockOptions();
     skipBtn.disabled = true;
 
@@ -1408,6 +1505,7 @@
   resetBtn.addEventListener("click", function(){
     if (!confirm("Ulangi permainan dari awal? Skor akan direset.")) return;
     stopTimer();
+    stopQuestionTimer();
     app.hidden = true;
     packScreen.hidden = false;
     setupScreen.hidden = true;
@@ -1415,13 +1513,14 @@
 
   playAgainBtn.addEventListener("click", function(){
     stopTimer();
+    stopQuestionTimer();
     overlay.hidden = true;
     app.hidden = true;
     packScreen.hidden = false;
     setupScreen.hidden = true;
   });
 
-  /* ---------------- match timer (2 minutes) ---------------- */
+  /* ---------------- match timer (2.5 menit) ---------------- */
   function renderTimer(){
     var m = Math.floor(state.timeLeft / 60);
     var s = state.timeLeft % 60;
@@ -1453,6 +1552,7 @@
   function timeUp(){
     if (state.over) return;
     state.over = true;
+    stopQuestionTimer();
     lockOptions();
     skipBtn.disabled = true;
     nextBtn.disabled = true;
@@ -1460,19 +1560,19 @@
     if (state.position < 0){
       trophyIcon.textContent = "🏆";
       winTitle.textContent = state.teamA.name + " Menang! ⏱️";
-      winSub.textContent = "Waktu 2 menit habis — " + state.teamA.name + " unggul menarik tambang lebih jauh.";
+      winSub.textContent = "Waktu 2,5 menit habis — " + state.teamA.name + " unggul menarik tambang lebih jauh.";
       overlay.hidden = false;
       launchFireworks();
     } else if (state.position > 0){
       trophyIcon.textContent = "🏆";
       winTitle.textContent = state.teamB.name + " Menang! ⏱️";
-      winSub.textContent = "Waktu 2 menit habis — " + state.teamB.name + " unggul menarik tambang lebih jauh.";
+      winSub.textContent = "Waktu 2,5 menit habis — " + state.teamB.name + " unggul menarik tambang lebih jauh.";
       overlay.hidden = false;
       launchFireworks();
     } else {
       trophyIcon.textContent = "🤝";
       winTitle.textContent = "Seri!";
-      winSub.textContent = "Waktu 2 menit habis dengan tambang tepat di tengah. Pertandingan sangat ketat — main lagi?";
+      winSub.textContent = "Waktu 2,5 menit habis dengan tambang tepat di tengah. Pertandingan sangat ketat — main lagi?";
       overlay.hidden = false;
     }
   }
@@ -1498,6 +1598,7 @@
   function endGame(winner){
     state.over = true;
     stopTimer();
+    stopQuestionTimer();
     nextBtn.disabled = true;
     skipBtn.disabled = true;
     trophyIcon.textContent = "🏆";
