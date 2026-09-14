@@ -618,6 +618,94 @@
   }
   .setup-rules b{ color: var(--ink); }
 
+  /* ---------- pack selection screen ---------- */
+  .pack-intro{
+    font-size:.92rem;
+    color: var(--ink-soft);
+    line-height:1.6;
+    text-align:center;
+  }
+  .pack-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 560px){ .pack-grid{ grid-template-columns: 1fr; } }
+  .pack-card{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+    text-align:left;
+    background: var(--paper-alt);
+    border: 2px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    cursor:pointer;
+    transition: transform .12s ease, border-color .15s ease, background .15s ease;
+    font-family: var(--font-body);
+    color: var(--ink);
+  }
+  .pack-card:hover{ transform: translateY(-2px); border-color: var(--gold); }
+  .pack-card:active{ transform: translateY(0); }
+  .pack-card .pack-name{
+    font-family: var(--font-display);
+    font-weight:800;
+    font-size: 1.1rem;
+    color: var(--ink);
+  }
+  .pack-card .pack-count{
+    display:inline-flex;
+    align-items:center;
+    font-weight:800;
+    font-size:.72rem;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color: var(--red-ink);
+    background: var(--red-soft);
+    padding: 3px 10px;
+    border-radius:999px;
+  }
+  .pack-card .pack-desc{
+    font-size:.86rem;
+    color: var(--ink-soft);
+    font-weight:600;
+    line-height:1.5;
+  }
+  .pack-card.selected{
+    border-color: var(--gold);
+    background: var(--gold-soft);
+  }
+  .pack-footer-note{
+    font-size:.82rem;
+    color: var(--ink-soft);
+    text-align:center;
+  }
+  .pack-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-weight:800;
+    font-size:.75rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color: var(--red-ink);
+    background: var(--red-soft);
+    padding: 5px 12px;
+    border-radius:999px;
+    width:fit-content;
+  }
+  .change-pack-btn{
+    background:none;
+    border:none;
+    color: var(--ink-soft);
+    font-weight:700;
+    font-size:.82rem;
+    text-decoration: underline;
+    cursor:pointer;
+    padding:0;
+  }
+
   /* ---------- win overlay ---------- */
   .overlay{
     position:fixed; inset:0;
@@ -668,8 +756,37 @@
     <p>Dua kelompok bertanding menjawab soal seputar nilai, makna sila, lambang, dan contoh pengamalan Pancasila dalam kehidupan sehari-hari. Setiap jawaban benar menarik tambang ke arah kelompokmu — kelompok pertama yang menarik tambang sampai ke ujung, menang!</p>
   </div>
 
+  <!-- PACK SELECTION SCREEN -->
+  <div class="setup-card" id="packScreen">
+    <p class="pack-intro">Pilih salah satu paket soal untuk pertandingan kali ini. Setiap paket berisi 25 soal pilihan ganda yang mencakup seluruh materi Bab 2 &mdash; jadi tiap paket setara tingkat kesulitannya, hanya butir soalnya yang berbeda (cocok dipakai bergiliran di beberapa kelas).</p>
+    <div class="pack-grid" id="packGrid">
+      <button type="button" class="pack-card" data-pack="paket1">
+        <span class="pack-count">25 soal</span>
+        <span class="pack-name">Paket 1</span>
+        <span class="pack-desc">Variasi soal set pertama dari seluruh materi Bab 2.</span>
+      </button>
+      <button type="button" class="pack-card" data-pack="paket2">
+        <span class="pack-count">25 soal</span>
+        <span class="pack-name">Paket 2</span>
+        <span class="pack-desc">Variasi soal set kedua dari seluruh materi Bab 2.</span>
+      </button>
+      <button type="button" class="pack-card" data-pack="paket3">
+        <span class="pack-count">25 soal</span>
+        <span class="pack-name">Paket 3</span>
+        <span class="pack-desc">Variasi soal set ketiga dari seluruh materi Bab 2.</span>
+      </button>
+      <button type="button" class="pack-card" data-pack="paket4">
+        <span class="pack-count">25 soal</span>
+        <span class="pack-name">Paket 4</span>
+        <span class="pack-desc">Variasi soal set keempat dari seluruh materi Bab 2.</span>
+      </button>
+    </div>
+    <p class="pack-footer-note">Ingin main lagi dengan kelas lain? Pilih paket yang berbeda agar soal tidak berulang.</p>
+  </div>
+
   <!-- SETUP SCREEN -->
-  <div class="setup-card" id="setupScreen">
+  <div class="setup-card" id="setupScreen" hidden>
+    <div class="pack-chip" id="activePackChip">Paket 1</div>
     <div class="setup-teams">
       <div class="setup-team a">
         <label for="nameA">Kelompok Merah</label>
@@ -683,8 +800,9 @@
     <div class="setup-rules">
       <b>Cara main:</b> Guru menampilkan layar ini di Papan Interaktif Digital. Soal muncul bergantian untuk tiap kelompok. Diskusikan jawaban bersama kelompok, lalu wakil kelompok menyentuh salah satu pilihan. Jawaban <b>benar</b> menarik tambang satu langkah ke arah kelompok tersebut. Kelompok yang berhasil menarik simpul tambang sampai ke ujung lebih dulu adalah <b>pemenangnya</b>.
     </div>
-    <div>
+    <div style="display:flex; flex-direction:column; gap:10px; align-items:center;">
       <button class="btn btn-primary" id="startBtn" style="width:100%; padding:16px; font-size:1.05rem;">Mulai Permainan 🪢</button>
+      <button type="button" class="change-pack-btn" id="changePackBtn">Ganti paket soal</button>
     </div>
   </div>
 
@@ -775,108 +893,120 @@
   }
 
   /* ---------------- question bank ---------------- */
-  var QUESTIONS = [
-    { q:"Materi Bab 2 pada modul ajar ini digunakan untuk siswa kelas berapa?", o:["Kelas VI","Kelas VII","Kelas VIII","Kelas IX"], a:1 },
-    { q:"Judul materi pada Bab 2 modul ajar PPKn ini adalah...", o:["Norma dan Keadilan","Penerapan Nilai-Nilai Pancasila","Sejarah Lahirnya Pancasila","Sistem Pemerintahan Indonesia"], a:1 },
-    { q:"Model pembelajaran utama yang digunakan pada pertemuan ini adalah...", o:["Discovery Learning","Problem Based Learning","Project Based Learning (PjBL)","Cooperative Learning"], a:2 },
-    { q:"Alokasi waktu pertemuan pada modul ajar ini adalah...", o:["1 x 1 JP","1 x 2 JP","2 x 2 JP","1 x 3 JP"], a:1 },
-    { q:"Berikut ini adalah dimensi Profil Lulusan yang dikembangkan pada pembelajaran ini, KECUALI...", o:["Bergotong Royong","Mandiri","Berkebinekaan Global","Bernalar Kritis"], a:1 },
-    { q:"Mata pelajaran yang beririsan dengan materi ini melalui penyusunan teks laporan proyek adalah...", o:["Seni Budaya","Bahasa Indonesia","Pendidikan Agama Islam","Matematika"], a:1 },
-    { q:"Muatan Adiwiyata pada pembelajaran ini terintegrasi dengan studi kasus sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-5"], a:2 },
-    { q:"Pihak yang menjadi mitra pembelajaran pada modul ajar ini, selain guru mapel lain, adalah...", o:["Kepala sekolah","Orang tua","Komite sekolah","Pengawas sekolah"], a:1 },
-    { q:"Sebelum memulai pembelajaran, guru mengajak siswa tadarus dan tilawah surah...", o:["QS. Al-Baqarah:2","QS. Al-Ma'idah:8","QS. An-Nisa:58","QS. Al-Hujurat:13"], a:1 },
-    { q:"QS. Al-Ma'idah ayat 8 berisi perintah tentang...", o:["Menuntut ilmu","Berlaku adil dan jujur","Menjaga silaturahmi","Bersyukur atas nikmat"], a:1 },
-    { q:"Pada kegiatan apersepsi, guru melakukan tanya jawab singkat untuk mengukur...", o:["Kehadiran siswa","Pemahaman awal siswa (Asesmen Awal)","Kerapian tugas siswa","Minat belajar siswa"], a:1 },
-    { q:"Pertanyaan mendasar yang diajukan guru pada tahap awal PjBL adalah bagaimana siswa dapat menunjukkan penerapan nilai Pancasila melalui...", o:["Hafalan lisan","Ujian tertulis","Produk kreatif yang bermanfaat","Diskusi tanpa hasil"], a:2 },
-    { q:"Pada tahap penentuan pertanyaan mendasar, siswa dibagi menjadi berapa kelompok?", o:["Tiga kelompok","Empat kelompok","Lima kelompok","Enam kelompok"], a:2 },
-    { q:"Lembar kerja yang diterima tiap kelompok pada tahap awal proyek disebut...", o:["Lembar Penilaian Proyek","LKPD Proyek (Lampiran 1)","Jurnal Refleksi","Lembar Monitoring"], a:1 },
-    { q:"Berikut ini adalah contoh produk proyek sederhana yang disebutkan dalam modul, KECUALI...", o:["Poster","Komik strip","Mading","Laporan skripsi"], a:3 },
-    { q:"Tahap 'Mendesain Perencanaan Proyek dan Menyusun Jadwal' dialokasikan waktu sekitar...", o:["15 menit","20 menit","25 menit","30 menit"], a:2 },
-    { q:"Tahap 'Pelaksanaan dan Monitoring Proyek' dialokasikan waktu sekitar...", o:["15 menit","20 menit","25 menit","30 menit"], a:1 },
-    { q:"Tahap 'Menguji Hasil: Presentasi Produk Proyek' dialokasikan waktu sekitar...", o:["15 menit","20 menit","25 menit","30 menit"], a:1 },
-    { q:"Pada tahap presentasi, guru menggunakan lembar penilaian yang disebut...", o:["LKPD Proyek","Lembar Penilaian Proyek (Lampiran 2)","Jurnal Refleksi","Lembar Monitoring Proyek"], a:1 },
-    { q:"Pada kegiatan penutup, siswa mengisi Jurnal Refleksi sebagai bentuk...", o:["Nilai ujian akhir","Komitmen pengamalan nilai Pancasila","Absensi kehadiran","Laporan untuk orang tua"], a:1 },
-    { q:"Asesmen awal bertujuan untuk mengetahui...", o:["Nilai akhir siswa","Pengetahuan awal, persepsi, dan pengalaman siswa","Kehadiran siswa","Kerapian tugas"], a:1 },
-    { q:"Asesmen proses digunakan untuk memonitor...", o:["Pemahaman, keterlibatan, dan perkembangan sikap siswa","Nilai ujian akhir semester","Kehadiran siswa di kelas","Jumlah tugas yang dikumpulkan"], a:0 },
-    { q:"Asesmen akhir menilai pencapaian siswa dalam aspek...", o:["Pengetahuan saja","Keterampilan saja","Pengetahuan, keterampilan, dan sikap","Sikap saja"], a:2 },
-    { q:"Observasi guru saat diskusi kelompok dan pengerjaan proyek termasuk jenis asesmen...", o:["Self assessment","Peer assessment","Penilaian kinerja","Portofolio"], a:2 },
-    { q:"Penilaian yang dilakukan siswa terhadap dirinya sendiri melalui jurnal refleksi disebut...", o:["Peer assessment","Self assessment","Penilaian kinerja","Catatan anekdot"], a:1 },
-    { q:"Penilaian antarteman terhadap kontribusi dalam kelompok disebut...", o:["Self assessment","Catatan anekdot guru","Peer assessment","Portofolio proses"], a:2 },
-    { q:"Catatan informal guru mengenai hal menarik selama diskusi dan pengerjaan proyek disebut...", o:["Peer assessment","Self assessment","Portofolio proses","Catatan anekdot guru"], a:3 },
-    { q:"Kumpulan LKPD Proyek dan produk proyek hasil rancangan kelompok termasuk...", o:["Catatan anekdot guru","Self assessment","Portofolio proses","Peer assessment"], a:2 },
-    { q:"Aspek penilaian proyek yang dinilai dengan rubrik pada Lampiran 2 meliputi hal berikut, KECUALI...", o:["Perencanaan proyek","Ketepatan nilai Pancasila","Kerja sama kelompok","Nilai ujian tertulis"], a:3 },
-    { q:"Skor 100 (sangat baik) pada aspek perencanaan proyek diberikan jika...", o:["Tidak menyusun rencana proyek","Rencana produk kurang lengkap","Rencana produk, alat/bahan, dan jadwal disusun lengkap dan matang","Rencana produk disusun cukup lengkap"], a:2 },
-    { q:"Skor 70 (kurang) pada aspek ketepatan nilai Pancasila diberikan jika siswa...", o:["Menjelaskan sila secara tepat dan mendalam","Menjelaskan sila secara tepat","Penjelasan sila kurang tepat","Tidak mampu menjelaskan kaitan dengan sila"], a:3 },
-    { q:"Aspek 'Kerja Sama Kelompok' dengan skor 100 ditandai dengan...", o:["Hanya sebagian kecil anggota aktif","Sebagian besar anggota terlibat aktif","Seluruh anggota terlibat aktif dan kompak","Tidak tampak kerja sama kelompok"], a:2 },
-    { q:"Dalam rumus skor akhir, ranah kognitif memiliki bobot sebesar...", o:["20%","30%","50%","70%"], a:1 },
-    { q:"Dalam rumus skor akhir, ranah psikomotorik memiliki bobot sebesar...", o:["20%","30%","50%","70%"], a:2 },
-    { q:"Dalam rumus skor akhir, ranah afektif memiliki bobot sebesar...", o:["20%","30%","50%","70%"], a:0 },
-    { q:"Ranah psikomotorik pada penilaian proyek menilai...", o:["Pemahaman kaitan kasus dengan nilai sila","Unjuk kerja studi kasus dan proyek","Refleksi dan sikap","Kehadiran siswa"], a:1 },
-    { q:"Nilai adalah sifat atau kualitas dari sesuatu yang bermanfaat bagi kehidupan manusia, baik...", o:["Materiel saja","Lahir maupun batin","Sosial saja","Ekonomi saja"], a:1 },
-    { q:"Nilai menjadi landasan, alasan, atau motivasi manusia dalam...", o:["Bersikap dan bertingkah laku","Mencari keuntungan pribadi","Menentukan cuaca","Menetapkan hukum negara"], a:0 },
-    { q:"Menurut Notonagoro, nilai yang bermanfaat bagi jasmani manusia disebut...", o:["Nilai Vital","Nilai Kerohanian","Nilai Religius","Nilai Materiel"], a:3 },
-    { q:"Nilai yang bermanfaat agar manusia dapat beraktivitas disebut...", o:["Nilai Materiel","Nilai Vital","Nilai Kerohanian","Nilai Estetis"], a:1 },
-    { q:"Pancasila termasuk nilai kerohanian yang juga memuat nilai materiel dan vital secara...", o:["Terpisah dan bertentangan","Lengkap dan harmonis","Sebagian saja","Tidak seimbang"], a:1 },
-    { q:"Nilai kerohanian dibagi menjadi empat, KECUALI...", o:["Nilai kebenaran","Nilai ekonomi","Nilai keindahan","Nilai kebaikan moral"], a:1 },
-    { q:"Nilai keindahan dalam nilai kerohanian bersumber dari unsur...", o:["Akal","Rasa/estetis","Kehendak","Kepercayaan"], a:1 },
-    { q:"Nilai kebenaran dalam nilai kerohanian bersumber dari unsur...", o:["Rasa","Akal","Karsa","Religius"], a:1 },
-    { q:"Nilai kebaikan moral dalam nilai kerohanian bersumber dari unsur...", o:["Akal","Rasa","Kehendak/karsa","Kepercayaan"], a:2 },
-    { q:"Nilai religius dalam nilai kerohanian bersumber dari...", o:["Akal","Rasa","Karsa","Kepercayaan dan penghayatan"], a:3 },
-    { q:"Sifat nilai Pancasila yang menyatakan sila-sila saling terkait dan bertingkat seperti piramida disebut...", o:["Objektif","Subjektif","Hierarkis piramidal","Instrumental"], a:2 },
-    { q:"Dalam sifat hierarkis piramidal, sila pertama berfungsi...", o:["Berdiri sendiri terpisah dari sila lain","Tidak berkaitan dengan sila lain","Hanya berlaku di lingkungan sekolah","Mendasari dan menjiwai sila ke-2, 3, 4, dan 5"], a:3 },
-    { q:"Dalam sifat hierarkis piramidal, sila kelima...", o:["Berdiri sendiri tanpa kaitan","Dijiwai dan didasari oleh sila ke-1, 2, 3, dan 4","Mendahului sila pertama","Tidak memiliki hubungan dengan sila lain"], a:1 },
-    { q:"Sifat nilai Pancasila yang bersifat universal dan abstrak, serta berlaku sepanjang masa, disebut...", o:["Subjektif","Objektif","Praksis","Instrumental"], a:1 },
-    { q:"Sifat nilai Pancasila yang lahir dari bangsa Indonesia sendiri dan mencerminkan filsafat hidup bangsa disebut...", o:["Objektif","Absolut","Subjektif","Instrumental"], a:2 },
-    { q:"'Berlaku sepanjang masa' adalah ciri sifat nilai Pancasila yang...", o:["Subjektif","Praksis","Instrumental","Objektif"], a:3 },
-    { q:"'Mengandung nilai kerohanian bangsa' adalah ciri sifat nilai Pancasila yang...", o:["Objektif","Subjektif","Instrumental","Praksis"], a:1 },
-    { q:"'Tidak dapat diubah oleh siapa pun' adalah ciri sifat nilai Pancasila yang...", o:["Subjektif","Instrumental","Objektif","Praksis"], a:2 },
-    { q:"Nilai Pancasila tidak akan berubah sepanjang waktu karena berasal dari adat istiadat dan agama yang mengakar di Nusantara — sifat ini disebut...", o:["Subjektif","Instrumental","Praksis","Absolut/mutlak"], a:3 },
-    { q:"Ada berapa sifat utama nilai Pancasila yang dibahas dalam bahan bacaan modul ini?", o:["Dua sifat","Tiga sifat","Empat sifat","Lima sifat"], a:1 },
-    { q:"Menurut Moerdiono, sila-sila Pancasila itu sendiri termasuk tataran...", o:["Nilai instrumental","Nilai dasar","Nilai praksis","Nilai materiel"], a:1 },
-    { q:"Nilai dasar bersifat...", o:["Berubah setiap tahun","Abstrak, tetap, tidak terpengaruh waktu","Hanya berlaku sementara","Tergantung pada kebijakan pemerintah"], a:1 },
-    { q:"UUD 1945 dan peraturan perundang-undangan merupakan penjabaran nilai dasar sesuai zaman, termasuk tataran...", o:["Nilai instrumental","Nilai dasar","Nilai praksis","Nilai vital"], a:0 },
-    { q:"Gotong royong, toleransi, dan musyawarah dalam kehidupan sehari-hari adalah contoh tataran...", o:["Nilai dasar","Nilai instrumental","Nilai praksis","Nilai materiel"], a:2 },
-    { q:"Tataran nilai yang paling penting karena menentukan apakah Pancasila benar-benar hidup di masyarakat adalah...", o:["Nilai dasar","Nilai instrumental","Nilai vital","Nilai praksis"], a:3 },
-    { q:"Fokus utama kegiatan studi kasus dan proyek pada pembelajaran ini adalah penerapan tataran...", o:["Nilai dasar","Nilai instrumental","Nilai praksis","Nilai materiel"], a:2 },
-    { q:"Sila-sila Pancasila sebagai tataran nilai dasar bersifat abstrak dan...", o:["Berubah sesuai zaman","Tetap","Sementara","Fleksibel mengikuti tren"], a:1 },
-    { q:"Contoh nilai instrumental menurut bahan bacaan modul adalah...", o:["Sila-sila Pancasila","UUD 1945, undang-undang, peraturan","Gotong royong","Toleransi antarwarga"], a:1 },
-    { q:"Sila pertama Pancasila menjamin kebebasan beragama sesuai dengan...", o:["Pasal 33 UUD 1945","Pasal 27 UUD 1945","Pasal 29 Ayat 1 dan 2 UUD 1945","Pasal 31 UUD 1945"], a:2 },
-    { q:"Sila pertama TIDAK berarti bahwa negara...", o:["Menjamin kebebasan beragama","Berdasarkan pada satu agama tertentu","Menghormati pluralisme agama","Berlandaskan nilai ketuhanan"], a:1 },
-    { q:"Sikap 'adil' pada sila kedua berarti...", o:["Selalu memihak kelompok mayoritas","Tidak berat sebelah","Mengutamakan kepentingan pribadi","Membeda-bedakan suku"], a:1 },
-    { q:"Sikap 'beradab' pada sila kedua berarti...", o:["Berbudi bahasa baik","Tidak peduli sesama","Mengabaikan aturan","Mementingkan diri sendiri"], a:0 },
-    { q:"Sila kedua mengakui persamaan derajat, hak, dan kewajiban semua manusia tanpa membedakan...", o:["Suku, ras, agama, dan status sosial","Usia saja","Jenis kelamin saja","Tempat tinggal saja"], a:0 },
-    { q:"Kata 'persatuan' pada sila ketiga berasal dari kata 'satu' yang berarti...", o:["Banyak dan beragam","Sendiri-sendiri","Utuh dan tidak terpecah-pecah","Terbagi rata"], a:2 },
-    { q:"Perbedaan suku, agama, dan ras menurut sila ketiga seharusnya...", o:["Dihapuskan","Dijadikan alasan konflik","Diabaikan begitu saja","Disatukan dalam Bhinneka Tunggal Ika"], a:3 },
-    { q:"Bhinneka Tunggal Ika menjadi syarat mutlak untuk mencapai...", o:["Keuntungan pribadi","Tujuan bersama","Kemenangan kelompok","Status sosial tinggi"], a:1 },
-    { q:"Tiga unsur utama sila keempat adalah kerakyatan, kedaulatan rakyat, dan...", o:["Keadilan distributif","Nilai religius","Permusyawaratan/perwakilan","Gotong royong"], a:2 },
-    { q:"'Hikmat kebijaksanaan' pada sila keempat berarti keputusan diambil berdasarkan...", o:["Keputusan sepihak pemimpin","Nilai etika musyawarah yang rasional dan manusiawi","Suara terbanyak tanpa diskusi","Kesepakatan kelompok tertentu saja"], a:1 },
-    { q:"Menurut bahan bacaan, demokrasi adalah sarana menuju...", o:["Kekuasaan pribadi","Kesejahteraan rakyat","Keuntungan kelompok tertentu","Persaingan antarwarga"], a:1 },
-    { q:"Keadilan sosial pada sila kelima merupakan tujuan dari...", o:["Hanya sila pertama","Hanya sila keempat","Keempat sila lainnya","Peraturan pemerintah saja"], a:2 },
-    { q:"Keadilan yang berarti negara membagi secara merata disebut keadilan...", o:["Keadilan legal","Keadilan distributif","Keadilan komutatif","Keadilan sosial"], a:1 },
-    { q:"Keadilan yang berarti warga taat pada peraturan negara disebut keadilan...", o:["Keadilan legal","Keadilan distributif","Keadilan komutatif","Keadilan praksis"], a:0 },
-    { q:"Keadilan yang berarti hubungan timbal balik yang adil antarwarga disebut keadilan...", o:["Keadilan objektif","Keadilan legal","Keadilan komutatif","Keadilan distributif"], a:2 },
-    { q:"Lambang sila pertama adalah bintang, dengan contoh perilaku...", o:["Ikut upacara bendera","Bermusyawarah untuk mufakat","Beribadah sesuai agama dan menghormati agama lain","Bekerja keras dan tidak boros"], a:2 },
-    { q:"Lambang sila kedua adalah rantai, dengan contoh perilaku...", o:["Memakai produk dalam negeri","Membantu sesama dan menghargai HAM","Menghormati hasil musyawarah","Menaati hukum yang berlaku"], a:1 },
-    { q:"Lambang sila ketiga adalah pohon beringin, dengan contoh perilaku...", o:["Beribadah sesuai agama","Tidak memaksakan kehendak kepada orang lain","Bergotong royong dan memakai produk dalam negeri","Membantu yang lemah"], a:2 },
-    { q:"Lambang sila keempat adalah kepala banteng, dengan contoh perilaku...", o:["Menjaga kerukunan antarumat beragama","Musyawarah mufakat dan menghargai perbedaan pendapat","Kerja keras dan tidak boros","Menghargai HAM"], a:1 },
-    { q:"Lambang sila kelima adalah padi dan kapas, dengan contoh perilaku...", o:["Musyawarah untuk mufakat","Ikut upacara bendera","Menghormati agama lain","Kerja keras, tidak boros, dan membantu yang lemah"], a:3 },
-    { q:"Perilaku 'menjaga kerukunan antarumat beragama' merupakan pengamalan sila dengan lambang...", o:["Rantai","Bintang","Pohon beringin","Kepala banteng"], a:1 },
-    { q:"Perilaku 'tidak memaksakan kehendak kepada orang lain' merupakan pengamalan sila dengan lambang...", o:["Bintang","Rantai","Kepala banteng","Padi dan kapas"], a:2 },
-    { q:"Perilaku 'membantu sesama dan tidak semena-mena' merupakan pengamalan sila dengan lambang...", o:["Pohon beringin","Rantai","Kepala banteng","Padi dan kapas"], a:1 },
-    { q:"Perilaku 'memakai produk dalam negeri' merupakan pengamalan sila dengan lambang...", o:["Bintang","Rantai","Pohon beringin","Kepala banteng"], a:2 },
-    { q:"Perilaku 'kerja keras dan tidak boros' merupakan pengamalan sila dengan lambang...", o:["Kepala banteng","Bintang","Rantai","Padi dan kapas"], a:3 },
-    { q:"Toleransi antarteman berbeda agama saat tiba waktu salat Zuhur di sekolah adalah contoh penerapan sila ke...", o:["Sila ke-2","Sila ke-1","Sila ke-3","Sila ke-4"], a:1 },
-    { q:"Teman-teman membantu siswa yang tertinggal pelajaran karena baru sembuh dari sakit adalah contoh penerapan sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-5"], a:1 },
-    { q:"Gotong royong seluruh siswa membersihkan lingkungan sekolah menjelang 17 Agustus adalah contoh penerapan sila ke...", o:["Sila ke-2","Sila ke-4","Sila ke-3","Sila ke-5"], a:2 },
-    { q:"Musyawarah kelas untuk memilih ketua kelas yang baru adalah contoh penerapan sila ke...", o:["Sila ke-3","Sila ke-2","Sila ke-5","Sila ke-4"], a:3 },
-    { q:"Ketua kelas membagi jadwal piket kebersihan secara adil dan merata adalah contoh penerapan sila ke...", o:["Sila ke-4","Sila ke-3","Sila ke-1","Sila ke-5"], a:3 },
-    { q:"Skenario 'musyawarah kelas memilih ketua kelas' pada LKPD Proyek mewakili sila dengan bunyi...", o:["Persatuan Indonesia","Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan","Ketuhanan Yang Maha Esa","Keadilan sosial bagi seluruh rakyat Indonesia"], a:1 },
-    { q:"Skenario 'gotong royong membersihkan lingkungan sekolah' pada LKPD Proyek mewakili sila dengan nama...", o:["Kemanusiaan yang Adil dan Beradab","Persatuan Indonesia","Ketuhanan Yang Maha Esa","Keadilan Sosial bagi Seluruh Rakyat Indonesia"], a:1 },
-    { q:"Skenario 'ketua kelas membagi jadwal piket secara adil' pada LKPD Proyek mewakili sila dengan nama...", o:["Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan","Keadilan Sosial bagi Seluruh Rakyat Indonesia","Ketuhanan Yang Maha Esa"], a:2 },
-    { q:"Skenario 'teman membantu siswa yang baru sembuh sakit' pada LKPD Proyek mewakili sila dengan nama...", o:["Ketuhanan Yang Maha Esa","Kemanusiaan yang Adil dan Beradab","Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan"], a:1 },
-    { q:"Skenario 'toleransi saat tiba waktu salat Zuhur' pada LKPD Proyek mewakili sila dengan nama...", o:["Kemanusiaan yang Adil dan Beradab","Ketuhanan Yang Maha Esa","Persatuan Indonesia","Keadilan Sosial bagi Seluruh Rakyat Indonesia"], a:1 },
-    { q:"Dalam proyek penerapan nilai Pancasila, siswa dibagi menjadi lima kelompok yang masing-masing mewakili...", o:["Satu mata pelajaran","Satu wilayah asal","Satu sila Pancasila","Satu kelas paralel"], a:2 }
-  ];
+  var QUESTION_PACKS = {
+    paket1: [
+      { q:"Materi Bab 2 pada modul ajar ini digunakan untuk siswa kelas berapa?", o:["Kelas VI","Kelas VII","Kelas VIII","Kelas IX"], a:1 },
+      { q:"Berikut ini adalah dimensi Profil Lulusan yang dikembangkan pada pembelajaran ini, KECUALI...", o:["Bergotong Royong","Mandiri","Berkebinekaan Global","Bernalar Kritis"], a:1 },
+      { q:"Sebelum memulai pembelajaran, guru mengajak siswa tadarus dan tilawah surah...", o:["QS. Al-Baqarah:2","QS. Al-Ma'idah:8","QS. An-Nisa:58","QS. Al-Hujurat:13"], a:1 },
+      { q:"Pada tahap penentuan pertanyaan mendasar, siswa dibagi menjadi berapa kelompok?", o:["Tiga kelompok","Empat kelompok","Lima kelompok","Enam kelompok"], a:2 },
+      { q:"Tahap 'Pelaksanaan dan Monitoring Proyek' dialokasikan waktu sekitar...", o:["15 menit","20 menit","25 menit","30 menit"], a:1 },
+      { q:"Asesmen awal bertujuan untuk mengetahui...", o:["Nilai akhir siswa","Pengetahuan awal, persepsi, dan pengalaman siswa","Kehadiran siswa","Kerapian tugas"], a:1 },
+      { q:"Penilaian yang dilakukan siswa terhadap dirinya sendiri melalui jurnal refleksi disebut...", o:["Peer assessment","Self assessment","Penilaian kinerja","Catatan anekdot"], a:1 },
+      { q:"Aspek penilaian proyek yang dinilai dengan rubrik pada Lampiran 2 meliputi hal berikut, KECUALI...", o:["Perencanaan proyek","Ketepatan nilai Pancasila","Kerja sama kelompok","Nilai ujian tertulis"], a:3 },
+      { q:"Dalam rumus skor akhir, ranah kognitif memiliki bobot sebesar...", o:["20%","30%","50%","70%"], a:1 },
+      { q:"Nilai adalah sifat atau kualitas dari sesuatu yang bermanfaat bagi kehidupan manusia, baik...", o:["Materiel saja","Lahir maupun batin","Sosial saja","Ekonomi saja"], a:1 },
+      { q:"Pancasila termasuk nilai kerohanian yang juga memuat nilai materiel dan vital secara...", o:["Terpisah dan bertentangan","Lengkap dan harmonis","Sebagian saja","Tidak seimbang"], a:1 },
+      { q:"Nilai kebaikan moral dalam nilai kerohanian bersumber dari unsur...", o:["Akal","Rasa","Kehendak/karsa","Kepercayaan"], a:2 },
+      { q:"Dalam sifat hierarkis piramidal, sila kelima...", o:["Berdiri sendiri tanpa kaitan","Dijiwai dan didasari oleh sila ke-1, 2, 3, dan 4","Mendahului sila pertama","Tidak memiliki hubungan dengan sila lain"], a:1 },
+      { q:"'Mengandung nilai kerohanian bangsa' adalah ciri sifat nilai Pancasila yang...", o:["Objektif","Subjektif","Instrumental","Praksis"], a:1 },
+      { q:"Menurut Moerdiono, sila-sila Pancasila itu sendiri termasuk tataran...", o:["Nilai instrumental","Nilai dasar","Nilai praksis","Nilai materiel"], a:1 },
+      { q:"Tataran nilai yang paling penting karena menentukan apakah Pancasila benar-benar hidup di masyarakat adalah...", o:["Nilai dasar","Nilai instrumental","Nilai vital","Nilai praksis"], a:3 },
+      { q:"Sila pertama Pancasila menjamin kebebasan beragama sesuai dengan...", o:["Pasal 33 UUD 1945","Pasal 27 UUD 1945","Pasal 29 Ayat 1 dan 2 UUD 1945","Pasal 31 UUD 1945"], a:2 },
+      { q:"Sila kedua mengakui persamaan derajat, hak, dan kewajiban semua manusia tanpa membedakan...", o:["Suku, ras, agama, dan status sosial","Usia saja","Jenis kelamin saja","Tempat tinggal saja"], a:0 },
+      { q:"Tiga unsur utama sila keempat adalah kerakyatan, kedaulatan rakyat, dan...", o:["Keadilan distributif","Nilai religius","Permusyawaratan/perwakilan","Gotong royong"], a:2 },
+      { q:"Keadilan yang berarti negara membagi secara merata disebut keadilan...", o:["Keadilan legal","Keadilan distributif","Keadilan komutatif","Keadilan sosial"], a:1 },
+      { q:"Lambang sila kedua adalah rantai, dengan contoh perilaku...", o:["Memakai produk dalam negeri","Membantu sesama dan menghargai HAM","Menghormati hasil musyawarah","Menaati hukum yang berlaku"], a:1 },
+      { q:"Perilaku 'menjaga kerukunan antarumat beragama' merupakan pengamalan sila dengan lambang...", o:["Rantai","Bintang","Pohon beringin","Kepala banteng"], a:1 },
+      { q:"Perilaku 'kerja keras dan tidak boros' merupakan pengamalan sila dengan lambang...", o:["Kepala banteng","Bintang","Rantai","Padi dan kapas"], a:3 },
+      { q:"Musyawarah kelas untuk memilih ketua kelas yang baru adalah contoh penerapan sila ke...", o:["Sila ke-3","Sila ke-2","Sila ke-5","Sila ke-4"], a:3 },
+      { q:"Skenario 'ketua kelas membagi jadwal piket secara adil' pada LKPD Proyek mewakili sila dengan nama...", o:["Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan","Keadilan Sosial bagi Seluruh Rakyat Indonesia","Ketuhanan Yang Maha Esa"], a:2 }
+    ],
+    paket2: [
+      { q:"Judul materi pada Bab 2 modul ajar PPKn ini adalah...", o:["Norma dan Keadilan","Penerapan Nilai-Nilai Pancasila","Sejarah Lahirnya Pancasila","Sistem Pemerintahan Indonesia"], a:1 },
+      { q:"Mata pelajaran yang beririsan dengan materi ini melalui penyusunan teks laporan proyek adalah...", o:["Seni Budaya","Bahasa Indonesia","Pendidikan Agama Islam","Matematika"], a:1 },
+      { q:"QS. Al-Ma'idah ayat 8 berisi perintah tentang...", o:["Menuntut ilmu","Berlaku adil dan jujur","Menjaga silaturahmi","Bersyukur atas nikmat"], a:1 },
+      { q:"Lembar kerja yang diterima tiap kelompok pada tahap awal proyek disebut...", o:["Lembar Penilaian Proyek","LKPD Proyek (Lampiran 1)","Jurnal Refleksi","Lembar Monitoring"], a:1 },
+      { q:"Tahap 'Menguji Hasil: Presentasi Produk Proyek' dialokasikan waktu sekitar...", o:["15 menit","20 menit","25 menit","30 menit"], a:1 },
+      { q:"Asesmen proses digunakan untuk memonitor...", o:["Pemahaman, keterlibatan, dan perkembangan sikap siswa","Nilai ujian akhir semester","Kehadiran siswa di kelas","Jumlah tugas yang dikumpulkan"], a:0 },
+      { q:"Penilaian antarteman terhadap kontribusi dalam kelompok disebut...", o:["Self assessment","Catatan anekdot guru","Peer assessment","Portofolio proses"], a:2 },
+      { q:"Skor 100 (sangat baik) pada aspek perencanaan proyek diberikan jika...", o:["Tidak menyusun rencana proyek","Rencana produk kurang lengkap","Rencana produk, alat/bahan, dan jadwal disusun lengkap dan matang","Rencana produk disusun cukup lengkap"], a:2 },
+      { q:"Dalam rumus skor akhir, ranah psikomotorik memiliki bobot sebesar...", o:["20%","30%","50%","70%"], a:2 },
+      { q:"Nilai menjadi landasan, alasan, atau motivasi manusia dalam...", o:["Bersikap dan bertingkah laku","Mencari keuntungan pribadi","Menentukan cuaca","Menetapkan hukum negara"], a:0 },
+      { q:"Nilai kerohanian dibagi menjadi empat, KECUALI...", o:["Nilai kebenaran","Nilai ekonomi","Nilai keindahan","Nilai kebaikan moral"], a:1 },
+      { q:"Nilai religius dalam nilai kerohanian bersumber dari...", o:["Akal","Rasa","Karsa","Kepercayaan dan penghayatan"], a:3 },
+      { q:"Sifat nilai Pancasila yang bersifat universal dan abstrak, serta berlaku sepanjang masa, disebut...", o:["Subjektif","Objektif","Praksis","Instrumental"], a:1 },
+      { q:"'Tidak dapat diubah oleh siapa pun' adalah ciri sifat nilai Pancasila yang...", o:["Subjektif","Instrumental","Objektif","Praksis"], a:2 },
+      { q:"Nilai dasar bersifat...", o:["Berubah setiap tahun","Abstrak, tetap, tidak terpengaruh waktu","Hanya berlaku sementara","Tergantung pada kebijakan pemerintah"], a:1 },
+      { q:"Fokus utama kegiatan studi kasus dan proyek pada pembelajaran ini adalah penerapan tataran...", o:["Nilai dasar","Nilai instrumental","Nilai praksis","Nilai materiel"], a:2 },
+      { q:"Sila pertama TIDAK berarti bahwa negara...", o:["Menjamin kebebasan beragama","Berdasarkan pada satu agama tertentu","Menghormati pluralisme agama","Berlandaskan nilai ketuhanan"], a:1 },
+      { q:"Kata 'persatuan' pada sila ketiga berasal dari kata 'satu' yang berarti...", o:["Banyak dan beragam","Sendiri-sendiri","Utuh dan tidak terpecah-pecah","Terbagi rata"], a:2 },
+      { q:"'Hikmat kebijaksanaan' pada sila keempat berarti keputusan diambil berdasarkan...", o:["Keputusan sepihak pemimpin","Nilai etika musyawarah yang rasional dan manusiawi","Suara terbanyak tanpa diskusi","Kesepakatan kelompok tertentu saja"], a:1 },
+      { q:"Keadilan yang berarti warga taat pada peraturan negara disebut keadilan...", o:["Keadilan legal","Keadilan distributif","Keadilan komutatif","Keadilan praksis"], a:0 },
+      { q:"Lambang sila ketiga adalah pohon beringin, dengan contoh perilaku...", o:["Beribadah sesuai agama","Tidak memaksakan kehendak kepada orang lain","Bergotong royong dan memakai produk dalam negeri","Membantu yang lemah"], a:2 },
+      { q:"Perilaku 'tidak memaksakan kehendak kepada orang lain' merupakan pengamalan sila dengan lambang...", o:["Bintang","Rantai","Kepala banteng","Padi dan kapas"], a:2 },
+      { q:"Toleransi antarteman berbeda agama saat tiba waktu salat Zuhur di sekolah adalah contoh penerapan sila ke...", o:["Sila ke-2","Sila ke-1","Sila ke-3","Sila ke-4"], a:1 },
+      { q:"Ketua kelas membagi jadwal piket kebersihan secara adil dan merata adalah contoh penerapan sila ke...", o:["Sila ke-4","Sila ke-3","Sila ke-1","Sila ke-5"], a:3 },
+      { q:"Skenario 'teman membantu siswa yang baru sembuh sakit' pada LKPD Proyek mewakili sila dengan nama...", o:["Ketuhanan Yang Maha Esa","Kemanusiaan yang Adil dan Beradab","Persatuan Indonesia","Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan"], a:1 }
+    ],
+    paket3: [
+      { q:"Model pembelajaran utama yang digunakan pada pertemuan ini adalah...", o:["Discovery Learning","Problem Based Learning","Project Based Learning (PjBL)","Cooperative Learning"], a:2 },
+      { q:"Muatan Adiwiyata pada pembelajaran ini terintegrasi dengan studi kasus sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-5"], a:2 },
+      { q:"Pada kegiatan apersepsi, guru melakukan tanya jawab singkat untuk mengukur...", o:["Kehadiran siswa","Pemahaman awal siswa (Asesmen Awal)","Kerapian tugas siswa","Minat belajar siswa"], a:1 },
+      { q:"Berikut ini adalah contoh produk proyek sederhana yang disebutkan dalam modul, KECUALI...", o:["Poster","Komik strip","Mading","Laporan skripsi"], a:3 },
+      { q:"Pada tahap presentasi, guru menggunakan lembar penilaian yang disebut...", o:["LKPD Proyek","Lembar Penilaian Proyek (Lampiran 2)","Jurnal Refleksi","Lembar Monitoring Proyek"], a:1 },
+      { q:"Asesmen akhir menilai pencapaian siswa dalam aspek...", o:["Pengetahuan saja","Keterampilan saja","Pengetahuan, keterampilan, dan sikap","Sikap saja"], a:2 },
+      { q:"Catatan informal guru mengenai hal menarik selama diskusi dan pengerjaan proyek disebut...", o:["Peer assessment","Self assessment","Portofolio proses","Catatan anekdot guru"], a:3 },
+      { q:"Skor 70 (kurang) pada aspek ketepatan nilai Pancasila diberikan jika siswa...", o:["Menjelaskan sila secara tepat dan mendalam","Menjelaskan sila secara tepat","Penjelasan sila kurang tepat","Tidak mampu menjelaskan kaitan dengan sila"], a:3 },
+      { q:"Dalam rumus skor akhir, ranah afektif memiliki bobot sebesar...", o:["20%","30%","50%","70%"], a:0 },
+      { q:"Menurut Notonagoro, nilai yang bermanfaat bagi jasmani manusia disebut...", o:["Nilai Vital","Nilai Kerohanian","Nilai Religius","Nilai Materiel"], a:3 },
+      { q:"Nilai keindahan dalam nilai kerohanian bersumber dari unsur...", o:["Akal","Rasa/estetis","Kehendak","Kepercayaan"], a:1 },
+      { q:"Sifat nilai Pancasila yang menyatakan sila-sila saling terkait dan bertingkat seperti piramida disebut...", o:["Objektif","Subjektif","Hierarkis piramidal","Instrumental"], a:2 },
+      { q:"Sifat nilai Pancasila yang lahir dari bangsa Indonesia sendiri dan mencerminkan filsafat hidup bangsa disebut...", o:["Objektif","Absolut","Subjektif","Instrumental"], a:2 },
+      { q:"Nilai Pancasila tidak akan berubah sepanjang waktu karena berasal dari adat istiadat dan agama yang mengakar di Nusantara — sifat ini disebut...", o:["Subjektif","Instrumental","Praksis","Absolut/mutlak"], a:3 },
+      { q:"UUD 1945 dan peraturan perundang-undangan merupakan penjabaran nilai dasar sesuai zaman, termasuk tataran...", o:["Nilai instrumental","Nilai dasar","Nilai praksis","Nilai vital"], a:0 },
+      { q:"Sila-sila Pancasila sebagai tataran nilai dasar bersifat abstrak dan...", o:["Berubah sesuai zaman","Tetap","Sementara","Fleksibel mengikuti tren"], a:1 },
+      { q:"Sikap 'adil' pada sila kedua berarti...", o:["Selalu memihak kelompok mayoritas","Tidak berat sebelah","Mengutamakan kepentingan pribadi","Membeda-bedakan suku"], a:1 },
+      { q:"Perbedaan suku, agama, dan ras menurut sila ketiga seharusnya...", o:["Dihapuskan","Dijadikan alasan konflik","Diabaikan begitu saja","Disatukan dalam Bhinneka Tunggal Ika"], a:3 },
+      { q:"Menurut bahan bacaan, demokrasi adalah sarana menuju...", o:["Kekuasaan pribadi","Kesejahteraan rakyat","Keuntungan kelompok tertentu","Persaingan antarwarga"], a:1 },
+      { q:"Keadilan yang berarti hubungan timbal balik yang adil antarwarga disebut keadilan...", o:["Keadilan objektif","Keadilan legal","Keadilan komutatif","Keadilan distributif"], a:2 },
+      { q:"Lambang sila keempat adalah kepala banteng, dengan contoh perilaku...", o:["Menjaga kerukunan antarumat beragama","Musyawarah mufakat dan menghargai perbedaan pendapat","Kerja keras dan tidak boros","Menghargai HAM"], a:1 },
+      { q:"Perilaku 'membantu sesama dan tidak semena-mena' merupakan pengamalan sila dengan lambang...", o:["Pohon beringin","Rantai","Kepala banteng","Padi dan kapas"], a:1 },
+      { q:"Teman-teman membantu siswa yang tertinggal pelajaran karena baru sembuh dari sakit adalah contoh penerapan sila ke...", o:["Sila ke-1","Sila ke-2","Sila ke-3","Sila ke-5"], a:1 },
+      { q:"Skenario 'musyawarah kelas memilih ketua kelas' pada LKPD Proyek mewakili sila dengan bunyi...", o:["Persatuan Indonesia","Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan","Ketuhanan Yang Maha Esa","Keadilan sosial bagi seluruh rakyat Indonesia"], a:1 },
+      { q:"Skenario 'toleransi saat tiba waktu salat Zuhur' pada LKPD Proyek mewakili sila dengan nama...", o:["Kemanusiaan yang Adil dan Beradab","Ketuhanan Yang Maha Esa","Persatuan Indonesia","Keadilan Sosial bagi Seluruh Rakyat Indonesia"], a:1 }
+    ],
+    paket4: [
+      { q:"Alokasi waktu pertemuan pada modul ajar ini adalah...", o:["1 x 1 JP","1 x 2 JP","2 x 2 JP","1 x 3 JP"], a:1 },
+      { q:"Pihak yang menjadi mitra pembelajaran pada modul ajar ini, selain guru mapel lain, adalah...", o:["Kepala sekolah","Orang tua","Komite sekolah","Pengawas sekolah"], a:1 },
+      { q:"Pertanyaan mendasar yang diajukan guru pada tahap awal PjBL adalah bagaimana siswa dapat menunjukkan penerapan nilai Pancasila melalui...", o:["Hafalan lisan","Ujian tertulis","Produk kreatif yang bermanfaat","Diskusi tanpa hasil"], a:2 },
+      { q:"Tahap 'Mendesain Perencanaan Proyek dan Menyusun Jadwal' dialokasikan waktu sekitar...", o:["15 menit","20 menit","25 menit","30 menit"], a:2 },
+      { q:"Pada kegiatan penutup, siswa mengisi Jurnal Refleksi sebagai bentuk...", o:["Nilai ujian akhir","Komitmen pengamalan nilai Pancasila","Absensi kehadiran","Laporan untuk orang tua"], a:1 },
+      { q:"Observasi guru saat diskusi kelompok dan pengerjaan proyek termasuk jenis asesmen...", o:["Self assessment","Peer assessment","Penilaian kinerja","Portofolio"], a:2 },
+      { q:"Kumpulan LKPD Proyek dan produk proyek hasil rancangan kelompok termasuk...", o:["Catatan anekdot guru","Self assessment","Portofolio proses","Peer assessment"], a:2 },
+      { q:"Aspek 'Kerja Sama Kelompok' dengan skor 100 ditandai dengan...", o:["Hanya sebagian kecil anggota aktif","Sebagian besar anggota terlibat aktif","Seluruh anggota terlibat aktif dan kompak","Tidak tampak kerja sama kelompok"], a:2 },
+      { q:"Ranah psikomotorik pada penilaian proyek menilai...", o:["Pemahaman kaitan kasus dengan nilai sila","Unjuk kerja studi kasus dan proyek","Refleksi dan sikap","Kehadiran siswa"], a:1 },
+      { q:"Nilai yang bermanfaat agar manusia dapat beraktivitas disebut...", o:["Nilai Materiel","Nilai Vital","Nilai Kerohanian","Nilai Estetis"], a:1 },
+      { q:"Nilai kebenaran dalam nilai kerohanian bersumber dari unsur...", o:["Rasa","Akal","Karsa","Religius"], a:1 },
+      { q:"Dalam sifat hierarkis piramidal, sila pertama berfungsi...", o:["Berdiri sendiri terpisah dari sila lain","Tidak berkaitan dengan sila lain","Hanya berlaku di lingkungan sekolah","Mendasari dan menjiwai sila ke-2, 3, 4, dan 5"], a:3 },
+      { q:"'Berlaku sepanjang masa' adalah ciri sifat nilai Pancasila yang...", o:["Subjektif","Praksis","Instrumental","Objektif"], a:3 },
+      { q:"Ada berapa sifat utama nilai Pancasila yang dibahas dalam bahan bacaan modul ini?", o:["Dua sifat","Tiga sifat","Empat sifat","Lima sifat"], a:1 },
+      { q:"Gotong royong, toleransi, dan musyawarah dalam kehidupan sehari-hari adalah contoh tataran...", o:["Nilai dasar","Nilai instrumental","Nilai praksis","Nilai materiel"], a:2 },
+      { q:"Contoh nilai instrumental menurut bahan bacaan modul adalah...", o:["Sila-sila Pancasila","UUD 1945, undang-undang, peraturan","Gotong royong","Toleransi antarwarga"], a:1 },
+      { q:"Sikap 'beradab' pada sila kedua berarti...", o:["Berbudi bahasa baik","Tidak peduli sesama","Mengabaikan aturan","Mementingkan diri sendiri"], a:0 },
+      { q:"Bhinneka Tunggal Ika menjadi syarat mutlak untuk mencapai...", o:["Keuntungan pribadi","Tujuan bersama","Kemenangan kelompok","Status sosial tinggi"], a:1 },
+      { q:"Keadilan sosial pada sila kelima merupakan tujuan dari...", o:["Hanya sila pertama","Hanya sila keempat","Keempat sila lainnya","Peraturan pemerintah saja"], a:2 },
+      { q:"Lambang sila pertama adalah bintang, dengan contoh perilaku...", o:["Ikut upacara bendera","Bermusyawarah untuk mufakat","Beribadah sesuai agama dan menghormati agama lain","Bekerja keras dan tidak boros"], a:2 },
+      { q:"Lambang sila kelima adalah padi dan kapas, dengan contoh perilaku...", o:["Musyawarah untuk mufakat","Ikut upacara bendera","Menghormati agama lain","Kerja keras, tidak boros, dan membantu yang lemah"], a:3 },
+      { q:"Perilaku 'memakai produk dalam negeri' merupakan pengamalan sila dengan lambang...", o:["Bintang","Rantai","Pohon beringin","Kepala banteng"], a:2 },
+      { q:"Gotong royong seluruh siswa membersihkan lingkungan sekolah menjelang 17 Agustus adalah contoh penerapan sila ke...", o:["Sila ke-2","Sila ke-4","Sila ke-3","Sila ke-5"], a:2 },
+      { q:"Skenario 'gotong royong membersihkan lingkungan sekolah' pada LKPD Proyek mewakili sila dengan nama...", o:["Kemanusiaan yang Adil dan Beradab","Persatuan Indonesia","Ketuhanan Yang Maha Esa","Keadilan Sosial bagi Seluruh Rakyat Indonesia"], a:1 },
+      { q:"Dalam proyek penerapan nilai Pancasila, siswa dibagi menjadi lima kelompok yang masing-masing mewakili...", o:["Satu mata pelajaran","Satu wilayah asal","Satu sila Pancasila","Satu kelas paralel"], a:2 }
+    ]
+  };
+
+  var PACK_LABELS = { paket1: "Paket 1", paket2: "Paket 2", paket3: "Paket 3", paket4: "Paket 4" };
+  var QUESTIONS = QUESTION_PACKS.paket1; // default until a pack is chosen
+  var selectedPackKey = "paket1";
 
   /* ---------------- state ---------------- */
   var STEP = 7;          // percent per correct answer
@@ -982,11 +1112,36 @@
   }
 
   /* ---------------- DOM refs ---------------- */
+  var packScreen = document.getElementById("packScreen");
+  var packCards = document.querySelectorAll(".pack-card");
+  var activePackChip = document.getElementById("activePackChip");
+  var changePackBtn = document.getElementById("changePackBtn");
   var setupScreen = document.getElementById("setupScreen");
   var app = document.getElementById("app");
   var startBtn = document.getElementById("startBtn");
   var nameAInput = document.getElementById("nameA");
   var nameBInput = document.getElementById("nameB");
+
+  /* ---------------- pack selection ---------------- */
+  function choosePack(key){
+    selectedPackKey = key;
+    QUESTIONS = QUESTION_PACKS[key];
+    activePackChip.textContent = PACK_LABELS[key] || "Paket Soal";
+    packCards.forEach(function(c){ c.classList.toggle("selected", c.getAttribute("data-pack") === key); });
+    packScreen.hidden = true;
+    setupScreen.hidden = false;
+  }
+
+  packCards.forEach(function(card){
+    card.addEventListener("click", function(){
+      choosePack(card.getAttribute("data-pack"));
+    });
+  });
+
+  changePackBtn.addEventListener("click", function(){
+    setupScreen.hidden = true;
+    packScreen.hidden = false;
+  });
 
   var labelA = document.getElementById("labelA");
   var labelB = document.getElementById("labelB");
@@ -1055,7 +1210,7 @@
     state.locked = false;
     state.qIndex++;
     state.current = nextQuestionData();
-    qCounter.textContent = "Soal ke-" + state.qIndex;
+    qCounter.textContent = "Soal ke-" + state.qIndex + " / " + QUESTIONS.length;
     questionText.textContent = state.current.q;
     updateTurnPill();
 
@@ -1118,14 +1273,16 @@
     if (!confirm("Ulangi permainan dari awal? Skor akan direset.")) return;
     stopTimer();
     app.hidden = true;
-    setupScreen.hidden = false;
+    packScreen.hidden = false;
+    setupScreen.hidden = true;
   });
 
   playAgainBtn.addEventListener("click", function(){
     stopTimer();
     overlay.hidden = true;
     app.hidden = true;
-    setupScreen.hidden = false;
+    packScreen.hidden = false;
+    setupScreen.hidden = true;
   });
 
   /* ---------------- match timer (2 minutes) ---------------- */
